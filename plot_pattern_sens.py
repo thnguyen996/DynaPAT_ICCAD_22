@@ -19,7 +19,7 @@ heat_map = np.empty((4, 4))
 for pat_index, error_pat in enumerate(error_pats):
     for des_index, error_des in enumerate(des_pats):
         if error_des == error_pat:
-            heat_map[pat_index, des_index] = 0
+            heat_map[pat_index, des_index] = 24
             continue
         else:
             acc = pd.read_csv(f"./result/Pattern-{error_pat}-to-{error_des}.csv")
@@ -33,6 +33,7 @@ for pat_index, error_pat in enumerate(error_pats):
 with plt.style.context(["ieee", "no-latex"]):
     mpl.rcParams['font.family'] = 'NimbusRomNo9L'
     fig, ax = plt.subplots(figsize=(2, 2))
+    heat_map = 24 - heat_map
     im = ax.imshow(heat_map, cmap="OrRd")
 
     cbar = ax.figure.colorbar(im, ax=ax)
@@ -49,7 +50,7 @@ with plt.style.context(["ieee", "no-latex"]):
 
 plt.tight_layout()
 fig.savefig("./Figures/pattern_heatmap.svg", dpi=300)
-# os.system("zathura pattern_heatmap.pdf")
-plt.show()
+# os.system("zathura ./Figures/pattern_heatmap.pdf")
+# plt.show()
 
 
