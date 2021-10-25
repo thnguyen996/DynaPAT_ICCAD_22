@@ -33,7 +33,6 @@ for pat_index, error_pat in enumerate(error_pats):
 with plt.style.context(["ieee", "no-latex"]):
     mpl.rcParams['font.family'] = 'NimbusRomNo9L'
     fig, ax = plt.subplots(figsize=(2, 2))
-    heat_map = 24 - heat_map
     im = ax.imshow(heat_map, cmap="OrRd")
 
     cbar = ax.figure.colorbar(im, ax=ax)
@@ -51,6 +50,6 @@ with plt.style.context(["ieee", "no-latex"]):
 plt.tight_layout()
 fig.savefig("./Figures/pattern_heatmap.svg", dpi=300)
 # os.system("zathura pattern_heatmap.pdf")
-# plt.show()
+plt.show()
 
 
