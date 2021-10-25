@@ -1,0 +1,572 @@
+conv1:
+  inputs:
+    0:
+      min: -2.429065704345703
+      max: 2.7537312507629395
+      avg_min: -2.159577843659805
+      avg_max: 2.4785022057557566
+      mean: 0.08183939361572265
+      std: 0
+      b: 0
+      shape: (100, 3, 32, 32)
+      total_numel: 1536000
+  output:
+    min: 0.0
+    max: 3.4643516540527344
+    avg_min: 0.0
+    avg_max: 1.6895495665848
+    mean: 0.029866121768951415
+    std: 0
+    b: 0
+    shape: (100, 64, 32, 32)
+    total_numel: 32768000
+layer1.0.conv1:
+  inputs:
+    0:
+      min: 0.0
+      max: 3.4643516540527344
+      avg_min: 0.0
+      avg_max: 1.6895495665848
+      mean: 0.08859714126586914
+      std: 0
+      b: 0
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
+  output:
+    min: 0.0
+    max: 3.16951322555542
+    avg_min: 0.0
+    avg_max: 1.499518843297078
+    mean: -0.011694157838821412
+    std: 0
+    b: 0
+    shape: (100, 64, 32, 32)
+    total_numel: 32768000
+layer1.0.conv2:
+  inputs:
+    0:
+      min: 0.0
+      max: 3.16951322555542
+      avg_min: 0.0
+      avg_max: 1.499518843297078
+      mean: 0.08093350982666016
+      std: 0
+      b: 0
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
+  output:
+    min: -4.9707136154174805
+    max: 4.55473518371582
+    avg_min: -2.6647967797942664
+    avg_max: 2.5258578290066396
+    mean: -0.06598507976531982
+    std: 0
+    b: 0
+    shape: (100, 64, 32, 32)
+    total_numel: 32768000
+layer1.0.shortcut:
+  inputs:
+    0:
+      min: 0.0
+      max: 3.4643516540527344
+      avg_min: 0.0
+      avg_max: 1.6895495665848
+      mean: 0.08859714126586914
+      std: 0
+      b: 0
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
+  output:
+    min: 0.0
+    max: 3.4643516540527344
+    avg_min: 0.0
+    avg_max: 1.6895495665848
+    mean: 0.08859714126586914
+    std: 0
+    b: 0
+    shape: (100, 64, 32, 32)
+    total_numel: 32768000
+layer1.1.conv1:
+  inputs:
+    0:
+      min: 0.0
+      max: 5.829944133758545
+      avg_min: 0.0
+      avg_max: 3.371583108029469
+      mean: 0.1256764316558838
+      std: 0
+      b: 0
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
+  output:
+    min: 0.0
+    max: 2.4938101768493652
+    avg_min: 0.0
+    avg_max: 1.5962726200953878
+    mean: -0.10590685653686524
+    std: 0
+    b: 0
+    shape: (100, 64, 32, 32)
+    total_numel: 32768000
+layer1.1.conv2:
+  inputs:
+    0:
+      min: 0.0
+      max: 2.4938101768493652
+      avg_min: 0.0
+      avg_max: 1.5962726200953878
+      mean: 0.03631833744049072
+      std: 0
+      b: 0
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
+  output:
+    min: -3.6233367919921875
+    max: 3.137171983718872
+    avg_min: -2.1772635035266092
+    avg_max: 1.7523178862678856
+    mean: -0.035720930576324465
+    std: 0
+    b: 0
+    shape: (100, 64, 32, 32)
+    total_numel: 32768000
+layer1.1.shortcut:
+  inputs:
+    0:
+      min: 0.0
+      max: 5.829944133758545
+      avg_min: 0.0
+      avg_max: 3.371583108029469
+      mean: 0.1256764316558838
+      std: 0
+      b: 0
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
+  output:
+    min: 0.0
+    max: 5.829944133758545
+    avg_min: 0.0
+    avg_max: 3.371583108029469
+    mean: 0.1256764316558838
+    std: 0
+    b: 0
+    shape: (100, 64, 32, 32)
+    total_numel: 32768000
+layer2.0.conv1:
+  inputs:
+    0:
+      min: 0.0
+      max: 5.360262393951416
+      avg_min: 0.0
+      avg_max: 2.8208926123329023
+      mean: 0.1530401554107666
+      std: 0
+      b: 0
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
+  output:
+    min: 0.0
+    max: 2.25626802444458
+    avg_min: 0.0
+    avg_max: 1.359652281091525
+    mean: -0.06499389839172363
+    std: 0
+    b: 0
+    shape: (100, 128, 16, 16)
+    total_numel: 16384000
+layer2.0.conv2:
+  inputs:
+    0:
+      min: 0.0
+      max: 2.25626802444458
+      avg_min: 0.0
+      avg_max: 1.359652281091525
+      mean: 0.0530562744140625
+      std: 0
+      b: 0
+      shape: (100, 128, 16, 16)
+      total_numel: 16384000
+  output:
+    min: -2.73664927482605
+    max: 3.6032965183258057
+    avg_min: -1.5077790444251786
+    avg_max: 1.828714468026432
+    mean: -0.04950489044189453
+    std: 0
+    b: 0
+    shape: (100, 128, 16, 16)
+    total_numel: 16384000
+layer2.0.shortcut.0:
+  inputs:
+    0:
+      min: 0.0
+      max: 5.360262393951416
+      avg_min: 0.0
+      avg_max: 2.8208926123329023
+      mean: 0.1530401554107666
+      std: 0
+      b: 0
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
+  output:
+    min: -2.2058374881744385
+    max: 4.004813194274902
+    avg_min: -1.1115638170347817
+    avg_max: 1.4688069730861648
+    mean: -0.047595734596252444
+    std: 0
+    b: 0
+    shape: (100, 128, 16, 16)
+    total_numel: 16384000
+layer2.1.conv1:
+  inputs:
+    0:
+      min: 0.0
+      max: 4.584927082061768
+      avg_min: 0.0
+      avg_max: 2.371088394319497
+      mean: 0.09809101867675782
+      std: 0
+      b: 0
+      shape: (100, 128, 16, 16)
+      total_numel: 16384000
+  output:
+    min: 0.0
+    max: 1.7671189308166504
+    avg_min: 0.0
+    avg_max: 1.0676646536371615
+    mean: -0.13535308074951172
+    std: 0
+    b: 0
+    shape: (100, 128, 16, 16)
+    total_numel: 16384000
+layer2.1.conv2:
+  inputs:
+    0:
+      min: 0.0
+      max: 1.7671189308166504
+      avg_min: 0.0
+      avg_max: 1.0676646536371615
+      mean: 0.022658610820770263
+      std: 0
+      b: 0
+      shape: (100, 128, 16, 16)
+      total_numel: 16384000
+  output:
+    min: -2.319977283477783
+    max: 3.0601279735565186
+    avg_min: -1.3271304618275752
+    avg_max: 1.4560246245980075
+    mean: -0.07697464179992676
+    std: 0
+    b: 0
+    shape: (100, 128, 16, 16)
+    total_numel: 16384000
+layer2.1.shortcut:
+  inputs:
+    0:
+      min: 0.0
+      max: 4.584927082061768
+      avg_min: 0.0
+      avg_max: 2.371088394319497
+      mean: 0.09809101867675782
+      std: 0
+      b: 0
+      shape: (100, 128, 16, 16)
+      total_numel: 16384000
+  output:
+    min: 0.0
+    max: 4.584927082061768
+    avg_min: 0.0
+    avg_max: 2.371088394319497
+    mean: 0.09809101867675782
+    std: 0
+    b: 0
+    shape: (100, 128, 16, 16)
+    total_numel: 16384000
+layer3.0.conv1:
+  inputs:
+    0:
+      min: 0.0
+      max: 4.714683532714844
+      avg_min: 0.0
+      avg_max: 2.5590796220383627
+      mean: 0.10416460609436035
+      std: 0
+      b: 0
+      shape: (100, 128, 16, 16)
+      total_numel: 16384000
+  output:
+    min: 0.0
+    max: 2.4005649089813232
+    avg_min: 0.0
+    avg_max: 1.2572039182357864
+    mean: -0.10766399955749512
+    std: 0
+    b: 0
+    shape: (100, 256, 8, 8)
+    total_numel: 8192000
+layer3.0.conv2:
+  inputs:
+    0:
+      min: 0.0
+      max: 2.4005649089813232
+      avg_min: 0.0
+      avg_max: 1.2572039182357864
+      mean: 0.03918508005142212
+      std: 0
+      b: 0
+      shape: (100, 256, 8, 8)
+      total_numel: 8192000
+  output:
+    min: -1.8016877174377441
+    max: 3.4765238761901855
+    avg_min: -1.230348773340068
+    avg_max: 1.520214791341617
+    mean: -0.10663629722595215
+    std: 0
+    b: 0
+    shape: (100, 256, 8, 8)
+    total_numel: 8192000
+layer3.0.shortcut.0:
+  inputs:
+    0:
+      min: 0.0
+      max: 4.714683532714844
+      avg_min: 0.0
+      avg_max: 2.5590796220383627
+      mean: 0.10416460609436035
+      std: 0
+      b: 0
+      shape: (100, 128, 16, 16)
+      total_numel: 16384000
+  output:
+    min: -1.2914659976959229
+    max: 2.1697752475738525
+    avg_min: -0.7320509211373779
+    avg_max: 0.7874423961161002
+    mean: -0.09843515586853027
+    std: 0
+    b: 0
+    shape: (100, 256, 8, 8)
+    total_numel: 8192000
+layer3.1.conv1:
+  inputs:
+    0:
+      min: 0.0
+      max: 3.6609573364257812
+      avg_min: 0.0
+      avg_max: 1.658409208131543
+      mean: 0.04506006145477295
+      std: 0
+      b: 0
+      shape: (100, 256, 8, 8)
+      total_numel: 8192000
+  output:
+    min: 0.0
+    max: 2.197976589202881
+    avg_min: 0.0
+    avg_max: 0.9838652723374638
+    mean: -0.1763774642944336
+    std: 0
+    b: 0
+    shape: (100, 256, 8, 8)
+    total_numel: 8192000
+layer3.1.conv2:
+  inputs:
+    0:
+      min: 0.0
+      max: 2.197976589202881
+      avg_min: 0.0
+      avg_max: 0.9838652723374638
+      mean: 0.015965524435043336
+      std: 0
+      b: 0
+      shape: (100, 256, 8, 8)
+      total_numel: 8192000
+  output:
+    min: -2.5365428924560547
+    max: 3.9276254177093506
+    avg_min: -1.13073495013805
+    avg_max: 1.0549777787790462
+    mean: -0.11217051315307618
+    std: 0
+    b: 0
+    shape: (100, 256, 8, 8)
+    total_numel: 8192000
+layer3.1.shortcut:
+  inputs:
+    0:
+      min: 0.0
+      max: 3.6609573364257812
+      avg_min: 0.0
+      avg_max: 1.658409208131543
+      mean: 0.04506006145477295
+      std: 0
+      b: 0
+      shape: (100, 256, 8, 8)
+      total_numel: 8192000
+  output:
+    min: 0.0
+    max: 3.6609573364257812
+    avg_min: 0.0
+    avg_max: 1.658409208131543
+    mean: 0.04506006145477295
+    std: 0
+    b: 0
+    shape: (100, 256, 8, 8)
+    total_numel: 8192000
+layer4.0.conv1:
+  inputs:
+    0:
+      min: 0.0
+      max: 4.548336029052734
+      avg_min: 0.0
+      avg_max: 1.9291952698727262
+      mean: 0.047253582954406737
+      std: 0
+      b: 0
+      shape: (100, 256, 8, 8)
+      total_numel: 8192000
+  output:
+    min: 0.0
+    max: 2.303819179534912
+    avg_min: 0.0
+    avg_max: 0.8698387002357579
+    mean: -0.07541583728790283
+    std: 0
+    b: 0
+    shape: (100, 512, 4, 4)
+    total_numel: 4096000
+layer4.0.conv2:
+  inputs:
+    0:
+      min: 0.0
+      max: 2.303819179534912
+      avg_min: 0.0
+      avg_max: 0.8698387002357579
+      mean: 0.023711538791656495
+      std: 0
+      b: 0
+      shape: (100, 512, 4, 4)
+      total_numel: 4096000
+  output:
+    min: -1.386394739151001
+    max: 3.1809451580047607
+    avg_min: -0.8306369268556709
+    avg_max: 1.1788410752325125
+    mean: -0.07137403392791748
+    std: 0
+    b: 0
+    shape: (100, 512, 4, 4)
+    total_numel: 4096000
+layer4.0.shortcut.0:
+  inputs:
+    0:
+      min: 0.0
+      max: 4.548336029052734
+      avg_min: 0.0
+      avg_max: 1.9291952698727262
+      mean: 0.047253582954406737
+      std: 0
+      b: 0
+      shape: (100, 256, 8, 8)
+      total_numel: 8192000
+  output:
+    min: -1.0142837762832642
+    max: 1.7042713165283203
+    avg_min: -0.4323647529272757
+    avg_max: 0.49541603882873403
+    mean: -0.07366387462615967
+    std: 0
+    b: 0
+    shape: (100, 512, 4, 4)
+    total_numel: 4096000
+layer4.1.conv1:
+  inputs:
+    0:
+      min: 0.0
+      max: 4.500856399536133
+      avg_min: 0.0
+      avg_max: 1.237481234190228
+      mean: 0.022501163482666016
+      std: 0
+      b: 0
+      shape: (100, 512, 4, 4)
+      total_numel: 4096000
+  output:
+    min: 0.0
+    max: 2.1468288898468018
+    avg_min: 0.0
+    avg_max: 0.7936311415141416
+    mean: -0.06457801818847657
+    std: 0
+    b: 0
+    shape: (100, 512, 4, 4)
+    total_numel: 4096000
+layer4.1.conv2:
+  inputs:
+    0:
+      min: 0.0
+      max: 2.1468288898468018
+      avg_min: 0.0
+      avg_max: 0.7936311415141416
+      mean: 0.016094473123550414
+      std: 0
+      b: 0
+      shape: (100, 512, 4, 4)
+      total_numel: 4096000
+  output:
+    min: -1.2986572980880737
+    max: 4.477304935455322
+    avg_min: -0.641161282908634
+    avg_max: 1.8722155270687697
+    mean: 0.05293551635742187
+    std: 0
+    b: 0
+    shape: (100, 512, 4, 4)
+    total_numel: 4096000
+layer4.1.shortcut:
+  inputs:
+    0:
+      min: 0.0
+      max: 4.500856399536133
+      avg_min: 0.0
+      avg_max: 1.237481234190228
+      mean: 0.022501163482666016
+      std: 0
+      b: 0
+      shape: (100, 512, 4, 4)
+      total_numel: 4096000
+  output:
+    min: 0.0
+    max: 4.500856399536133
+    avg_min: 0.0
+    avg_max: 1.237481234190228
+    mean: 0.022501163482666016
+    std: 0
+    b: 0
+    shape: (100, 512, 4, 4)
+    total_numel: 4096000
+linear:
+  inputs:
+    0:
+      min: 0.0
+      max: 3.337390422821045
+      avg_min: 1.2736306780155252e-07
+      avg_max: 1.5115849948130582
+      mean: 0.13298057174682618
+      std: 0
+      b: 0
+      shape: (100, 512)
+      total_numel: 256000
+  output:
+    min: -4.200717449188232
+    max: 18.022287368774414
+    avg_min: -2.5365749309745254
+    avg_max: 9.83760289467007
+    mean: -2.7638816833496094e-05
+    std: 0
+    b: 0
+    shape: (100, 10)
+    total_numel: 5000
