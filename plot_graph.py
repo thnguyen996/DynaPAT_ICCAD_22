@@ -107,9 +107,9 @@ def plot_graph_1year(
             )
         )
         box = ax.get_position()
-        ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
+        # ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
 
-        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), prop={"size": 14})
+        # ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), prop={"size": 14})
 
         # ax.legend(loc=0, prop={"size": 14})
         if save_fig and save_dir is not None:
@@ -245,7 +245,7 @@ plot_graph_1year(
     time,
     data_list,
     save_fig=True,
-    file_name="test_case2",
+    file_name="test_case2_withoutlg",
     save_dir="./Figures/",
 )
 # baseline = pd.read_csv("./result/Pattern-00-to-11.csv")
