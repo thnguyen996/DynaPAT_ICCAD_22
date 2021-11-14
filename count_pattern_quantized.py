@@ -28,8 +28,10 @@ from matplotlib import font_manager
 from matplotlib import rcParams
 from matplotlib import rc
 import matplotlib as mpl
+from weight_quantized_conf import *
 torch.set_printoptions(profile="full")
 
+msglogger = logging.getLogger()
 parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")
 parser.add_argument("--lr", default=0.1, type=float, help="learning rate")
 parser.add_argument("--mlc", default=8, type=int, help="Number of mlc bits")
@@ -142,7 +144,19 @@ def main():
         dtype = np.uint16
     elif args.num_bits == 8:
         dtype = np.uint8
+
+    error_11_pd = pd.read_csv("./error_level3_1year.csv", header = None, delimiter="\t")
+    error_10_pd = pd.read_csv("./error_level2_1year.csv", header = None, delimiter="\t")
+    error_11 = error_11_pd.loc[0, 20]
+    error_10 = error_10_pd.loc[0, 20]
+    weight_type = {"MLC": 8 , "SLC": args.num_bits-8}
+
     with torch.no_grad():
+        # for name, weight in tqdm(net.named_parameters(), desc="Executing method:", leave=False):
+        #     if ( "weight" in name ) and ( "bn" not in name ):
+        #         mlc_error_rate = {"error_level3" : error_11, "error_level2": error_10}
+        #         error_weight = proposed_method(weight, weight_type, mlc_error_rate, args.num_bits)
+        #         weight.copy_(error_weight)
         list_11 = [3]
         list_10 = [2]
         list_01 = [1]
@@ -169,6 +183,7 @@ def main():
         total00 = []
 
         index = 1
+
         for (name, weight) in tqdm(net.named_parameters(), desc="Counting pattern: ", leave=False):
             if ( "weight" in name ) and ( "bn" not in name ) and ("shortcut" not in name):
                 weight = weight.cpu().numpy().astype(dtype)
@@ -230,8 +245,9 @@ def main():
     ax.set_xlabel("Time (s)", fontsize=8)
     ax.set_ylabel("Cifa10 Test Accuracy (%)", fontsize=8)
     plt.tight_layout()
-    fig.savefig("./Figures/count_pattern_quantized_layers.svg", dpi=300)
-    # os.system("zathura count_pattern_quantized_layers.pdf")
+    fig.savefig("./Figures/Inception_count_pattern_quantized_layers_error.pdf", dpi=300)
+    # plt.show()
+    os.system("zathura ./Figures/Inception_count_pattern_quantized_layers_error.pdf")
 
     # with plt.style.context(['ieee', 'no-latex']):
     #     fig, ax = plt.subplots(figsize=(10, 10))
@@ -249,6 +265,12 @@ def main():
     #     ax.legend(loc=0, prop={"size": 14})
     # fig.savefig("count_pattern_quantized.pdf", dpi=300)
     # os.system("zathura count_pattern_quantized.pdf")
+
+def proposed_method(weight, weight_type, mlc_error_rate, num_bits):
+    MLC = weight_conf(weight, weight_type, num_bits)
+    error_weight = MLC.inject_error(mlc_error_rate)
+    error_weight = error_weight.reshape(weight.shape)
+    return error_weight
 
 def count(weight, tensor_10, tensor_11, index_bit, num_bits):
     num_10 = 0

@@ -74,8 +74,8 @@ def plot_graph_1year(
             else:
                 ax.plot(time, data_value, linewidth=1.7, label=method_name)
 
-        ax.set_xlabel("Time (s)", fontsize=14)
-        ax.set_ylabel("Cifa10 Test Accuracy (%)", fontsize=14)
+        ax.set_xlabel("Time (s)", fontsize=8)
+        ax.set_ylabel("Cifa10 Test Accuracy (%)", fontsize=8)
         ax.set_xticks(time[0:25:4])
         ax.set_xticklabels(
             (
@@ -106,10 +106,15 @@ def plot_graph_1year(
                 "$2^{25}$",
             )
         )
-        ax.legend(loc=0, prop={"size": 14})
+        box = ax.get_position()
+        ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
+
+        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), prop={"size": 14})
+
+        # ax.legend(loc=0, prop={"size": 14})
         if save_fig and save_dir is not None:
             fig.savefig(save_dir + file_name + ".svg", dpi=300)
-        plt.show()
+        # plt.show()
 
 
 ######################################################################
@@ -215,29 +220,81 @@ def plot_graph_1year(
 # )
 ######################################################################
 #                                                                    #
-#               Plot proposed encoding                               #
+#               Plot different test cases                            #
 #                                                                    #
 ######################################################################
-baseline = pd.read_csv("./result/Pattern-00-to-11.csv")
-proposed_resnet = pd.read_csv("./result/resnet-cifar10-proposed.csv")
-proposed_lenet = pd.read_csv("./result/lenet-cifar10-proposed.csv")
-proposed_inception = pd.read_csv("./result/inception-cifar10-proposed.csv")
 
-baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "color":"#2c7bb6"}
-resnet_dict = {"Method name": "Resnet18", "data": proposed_resnet["Acc."].to_numpy(),  "color":"#2c7bb6"}
-googlenet_dict = {"Method name": "GoogleNet", "data": proposed_lenet["Acc."].to_numpy(),  "color":"#fee090"}
-inception_dict = {"Method name": "GoogleNet", "data": proposed_inception["Acc."].to_numpy()}
+list_case = ("test-cases-1-10-00-01",
+                "test-cases-2-11-00-01",
+                "test-cases-3-01-11-10",
+                "test-cases-4-00-11-10",
+                "test-cases-5-01-11-00",
+                "test-cases-6-10-11-00",
+                "test-cases-7-00-11-01",
+                "test-cases-8-10-11-01",)
 
-data_list = (baseline_dict, resnet_dict, googlenet_dict, inception_dict)
+data_list = []
+for case in list_case:
+    data = pd.read_csv(f"./result/{case}.csv")["Acc."].to_numpy()
+    name = case
+    case_dict = {"Method name": name, "data": data}
+    data_list.append(case_dict)
 time = np.arange(25)
 
 plot_graph_1year(
     time,
     data_list,
     save_fig=True,
-    file_name="proposed_encoding",
+    file_name="test_case2",
     save_dir="./Figures/",
 )
+# baseline = pd.read_csv("./result/Pattern-00-to-11.csv")
+# proposed_resnet = pd.read_csv("./result/resnet-cifar10-proposed.csv")
+# proposed_lenet = pd.read_csv("./result/lenet-cifar10-proposed.csv")
+# proposed_inception = pd.read_csv("./result/inception-cifar10-proposed.csv")
+
+# baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "color":"#2c7bb6"}
+# resnet_dict = {"Method name": "Resnet18", "data": proposed_resnet["Acc."].to_numpy(),  "color":"#2c7bb6"}
+# googlenet_dict = {"Method name": "GoogleNet", "data": proposed_lenet["Acc."].to_numpy(),  "color":"#fee090"}
+# inception_dict = {"Method name": "GoogleNet", "data": proposed_inception["Acc."].to_numpy()}
+
+# data_list = (baseline_dict, resnet_dict, googlenet_dict, inception_dict)
+# time = np.arange(25)
+
+# plot_graph_1year(
+#     time,
+#     data_list,
+#     save_fig=True,
+#     file_name="proposed_encoding",
+#     save_dir="./Figures/",
+# )
+
+######################################################################
+#                                                                    #
+#               Plot proposed encoding                               #
+#                                                                    #
+######################################################################
+
+# baseline = pd.read_csv("./result/Pattern-00-to-11.csv")
+# proposed_resnet = pd.read_csv("./result/resnet-cifar10-proposed.csv")
+# proposed_lenet = pd.read_csv("./result/lenet-cifar10-proposed.csv")
+# proposed_inception = pd.read_csv("./result/inception-cifar10-proposed.csv")
+
+# baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "color":"#2c7bb6"}
+# resnet_dict = {"Method name": "Resnet18", "data": proposed_resnet["Acc."].to_numpy(),  "color":"#2c7bb6"}
+# googlenet_dict = {"Method name": "GoogleNet", "data": proposed_lenet["Acc."].to_numpy(),  "color":"#fee090"}
+# inception_dict = {"Method name": "GoogleNet", "data": proposed_inception["Acc."].to_numpy()}
+
+# data_list = (baseline_dict, resnet_dict, googlenet_dict, inception_dict)
+# time = np.arange(25)
+
+# plot_graph_1year(
+#     time,
+#     data_list,
+#     save_fig=True,
+#     file_name="proposed_encoding",
+#     save_dir="./Figures/",
+# )
 ######################################################################
 #                                                                    #
 #               Plot final results imagenet#

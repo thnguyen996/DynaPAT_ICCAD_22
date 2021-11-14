@@ -39,6 +39,8 @@ parser.add_argument(
 )
 parser.add_argument("--model", default="resnet18", type=str, help="Model")
 parser.add_argument("--gpu", default="0", type=str, help="GPU ids")
+parser.add_argument("--error_pat", default="00", type=str, help="error_pat")
+parser.add_argument("--des_pat", default="00", type=str, help="des_pat")
 parser.add_argument("--save_data", "-s", action="store_true", help="Save the data")
 parser.add_argument(
     "--encode", "-e", action="store_true", help="Encoding for flipcy and helmet"
@@ -165,66 +167,111 @@ def main():
     iteration = 100
 
     # # Config weight and inject error:
-    error_pats = ["00", "01", "10", "11"]
-    des_pats = ["00", "01", "10", "11"]
+    # error_pats = ["00", "01", "10", "11"]
+    # des_pats = ["00", "01", "10", "11"]
 
     with torch.no_grad():
-        for error_pat in error_pats:
-            for des_pat in des_pats:
-                count = 0
-                if des_pat == error_pat:
-                    continue
-                else:
-                    if args.save_data:
-                        df = pd.DataFrame(
-                            columns=["Time", "error_pat", "des_pat", "Acc."]
-                        )
-                        # ran = random.randint(1, 100)
-                        writer = SummaryWriter(
-                            f"./runs/quantized-{args.num_bits}bit-{args.model}-pattern-{error_pat}-to-{des_pat}"
-                        )
-                        # print(f"Run ID: {ran}")
-                    print(
-                        f"Running experiment for quantized-{args.model}-{args.num_bits}bit Error: {error_pat} --> {des_pat}"
-                    )
-                    for (name, value) in error_11_pd.iteritems():
-                        print(f"Running experiment for error rate: {value}")
-                        error = value[0]
-                        running_acc = []
-                        for it in range(iteration):
-                            # Reset parameters:
-                            net.load_state_dict(orig_state_dict)
-                            for (name, weight) in tqdm(
-                                net.named_parameters(),
-                                desc="Executing method:",
-                                leave=False,
-                            ):
-                                if ("weight" in name) and ("bn" not in name):
-                                    mlc_error_rate = {"error_rate": error}
-                                    if args.method == "proposed_method":
-                                        error_weight = proposed_method(
-                                            weight,
-                                            error_pat,
-                                            des_pat,
-                                            mlc_error_rate,
-                                            args.num_bits,
-                                        )
-                                    weight.copy_(error_weight)
-                            class_acc = test(
-                                net, criterion, optimizer, testloader, device
-                            )
-                            running_acc.append(class_acc)
-                        avr_acc = sum(running_acc) / len(running_acc)
-                        if args.save_data:
-                            writer.add_scalar("Acc./", avr_acc, count)
-                            writer.close()
-                            df.loc[count] = [count, error_pat, des_pat, avr_acc]
-                            df.to_csv(
-                                f"./result/quantized-{args.num_bits}bit-{args.model}-Pattern-{error_pat}-to-{des_pat}.csv",
-                                mode="w",
-                                header=True,
-                            )
-                        count += 1
+        count = 0
+        if args.save_data:
+            df = pd.DataFrame(
+                columns=["Time", "error_pat", "des_pat", "Acc."]
+            )
+            # ran = random.randint(1, 100)
+            writer = SummaryWriter(
+                f"./runs/quantized-{args.num_bits}bit-{args.model}-pattern-{args.error_pat}-to-{args.des_pat}"
+            )
+            # print(f"Run ID: {ran}")
+        print(
+            f"Running experiment for quantized-{args.model}-{args.num_bits}bit Error: {args.error_pat} --> {args.des_pat}"
+        )
+        for (name, value) in error_11_pd.iteritems():
+            print(f"Running experiment for error rate: {value}")
+            error = value[0]
+            running_acc = []
+            for it in range(iteration):
+                # Reset parameters:
+                net.load_state_dict(orig_state_dict)
+                for (name, weight) in tqdm( net.named_parameters(), desc="Executing method:", leave=False):
+                    if ("weight" in name) and ("bn" not in name):
+                        mlc_error_rate = {"error_rate": error}
+                        if args.method == "proposed_method":
+                            error_weight = proposed_method( weight, args.error_pat, args.des_pat,
+                                mlc_error_rate,
+                                args.num_bits,)
+                        weight.copy_(error_weight)
+                class_acc = test(
+                    net, criterion, optimizer, testloader, device
+                )
+                running_acc.append(class_acc)
+            avr_acc = sum(running_acc) / len(running_acc)
+            if args.save_data:
+                writer.add_scalar("Acc./", avr_acc, count)
+                writer.close()
+                df.loc[count] = [count, args.error_pat, args.des_pat, avr_acc]
+                df.to_csv(
+                    f"./result/quantized-{args.num_bits}bit-{args.model}-Pattern-{args.error_pat}-to-{args.des_pat}.csv",
+                    mode="w",
+                    header=True,
+                )
+            count += 1
+
+    # with torch.no_grad():
+    #     for error_pat in error_pats:
+    #         for des_pat in des_pats:
+    #             count = 0
+    #             if des_pat == error_pat:
+    #                 continue
+    #             else:
+    #                 if args.save_data:
+    #                     df = pd.DataFrame(
+    #                         columns=["Time", "error_pat", "des_pat", "Acc."]
+    #                     )
+    #                     # ran = random.randint(1, 100)
+    #                     writer = SummaryWriter(
+    #                         f"./runs/quantized-{args.num_bits}bit-{args.model}-pattern-{error_pat}-to-{des_pat}"
+    #                     )
+    #                     # print(f"Run ID: {ran}")
+    #                 print(
+    #                     f"Running experiment for quantized-{args.model}-{args.num_bits}bit Error: {error_pat} --> {des_pat}"
+    #                 )
+    #                 for (name, value) in error_11_pd.iteritems():
+    #                     print(f"Running experiment for error rate: {value}")
+    #                     error = value[0]
+    #                     running_acc = []
+    #                     for it in range(iteration):
+    #                         # Reset parameters:
+    #                         net.load_state_dict(orig_state_dict)
+    #                         for (name, weight) in tqdm(
+    #                             net.named_parameters(),
+    #                             desc="Executing method:",
+    #                             leave=False,
+    #                         ):
+    #                             if ("weight" in name) and ("bn" not in name):
+    #                                 mlc_error_rate = {"error_rate": error}
+    #                                 if args.method == "proposed_method":
+    #                                     error_weight = proposed_method(
+    #                                         weight,
+    #                                         error_pat,
+    #                                         des_pat,
+    #                                         mlc_error_rate,
+    #                                         args.num_bits,
+    #                                     )
+    #                                 weight.copy_(error_weight)
+    #                         class_acc = test(
+    #                             net, criterion, optimizer, testloader, device
+    #                         )
+    #                         running_acc.append(class_acc)
+    #                     avr_acc = sum(running_acc) / len(running_acc)
+    #                     if args.save_data:
+    #                         writer.add_scalar("Acc./", avr_acc, count)
+    #                         writer.close()
+    #                         df.loc[count] = [count, error_pat, des_pat, avr_acc]
+    #                         df.to_csv(
+    #                             f"./result/quantized-{args.num_bits}bit-{args.model}-Pattern-{error_pat}-to-{des_pat}.csv",
+    #                             mode="w",
+    #                             header=True,
+    #                         )
+    #                     count += 1
 
 def proposed_method(weight, error_pat, des_pat, mlc_error_rate, num_bits):
     MLC = weight_conf(weight, num_bits)

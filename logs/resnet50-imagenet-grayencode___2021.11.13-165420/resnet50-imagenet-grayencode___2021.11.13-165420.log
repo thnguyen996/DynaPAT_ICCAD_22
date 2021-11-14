@@ -1,0 +1,1626 @@
+2021-11-13 16:54:20,883 - Log file for this run: /home/th.nguyen/drift-encode/logs/resnet50-imagenet-grayencode___2021.11.13-165420/resnet50-imagenet-grayencode___2021.11.13-165420.log
+2021-11-13 16:54:20,884 - Number of CPUs: 56
+2021-11-13 16:54:21,230 - Number of GPUs: 6
+2021-11-13 16:54:21,230 - CUDA version: 10.0.130
+2021-11-13 16:54:21,232 - CUDNN version: 7603
+2021-11-13 16:54:21,232 - Kernel: 5.4.0-86-generic
+2021-11-13 16:54:21,232 - Python: 3.6.13 |Anaconda, Inc.| (default, Jun  4 2021, 14:25:59) 
+[GCC 7.5.0]
+2021-11-13 16:54:21,233 - pip freeze: {'absl-py': '0.12.0', 'aiohttp': '3.7.4.post0', 'argon2-cffi': '21.1.0', 'astor': '0.8.1', 'astunparse': '1.6.3', 'async-generator': '1.10', 'async-timeout': '3.0.1', 'atomicwrites': '1.4.0', 'attrs': '21.2.0', 'backcall': '0.2.0', 'black': '21.9b0', 'bleach': '4.1.0', 'blessed': '1.19.0', 'blessings': '1.7', 'blinker': '1.4', 'bqplot': '0.11.5', 'brotlipy': '0.7.0', 'cachetools': '4.2.2', 'certifi': '2020.12.5', 'cffi': '1.14.6', 'chardet': '4.0.0', 'charset-normalizer': '2.0.4', 'click': '8.0.1', 'coverage': '5.5', 'cryptography': '3.4.7', 'cycler': '0.10.0', 'cython': '0.29.24', 'dataclasses': '0.8', 'decorator': '5.1.0', 'defusedxml': '0.7.1', 'distiller': '0.4.0rc0', 'entrypoints': '0.3', 'gast': '0.2.2', 'gitdb': '4.0.9', 'gitdb2': '3.0.3.post1', 'gitpython': '3.1.0', 'google-auth': '1.30.1', 'google-auth-oauthlib': '0.4.4', 'google-pasta': '0.2.0', 'gpustat': '1.0.0.dev1', 'graphviz': '0.10.1', 'grpcio': '1.38.0', 'gym': '0.12.5', 'h5py': '2.10.0', 'idna': '2.10', 'idna-ssl': '1.1.0', 'importlib-metadata': '4.8.1', 'ipykernel': '5.5.6', 'ipython': '7.16.1', 'ipython-genutils': '0.2.0', 'ipywidgets': '7.4.2', 'jedi': '0.17.2', 'jinja2': '3.0.2', 'joblib': '1.1.0', 'jsonpatch': '1.32', 'jsonpointer': '2.1', 'jsonschema': '3.2.0', 'jupyter': '1.0.0', 'jupyter-client': '7.0.6', 'jupyter-console': '6.4.0', 'jupyter-core': '4.8.1', 'jupyterlab-pygments': '0.1.2', 'keras-applications': '1.0.8', 'keras-preprocessing': '1.1.2', 'kiwisolver': '1.3.1', 'markdown': '3.3.4', 'markupsafe': '2.0.1', 'matplotlib': '3.3.4', 'mistune': '0.8.4', 'mkl-fft': '1.3.0', 'mkl-random': '1.1.1', 'mkl-service': '2.3.0', 'more-itertools': '8.10.0', 'multidict': '5.1.0', 'munch': '2.5.0', 'mypy-extensions': '0.4.3', 'nbclient': '0.5.4', 'nbconvert': '6.0.7', 'nbformat': '5.1.3', 'nest-asyncio': '1.5.1', 'notebook': '6.4.4', 'numpy': '1.18.5', 'nvidia-ml-py3': '7.352.0', 'oauthlib': '3.1.0', 'olefile': '0.46', 'opt-einsum': '3.3.0', 'packaging': '21.0', 'pandas': '1.1.5', 'pandocfilters': '1.5.0', 'parse': '1.19.0', 'parso': '0.7.1', 'pathspec': '0.9.0', 'pexpect': '4.8.0', 'pickle5': '0.0.11', 'pickleshare': '0.7.5', 'pillow': '6.2.2', 'pip': '21.2.2', 'platformdirs': '2.4.0', 'pluggy': '0.13.1', 'pretrainedmodels': '0.7.4', 'prometheus-client': '0.11.0', 'prompt-toolkit': '3.0.20', 'protobuf': '3.17.1', 'psutil': '5.8.0', 'ptyprocess': '0.7.0', 'py': '1.10.0', 'pyasn1': '0.4.8', 'pyasn1-modules': '0.2.8', 'pycparser': '2.20', 'pydot': '1.4.1', 'pyglet': '1.5.21', 'pygments': '2.10.0', 'pyjwt': '2.1.0', 'pyopenssl': '20.0.1', 'pyparsing': '2.4.7', 'pyrsistent': '0.18.0', 'pysocks': '1.7.1', 'pytest': '4.6.11', 'python-dateutil': '2.8.2', 'python-jsonrpc-server': '0.4.0', 'python-language-server': '0.36.2', 'pytz': '2021.3', 'pyyaml': '6.0', 'pyzmq': '22.3.0', 'qgrid': '1.1.1', 'qtconsole': '5.1.1', 'qtpy': '1.11.2', 'ranger-fm': '1.9.3', 'regex': '2021.10.21', 'requests': '2.25.1', 'requests-oauthlib': '1.3.0', 'rsa': '4.7.2', 'scikit-learn': '0.21.2', 'scipy': '1.5.4', 'seaborn': '0.11.2', 'send2trash': '1.8.0', 'setuptools': '57.0.0', 'six': '1.16.0', 'smmap': '4.0.0', 'smmap2': '2.0.5', 'tabulate': '0.8.3', 'tensorboard': '1.15.0', 'tensorboard-data-server': '0.6.1', 'tensorboard-plugin-wit': '1.8.0', 'tensorflow': '1.15.0', 'tensorflow-estimator': '1.15.1', 'termcolor': '1.1.0', 'terminado': '0.12.1', 'testpath': '0.5.0', 'timm': '0.4.9', 'tomli': '1.2.1', 'torch': '1.3.1', 'torchfile': '0.1.0', 'torchnet': '0.0.4', 'torchsummary': '1.5.1', 'torchvision': '0.4.2', 'tornado': '6.1', 'tqdm': '4.33.0', 'traitlets': '4.3.3', 'traittypes': '0.2.1', 'typed-ast': '1.4.3', 'typing-extensions': '3.10.0.1', 'ujson': '4.1.0', 'urllib3': '1.26.4', 'visdom': '0.1.8.9', 'wcwidth': '0.2.5', 'webencodings': '0.5.1', 'websocket-client': '1.2.1', 'werkzeug': '2.0.1', 'wheel': '0.36.2', 'widgetsnbextension': '3.4.2', 'wrapt': '1.12.1', 'xlsxwriter': '3.0.1', 'yarl': '1.6.3', 'zipp': '3.5.0'}
+2021-11-13 16:54:21,337 - Git is dirty
+2021-11-13 16:54:21,339 - Active Git branch: master
+2021-11-13 16:54:21,388 - Git commit: f401db9403c1608e10258733e013b6c087e3ef34
+2021-11-13 16:54:21,389 - Command line: compress_classifier.py --arch resnet50 -p 10 -j 22 /home/imagenet/ --pretrained --run --qe-config-file ./resnet18_imagenet_post_train.yaml --gpus 2 --name resnet50-imagenet-grayencode --method proposed_method --mlc 8 --num_bits 8
+2021-11-13 16:54:21,389 - Distiller: 0.4.0rc0
+2021-11-13 16:54:21,391 - Random seed: 3693
+2021-11-13 16:54:22,134 - => created a pretrained resnet50 model with the imagenet dataset
+2021-11-13 16:54:24,498 - Optimizer Type: <class 'torch.optim.sgd.SGD'>
+2021-11-13 16:54:24,499 - Optimizer Args: {'lr': 0.1, 'momentum': 0.9, 'dampening': 0, 'weight_decay': 0.0001, 'nesterov': False}
+2021-11-13 16:54:24,704 - Dataset sizes:
+	test=50000
+2021-11-13 16:54:24,705 - Reading configuration from: ./resnet18_imagenet_post_train.yaml
+2021-11-13 16:54:24,717 - Found component of class PostTrainLinearQuantizer: Name: post_train_quantizer ; Section: quantizers
+2021-11-13 16:54:24,719 - Loading activation stats from: ./quant_stats/resnet50.yaml
+2021-11-13 16:54:25,233 - Preparing model for quantization using PostTrainLinearQuantizer
+2021-11-13 16:54:28,176 - Applying batch-norm folding ahead of post-training quantization
+2021-11-13 16:54:28,177 - Fusing sequence ['module.conv1', 'module.bn1']
+2021-11-13 16:54:28,179 - Fusing sequence ['module.layer1.0.conv1', 'module.layer1.0.bn1']
+2021-11-13 16:54:28,179 - Fusing sequence ['module.layer1.0.conv2', 'module.layer1.0.bn2']
+2021-11-13 16:54:28,180 - Fusing sequence ['module.layer1.0.conv3', 'module.layer1.0.bn3']
+2021-11-13 16:54:28,180 - Fusing sequence ['module.layer1.0.downsample.0', 'module.layer1.0.downsample.1']
+2021-11-13 16:54:28,181 - Fusing sequence ['module.layer1.1.conv1', 'module.layer1.1.bn1']
+2021-11-13 16:54:28,181 - Fusing sequence ['module.layer1.1.conv2', 'module.layer1.1.bn2']
+2021-11-13 16:54:28,181 - Fusing sequence ['module.layer1.1.conv3', 'module.layer1.1.bn3']
+2021-11-13 16:54:28,182 - Fusing sequence ['module.layer1.2.conv1', 'module.layer1.2.bn1']
+2021-11-13 16:54:28,182 - Fusing sequence ['module.layer1.2.conv2', 'module.layer1.2.bn2']
+2021-11-13 16:54:28,182 - Fusing sequence ['module.layer1.2.conv3', 'module.layer1.2.bn3']
+2021-11-13 16:54:28,183 - Fusing sequence ['module.layer2.0.conv1', 'module.layer2.0.bn1']
+2021-11-13 16:54:28,183 - Fusing sequence ['module.layer2.0.conv2', 'module.layer2.0.bn2']
+2021-11-13 16:54:28,183 - Fusing sequence ['module.layer2.0.conv3', 'module.layer2.0.bn3']
+2021-11-13 16:54:28,184 - Fusing sequence ['module.layer2.0.downsample.0', 'module.layer2.0.downsample.1']
+2021-11-13 16:54:28,184 - Fusing sequence ['module.layer2.1.conv1', 'module.layer2.1.bn1']
+2021-11-13 16:54:28,184 - Fusing sequence ['module.layer2.1.conv2', 'module.layer2.1.bn2']
+2021-11-13 16:54:28,185 - Fusing sequence ['module.layer2.1.conv3', 'module.layer2.1.bn3']
+2021-11-13 16:54:28,185 - Fusing sequence ['module.layer2.2.conv1', 'module.layer2.2.bn1']
+2021-11-13 16:54:28,186 - Fusing sequence ['module.layer2.2.conv2', 'module.layer2.2.bn2']
+2021-11-13 16:54:28,186 - Fusing sequence ['module.layer2.2.conv3', 'module.layer2.2.bn3']
+2021-11-13 16:54:28,186 - Fusing sequence ['module.layer2.3.conv1', 'module.layer2.3.bn1']
+2021-11-13 16:54:28,186 - Fusing sequence ['module.layer2.3.conv2', 'module.layer2.3.bn2']
+2021-11-13 16:54:28,187 - Fusing sequence ['module.layer2.3.conv3', 'module.layer2.3.bn3']
+2021-11-13 16:54:28,187 - Fusing sequence ['module.layer3.0.conv1', 'module.layer3.0.bn1']
+2021-11-13 16:54:28,187 - Fusing sequence ['module.layer3.0.conv2', 'module.layer3.0.bn2']
+2021-11-13 16:54:28,188 - Fusing sequence ['module.layer3.0.conv3', 'module.layer3.0.bn3']
+2021-11-13 16:54:28,188 - Fusing sequence ['module.layer3.0.downsample.0', 'module.layer3.0.downsample.1']
+2021-11-13 16:54:28,189 - Fusing sequence ['module.layer3.1.conv1', 'module.layer3.1.bn1']
+2021-11-13 16:54:28,189 - Fusing sequence ['module.layer3.1.conv2', 'module.layer3.1.bn2']
+2021-11-13 16:54:28,189 - Fusing sequence ['module.layer3.1.conv3', 'module.layer3.1.bn3']
+2021-11-13 16:54:28,190 - Fusing sequence ['module.layer3.2.conv1', 'module.layer3.2.bn1']
+2021-11-13 16:54:28,191 - Fusing sequence ['module.layer3.2.conv2', 'module.layer3.2.bn2']
+2021-11-13 16:54:28,192 - Fusing sequence ['module.layer3.2.conv3', 'module.layer3.2.bn3']
+2021-11-13 16:54:28,192 - Fusing sequence ['module.layer3.3.conv1', 'module.layer3.3.bn1']
+2021-11-13 16:54:28,192 - Fusing sequence ['module.layer3.3.conv2', 'module.layer3.3.bn2']
+2021-11-13 16:54:28,193 - Fusing sequence ['module.layer3.3.conv3', 'module.layer3.3.bn3']
+2021-11-13 16:54:28,193 - Fusing sequence ['module.layer3.4.conv1', 'module.layer3.4.bn1']
+2021-11-13 16:54:28,193 - Fusing sequence ['module.layer3.4.conv2', 'module.layer3.4.bn2']
+2021-11-13 16:54:28,194 - Fusing sequence ['module.layer3.4.conv3', 'module.layer3.4.bn3']
+2021-11-13 16:54:28,194 - Fusing sequence ['module.layer3.5.conv1', 'module.layer3.5.bn1']
+2021-11-13 16:54:28,194 - Fusing sequence ['module.layer3.5.conv2', 'module.layer3.5.bn2']
+2021-11-13 16:54:28,195 - Fusing sequence ['module.layer3.5.conv3', 'module.layer3.5.bn3']
+2021-11-13 16:54:28,195 - Fusing sequence ['module.layer4.0.conv1', 'module.layer4.0.bn1']
+2021-11-13 16:54:28,195 - Fusing sequence ['module.layer4.0.conv2', 'module.layer4.0.bn2']
+2021-11-13 16:54:28,196 - Fusing sequence ['module.layer4.0.conv3', 'module.layer4.0.bn3']
+2021-11-13 16:54:28,196 - Fusing sequence ['module.layer4.0.downsample.0', 'module.layer4.0.downsample.1']
+2021-11-13 16:54:28,196 - Fusing sequence ['module.layer4.1.conv1', 'module.layer4.1.bn1']
+2021-11-13 16:54:28,197 - Fusing sequence ['module.layer4.1.conv2', 'module.layer4.1.bn2']
+2021-11-13 16:54:28,197 - Fusing sequence ['module.layer4.1.conv3', 'module.layer4.1.bn3']
+2021-11-13 16:54:28,197 - Fusing sequence ['module.layer4.2.conv1', 'module.layer4.2.bn1']
+2021-11-13 16:54:28,198 - Fusing sequence ['module.layer4.2.conv2', 'module.layer4.2.bn2']
+2021-11-13 16:54:28,198 - Fusing sequence ['module.layer4.2.conv3', 'module.layer4.2.bn3']
+2021-11-13 16:54:29,309 - Propagating output statistics from BN modules to folded modules
+2021-11-13 16:54:29,310 -   bn1 --> module.conv1
+2021-11-13 16:54:29,310 -   layer1.0.bn1 --> module.layer1.0.conv1
+2021-11-13 16:54:29,310 -   layer1.0.bn2 --> module.layer1.0.conv2
+2021-11-13 16:54:29,310 -   layer1.0.bn3 --> module.layer1.0.conv3
+2021-11-13 16:54:29,310 -   layer1.0.downsample.1 --> module.layer1.0.downsample.0
+2021-11-13 16:54:29,310 -   layer1.1.bn1 --> module.layer1.1.conv1
+2021-11-13 16:54:29,310 -   layer1.1.bn2 --> module.layer1.1.conv2
+2021-11-13 16:54:29,310 -   layer1.1.bn3 --> module.layer1.1.conv3
+2021-11-13 16:54:29,310 -   layer1.2.bn1 --> module.layer1.2.conv1
+2021-11-13 16:54:29,310 -   layer1.2.bn2 --> module.layer1.2.conv2
+2021-11-13 16:54:29,310 -   layer1.2.bn3 --> module.layer1.2.conv3
+2021-11-13 16:54:29,310 -   layer2.0.bn1 --> module.layer2.0.conv1
+2021-11-13 16:54:29,310 -   layer2.0.bn2 --> module.layer2.0.conv2
+2021-11-13 16:54:29,311 -   layer2.0.bn3 --> module.layer2.0.conv3
+2021-11-13 16:54:29,311 -   layer2.0.downsample.1 --> module.layer2.0.downsample.0
+2021-11-13 16:54:29,311 -   layer2.1.bn1 --> module.layer2.1.conv1
+2021-11-13 16:54:29,311 -   layer2.1.bn2 --> module.layer2.1.conv2
+2021-11-13 16:54:29,311 -   layer2.1.bn3 --> module.layer2.1.conv3
+2021-11-13 16:54:29,311 -   layer2.2.bn1 --> module.layer2.2.conv1
+2021-11-13 16:54:29,311 -   layer2.2.bn2 --> module.layer2.2.conv2
+2021-11-13 16:54:29,311 -   layer2.2.bn3 --> module.layer2.2.conv3
+2021-11-13 16:54:29,311 -   layer2.3.bn1 --> module.layer2.3.conv1
+2021-11-13 16:54:29,311 -   layer2.3.bn2 --> module.layer2.3.conv2
+2021-11-13 16:54:29,311 -   layer2.3.bn3 --> module.layer2.3.conv3
+2021-11-13 16:54:29,311 -   layer3.0.bn1 --> module.layer3.0.conv1
+2021-11-13 16:54:29,311 -   layer3.0.bn2 --> module.layer3.0.conv2
+2021-11-13 16:54:29,311 -   layer3.0.bn3 --> module.layer3.0.conv3
+2021-11-13 16:54:29,311 -   layer3.0.downsample.1 --> module.layer3.0.downsample.0
+2021-11-13 16:54:29,311 -   layer3.1.bn1 --> module.layer3.1.conv1
+2021-11-13 16:54:29,311 -   layer3.1.bn2 --> module.layer3.1.conv2
+2021-11-13 16:54:29,312 -   layer3.1.bn3 --> module.layer3.1.conv3
+2021-11-13 16:54:29,312 -   layer3.2.bn1 --> module.layer3.2.conv1
+2021-11-13 16:54:29,312 -   layer3.2.bn2 --> module.layer3.2.conv2
+2021-11-13 16:54:29,312 -   layer3.2.bn3 --> module.layer3.2.conv3
+2021-11-13 16:54:29,312 -   layer3.3.bn1 --> module.layer3.3.conv1
+2021-11-13 16:54:29,312 -   layer3.3.bn2 --> module.layer3.3.conv2
+2021-11-13 16:54:29,312 -   layer3.3.bn3 --> module.layer3.3.conv3
+2021-11-13 16:54:29,312 -   layer3.4.bn1 --> module.layer3.4.conv1
+2021-11-13 16:54:29,312 -   layer3.4.bn2 --> module.layer3.4.conv2
+2021-11-13 16:54:29,312 -   layer3.4.bn3 --> module.layer3.4.conv3
+2021-11-13 16:54:29,312 -   layer3.5.bn1 --> module.layer3.5.conv1
+2021-11-13 16:54:29,312 -   layer3.5.bn2 --> module.layer3.5.conv2
+2021-11-13 16:54:29,312 -   layer3.5.bn3 --> module.layer3.5.conv3
+2021-11-13 16:54:29,312 -   layer4.0.bn1 --> module.layer4.0.conv1
+2021-11-13 16:54:29,312 -   layer4.0.bn2 --> module.layer4.0.conv2
+2021-11-13 16:54:29,312 -   layer4.0.bn3 --> module.layer4.0.conv3
+2021-11-13 16:54:29,313 -   layer4.0.downsample.1 --> module.layer4.0.downsample.0
+2021-11-13 16:54:29,313 -   layer4.1.bn1 --> module.layer4.1.conv1
+2021-11-13 16:54:29,313 -   layer4.1.bn2 --> module.layer4.1.conv2
+2021-11-13 16:54:29,313 -   layer4.1.bn3 --> module.layer4.1.conv3
+2021-11-13 16:54:29,313 -   layer4.2.bn1 --> module.layer4.2.conv1
+2021-11-13 16:54:29,313 -   layer4.2.bn2 --> module.layer4.2.conv2
+2021-11-13 16:54:29,313 -   layer4.2.bn3 --> module.layer4.2.conv3
+2021-11-13 16:54:29,313 - Optimizing output statistics for modules followed by ReLU/Tanh/Sigmoid
+2021-11-13 16:54:29,313 -   Module conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,314 -   Module layer1.0.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,314 -   Module layer1.0.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,314 -   Module layer1.0.add followed by Relu, updating stats
+2021-11-13 16:54:29,314 -   Module layer1.1.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,314 -   Module layer1.1.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,314 -   Module layer1.1.add followed by Relu, updating stats
+2021-11-13 16:54:29,314 -   Module layer1.2.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,314 -   Module layer1.2.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,314 -   Module layer1.2.add followed by Relu, updating stats
+2021-11-13 16:54:29,314 -   Module layer2.0.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,314 -   Module layer2.0.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,314 -   Module layer2.0.add followed by Relu, updating stats
+2021-11-13 16:54:29,315 -   Module layer2.1.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,315 -   Module layer2.1.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,315 -   Module layer2.1.add followed by Relu, updating stats
+2021-11-13 16:54:29,315 -   Module layer2.2.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,315 -   Module layer2.2.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,315 -   Module layer2.2.add followed by Relu, updating stats
+2021-11-13 16:54:29,315 -   Module layer2.3.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,315 -   Module layer2.3.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,315 -   Module layer2.3.add followed by Relu, updating stats
+2021-11-13 16:54:29,315 -   Module layer3.0.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,316 -   Module layer3.0.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,316 -   Module layer3.0.add followed by Relu, updating stats
+2021-11-13 16:54:29,316 -   Module layer3.1.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,316 -   Module layer3.1.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,316 -   Module layer3.1.add followed by Relu, updating stats
+2021-11-13 16:54:29,316 -   Module layer3.2.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,316 -   Module layer3.2.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,316 -   Module layer3.2.add followed by Relu, updating stats
+2021-11-13 16:54:29,316 -   Module layer3.3.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,316 -   Module layer3.3.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,316 -   Module layer3.3.add followed by Relu, updating stats
+2021-11-13 16:54:29,317 -   Module layer3.4.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,317 -   Module layer3.4.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,317 -   Module layer3.4.add followed by Relu, updating stats
+2021-11-13 16:54:29,317 -   Module layer3.5.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,317 -   Module layer3.5.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,317 -   Module layer3.5.add followed by Relu, updating stats
+2021-11-13 16:54:29,317 -   Module layer4.0.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,317 -   Module layer4.0.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,317 -   Module layer4.0.add followed by Relu, updating stats
+2021-11-13 16:54:29,317 -   Module layer4.1.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,318 -   Module layer4.1.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,318 -   Module layer4.1.add followed by Relu, updating stats
+2021-11-13 16:54:29,318 -   Module layer4.2.conv1 followed by Relu, updating stats
+2021-11-13 16:54:29,318 -   Module layer4.2.conv2 followed by Relu, updating stats
+2021-11-13 16:54:29,318 -   Module layer4.2.add followed by Relu, updating stats
+2021-11-13 16:54:29,515 - Updated stats saved to logs/resnet50-imagenet-grayencode___2021.11.13-165420/quant_stats_after_prepare_model.yaml
+2021-11-13 16:54:29,516 - Module module
+2021-11-13 16:54:29,516 - 	Skipping
+2021-11-13 16:54:29,519 - Module module.conv1
+2021-11-13 16:54:29,519 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,519 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,522 - Module module.relu
+2021-11-13 16:54:29,522 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,522 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,524 - Module module.maxpool
+2021-11-13 16:54:29,524 - 	Replacing: torch.nn.modules.pooling.MaxPool2d
+2021-11-13 16:54:29,524 - 	With:      distiller.quantization.range_linear.RangeLinearFakeQuantWrapper
+2021-11-13 16:54:29,526 - Module module.layer1
+2021-11-13 16:54:29,526 - 	Skipping
+2021-11-13 16:54:29,526 - Module module.layer1.0
+2021-11-13 16:54:29,526 - 	Skipping
+2021-11-13 16:54:29,527 - Module module.layer1.0.conv1
+2021-11-13 16:54:29,527 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,527 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,529 - Module module.layer1.0.relu1
+2021-11-13 16:54:29,529 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,529 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,532 - Module module.layer1.0.conv2
+2021-11-13 16:54:29,532 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,532 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,534 - Module module.layer1.0.relu2
+2021-11-13 16:54:29,534 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,534 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,537 - Module module.layer1.0.conv3
+2021-11-13 16:54:29,537 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,537 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,539 - Module module.layer1.0.downsample
+2021-11-13 16:54:29,539 - 	Skipping
+2021-11-13 16:54:29,540 - Module module.layer1.0.downsample.0
+2021-11-13 16:54:29,540 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,541 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,543 - Module module.layer1.0.add
+2021-11-13 16:54:29,543 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,543 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,545 - Module module.layer1.0.relu3
+2021-11-13 16:54:29,545 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,545 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,547 - Module module.layer1.1
+2021-11-13 16:54:29,547 - 	Skipping
+2021-11-13 16:54:29,548 - Module module.layer1.1.conv1
+2021-11-13 16:54:29,548 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,548 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,550 - Module module.layer1.1.relu1
+2021-11-13 16:54:29,550 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,550 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,553 - Module module.layer1.1.conv2
+2021-11-13 16:54:29,553 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,553 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,555 - Module module.layer1.1.relu2
+2021-11-13 16:54:29,555 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,555 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,558 - Module module.layer1.1.conv3
+2021-11-13 16:54:29,558 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,558 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,561 - Module module.layer1.1.add
+2021-11-13 16:54:29,561 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,561 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,563 - Module module.layer1.1.relu3
+2021-11-13 16:54:29,563 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,563 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,564 - Module module.layer1.2
+2021-11-13 16:54:29,564 - 	Skipping
+2021-11-13 16:54:29,566 - Module module.layer1.2.conv1
+2021-11-13 16:54:29,566 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,566 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,568 - Module module.layer1.2.relu1
+2021-11-13 16:54:29,568 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,568 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,571 - Module module.layer1.2.conv2
+2021-11-13 16:54:29,571 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,571 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,573 - Module module.layer1.2.relu2
+2021-11-13 16:54:29,573 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,573 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,576 - Module module.layer1.2.conv3
+2021-11-13 16:54:29,576 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,576 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,579 - Module module.layer1.2.add
+2021-11-13 16:54:29,579 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,579 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,581 - Module module.layer1.2.relu3
+2021-11-13 16:54:29,581 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,581 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,583 - Module module.layer2
+2021-11-13 16:54:29,583 - 	Skipping
+2021-11-13 16:54:29,583 - Module module.layer2.0
+2021-11-13 16:54:29,583 - 	Skipping
+2021-11-13 16:54:29,584 - Module module.layer2.0.conv1
+2021-11-13 16:54:29,584 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,584 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,586 - Module module.layer2.0.relu1
+2021-11-13 16:54:29,586 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,586 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,589 - Module module.layer2.0.conv2
+2021-11-13 16:54:29,589 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,589 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,591 - Module module.layer2.0.relu2
+2021-11-13 16:54:29,591 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,592 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,594 - Module module.layer2.0.conv3
+2021-11-13 16:54:29,595 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,595 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,596 - Module module.layer2.0.downsample
+2021-11-13 16:54:29,596 - 	Skipping
+2021-11-13 16:54:29,598 - Module module.layer2.0.downsample.0
+2021-11-13 16:54:29,598 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,598 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,600 - Module module.layer2.0.add
+2021-11-13 16:54:29,600 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,600 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,602 - Module module.layer2.0.relu3
+2021-11-13 16:54:29,603 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,603 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,604 - Module module.layer2.1
+2021-11-13 16:54:29,604 - 	Skipping
+2021-11-13 16:54:29,606 - Module module.layer2.1.conv1
+2021-11-13 16:54:29,606 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,606 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,608 - Module module.layer2.1.relu1
+2021-11-13 16:54:29,608 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,608 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,611 - Module module.layer2.1.conv2
+2021-11-13 16:54:29,611 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,611 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,613 - Module module.layer2.1.relu2
+2021-11-13 16:54:29,613 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,613 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,616 - Module module.layer2.1.conv3
+2021-11-13 16:54:29,616 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,616 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,619 - Module module.layer2.1.add
+2021-11-13 16:54:29,619 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,619 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,621 - Module module.layer2.1.relu3
+2021-11-13 16:54:29,621 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,621 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,623 - Module module.layer2.2
+2021-11-13 16:54:29,623 - 	Skipping
+2021-11-13 16:54:29,625 - Module module.layer2.2.conv1
+2021-11-13 16:54:29,625 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,625 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,627 - Module module.layer2.2.relu1
+2021-11-13 16:54:29,627 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,627 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,630 - Module module.layer2.2.conv2
+2021-11-13 16:54:29,630 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,630 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,632 - Module module.layer2.2.relu2
+2021-11-13 16:54:29,633 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,633 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,635 - Module module.layer2.2.conv3
+2021-11-13 16:54:29,636 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,636 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,638 - Module module.layer2.2.add
+2021-11-13 16:54:29,638 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,638 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,641 - Module module.layer2.2.relu3
+2021-11-13 16:54:29,641 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,641 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,644 - Module module.layer2.3
+2021-11-13 16:54:29,645 - 	Skipping
+2021-11-13 16:54:29,646 - Module module.layer2.3.conv1
+2021-11-13 16:54:29,647 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,647 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,649 - Module module.layer2.3.relu1
+2021-11-13 16:54:29,649 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,649 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,652 - Module module.layer2.3.conv2
+2021-11-13 16:54:29,652 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,652 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,655 - Module module.layer2.3.relu2
+2021-11-13 16:54:29,655 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,655 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,658 - Module module.layer2.3.conv3
+2021-11-13 16:54:29,658 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,658 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,661 - Module module.layer2.3.add
+2021-11-13 16:54:29,661 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,661 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,666 - Module module.layer2.3.relu3
+2021-11-13 16:54:29,666 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,666 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,668 - Module module.layer3
+2021-11-13 16:54:29,668 - 	Skipping
+2021-11-13 16:54:29,668 - Module module.layer3.0
+2021-11-13 16:54:29,668 - 	Skipping
+2021-11-13 16:54:29,669 - Module module.layer3.0.conv1
+2021-11-13 16:54:29,669 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,670 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,672 - Module module.layer3.0.relu1
+2021-11-13 16:54:29,672 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,672 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,675 - Module module.layer3.0.conv2
+2021-11-13 16:54:29,675 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,675 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,677 - Module module.layer3.0.relu2
+2021-11-13 16:54:29,678 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,678 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,681 - Module module.layer3.0.conv3
+2021-11-13 16:54:29,681 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,681 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,683 - Module module.layer3.0.downsample
+2021-11-13 16:54:29,683 - 	Skipping
+2021-11-13 16:54:29,684 - Module module.layer3.0.downsample.0
+2021-11-13 16:54:29,684 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,684 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,687 - Module module.layer3.0.add
+2021-11-13 16:54:29,687 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,687 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,690 - Module module.layer3.0.relu3
+2021-11-13 16:54:29,690 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,690 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,692 - Module module.layer3.1
+2021-11-13 16:54:29,692 - 	Skipping
+2021-11-13 16:54:29,694 - Module module.layer3.1.conv1
+2021-11-13 16:54:29,694 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,694 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,696 - Module module.layer3.1.relu1
+2021-11-13 16:54:29,697 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,697 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,700 - Module module.layer3.1.conv2
+2021-11-13 16:54:29,700 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,700 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,702 - Module module.layer3.1.relu2
+2021-11-13 16:54:29,702 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,702 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,705 - Module module.layer3.1.conv3
+2021-11-13 16:54:29,706 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,706 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,708 - Module module.layer3.1.add
+2021-11-13 16:54:29,708 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,708 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,711 - Module module.layer3.1.relu3
+2021-11-13 16:54:29,711 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,711 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,713 - Module module.layer3.2
+2021-11-13 16:54:29,713 - 	Skipping
+2021-11-13 16:54:29,714 - Module module.layer3.2.conv1
+2021-11-13 16:54:29,715 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,715 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,717 - Module module.layer3.2.relu1
+2021-11-13 16:54:29,717 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,717 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,720 - Module module.layer3.2.conv2
+2021-11-13 16:54:29,720 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,720 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,723 - Module module.layer3.2.relu2
+2021-11-13 16:54:29,723 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,723 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,726 - Module module.layer3.2.conv3
+2021-11-13 16:54:29,727 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,727 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,729 - Module module.layer3.2.add
+2021-11-13 16:54:29,729 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,729 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,732 - Module module.layer3.2.relu3
+2021-11-13 16:54:29,732 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,732 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,734 - Module module.layer3.3
+2021-11-13 16:54:29,734 - 	Skipping
+2021-11-13 16:54:29,736 - Module module.layer3.3.conv1
+2021-11-13 16:54:29,736 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,736 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,738 - Module module.layer3.3.relu1
+2021-11-13 16:54:29,738 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,738 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,742 - Module module.layer3.3.conv2
+2021-11-13 16:54:29,742 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,742 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,745 - Module module.layer3.3.relu2
+2021-11-13 16:54:29,745 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,745 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,748 - Module module.layer3.3.conv3
+2021-11-13 16:54:29,748 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,748 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,751 - Module module.layer3.3.add
+2021-11-13 16:54:29,751 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,751 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,754 - Module module.layer3.3.relu3
+2021-11-13 16:54:29,754 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,754 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,756 - Module module.layer3.4
+2021-11-13 16:54:29,756 - 	Skipping
+2021-11-13 16:54:29,758 - Module module.layer3.4.conv1
+2021-11-13 16:54:29,758 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,758 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,761 - Module module.layer3.4.relu1
+2021-11-13 16:54:29,761 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,761 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,764 - Module module.layer3.4.conv2
+2021-11-13 16:54:29,764 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,764 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,767 - Module module.layer3.4.relu2
+2021-11-13 16:54:29,767 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,767 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,770 - Module module.layer3.4.conv3
+2021-11-13 16:54:29,770 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,770 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,773 - Module module.layer3.4.add
+2021-11-13 16:54:29,773 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,773 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,776 - Module module.layer3.4.relu3
+2021-11-13 16:54:29,776 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,776 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,779 - Module module.layer3.5
+2021-11-13 16:54:29,779 - 	Skipping
+2021-11-13 16:54:29,780 - Module module.layer3.5.conv1
+2021-11-13 16:54:29,780 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,780 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,783 - Module module.layer3.5.relu1
+2021-11-13 16:54:29,783 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,783 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,787 - Module module.layer3.5.conv2
+2021-11-13 16:54:29,787 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,787 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,790 - Module module.layer3.5.relu2
+2021-11-13 16:54:29,790 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,790 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,794 - Module module.layer3.5.conv3
+2021-11-13 16:54:29,794 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,794 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,797 - Module module.layer3.5.add
+2021-11-13 16:54:29,797 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,797 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,800 - Module module.layer3.5.relu3
+2021-11-13 16:54:29,800 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,800 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,802 - Module module.layer4
+2021-11-13 16:54:29,802 - 	Skipping
+2021-11-13 16:54:29,802 - Module module.layer4.0
+2021-11-13 16:54:29,802 - 	Skipping
+2021-11-13 16:54:29,804 - Module module.layer4.0.conv1
+2021-11-13 16:54:29,804 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,804 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,807 - Module module.layer4.0.relu1
+2021-11-13 16:54:29,807 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,807 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,810 - Module module.layer4.0.conv2
+2021-11-13 16:54:29,810 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,810 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,814 - Module module.layer4.0.relu2
+2021-11-13 16:54:29,814 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,814 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,817 - Module module.layer4.0.conv3
+2021-11-13 16:54:29,817 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,817 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,819 - Module module.layer4.0.downsample
+2021-11-13 16:54:29,820 - 	Skipping
+2021-11-13 16:54:29,821 - Module module.layer4.0.downsample.0
+2021-11-13 16:54:29,821 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,821 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,824 - Module module.layer4.0.add
+2021-11-13 16:54:29,824 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,824 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,827 - Module module.layer4.0.relu3
+2021-11-13 16:54:29,827 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,827 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,830 - Module module.layer4.1
+2021-11-13 16:54:29,830 - 	Skipping
+2021-11-13 16:54:29,831 - Module module.layer4.1.conv1
+2021-11-13 16:54:29,831 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,831 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,834 - Module module.layer4.1.relu1
+2021-11-13 16:54:29,834 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,834 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,838 - Module module.layer4.1.conv2
+2021-11-13 16:54:29,838 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,838 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,841 - Module module.layer4.1.relu2
+2021-11-13 16:54:29,841 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,841 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,845 - Module module.layer4.1.conv3
+2021-11-13 16:54:29,845 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,845 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,848 - Module module.layer4.1.add
+2021-11-13 16:54:29,848 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,848 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,851 - Module module.layer4.1.relu3
+2021-11-13 16:54:29,851 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,851 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,854 - Module module.layer4.2
+2021-11-13 16:54:29,854 - 	Skipping
+2021-11-13 16:54:29,855 - Module module.layer4.2.conv1
+2021-11-13 16:54:29,855 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,855 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,861 - Module module.layer4.2.relu1
+2021-11-13 16:54:29,862 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,862 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,865 - Module module.layer4.2.conv2
+2021-11-13 16:54:29,865 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,866 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,869 - Module module.layer4.2.relu2
+2021-11-13 16:54:29,869 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,869 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,873 - Module module.layer4.2.conv3
+2021-11-13 16:54:29,873 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-13 16:54:29,873 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,876 - Module module.layer4.2.add
+2021-11-13 16:54:29,876 - 	Replacing: distiller.modules.eltwise.EltwiseAdd
+2021-11-13 16:54:29,876 - 	With:      distiller.quantization.range_linear.RangeLinearQuantEltwiseAddWrapper
+2021-11-13 16:54:29,879 - Module module.layer4.2.relu3
+2021-11-13 16:54:29,879 - 	Replacing: torch.nn.modules.activation.ReLU
+2021-11-13 16:54:29,879 - 	With:      torch.nn.modules.linear.Identity
+2021-11-13 16:54:29,882 - Module module.avgpool
+2021-11-13 16:54:29,882 - 	Replacing: torch.nn.modules.pooling.AdaptiveAvgPool2d
+2021-11-13 16:54:29,882 - 	With:      distiller.quantization.range_linear.RangeLinearFakeQuantWrapper
+2021-11-13 16:54:29,886 - Module module.fc
+2021-11-13 16:54:29,887 - 	Replacing: torch.nn.modules.linear.Linear
+2021-11-13 16:54:29,887 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-13 16:54:29,891 - Parameter 'module.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,891 - Parameter 'module.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,891 - Parameter 'module.layer1.0.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,891 - Parameter 'module.layer1.0.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,891 - Parameter 'module.layer1.0.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,891 - Parameter 'module.layer1.0.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,891 - Parameter 'module.layer1.0.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,891 - Parameter 'module.layer1.0.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer1.0.downsample.0.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer1.0.downsample.0.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer1.1.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer1.1.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer1.1.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer1.1.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer1.1.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer1.1.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer1.2.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer1.2.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer1.2.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer1.2.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer1.2.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer1.2.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer2.0.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,892 - Parameter 'module.layer2.0.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,893 - Parameter 'module.layer2.0.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,893 - Parameter 'module.layer2.0.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,893 - Parameter 'module.layer2.0.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,893 - Parameter 'module.layer2.0.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,893 - Parameter 'module.layer2.0.downsample.0.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,893 - Parameter 'module.layer2.0.downsample.0.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,893 - Parameter 'module.layer2.1.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,893 - Parameter 'module.layer2.1.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,893 - Parameter 'module.layer2.1.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,893 - Parameter 'module.layer2.1.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,893 - Parameter 'module.layer2.1.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,893 - Parameter 'module.layer2.1.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,893 - Parameter 'module.layer2.2.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,893 - Parameter 'module.layer2.2.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,893 - Parameter 'module.layer2.2.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,894 - Parameter 'module.layer2.2.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,894 - Parameter 'module.layer2.2.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,894 - Parameter 'module.layer2.2.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,894 - Parameter 'module.layer2.3.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,894 - Parameter 'module.layer2.3.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,894 - Parameter 'module.layer2.3.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,894 - Parameter 'module.layer2.3.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,894 - Parameter 'module.layer2.3.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,894 - Parameter 'module.layer2.3.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,894 - Parameter 'module.layer3.0.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,894 - Parameter 'module.layer3.0.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,894 - Parameter 'module.layer3.0.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,894 - Parameter 'module.layer3.0.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.0.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.0.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.0.downsample.0.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.0.downsample.0.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.1.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.1.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.1.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.1.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.1.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.1.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.2.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.2.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.2.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.2.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.2.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.2.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.3.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.3.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,895 - Parameter 'module.layer3.3.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,896 - Parameter 'module.layer3.3.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,896 - Parameter 'module.layer3.3.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,896 - Parameter 'module.layer3.3.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,896 - Parameter 'module.layer3.4.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,896 - Parameter 'module.layer3.4.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,896 - Parameter 'module.layer3.4.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,896 - Parameter 'module.layer3.4.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,896 - Parameter 'module.layer3.4.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,896 - Parameter 'module.layer3.4.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,896 - Parameter 'module.layer3.5.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,896 - Parameter 'module.layer3.5.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,896 - Parameter 'module.layer3.5.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,896 - Parameter 'module.layer3.5.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,896 - Parameter 'module.layer3.5.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,896 - Parameter 'module.layer3.5.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.0.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.0.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.0.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.0.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.0.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.0.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.0.downsample.0.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.0.downsample.0.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.1.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.1.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.1.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.1.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.1.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.1.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.2.conv1.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.2.conv1.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.2.conv2.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.2.conv2.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.2.conv3.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,897 - Parameter 'module.layer4.2.conv3.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,898 - Parameter 'module.fc.wrapped_module.weight' will be quantized to 8 bits
+2021-11-13 16:54:29,898 - Parameter 'module.fc.wrapped_module.bias' will be quantized to 32 bits
+2021-11-13 16:54:29,916 - Quantized model:
+
+DataParallel(
+  (module): ResNet(
+    (conv1): RangeLinearQuantParamLayerWrapper(
+      weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+      output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+      accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+      scale_approx_mult_bits=None
+      preset_activation_stats=True
+        output_scale=76.314362, output_zero_point=0.000000
+      weights_scale=309.716522, weights_zero_point=-153.000000
+      (wrapped_module): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3))
+    )
+    (bn1): Identity()
+    (relu): Identity()
+    (maxpool): RangeLinearFakeQuantWrapper(
+      output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+      accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+      scale_approx_mult_bits=None
+      preset_activation_stats=True
+        output_scale=76.314369, output_zero_point=0.000000
+      wrapped_module_float_dtype=torch.float32.
+      (wrapped_module): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    )
+    (layer1): Sequential(
+      (0): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=202.452362, output_zero_point=0.000000
+          weights_scale=192.523788, weights_zero_point=-165.000000
+          (wrapped_module): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=149.640030, output_zero_point=0.000000
+          weights_scale=335.675415, weights_zero_point=-111.000000
+          (wrapped_module): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=93.623878, output_zero_point=-116.000000
+          weights_scale=132.834869, weights_zero_point=-104.000000
+          (wrapped_module): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (downsample): Sequential(
+          (0): RangeLinearQuantParamLayerWrapper(
+            weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+              inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+            scale_approx_mult_bits=None
+            preset_activation_stats=True
+              output_scale=54.578442, output_zero_point=-145.000000
+            weights_scale=91.953682, weights_zero_point=-123.000000
+            (wrapped_module): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Identity()
+        )
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=112.423798, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+      (1): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=190.108200, output_zero_point=0.000000
+          weights_scale=326.063599, weights_zero_point=-92.000000
+          (wrapped_module): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=134.566086, output_zero_point=0.000000
+          weights_scale=217.689285, weights_zero_point=-108.000000
+          (wrapped_module): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=103.417084, output_zero_point=-128.000000
+          weights_scale=127.874222, weights_zero_point=-127.000000
+          (wrapped_module): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=93.685059, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+      (2): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=188.027359, output_zero_point=0.000000
+          weights_scale=393.401642, weights_zero_point=-141.000000
+          (wrapped_module): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=113.214050, output_zero_point=0.000000
+          weights_scale=200.475327, weights_zero_point=-69.000000
+          (wrapped_module): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=69.077072, output_zero_point=-138.000000
+          weights_scale=126.852081, weights_zero_point=-120.000000
+          (wrapped_module): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=95.319214, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+    )
+    (layer2): Sequential(
+      (0): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=115.523026, output_zero_point=0.000000
+          weights_scale=245.739792, weights_zero_point=-102.000000
+          (wrapped_module): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=171.919067, output_zero_point=0.000000
+          weights_scale=347.482300, weights_zero_point=-168.000000
+          (wrapped_module): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=66.666504, output_zero_point=-113.000000
+          weights_scale=97.182014, weights_zero_point=-106.000000
+          (wrapped_module): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (downsample): Sequential(
+          (0): RangeLinearQuantParamLayerWrapper(
+            weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+              inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+            scale_approx_mult_bits=None
+            preset_activation_stats=True
+              output_scale=90.857582, output_zero_point=-114.000000
+            weights_scale=166.199631, weights_zero_point=-117.000000
+            (wrapped_module): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2))
+          )
+          (1): Identity()
+        )
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=114.899010, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+      (1): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=331.259308, output_zero_point=0.000000
+          weights_scale=657.691895, weights_zero_point=-87.000000
+          (wrapped_module): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=192.341324, output_zero_point=0.000000
+          weights_scale=255.814560, weights_zero_point=-105.000000
+          (wrapped_module): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=64.800430, output_zero_point=-114.000000
+          weights_scale=126.008141, weights_zero_point=-123.000000
+          (wrapped_module): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=86.104538, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+      (2): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=209.841064, output_zero_point=0.000000
+          weights_scale=525.140442, weights_zero_point=-128.000000
+          (wrapped_module): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=227.464676, output_zero_point=0.000000
+          weights_scale=355.190155, weights_zero_point=-97.000000
+          (wrapped_module): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=92.014252, output_zero_point=-131.000000
+          weights_scale=134.780914, weights_zero_point=-111.000000
+          (wrapped_module): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=81.861839, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+      (3): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=191.900879, output_zero_point=0.000000
+          weights_scale=456.028473, weights_zero_point=-86.000000
+          (wrapped_module): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=197.868942, output_zero_point=0.000000
+          weights_scale=357.245514, weights_zero_point=-137.000000
+          (wrapped_module): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=94.590790, output_zero_point=-125.000000
+          weights_scale=120.772308, weights_zero_point=-95.000000
+          (wrapped_module): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=80.790489, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+    )
+    (layer3): Sequential(
+      (0): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=112.272530, output_zero_point=0.000000
+          weights_scale=263.541260, weights_zero_point=-109.000000
+          (wrapped_module): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=194.774536, output_zero_point=0.000000
+          weights_scale=482.902527, weights_zero_point=-132.000000
+          (wrapped_module): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=82.143326, output_zero_point=-112.000000
+          weights_scale=135.952927, weights_zero_point=-130.000000
+          (wrapped_module): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (downsample): Sequential(
+          (0): RangeLinearQuantParamLayerWrapper(
+            weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+              inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+            scale_approx_mult_bits=None
+            preset_activation_stats=True
+              output_scale=115.818336, output_zero_point=-119.000000
+            weights_scale=242.965057, weights_zero_point=-134.000000
+            (wrapped_module): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2))
+          )
+          (1): Identity()
+        )
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=127.171211, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+      (1): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=165.146164, output_zero_point=0.000000
+          weights_scale=421.759155, weights_zero_point=-92.000000
+          (wrapped_module): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=219.473846, output_zero_point=0.000000
+          weights_scale=417.351227, weights_zero_point=-101.000000
+          (wrapped_module): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=74.461113, output_zero_point=-124.000000
+          weights_scale=93.775642, weights_zero_point=-126.000000
+          (wrapped_module): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=97.407700, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+      (2): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=219.130310, output_zero_point=0.000000
+          weights_scale=438.512848, weights_zero_point=-85.000000
+          (wrapped_module): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=274.205719, output_zero_point=0.000000
+          weights_scale=433.063385, weights_zero_point=-127.000000
+          (wrapped_module): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=126.801300, output_zero_point=-130.000000
+          weights_scale=142.829025, weights_zero_point=-121.000000
+          (wrapped_module): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=102.290245, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+      (3): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=197.905746, output_zero_point=0.000000
+          weights_scale=401.145142, weights_zero_point=-116.000000
+          (wrapped_module): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=252.665329, output_zero_point=0.000000
+          weights_scale=378.823639, weights_zero_point=-91.000000
+          (wrapped_module): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=92.691887, output_zero_point=-130.000000
+          weights_scale=106.624992, weights_zero_point=-83.000000
+          (wrapped_module): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=89.601845, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+      (4): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=196.544342, output_zero_point=0.000000
+          weights_scale=389.477478, weights_zero_point=-92.000000
+          (wrapped_module): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=242.208862, output_zero_point=0.000000
+          weights_scale=379.009308, weights_zero_point=-79.000000
+          (wrapped_module): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=107.356262, output_zero_point=-138.000000
+          weights_scale=83.625671, weights_zero_point=-104.000000
+          (wrapped_module): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=87.914017, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+      (5): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=161.216522, output_zero_point=0.000000
+          weights_scale=375.412018, weights_zero_point=-112.000000
+          (wrapped_module): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=160.947433, output_zero_point=0.000000
+          weights_scale=336.583344, weights_zero_point=-108.000000
+          (wrapped_module): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=84.507507, output_zero_point=-152.000000
+          weights_scale=116.734207, weights_zero_point=-104.000000
+          (wrapped_module): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=109.208725, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+    )
+    (layer4): Sequential(
+      (0): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=149.072815, output_zero_point=0.000000
+          weights_scale=286.792725, weights_zero_point=-97.000000
+          (wrapped_module): Conv2d(1024, 512, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=163.396027, output_zero_point=0.000000
+          weights_scale=324.073486, weights_zero_point=-120.000000
+          (wrapped_module): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=36.546757, output_zero_point=-99.000000
+          weights_scale=48.860126, weights_zero_point=-91.000000
+          (wrapped_module): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (downsample): Sequential(
+          (0): RangeLinearQuantParamLayerWrapper(
+            weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+              inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+            scale_approx_mult_bits=None
+            preset_activation_stats=True
+              output_scale=42.311848, output_zero_point=-110.000000
+            weights_scale=33.423954, weights_zero_point=-111.000000
+            (wrapped_module): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2))
+          )
+          (1): Identity()
+        )
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=41.802349, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+      (1): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=189.979401, output_zero_point=0.000000
+          weights_scale=1021.163513, weights_zero_point=-100.000000
+          (wrapped_module): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=243.201523, output_zero_point=0.000000
+          weights_scale=431.719666, weights_zero_point=-139.000000
+          (wrapped_module): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=43.842846, output_zero_point=-106.000000
+          weights_scale=47.366165, weights_zero_point=-95.000000
+          (wrapped_module): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=33.071167, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+      (2): DistillerBottleneck(
+        (conv1): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=189.059372, output_zero_point=0.000000
+          weights_scale=858.630920, weights_zero_point=-179.000000
+          (wrapped_module): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn1): Identity()
+        (relu1): Identity()
+        (conv2): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=217.052673, output_zero_point=0.000000
+          weights_scale=583.753845, weights_zero_point=-112.000000
+          (wrapped_module): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn2): Identity()
+        (relu2): Identity()
+        (conv3): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=20.011677, output_zero_point=-77.000000
+          weights_scale=25.240526, weights_zero_point=-76.000000
+          (wrapped_module): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn3): Identity()
+        (add): RangeLinearQuantEltwiseAddWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=True ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=18.665882, output_zero_point=0.000000
+          (wrapped_module): EltwiseAdd()
+        )
+        (relu3): Identity()
+      )
+    )
+    (avgpool): RangeLinearFakeQuantWrapper(
+      output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+      accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+      scale_approx_mult_bits=None
+      preset_activation_stats=True
+        output_scale=56.292549, output_zero_point=0.000000
+      wrapped_module_float_dtype=torch.float32.
+      (wrapped_module): AdaptiveAvgPool2d(output_size=(1, 1))
+    )
+    (fc): RangeLinearQuantParamLayerWrapper(
+      weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+      output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+      accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+      scale_approx_mult_bits=None
+      preset_activation_stats=True
+        output_scale=11.161633, output_zero_point=-64.000000
+      weights_scale=260.071014, weights_zero_point=-63.000000
+      (wrapped_module): Linear(in_features=2048, out_features=1000, bias=True)
+    )
+  )
+)
+
+2021-11-13 16:54:30,353 - Per-layer quantization parameters saved to logs/resnet50-imagenet-grayencode___2021.11.13-165420/layer_quant_params.yaml
+2021-11-13 16:54:34,243 - --- test ---------------------
+2021-11-13 16:54:34,243 - 50000 samples (256 per mini-batch)
+2021-11-13 16:55:02,185 - Test: [   10/  195]    Loss 1.055404    Top1 72.656250    Top5 91.914062    
+2021-11-13 16:55:19,773 - Test: [   20/  195]    Loss 1.032603    Top1 73.085938    Top5 92.558594    
+2021-11-13 16:55:31,183 - 
+2021-11-13 16:55:31,183 - Log file for this run: /home/th.nguyen/drift-encode/logs/resnet50-imagenet-grayencode___2021.11.13-165420/resnet50-imagenet-grayencode___2021.11.13-165420.log

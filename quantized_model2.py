@@ -32,14 +32,16 @@ from functools import partial
 from distiller.data_loggers.collector import collector_context
 import copy
 
+torch.set_printoptions(profile="full")
 msglogger = logging.getLogger()
 parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")
 parser.add_argument("--lr", default=0.1, type=float, help="learning rate")
-parser.add_argument("--mlc", default=16, type=int, help="Number of mlc bits")
+parser.add_argument("--mlc", default=8, type=int, help="Number of mlc bits")
 parser.add_argument("--name", default="Name", type=str, help="Name of run")
 parser.add_argument("--method", default="proposed_method", type=str, help="Running method")
 parser.add_argument("--model", default="resnet18", type=str, help="Model")
 parser.add_argument("--gpu", default="0", type=str, help="GPU ids")
+parser.add_argument("--case", default="1", type=str, help="case run")
 parser.add_argument(
     "--save_data", "-s", action="store_true", help="Save the data")
 parser.add_argument(
@@ -166,19 +168,23 @@ def main():
     list_01 = [1]
     list_10 = [2]
     list_11 = [3]
+    list_00 = [0]
     for shift in range(2, args.num_bits, 2):
         next_pos = 2 ** (shift)
         list_01.append(next_pos)
-        list_10.append(next_pos)
+        list_10.append(2 * next_pos)
         list_11.append(3 * next_pos)
+        list_00.append(0)
     if args.num_bits == 16:
-        dtype=torch.int16
+        dtype=np.uint16
     elif args.num_bits == 8:
-        dtype=torch.uint8
-    tensor_01 = torch.tensor(list_01, dtype=dtype, device="cuda")
-    tensor_10 = torch.tensor(list_10, dtype=dtype, device="cuda")
-    tensor_11 = torch.tensor(list_11, dtype=dtype, device="cuda")
-    tensors = (tensor_01, tensor_10, tensor_11)
+        dtype=np.uint8
+    tensor_11 = np.array(list_11, dtype=dtype)
+    tensor_10 = np.array(list_10, dtype=dtype)
+    tensor_01 = np.array(list_01, dtype=dtype)
+    tensor_00 = np.array(list_00, dtype=dtype)
+
+    tensors = (tensor_00, tensor_01, tensor_10, tensor_11)
 
     with torch.no_grad():
         count = 0
@@ -199,9 +205,9 @@ def main():
                 for name, weight in tqdm(net.named_parameters(), desc="Executing method:", leave=False):
                     if ( "weight" in name ) and ( "bn" not in name ):
                         # level = "bit"
-                        mlc_error_rate = {"error_11" : error_11, "error_10": error_10}
+                        mlc_error_rate = {"error_level3" : error_11, "error_level2": error_10}
                         if args.method == "proposed_method":
-                            error_weight = proposed_method(weight, weight_type, mlc_error_rate, args.num_bits)
+                            error_weight = proposed_method(weight, weight_type, mlc_error_rate, args.num_bits, tensors, args.case)
                         if args.method == "flipcy":
                             error_weight = flipcy(weight, weight_type, mlc_error_rate, name, tensors, num_bits=args.num_bits, encode=args.encode)
                         if args.method == "helmet":
@@ -216,15 +222,120 @@ def main():
                 writer.close()
             if save_data and not args.encode:
                 df.loc[count] = [count, avr_acc]
-                df.to_csv(f"./new_results/{args.name}.csv", mode='w', header=True)
+                df.to_csv(f"./result/{args.name}.csv", mode='w', header=True)
             count += 1
 
 
-def proposed_method(weight, weight_type, mlc_error_rate, num_bits):
+def proposed_method(weight, weight_type, mlc_error_rate, num_bits, tensors, case):
+    if num_bits == 8:
+        dtype = np.uint8
+    elif num_bits == 16:
+        dtype = np.int16
+
+    # tensor_00, tensor_01, tensor_10, tensor_11 = tensors
+    # encode_weight = weight.clone()
+    # encode_weight = proposed_method_en(encode_weight, num_bits, tensors)
+    # num_00_proposed, _ = count_orig(encode_weight, tensor_00, tensor_11, num_bits)
+    # num_11_proposed, _ = count_orig(encode_weight, tensor_11, tensor_11, num_bits)
+    # num_error_00_proposed = int(mlc_error_rate["error_level3"] * num_00_proposed)
+    # num_error_11_proposed = int(mlc_error_rate["error_level2"] * num_11_proposed)
+
+    # num_00_orig, _ = count_orig(weight.cpu().numpy().astype(dtype), tensor_00, tensor_11, num_bits)
+    # num_11_orig, _ = count_orig(weight.cpu().numpy().astype(dtype), tensor_11, tensor_11, num_bits)
+    # num_error = (num_error_00_proposed, num_error_11_proposed)
+
+    # mlc_error_rate["error_level3"] = num_error_00_proposed/num_00_orig
+    # mlc_error_rate["error_level2"] = num_error_11_proposed/num_11_orig
+
     MLC = weight_conf(weight, weight_type, num_bits)
     error_weight = MLC.inject_error(mlc_error_rate)
     error_weight = error_weight.reshape(weight.shape)
     return error_weight
+
+def proposed_method_en(weight, num_bits, tensors):
+    if num_bits == 8:
+        dtype = np.uint8
+    elif num_bits == 16:
+        dtype = np.int16
+    tensor_00, tensor_01, tensor_10, tensor_11 = tensors
+
+    weight = weight.reshape(int(weight.numel() / 1), 1)
+    orig_weight = weight.clone()
+    weight = weight.cpu().numpy().astype(dtype)
+    orig_weight = orig_weight.cpu().numpy().astype(dtype)
+
+    # Flip 00 -> 01 and 11 -> 10:
+    flipped_weight = flip_proposed(weight, orig_weight, tensors, num_bits)
+
+    num_00_orig = count_00(weight, tensor_00, tensor_11, num_bits)
+    num_11_orig = count_00(weight, tensor_11, tensor_11, num_bits)
+    num_01_orig = count_00(weight, tensor_01, tensor_11, num_bits)
+    num_10_orig = count_00(weight, tensor_10, tensor_11, num_bits)
+
+    sum_0011 = num_00_orig + num_11_orig
+    sum_0110 = num_01_orig + num_10_orig
+
+    if num_bits == 16:
+        weight = weight.astype(np.uint16)
+
+    # if np.sum(sum_0011) > np.sum(sum_0110):
+    #     return flipped_weight
+    # else:
+    #     return weight
+
+    total= np.stack((sum_0011, sum_0110))
+    min_case = np.argmin(total, axis=0)
+    weight[(min_case == 1).nonzero()[0], :] = flipped_weight[(min_case == 1).nonzero()[0], :]
+    return weight
+
+    # total_00 = np.stack((num_00_orig, num_00_inv))
+    # min_case = np.argmin(total_00, axis=0)
+    # # weight = weight.reshape(int(weight.size / 32), -1)
+    # weight[(min_case == 1).nonzero()[0], :] = inv_weight[(min_case == 1).nonzero()[0], :]
+    # # weight = weight.reshape(int(weight.size / 1), 1)
+
+    # weight_torch = torch.tensor(weight.astype(np.float32), device="cuda")
+
+def flip_proposed(weight, orig_weight, tensors, num_bits):
+    shape = weight.shape
+    weight = weight.flatten()
+    orig_weight = orig_weight.flatten()
+    index_bit = np.arange(0, num_bits, 2)
+    tensor_10_inv = np.invert(tensors[1])
+    tensor_00_inv = np.invert(tensors[3])
+
+    # Flip 00 --> 01
+    num_00, index_00 = count(orig_weight, tensors[0], tensors[3], index_bit, num_bits)
+    tensor01_index = tensors[1][(index_00[:, 1] / 2).astype(np.uint8)]
+    np.bitwise_or.at(weight, index_00[:, 0], tensor01_index)
+    # Flip 11 --> 10
+    num_11, index_11 = count(orig_weight, tensors[3], tensors[3], index_bit, num_bits)
+    tensor10_index = tensor_10_inv[(index_11[:, 1] / 2).astype(np.uint8)]
+    np.bitwise_and.at(weight, index_11[:, 0], tensor10_index)
+    # Flip 01 --> 00
+    num_01, index_01 = count(orig_weight, tensors[1], tensors[3], index_bit, num_bits)
+    tensor00_index = tensor_00_inv[(index_01[:, 1] / 2).astype(np.uint8)]
+    np.bitwise_and.at(weight, index_01[:, 0], tensor00_index)
+    # Flip 10 --> 11
+    num_10, index_10 = count(orig_weight, tensors[2], tensors[3], index_bit, num_bits)
+    tensor11_index = tensors[3][(index_10[:, 1] / 2).astype(np.uint8)]
+    np.bitwise_or.at(weight, index_10[:, 0], tensor11_index)
+
+    return weight.reshape(shape)
+
+
+def circshift(weight, num_bits):
+    if num_bits == 16:
+        weight_np = weight.view(np.uint16)
+        save_bit = np.left_shift(weight_np, 15)
+        rot_bit = np.right_shift(weight_np, 1)
+        rot_weight = np.bitwise_or(save_bit, rot_bit).view(np.int16)
+    elif num_bits == 8:
+        weight_np = weight
+        save_bit = np.left_shift(weight_np, 7)
+        rot_bit = np.right_shift(weight_np, 1)
+        rot_weight = np.bitwise_or(save_bit, rot_bit)
+    return rot_weight
 
 # 00, 01, 11, 10
 def flipcy(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode):
@@ -301,6 +412,25 @@ def helmet(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode)
         # print("Number of error 11:", num_error_11_helmet, num_11*mlc_error_rate["error_11"])
         # print("Number of error 10:", num_error_10_helmet, num_10*mlc_error_rate["error_10"])
     return weight_torch
+
+def count_00(weight, tensor_00, tensor_11, num_bits):
+    index_bit = np.arange(0, num_bits, 2)
+    num_00 = 0
+    indices_00 = []
+    for tensor_00_i, tensor_11_i, index_b in zip(tensor_00, tensor_11, index_bit):
+        and_result = np.bitwise_and(tensor_11_i, weight)
+        index_00 = (and_result == tensor_00_i).nonzero()[0]
+        bit_index = np.full_like(index_00, index_b)
+        bit_index = np.transpose(np.expand_dims(bit_index, 0), (1, 0))
+        index_00 = np.transpose(np.expand_dims(index_00, 0), (1, 0))
+        index_tensor = np.concatenate((index_00, bit_index), axis=1)
+        indices_00.append(index_tensor)
+        num_00 += index_00.shape[1]
+    total_index_00 = np.concatenate(indices_00, axis=0)
+    indices = np.unique(total_index_00[:, 0], return_counts=True)
+    zeros = np.zeros(weight.size)
+    zeros[indices[0]] = indices[1]
+    return zeros
 
 # Training
 def train(epoch):

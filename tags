@@ -1,0 +1,525 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BasicBlock	cifar10_models/resnet.py	/^class BasicBlock(nn.Module):$/;"	c
+BasicConv2d	cifar10_models/googlenet.py	/^class BasicConv2d(nn.Module):$/;"	c
+BasicConv2d	cifar10_models/inception.py	/^class BasicConv2d(nn.Module):$/;"	c
+Bottleneck	cifar10_models/resnet.py	/^class Bottleneck(nn.Module):$/;"	c
+ConvBNReLU	cifar10_models/mobilenetv2.py	/^class ConvBNReLU(nn.Sequential):$/;"	c
+DenseNet	cifar10_models/densenet.py	/^class DenseNet(nn.Module):$/;"	c
+DorefaParamsBinarizationSTE	aquantizer.py	/^class DorefaParamsBinarizationSTE(torch.autograd.Function):$/;"	c
+F	cifar10_models/densenet.py	/^import torch.nn.functional as F$/;"	i
+F	cifar10_models/googlenet.py	/^import torch.nn.functional as F$/;"	i
+F	cifar10_models/inception.py	/^import torch.nn.functional as F$/;"	i
+F	cifar10_models/resnet.py	/^import torch.nn.functional as F$/;"	i
+F	count_pattern_quantized.py	/^import torch.nn.functional as F$/;"	i
+F	main.py	/^import torch.nn.functional as F$/;"	i
+F	main2.py	/^import torch.nn.functional as F$/;"	i
+F	pattern_sens.py	/^import torch.nn.functional as F$/;"	i
+F	pattern_sens_quantized.py	/^import torch.nn.functional as F$/;"	i
+F	quantized_model2.py	/^import torch.nn.functional as F$/;"	i
+GoogLeNet	cifar10_models/googlenet.py	/^class GoogLeNet(nn.Module):$/;"	c
+Inception	cifar10_models/googlenet.py	/^class Inception(nn.Module):$/;"	c
+Inception3	cifar10_models/inception.py	/^class Inception3(nn.Module):$/;"	c
+InceptionA	cifar10_models/inception.py	/^class InceptionA(nn.Module):$/;"	c
+InceptionAux	cifar10_models/googlenet.py	/^class InceptionAux(nn.Module):$/;"	c
+InceptionAux	cifar10_models/inception.py	/^class InceptionAux(nn.Module):$/;"	c
+InceptionB	cifar10_models/inception.py	/^class InceptionB(nn.Module):$/;"	c
+InceptionC	cifar10_models/inception.py	/^class InceptionC(nn.Module):$/;"	c
+InceptionD	cifar10_models/inception.py	/^class InceptionD(nn.Module):$/;"	c
+InceptionE	cifar10_models/inception.py	/^class InceptionE(nn.Module):$/;"	c
+InvertedResidual	cifar10_models/mobilenetv2.py	/^class InvertedResidual(nn.Module):$/;"	c
+LinearQuantizeSTE	aquantizer.py	/^class LinearQuantizeSTE(torch.autograd.Function):$/;"	c
+MobileNetV2	cifar10_models/mobilenetv2.py	/^class MobileNetV2(nn.Module):$/;"	c
+OrderedDict	cifar10_models/densenet.py	/^from collections import OrderedDict$/;"	i
+ResNet	cifar10_models/resnet.py	/^class ResNet(nn.Module):$/;"	c
+ResNet101	cifar10_models/resnet.py	/^def ResNet101():$/;"	f
+ResNet152	cifar10_models/resnet.py	/^def ResNet152():$/;"	f
+ResNet18	cifar10_models/resnet.py	/^def ResNet18():$/;"	f
+ResNet34	cifar10_models/resnet.py	/^def ResNet34():$/;"	f
+ResNet50	cifar10_models/resnet.py	/^def ResNet50():$/;"	f
+SummaryWriter	count_pattern_quantized.py	/^from torch.utils.tensorboard import SummaryWriter$/;"	i
+SummaryWriter	main.py	/^from torch.utils.tensorboard import SummaryWriter$/;"	i
+SummaryWriter	main2.py	/^from torch.utils.tensorboard import SummaryWriter$/;"	i
+SummaryWriter	pattern_sens.py	/^from torch.utils.tensorboard import SummaryWriter$/;"	i
+SummaryWriter	pattern_sens_quantized.py	/^from torch.utils.tensorboard import SummaryWriter$/;"	i
+SummaryWriter	quantized_model2.py	/^from torch.utils.tensorboard import SummaryWriter$/;"	i
+TOTAL_BAR_LENGTH	utils.py	/^TOTAL_BAR_LENGTH = 65.$/;"	v
+VGG	cifar10_models/vgg.py	/^class VGG(nn.Module):$/;"	c
+_DenseBlock	cifar10_models/densenet.py	/^class _DenseBlock(nn.Sequential):$/;"	c
+_DenseLayer	cifar10_models/densenet.py	/^class _DenseLayer(nn.Sequential):$/;"	c
+_GoogLeNetOuputs	cifar10_models/googlenet.py	/^_GoogLeNetOuputs = namedtuple($/;"	v
+_InceptionOuputs	cifar10_models/inception.py	/^_InceptionOuputs = namedtuple("InceptionOuputs", ["logits", "aux_logits"])$/;"	v
+_Transition	cifar10_models/densenet.py	/^class _Transition(nn.Sequential):$/;"	c
+__all__	cifar10_models/densenet.py	/^__all__ = ["DenseNet", "densenet121", "densenet169", "densenet161"]$/;"	v
+__all__	cifar10_models/googlenet.py	/^__all__ = ["GoogLeNet", "googlenet"]$/;"	v
+__all__	cifar10_models/inception.py	/^__all__ = ["Inception3", "inception_v3"]$/;"	v
+__all__	cifar10_models/mobilenetv2.py	/^__all__ = ["MobileNetV2", "mobilenet_v2"]$/;"	v
+__all__	cifar10_models/vgg.py	/^__all__ = [$/;"	v
+__init__	cifar10_models/densenet.py	/^    def __init__($/;"	m	class:DenseNet
+__init__	cifar10_models/densenet.py	/^    def __init__(self, num_input_features, growth_rate, bn_size, drop_rate):$/;"	m	class:_DenseLayer
+__init__	cifar10_models/densenet.py	/^    def __init__(self, num_input_features, num_output_features):$/;"	m	class:_Transition
+__init__	cifar10_models/densenet.py	/^    def __init__(self, num_layers, num_input_features, bn_size, growth_rate, drop_rate):$/;"	m	class:_DenseBlock
+__init__	cifar10_models/googlenet.py	/^    def __init__(self, in_channels, ch1x1, ch3x3red, ch3x3, ch5x5red, ch5x5, pool_proj):$/;"	m	class:Inception
+__init__	cifar10_models/googlenet.py	/^    def __init__(self, in_channels, num_classes):$/;"	m	class:InceptionAux
+__init__	cifar10_models/googlenet.py	/^    def __init__(self, in_channels, out_channels, **kwargs):$/;"	m	class:BasicConv2d
+__init__	cifar10_models/googlenet.py	/^    def __init__(self, num_classes=10, aux_logits=False, transform_input=False):$/;"	m	class:GoogLeNet
+__init__	cifar10_models/inception.py	/^    def __init__(self, in_channels):$/;"	m	class:InceptionB
+__init__	cifar10_models/inception.py	/^    def __init__(self, in_channels):$/;"	m	class:InceptionD
+__init__	cifar10_models/inception.py	/^    def __init__(self, in_channels):$/;"	m	class:InceptionE
+__init__	cifar10_models/inception.py	/^    def __init__(self, in_channels, channels_7x7):$/;"	m	class:InceptionC
+__init__	cifar10_models/inception.py	/^    def __init__(self, in_channels, num_classes):$/;"	m	class:InceptionAux
+__init__	cifar10_models/inception.py	/^    def __init__(self, in_channels, out_channels, **kwargs):$/;"	m	class:BasicConv2d
+__init__	cifar10_models/inception.py	/^    def __init__(self, in_channels, pool_features):$/;"	m	class:InceptionA
+__init__	cifar10_models/inception.py	/^    def __init__(self, num_classes=10, aux_logits=False, transform_input=False):$/;"	m	class:Inception3
+__init__	cifar10_models/mobilenetv2.py	/^    def __init__(self, in_planes, out_planes, kernel_size=3, stride=1, groups=1):$/;"	m	class:ConvBNReLU
+__init__	cifar10_models/mobilenetv2.py	/^    def __init__(self, inp, oup, stride, expand_ratio):$/;"	m	class:InvertedResidual
+__init__	cifar10_models/mobilenetv2.py	/^    def __init__(self, num_classes=10, width_mult=1.0):$/;"	m	class:MobileNetV2
+__init__	cifar10_models/resnet.py	/^    def __init__(self, block, num_blocks, num_classes=10):$/;"	m	class:ResNet
+__init__	cifar10_models/resnet.py	/^    def __init__(self, in_planes, planes, stride=1):$/;"	m	class:BasicBlock
+__init__	cifar10_models/resnet.py	/^    def __init__(self, in_planes, planes, stride=1):$/;"	m	class:Bottleneck
+__init__	cifar10_models/vgg.py	/^    def __init__(self, features, num_classes=10, init_weights=True):$/;"	m	class:VGG
+__init__	weight_conf.py	/^    def __init__(self, weight, weight_type, level):$/;"	m	class:weight_conf
+__init__	weight_conf_count_error.py	/^    def __init__(self, weight, weight_type):$/;"	m	class:weight_conf
+__init__	weight_cupy_conf.py	/^    def __init__(self, weight, weight_type):$/;"	m	class:weight_conf
+__init__	weight_pattern_sens.py	/^    def __init__(self, weight):$/;"	m	class:weight_conf
+__init__	weight_pattern_sens_quantized.py	/^    def __init__(self, weight, num_bits):$/;"	m	class:weight_conf
+__init__	weight_quantized_conf.py	/^    def __init__(self, weight, weight_type, num_bits):$/;"	m	class:weight_conf
+_densenet	cifar10_models/densenet.py	/^def _densenet($/;"	f
+_initialize_weights	cifar10_models/vgg.py	/^    def _initialize_weights(self):$/;"	m	class:VGG
+_make_layer	cifar10_models/resnet.py	/^    def _make_layer(self, block, planes, num_blocks, stride):$/;"	m	class:ResNet
+_prep_saturation_val_tensor	aquantizer.py	/^def _prep_saturation_val_tensor(sat_val):$/;"	f
+_vgg	cifar10_models/vgg.py	/^def _vgg(arch, cfg, batch_norm, pretrained, progress, device, **kwargs):$/;"	f
+acc	plot_pattern_sens.py	/^            acc = pd.read_csv(f".\/result\/quantized-8bit-{model}-Pattern-{error_pat}-to-{error_des}.csv")$/;"	v
+argparse	count_pattern_quantized.py	/^import argparse$/;"	i
+argparse	main.py	/^import argparse$/;"	i
+argparse	main2.py	/^import argparse$/;"	i
+argparse	pattern_sens.py	/^import argparse$/;"	i
+argparse	pattern_sens_quantized.py	/^import argparse$/;"	i
+argparse	quantized_model2.py	/^import argparse$/;"	i
+args	count_pattern_quantized.py	/^args = parser.parse_args()$/;"	v
+args	main.py	/^args = parser.parse_args()$/;"	v
+args	main2.py	/^args = parser.parse_args()$/;"	v
+args	pattern_sens.py	/^args = parser.parse_args()$/;"	v
+args	pattern_sens_quantized.py	/^args = parser.parse_args()$/;"	v
+args	quantized_model2.py	/^args = parser.parse_args()$/;"	v
+asymmetric_linear_quantization_params	aquantizer.py	/^def asymmetric_linear_quantization_params(num_bits, saturation_min, saturation_max,$/;"	f
+backends	count_pattern_quantized.py	/^import torch.backends.cudnn as cudnn$/;"	i
+backends	main.py	/^import torch.backends.cudnn as cudnn$/;"	i
+backends	main2.py	/^import torch.backends.cudnn as cudnn$/;"	i
+backends	pattern_sens.py	/^import torch.backends.cudnn as cudnn$/;"	i
+backends	pattern_sens_quantized.py	/^import torch.backends.cudnn as cudnn$/;"	i
+backends	quantized_model2.py	/^import torch.backends.cudnn as cudnn$/;"	i
+backward	aquantizer.py	/^    def backward(ctx, grad_output):$/;"	m	class:DorefaParamsBinarizationSTE
+backward	aquantizer.py	/^    def backward(ctx, grad_output):$/;"	m	class:LinearQuantizeSTE
+base_acc	plot_pattern_sens.py	/^base_acc = 90.689$/;"	v
+baseline	plot_graph.py	/^baseline = pd.read_csv(".\/result\/Pattern-00-to-11.csv")$/;"	v
+baseline_dict	plot_graph.py	/^baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "color":"#2c7bb6"}$/;"	v
+begin_time	utils.py	/^begin_time = last_time$/;"	v
+cbar	plot_pattern_sens.py	/^    cbar = ax.figure.colorbar(im, ax=ax)$/;"	v
+cfgs	cifar10_models/vgg.py	/^cfgs = {$/;"	v
+circshift	helmet_quantized.py	/^def circshift(weight, num_bits):$/;"	f
+circshift_left	helmet_quantized.py	/^def circshift_left(weight):$/;"	f
+clamp	aquantizer.py	/^def clamp(input, min, max, inplace=False):$/;"	f
+collector_context	count_pattern_quantized.py	/^from distiller.data_loggers.collector import collector_context$/;"	i
+collector_context	pattern_sens_quantized.py	/^from distiller.data_loggers.collector import collector_context$/;"	i
+collector_context	quantized_model2.py	/^from distiller.data_loggers.collector import collector_context$/;"	i
+copy	count_pattern_quantized.py	/^import copy$/;"	i
+copy	pattern_sens_quantized.py	/^import copy$/;"	i
+copy	quantized_model2.py	/^import copy$/;"	i
+count	count_pattern_quantized.py	/^def count(weight, tensor_10, tensor_11, index_bit, num_bits):$/;"	f
+count	flipcy_quantized.py	/^def count(weight, tensor_10, tensor_11, num_bits):$/;"	f
+count	weight_quantized_conf.py	/^def count(weight, tensor_10, tensor_11, index_bit, num_bits):$/;"	f
+count_00	quantized_model2.py	/^def count_00(weight, tensor_00, tensor_11, num_bits):$/;"	f
+count_10	main2.py	/^def count_10(weight, tensor_10, tensor_11):$/;"	f
+count_11	flipcy_quantized.py	/^def count_11(weight, tensor_11, num_bits):$/;"	f
+count_11	helmet_quantized.py	/^def count_11(weight, tensor_11, num_bits):$/;"	f
+count_11	main2.py	/^def count_11(weight, tensor_11):$/;"	f
+count_orig	flipcy_quantized.py	/^def count_orig(weight, tensor_10, tensor_11, num_bits):$/;"	f
+count_orig	quantized_model2.py	/^from flipcy_quantized import flipcy_en, count_orig, inject_error$/;"	i
+count_pattern	weight_cupy_conf.py	/^def count_pattern(weight, tensor, tensor_11, index_bit):$/;"	f
+count_pattern	weight_pattern_sens.py	/^def count_pattern(weight, tensor, tensor_11, index_bit):$/;"	f
+count_pattern	weight_pattern_sens_quantized.py	/^def count_pattern(weight, tensor, tensor_11, index_bit):$/;"	f
+count_pattern_muldims	weight_cupy_conf.py	/^def count_pattern_muldims(weight, tensor, tensor_11, index_bit):$/;"	f
+cp	weight_conf_count_error.py	/^import cupy as cp$/;"	i
+cp	weight_cupy_conf.py	/^import cupy as cp$/;"	i
+cp	weight_pattern_sens.py	/^import cupy as cp$/;"	i
+cudnn	count_pattern_quantized.py	/^import torch.backends.cudnn as cudnn$/;"	i
+cudnn	main.py	/^import torch.backends.cudnn as cudnn$/;"	i
+cudnn	main2.py	/^import torch.backends.cudnn as cudnn$/;"	i
+cudnn	pattern_sens.py	/^import torch.backends.cudnn as cudnn$/;"	i
+cudnn	pattern_sens_quantized.py	/^import torch.backends.cudnn as cudnn$/;"	i
+cudnn	quantized_model2.py	/^import torch.backends.cudnn as cudnn$/;"	i
+data_list	plot_graph.py	/^data_list = (baseline_dict, resnet_dict, googlenet_dict, inception_dict)$/;"	v
+data_list	result/plot_graph.py	/^data_list = []$/;"	v
+densenet121	cifar10_models/densenet.py	/^def densenet121(pretrained=False, progress=True, device="cpu", **kwargs):$/;"	f
+densenet161	cifar10_models/densenet.py	/^def densenet161(pretrained=False, progress=True, device="cpu", **kwargs):$/;"	f
+densenet169	cifar10_models/densenet.py	/^def densenet169(pretrained=False, progress=True, device="cpu", **kwargs):$/;"	f
+dequantized_model	aquantizer.py	/^def dequantized_model(quantized_state_dict, qparams):$/;"	f
+des_pats	plot_pattern_sens.py	/^des_pats = ["00", "01", "10", "11"]$/;"	v
+distiller	count_pattern_quantized.py	/^import distiller$/;"	i
+distiller	pattern_sens_quantized.py	/^import distiller$/;"	i
+distiller	quantized_model2.py	/^import distiller$/;"	i
+dorefa_quantize_param	aquantizer.py	/^def dorefa_quantize_param(param_fp, num_bits, dequantize=False):$/;"	f
+error_pats	plot_pattern_sens.py	/^error_pats = ["00", "01", "10", "11"]$/;"	v
+expansion	cifar10_models/resnet.py	/^    expansion = 1$/;"	v	class:BasicBlock
+expansion	cifar10_models/resnet.py	/^    expansion = 4$/;"	v	class:Bottleneck
+file_name	plot_graph.py	/^    file_name="proposed_encoding",$/;"	v
+file_name	result/plot_graph.py	/^    file_name="LeNet-Pattern-impact",$/;"	v
+flip_decode	weight_cupy_conf.py	/^def flip_decode(weight, tensor_11, tensor_10, tensor_01, index_bit, check_bits, size=128):$/;"	f
+flip_encode	weight_cupy_conf.py	/^def flip_encode(weight, tensor_11, tensor_10, tensor_01, index_bit, size=128):$/;"	f
+flipcy	main.py	/^def flipcy(weight, weight_type, mlc_error_rate, name, encode):$/;"	f
+flipcy	main2.py	/^def flipcy(weight, weight_type, mlc_error_rate, name, tensors, encode):$/;"	f
+flipcy	quantized_model2.py	/^def flipcy(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode):$/;"	f
+flipcy_de	flipcy_quantized.py	/^def flipcy_de(weight, flip, comp):$/;"	f
+flipcy_en	flipcy_quantized.py	/^def flipcy_en(weight, num_bits):$/;"	f
+flipcy_en	quantized_model2.py	/^from flipcy_quantized import flipcy_en, count_orig, inject_error$/;"	i
+font_manager	count_pattern_quantized.py	/^from matplotlib import font_manager$/;"	i
+font_manager	plot_graph.py	/^from matplotlib import font_manager$/;"	i
+font_manager	plot_pattern_sens.py	/^from matplotlib import font_manager$/;"	i
+font_manager	result/plot_graph.py	/^from matplotlib import font_manager$/;"	i
+format_time	utils.py	/^def format_time(seconds):$/;"	f
+forward	aquantizer.py	/^    def forward(ctx, input, inplace=False):$/;"	m	class:DorefaParamsBinarizationSTE
+forward	aquantizer.py	/^    def forward(ctx, input, scale, zero_point, dequantize, inplace):$/;"	m	class:LinearQuantizeSTE
+forward	cifar10_models/densenet.py	/^    def forward(self, x):$/;"	m	class:DenseNet
+forward	cifar10_models/densenet.py	/^    def forward(self, x):$/;"	m	class:_DenseLayer
+forward	cifar10_models/googlenet.py	/^    def forward(self, x):$/;"	m	class:BasicConv2d
+forward	cifar10_models/googlenet.py	/^    def forward(self, x):$/;"	m	class:GoogLeNet
+forward	cifar10_models/googlenet.py	/^    def forward(self, x):$/;"	m	class:Inception
+forward	cifar10_models/googlenet.py	/^    def forward(self, x):$/;"	m	class:InceptionAux
+forward	cifar10_models/inception.py	/^    def forward(self, x):$/;"	m	class:BasicConv2d
+forward	cifar10_models/inception.py	/^    def forward(self, x):$/;"	m	class:Inception3
+forward	cifar10_models/inception.py	/^    def forward(self, x):$/;"	m	class:InceptionA
+forward	cifar10_models/inception.py	/^    def forward(self, x):$/;"	m	class:InceptionAux
+forward	cifar10_models/inception.py	/^    def forward(self, x):$/;"	m	class:InceptionB
+forward	cifar10_models/inception.py	/^    def forward(self, x):$/;"	m	class:InceptionC
+forward	cifar10_models/inception.py	/^    def forward(self, x):$/;"	m	class:InceptionD
+forward	cifar10_models/inception.py	/^    def forward(self, x):$/;"	m	class:InceptionE
+forward	cifar10_models/mobilenetv2.py	/^    def forward(self, x):$/;"	m	class:InvertedResidual
+forward	cifar10_models/mobilenetv2.py	/^    def forward(self, x):$/;"	m	class:MobileNetV2
+forward	cifar10_models/resnet.py	/^    def forward(self, x):$/;"	m	class:BasicBlock
+forward	cifar10_models/resnet.py	/^    def forward(self, x):$/;"	m	class:Bottleneck
+forward	cifar10_models/resnet.py	/^    def forward(self, x):$/;"	m	class:ResNet
+forward	cifar10_models/vgg.py	/^    def forward(self, x):$/;"	m	class:VGG
+get_mean_and_std	utils.py	/^def get_mean_and_std(dataset):$/;"	f
+googlenet	cifar10_models/googlenet.py	/^def googlenet(pretrained=False, progress=True, device="cpu", **kwargs):$/;"	f
+googlenet_dict	plot_graph.py	/^googlenet_dict = {"Method name": "GoogleNet", "data": proposed_lenet["Acc."].to_numpy(),  "color":"#fee090"}$/;"	v
+heat_map	plot_pattern_sens.py	/^heat_map = np.empty((4, 4))$/;"	v
+helmet	main.py	/^def helmet(weight, weight_type, mlc_error_rate, name, encode):$/;"	f
+helmet	main2.py	/^def helmet(weight, weight_type, mlc_error_rate, name, tensors, encode):$/;"	f
+helmet	quantized_model2.py	/^def helmet(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode):$/;"	f
+helmet_de	helmet_quantized.py	/^def helmet_de(weight, fc):$/;"	f
+helmet_en	helmet_quantized.py	/^def helmet_en(weight, num_bits):$/;"	f
+helmet_en	quantized_model2.py	/^from helmet_quantized import helmet_en$/;"	i
+helmet_inject_error	helmet_quantized.py	/^def helmet_inject_error(weight_type, weight, mlc_error_rate, tlc_error_rate=False):$/;"	f
+im	plot_pattern_sens.py	/^    im = ax.imshow(heat_map, cmap="OrRd")$/;"	v
+inception_dict	plot_graph.py	/^inception_dict = {"Method name": "GoogleNet", "data": proposed_inception["Acc."].to_numpy()}$/;"	v
+inception_v3	cifar10_models/inception.py	/^def inception_v3(pretrained=False, progress=True, device="cpu", **kwargs):$/;"	f
+init	utils.py	/^import torch.nn.init as init$/;"	i
+init_params	utils.py	/^def init_params(net):$/;"	f
+inject_bit	weight_conf.py	/^    def inject_bit(self, weight_flatten, bit_pos, error_rate):$/;"	m	class:weight_conf
+inject_error	flipcy_quantized.py	/^def inject_error(weight, num_error, mlc_error_rate, num_bits):$/;"	f
+inject_error	quantized_model2.py	/^from flipcy_quantized import flipcy_en, count_orig, inject_error$/;"	i
+inject_error	weight_conf.py	/^    def inject_error(self, weight_flatten, mlc_error_rate, tlc_error_rate=False):$/;"	m	class:weight_conf
+inject_error	weight_conf_count_error.py	/^    def inject_error(self, weight, mlc_error_rate, tlc_error_rate=False):$/;"	m	class:weight_conf
+inject_error	weight_cupy_conf.py	/^    def inject_error(self, mlc_error_rate, flip=True):$/;"	m	class:weight_conf
+inject_error	weight_pattern_sens.py	/^    def inject_error(self, mlc_error_rate, error_pat, des_pat):$/;"	m	class:weight_conf
+inject_error	weight_pattern_sens_quantized.py	/^    def inject_error(self, mlc_error_rate, error_pat, des_pat):$/;"	m	class:weight_conf
+inject_error	weight_quantized_conf.py	/^    def inject_error(self, mlc_error_rate, tlc_error_rate=False):$/;"	m	class:weight_conf
+isin	weight_conf.py	/^def isin(ar1, ar2):$/;"	f
+last_time	utils.py	/^last_time = time.time()$/;"	v
+linear_dequantize	aquantizer.py	/^def linear_dequantize(input, scale, zero_point, inplace=False):$/;"	f
+linear_quantize	aquantizer.py	/^def linear_quantize(input, scale, zero_point, inplace=False):$/;"	f
+linear_quantize_clamp	aquantizer.py	/^def linear_quantize_clamp(input, scale, zero_point, clamp_min, clamp_max, inplace=False):$/;"	f
+logging	count_pattern_quantized.py	/^import logging$/;"	i
+logging	pattern_sens_quantized.py	/^import logging$/;"	i
+logging	quantized_model2.py	/^import logging$/;"	i
+main	count_pattern_quantized.py	/^def main():$/;"	f
+main	main.py	/^def main():$/;"	f
+main	main2.py	/^def main():$/;"	f
+main	pattern_sens.py	/^def main():$/;"	f
+main	pattern_sens_quantized.py	/^def main():$/;"	f
+main	quantized_model2.py	/^def main():$/;"	f
+make_layers	cifar10_models/vgg.py	/^def make_layers(cfg, batch_norm=False):$/;"	f
+math	utils.py	/^import math$/;"	i
+matplotlib	count_pattern_quantized.py	/^import matplotlib.pyplot as plt$/;"	i
+matplotlib	plot_graph.py	/^import matplotlib$/;"	i
+matplotlib	plot_graph.py	/^import matplotlib.pyplot as plt$/;"	i
+matplotlib	plot_pattern_sens.py	/^import matplotlib.pyplot as plt$/;"	i
+matplotlib	result/plot_graph.py	/^import matplotlib$/;"	i
+matplotlib	result/plot_graph.py	/^import matplotlib.pyplot as plt$/;"	i
+mobilenet_v2	cifar10_models/mobilenetv2.py	/^def mobilenet_v2(pretrained=False, progress=True, device="cpu", **kwargs):$/;"	f
+model	plot_pattern_sens.py	/^model = "resnet18"$/;"	v
+mpl	count_pattern_quantized.py	/^import matplotlib as mpl$/;"	i
+mpl	plot_pattern_sens.py	/^import matplotlib as mpl$/;"	i
+msglogger	count_pattern_quantized.py	/^msglogger = logging.getLogger()$/;"	v
+msglogger	pattern_sens_quantized.py	/^msglogger = logging.getLogger()$/;"	v
+msglogger	quantized_model2.py	/^msglogger = logging.getLogger()$/;"	v
+namedtuple	cifar10_models/googlenet.py	/^from collections import namedtuple$/;"	i
+namedtuple	cifar10_models/inception.py	/^from collections import namedtuple$/;"	i
+nn	cifar10_models/densenet.py	/^import torch.nn as nn$/;"	i
+nn	cifar10_models/densenet.py	/^import torch.nn.functional as F$/;"	i
+nn	cifar10_models/googlenet.py	/^import torch.nn as nn$/;"	i
+nn	cifar10_models/googlenet.py	/^import torch.nn.functional as F$/;"	i
+nn	cifar10_models/inception.py	/^import torch.nn as nn$/;"	i
+nn	cifar10_models/inception.py	/^import torch.nn.functional as F$/;"	i
+nn	cifar10_models/mobilenetv2.py	/^import torch.nn as nn$/;"	i
+nn	cifar10_models/resnet.py	/^import torch.nn as nn$/;"	i
+nn	cifar10_models/resnet.py	/^import torch.nn.functional as F$/;"	i
+nn	cifar10_models/vgg.py	/^import torch.nn as nn$/;"	i
+nn	count_pattern_quantized.py	/^import torch.nn as nn$/;"	i
+nn	count_pattern_quantized.py	/^import torch.nn.functional as F$/;"	i
+nn	main.py	/^import torch.nn as nn$/;"	i
+nn	main.py	/^import torch.nn.functional as F$/;"	i
+nn	main2.py	/^import torch.nn as nn$/;"	i
+nn	main2.py	/^import torch.nn.functional as F$/;"	i
+nn	pattern_sens.py	/^import torch.nn as nn$/;"	i
+nn	pattern_sens.py	/^import torch.nn.functional as F$/;"	i
+nn	pattern_sens_quantized.py	/^import torch.nn as nn$/;"	i
+nn	pattern_sens_quantized.py	/^import torch.nn.functional as F$/;"	i
+nn	quantized_model2.py	/^import torch.nn as nn$/;"	i
+nn	quantized_model2.py	/^import torch.nn.functional as F$/;"	i
+nn	utils.py	/^import torch.nn as nn$/;"	i
+nn	utils.py	/^import torch.nn.init as init$/;"	i
+np	count_pattern_quantized.py	/^import numpy as np$/;"	i
+np	flipcy_quantized.py	/^import numpy as np$/;"	i
+np	helmet_quantized.py	/^import numpy as np$/;"	i
+np	main.py	/^import numpy as np$/;"	i
+np	main2.py	/^import numpy as np$/;"	i
+np	pattern_sens.py	/^import numpy as np$/;"	i
+np	pattern_sens_quantized.py	/^import numpy as np$/;"	i
+np	plot_graph.py	/^import numpy as np$/;"	i
+np	plot_pattern_sens.py	/^import numpy as np$/;"	i
+np	quantized_model2.py	/^import numpy as np$/;"	i
+np	result/plot_graph.py	/^import numpy as np$/;"	i
+np	weight_conf_count_error.py	/^import numpy as np$/;"	i
+np	weight_cupy_conf.py	/^import numpy as np$/;"	i
+np	weight_pattern_sens.py	/^import numpy as np$/;"	i
+np	weight_pattern_sens_quantized.py	/^import numpy as np$/;"	i
+np	weight_quantized_conf.py	/^import numpy as np$/;"	i
+optim	count_pattern_quantized.py	/^import torch.optim as optim$/;"	i
+optim	main.py	/^import torch.optim as optim$/;"	i
+optim	main2.py	/^import torch.optim as optim$/;"	i
+optim	pattern_sens.py	/^import torch.optim as optim$/;"	i
+optim	pattern_sens_quantized.py	/^import torch.optim as optim$/;"	i
+optim	quantized_model2.py	/^import torch.optim as optim$/;"	i
+os	cifar10_models/densenet.py	/^import os$/;"	i
+os	cifar10_models/googlenet.py	/^import os$/;"	i
+os	cifar10_models/inception.py	/^import os$/;"	i
+os	cifar10_models/mobilenetv2.py	/^import os$/;"	i
+os	cifar10_models/vgg.py	/^import os$/;"	i
+os	count_pattern_quantized.py	/^import os$/;"	i
+os	main.py	/^import os$/;"	i
+os	main2.py	/^import os$/;"	i
+os	pattern_sens.py	/^import os$/;"	i
+os	pattern_sens_quantized.py	/^import os$/;"	i
+os	plot_graph.py	/^import os$/;"	i
+os	plot_pattern_sens.py	/^import os$/;"	i
+os	quantized_model2.py	/^import os$/;"	i
+os	result/plot_graph.py	/^import os$/;"	i
+os	utils.py	/^import os$/;"	i
+out	aquantizer.py	/^    out = dorefa_quantize_param(param_fp, 8)$/;"	v
+param_fp	aquantizer.py	/^    param_fp = torch.randn(5, 3, 3, 3)$/;"	v
+parser	count_pattern_quantized.py	/^parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")$/;"	v
+parser	main.py	/^parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")$/;"	v
+parser	main2.py	/^parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")$/;"	v
+parser	pattern_sens.py	/^parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")$/;"	v
+parser	pattern_sens_quantized.py	/^parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")$/;"	v
+parser	quantized_model2.py	/^parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")$/;"	v
+partial	count_pattern_quantized.py	/^from functools import partial$/;"	i
+partial	pattern_sens_quantized.py	/^from functools import partial$/;"	i
+partial	quantized_model2.py	/^from functools import partial$/;"	i
+pattern_data	result/plot_graph.py	/^        pattern_data = pd.read_csv(file.path)$/;"	v
+pattern_dict	result/plot_graph.py	/^        pattern_dict = {$/;"	v
+pd	count_pattern_quantized.py	/^import pandas as pd$/;"	i
+pd	main.py	/^import pandas as pd$/;"	i
+pd	main2.py	/^import pandas as pd$/;"	i
+pd	pattern_sens.py	/^import pandas as pd$/;"	i
+pd	pattern_sens_quantized.py	/^import pandas as pd$/;"	i
+pd	plot_graph.py	/^import pandas as pd$/;"	i
+pd	plot_pattern_sens.py	/^import pandas as pd$/;"	i
+pd	quantized_model2.py	/^import pandas as pd$/;"	i
+pd	result/plot_graph.py	/^import pandas as pd$/;"	i
+pdb	aquantizer.py	/^    import pdb; pdb.set_trace()$/;"	i
+pdb	aquantizer.py	/^import pdb$/;"	i
+pdb	count_pattern_quantized.py	/^import pdb$/;"	i
+pdb	main.py	/^import pdb$/;"	i
+pdb	main2.py	/^import pdb$/;"	i
+pdb	pattern_sens.py	/^import pdb$/;"	i
+pdb	pattern_sens_quantized.py	/^import pdb$/;"	i
+pdb	plot_graph.py	/^import pdb$/;"	i
+pdb	plot_pattern_sens.py	/^import pdb$/;"	i
+pdb	quantized_model2.py	/^    import pdb; pdb.set_trace()$/;"	i
+pdb	quantized_model2.py	/^import pdb$/;"	i
+pdb	result/plot_graph.py	/^import pdb$/;"	i
+plot_graph	plot_graph.py	/^def plot_graph(time, data_list: list, save_fig=False, file_name=None, save_dir=None):$/;"	f
+plot_graph	result/plot_graph.py	/^def plot_graph(time, data_list: list, save_fig=False, file_name=None, save_dir=None):$/;"	f
+plot_graph_1year	plot_graph.py	/^def plot_graph_1year($/;"	f
+plot_graph_1year	result/plot_graph.py	/^def plot_graph_1year($/;"	f
+plt	count_pattern_quantized.py	/^import matplotlib.pyplot as plt$/;"	i
+plt	plot_graph.py	/^import matplotlib.pyplot as plt$/;"	i
+plt	plot_pattern_sens.py	/^import matplotlib.pyplot as plt$/;"	i
+plt	result/plot_graph.py	/^import matplotlib.pyplot as plt$/;"	i
+progress_bar	count_pattern_quantized.py	/^from utils import progress_bar$/;"	i
+progress_bar	main.py	/^from utils import progress_bar$/;"	i
+progress_bar	main2.py	/^from utils import progress_bar$/;"	i
+progress_bar	pattern_sens.py	/^from utils import progress_bar$/;"	i
+progress_bar	pattern_sens_quantized.py	/^from utils import progress_bar$/;"	i
+progress_bar	quantized_model2.py	/^from utils import progress_bar$/;"	i
+progress_bar	utils.py	/^def progress_bar(current, total, msg=None):$/;"	f
+proposed_inception	plot_graph.py	/^proposed_inception = pd.read_csv(".\/result\/inception-cifar10-proposed.csv")$/;"	v
+proposed_lenet	plot_graph.py	/^proposed_lenet = pd.read_csv(".\/result\/lenet-cifar10-proposed.csv")$/;"	v
+proposed_method	count_pattern_quantized.py	/^def proposed_method(weight, weight_type, mlc_error_rate, num_bits):$/;"	f
+proposed_method	main.py	/^def proposed_method(weight, weight_type, mlc_error_rate):$/;"	f
+proposed_method	main2.py	/^def proposed_method(weight, weight_type, mlc_error_rate, name, encode):$/;"	f
+proposed_method	pattern_sens.py	/^def proposed_method(weight, error_pat, des_pat, mlc_error_rate):$/;"	f
+proposed_method	pattern_sens_quantized.py	/^def proposed_method(weight, error_pat, des_pat, mlc_error_rate, num_bits):$/;"	f
+proposed_method	quantized_model2.py	/^def proposed_method(weight, weight_type, mlc_error_rate, num_bits, tensors):$/;"	f
+proposed_method_en	quantized_model2.py	/^def proposed_method_en(weight, num_bits, tensor_00, tensor_11):$/;"	f
+proposed_resnet	plot_graph.py	/^proposed_resnet = pd.read_csv(".\/result\/resnet-cifar10-proposed.csv")$/;"	v
+quantization	quantized_model2.py	/^import torch.quantization$/;"	i
+random	count_pattern_quantized.py	/^import random$/;"	i
+random	main.py	/^import random$/;"	i
+random	main2.py	/^import random$/;"	i
+random	pattern_sens.py	/^import random$/;"	i
+random	pattern_sens_quantized.py	/^import random$/;"	i
+random	quantized_model2.py	/^import random$/;"	i
+rc	count_pattern_quantized.py	/^from matplotlib import rc$/;"	i
+rc	plot_pattern_sens.py	/^from matplotlib import rc$/;"	i
+rcParams	count_pattern_quantized.py	/^from matplotlib import rcParams$/;"	i
+rcParams	plot_pattern_sens.py	/^from matplotlib import rcParams$/;"	i
+resnet_dict	plot_graph.py	/^resnet_dict = {"Method name": "Resnet18", "data": proposed_resnet["Acc."].to_numpy(),  "color":"#2c7bb6"}$/;"	v
+save_dir	plot_graph.py	/^    save_dir=".\/Figures\/",$/;"	v
+save_dir	result/plot_graph.py	/^    save_dir="..\/Figures\/",)$/;"	v
+save_fig	plot_graph.py	/^    save_fig=True,$/;"	v
+save_fig	result/plot_graph.py	/^    save_fig=True,$/;"	v
+set_trace	aquantizer.py	/^    import pdb; pdb.set_trace()$/;"	i
+set_trace	quantized_model2.py	/^    import pdb; pdb.set_trace()$/;"	i
+summary	main.py	/^from torchsummary import summary$/;"	i
+summary	main2.py	/^from torchsummary import summary$/;"	i
+summary	pattern_sens.py	/^from torchsummary import summary$/;"	i
+summary	pattern_sens_quantized.py	/^from torchsummary import summary$/;"	i
+summary	quantized_model2.py	/^from torchsummary import summary$/;"	i
+sys	utils.py	/^import sys$/;"	i
+tabulate	count_pattern_quantized.py	/^from tabulate import tabulate$/;"	i
+tabulate	main.py	/^from tabulate import tabulate$/;"	i
+tabulate	main2.py	/^from tabulate import tabulate$/;"	i
+tabulate	pattern_sens.py	/^from tabulate import tabulate$/;"	i
+tabulate	pattern_sens_quantized.py	/^from tabulate import tabulate$/;"	i
+tabulate	plot_graph.py	/^from tabulate import tabulate$/;"	i
+tabulate	plot_pattern_sens.py	/^from tabulate import tabulate$/;"	i
+tabulate	quantized_model2.py	/^from tabulate import tabulate$/;"	i
+tabulate	result/plot_graph.py	/^from tabulate import tabulate$/;"	i
+term_width	utils.py	/^term_width = int(term_width)$/;"	v
+test	cifar10_models/resnet.py	/^def test():$/;"	f
+test	count_pattern_quantized.py	/^def test(net, criterion, optimizer, testloader, device):$/;"	f
+test	main.py	/^def test(net, criterion, optimizer, testloader, device):$/;"	f
+test	main2.py	/^def test(net, criterion, optimizer, testloader, device):$/;"	f
+test	pattern_sens.py	/^def test(net, criterion, optimizer, testloader, device):$/;"	f
+test	pattern_sens_quantized.py	/^def test(net, criterion, optimizer, testloader, device):$/;"	f
+test	quantized_model2.py	/^def test(net, criterion, optimizer, testloader, device):$/;"	f
+time	plot_graph.py	/^time = np.arange(25)$/;"	v
+time	result/plot_graph.py	/^time = np.arange(25)$/;"	v
+time	utils.py	/^import time$/;"	i
+torch	aquantizer.py	/^import torch$/;"	i
+torch	cifar10_models/densenet.py	/^import torch$/;"	i
+torch	cifar10_models/densenet.py	/^import torch.nn as nn$/;"	i
+torch	cifar10_models/densenet.py	/^import torch.nn.functional as F$/;"	i
+torch	cifar10_models/googlenet.py	/^import torch$/;"	i
+torch	cifar10_models/googlenet.py	/^import torch.nn as nn$/;"	i
+torch	cifar10_models/googlenet.py	/^import torch.nn.functional as F$/;"	i
+torch	cifar10_models/inception.py	/^import torch$/;"	i
+torch	cifar10_models/inception.py	/^import torch.nn as nn$/;"	i
+torch	cifar10_models/inception.py	/^import torch.nn.functional as F$/;"	i
+torch	cifar10_models/mobilenetv2.py	/^import torch$/;"	i
+torch	cifar10_models/mobilenetv2.py	/^import torch.nn as nn$/;"	i
+torch	cifar10_models/resnet.py	/^import torch$/;"	i
+torch	cifar10_models/resnet.py	/^import torch.nn as nn$/;"	i
+torch	cifar10_models/resnet.py	/^import torch.nn.functional as F$/;"	i
+torch	cifar10_models/vgg.py	/^import torch$/;"	i
+torch	cifar10_models/vgg.py	/^import torch.nn as nn$/;"	i
+torch	count_pattern_quantized.py	/^import torch$/;"	i
+torch	count_pattern_quantized.py	/^import torch.backends.cudnn as cudnn$/;"	i
+torch	count_pattern_quantized.py	/^import torch.nn as nn$/;"	i
+torch	count_pattern_quantized.py	/^import torch.nn.functional as F$/;"	i
+torch	count_pattern_quantized.py	/^import torch.optim as optim$/;"	i
+torch	flipcy_quantized.py	/^import torch$/;"	i
+torch	helmet_quantized.py	/^import torch$/;"	i
+torch	main.py	/^import torch$/;"	i
+torch	main.py	/^import torch.backends.cudnn as cudnn$/;"	i
+torch	main.py	/^import torch.nn as nn$/;"	i
+torch	main.py	/^import torch.nn.functional as F$/;"	i
+torch	main.py	/^import torch.optim as optim$/;"	i
+torch	main2.py	/^import torch$/;"	i
+torch	main2.py	/^import torch.backends.cudnn as cudnn$/;"	i
+torch	main2.py	/^import torch.nn as nn$/;"	i
+torch	main2.py	/^import torch.nn.functional as F$/;"	i
+torch	main2.py	/^import torch.optim as optim$/;"	i
+torch	pattern_sens.py	/^import torch$/;"	i
+torch	pattern_sens.py	/^import torch.backends.cudnn as cudnn$/;"	i
+torch	pattern_sens.py	/^import torch.nn as nn$/;"	i
+torch	pattern_sens.py	/^import torch.nn.functional as F$/;"	i
+torch	pattern_sens.py	/^import torch.optim as optim$/;"	i
+torch	pattern_sens_quantized.py	/^import torch$/;"	i
+torch	pattern_sens_quantized.py	/^import torch.backends.cudnn as cudnn$/;"	i
+torch	pattern_sens_quantized.py	/^import torch.nn as nn$/;"	i
+torch	pattern_sens_quantized.py	/^import torch.nn.functional as F$/;"	i
+torch	pattern_sens_quantized.py	/^import torch.optim as optim$/;"	i
+torch	quantized_model2.py	/^import torch$/;"	i
+torch	quantized_model2.py	/^import torch.backends.cudnn as cudnn$/;"	i
+torch	quantized_model2.py	/^import torch.nn as nn$/;"	i
+torch	quantized_model2.py	/^import torch.nn.functional as F$/;"	i
+torch	quantized_model2.py	/^import torch.optim as optim$/;"	i
+torch	quantized_model2.py	/^import torch.quantization$/;"	i
+torch	utils.py	/^import torch.nn as nn$/;"	i
+torch	utils.py	/^import torch.nn.init as init$/;"	i
+torch	weight_conf.py	/^import torch$/;"	i
+torch	weight_conf_count_error.py	/^import torch$/;"	i
+torch	weight_cupy_conf.py	/^import torch$/;"	i
+torch	weight_pattern_sens.py	/^import torch$/;"	i
+torch	weight_pattern_sens_quantized.py	/^import torch$/;"	i
+torch	weight_quantized_conf.py	/^import torch$/;"	i
+torchvision	count_pattern_quantized.py	/^import torchvision$/;"	i
+torchvision	count_pattern_quantized.py	/^import torchvision.transforms as transforms$/;"	i
+torchvision	main.py	/^import torchvision$/;"	i
+torchvision	main.py	/^import torchvision.transforms as transforms$/;"	i
+torchvision	main2.py	/^import torchvision$/;"	i
+torchvision	main2.py	/^import torchvision.transforms as transforms$/;"	i
+torchvision	pattern_sens.py	/^import torchvision$/;"	i
+torchvision	pattern_sens.py	/^import torchvision.transforms as transforms$/;"	i
+torchvision	pattern_sens_quantized.py	/^import torchvision$/;"	i
+torchvision	pattern_sens_quantized.py	/^import torchvision.transforms as transforms$/;"	i
+torchvision	quantized_model2.py	/^import torchvision$/;"	i
+torchvision	quantized_model2.py	/^import torchvision.transforms as transforms$/;"	i
+tqdm	count_pattern_quantized.py	/^from tqdm import tqdm$/;"	i
+tqdm	main.py	/^from tqdm import tqdm$/;"	i
+tqdm	main2.py	/^from tqdm import tqdm$/;"	i
+tqdm	pattern_sens.py	/^from tqdm import tqdm$/;"	i
+tqdm	pattern_sens_quantized.py	/^from tqdm import tqdm$/;"	i
+tqdm	quantized_model2.py	/^from tqdm import tqdm$/;"	i
+traceback	count_pattern_quantized.py	/^import traceback$/;"	i
+traceback	pattern_sens_quantized.py	/^import traceback$/;"	i
+traceback	quantized_model2.py	/^import traceback$/;"	i
+train	main.py	/^def train(epoch):$/;"	f
+train	main2.py	/^def train(epoch):$/;"	f
+train	quantized_model2.py	/^def train(epoch):$/;"	f
+transforms	count_pattern_quantized.py	/^import torchvision.transforms as transforms$/;"	i
+transforms	main.py	/^import torchvision.transforms as transforms$/;"	i
+transforms	main2.py	/^import torchvision.transforms as transforms$/;"	i
+transforms	pattern_sens.py	/^import torchvision.transforms as transforms$/;"	i
+transforms	pattern_sens_quantized.py	/^import torchvision.transforms as transforms$/;"	i
+transforms	quantized_model2.py	/^import torchvision.transforms as transforms$/;"	i
+vgg11_bn	cifar10_models/vgg.py	/^def vgg11_bn(pretrained=False, progress=True, device="cpu", **kwargs):$/;"	f
+vgg13_bn	cifar10_models/vgg.py	/^def vgg13_bn(pretrained=False, progress=True, device="cpu", **kwargs):$/;"	f
+vgg16_bn	cifar10_models/vgg.py	/^def vgg16_bn(pretrained=False, progress=True, device="cpu", **kwargs):$/;"	f
+vgg19_bn	cifar10_models/vgg.py	/^def vgg19_bn(pretrained=False, progress=True, device="cpu", **kwargs):$/;"	f
+weight_conf	weight_conf.py	/^class weight_conf(object):$/;"	c
+weight_conf	weight_conf_count_error.py	/^class weight_conf(object):$/;"	c
+weight_conf	weight_cupy_conf.py	/^class weight_conf(object):$/;"	c
+weight_conf	weight_pattern_sens.py	/^class weight_conf(object):$/;"	c
+weight_conf	weight_pattern_sens_quantized.py	/^class weight_conf(object):$/;"	c
+weight_conf	weight_quantized_conf.py	/^class weight_conf(object):$/;"	c
+weight_to_binary	weight_conf.py	/^    def weight_to_binary(self):$/;"	m	class:weight_conf
