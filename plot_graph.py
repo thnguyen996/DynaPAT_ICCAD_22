@@ -116,7 +116,6 @@ def plot_graph_1year(
             fig.savefig(save_dir + file_name + ".svg", dpi=300)
         # plt.show()
 
-
 ######################################################################
 #                                                                    #
 #               Error10 vs Error 11                                  #

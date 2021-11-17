@@ -119,7 +119,7 @@ def main():
     elif args.model == "LeNet":
         net = googlenet()
         net.load_state_dict(torch.load("./checkpoint/googlenet.pt"))
-    elif args.model == "Inception":
+    elif args.model == "inception":
         net = Inception3()
         net.load_state_dict(torch.load("./checkpoint/inception_v3.pt"))
 
@@ -208,6 +208,8 @@ def main():
                         mlc_error_rate = {"error_level3" : error_11, "error_level2": error_10}
                         if args.method == "proposed_method":
                             error_weight = proposed_method(weight, weight_type, mlc_error_rate, args.num_bits, tensors, args.case)
+                        if args.method == "baseline":
+                            error_weight = baseline(weight, weight_type, mlc_error_rate, args.num_bits, tensors, args.case)
                         if args.method == "flipcy":
                             error_weight = flipcy(weight, weight_type, mlc_error_rate, name, tensors, num_bits=args.num_bits, encode=args.encode)
                         if args.method == "helmet":
@@ -232,22 +234,18 @@ def proposed_method(weight, weight_type, mlc_error_rate, num_bits, tensors, case
     elif num_bits == 16:
         dtype = np.int16
 
-    # tensor_00, tensor_01, tensor_10, tensor_11 = tensors
-    # encode_weight = weight.clone()
-    # encode_weight = proposed_method_en(encode_weight, num_bits, tensors)
-    # num_00_proposed, _ = count_orig(encode_weight, tensor_00, tensor_11, num_bits)
-    # num_11_proposed, _ = count_orig(encode_weight, tensor_11, tensor_11, num_bits)
-    # num_error_00_proposed = int(mlc_error_rate["error_level3"] * num_00_proposed)
-    # num_error_11_proposed = int(mlc_error_rate["error_level2"] * num_11_proposed)
+    MLC = weight_conf(weight, weight_type, num_bits, method="proposed")
+    error_weight = MLC.inject_error(mlc_error_rate)
+    error_weight = error_weight.reshape(weight.shape)
+    return error_weight
 
-    # num_00_orig, _ = count_orig(weight.cpu().numpy().astype(dtype), tensor_00, tensor_11, num_bits)
-    # num_11_orig, _ = count_orig(weight.cpu().numpy().astype(dtype), tensor_11, tensor_11, num_bits)
-    # num_error = (num_error_00_proposed, num_error_11_proposed)
+def baseline(weight, weight_type, mlc_error_rate, num_bits, tensors, case):
+    if num_bits == 8:
+        dtype = np.uint8
+    elif num_bits == 16:
+        dtype = np.int16
 
-    # mlc_error_rate["error_level3"] = num_error_00_proposed/num_00_orig
-    # mlc_error_rate["error_level2"] = num_error_11_proposed/num_11_orig
-
-    MLC = weight_conf(weight, weight_type, num_bits)
+    MLC = weight_conf(weight, weight_type, num_bits, method="baseline")
     error_weight = MLC.inject_error(mlc_error_rate)
     error_weight = error_weight.reshape(weight.shape)
     return error_weight

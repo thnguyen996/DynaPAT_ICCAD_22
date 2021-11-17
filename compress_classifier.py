@@ -101,6 +101,11 @@ def handle_subapps(model, criterion, optimizer, compression_scheduler, pylogger,
         error_weight = MLC.inject_error(mlc_error_rate)
         error_weight = error_weight.reshape(weight.shape)
         return error_weight
+    def baseline(weight, weight_type, mlc_error_rate, num_bits):
+        MLC = weight_conf(weight, weight_type, num_bits, method="baseline")
+        error_weight = MLC.inject_error(mlc_error_rate)
+        error_weight = error_weight.reshape(weight.shape)
+        return error_weight
 
 # 00, 01, 11, 10
     def flipcy(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode):
@@ -271,6 +276,8 @@ def handle_subapps(model, criterion, optimizer, compression_scheduler, pylogger,
                             mlc_error_rate = {"error_level3" : error_11, "error_level2": error_10}
                             if args.method == "proposed_method":
                                 error_weight = proposed_method(weight, weight_type, mlc_error_rate, args.num_bits)
+                            if args.method == "baseline":
+                                error_weight = baseline(weight, weight_type, mlc_error_rate, args.num_bits)
                             if args.method == "flipcy":
                                 error_weight = flipcy(weight, weight_type, mlc_error_rate, name, tensors, num_bits=args.num_bits, encode=args.encode)
                             if args.method == "helmet":
