@@ -1,120 +1,93 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib
+import matplotlib as mpl
 import pandas as pd
 import pdb
 from tabulate import tabulate
 import os
 from matplotlib import font_manager
+from matplotlib import rcParams
+from matplotlib import rc
 
-
-def plot_graph(time, data_list: list, save_fig=False, file_name=None, save_dir=None):
+def plot_graph(
+    time, data_list: list, save_fig=False, file_name=None, save_dir=None
+):
     with plt.style.context(["ieee", "no-latex"]):
-        fig, ax = plt.subplots(figsize=(3, 3 ))
+        mpl.rcParams['font.family'] = 'NimbusRomNo9L'
 
-        for data in data_list:
-            method_name = data["Method name"]
-            data_value = data["data"]
-            color = data["color"]
-            style = data["style"]
-            ax.plot(time, data_value, style, color=color, label=method_name)
+        fig, ax = plt.subplots(figsize=(2.2, 2.2))
+
+        data = data_list
+        method_name = data["Method name"]
+        data_value = data["data"]
+        color = data["color"]
+        if "marker" in data:
+            marker = data["marker"]
+            ax.plot(time, data_value, linewidth=1.7, markevery=3, markerfacecoloralt='none', markersize=4, color=color, label=method_name)
+        else:
+            ax.plot(time, data_value, linewidth=1.7, color=color, label=method_name)
 
         ax.set_xlabel("Time (s)", fontsize=8)
-        ax.set_ylabel("Cifa10 Test Accuracy (%)", fontsize=8)
+        ax.set_ylabel("Classification Accuracy (%)", fontsize=8)
         ax.set_xticks(time[0:25:4])
         ax.set_xticklabels(
             (
-                "$2^{1}$",
-                # "$2^{2}$",
-                # "$2^{3}$",
-                # "$2^{4}$",
-                "$2^{5}$",
-                # "$2^{6}$",
-                # "$2^{7}$",
-                # "$2^{8}$",
-                "$2^{9}$",
-                # "$2^{10}$",
-                # "$2^{11}$",
-                # "$2^{12}$",
-                "$2^{13}$",
-                # "$2^{14}$",
-                # "$2^{15}$",
-                # "$2^{16}$",
-                "$2^{17}$",
-                # "$2^{18}$",
-                # "$2^{19}$",
-                # "$2^{20}$",
-                "$2^{21}$",
-                # "$2^{22}$",
-                # "$2^{23}$",
-                # "$2^{24}$",
-                "$2^{25}$",
-            )
+                "$\mathregular{2^{1}}$",
+                "$\mathregular{2^{5}}$",
+                "$\mathregular{2^{9}}$",
+                "$\mathregular{2^{13}}$",
+                "$\mathregular{2^{17}}$",
+                "$\mathregular{2^{21}}$",
+                "$\mathregular{2^{25}}$",
+                )
         )
         # ax.legend(loc=0, prop={"size": 8})
+        # plt.tight_layout()
         if save_fig and save_dir is not None:
             fig.savefig(save_dir + file_name + ".svg", dpi=300)
+        # os.system(f"junest mupdf {save_dir}{file_name}.pdf")
         plt.show()
 
 
 def plot_graph_1year(
     time, data_list: list, save_fig=False, file_name=None, save_dir=None
 ):
-    with plt.style.context(["science", "no-latex"]):
-        fig, ax = plt.subplots(figsize=(2, 2))
+    with plt.style.context(["ieee", "no-latex"]):
+        mpl.rcParams['font.family'] = 'NimbusRomNo9L'
+
+        fig, ax = plt.subplots(figsize=(2.2, 2.2))
 
         for data in data_list:
             method_name = data["Method name"]
             data_value = data["data"]
-            # linestyle = data["style"]
-            # color = data["color"]
+            linestyle = data["style"]
+            color = data["color"]
             if "marker" in data:
                 marker = data["marker"]
-                ax.plot(time, data_value, linewidth=1.7, marker=marker, markevery=3, markerfacecoloralt='none', markersize=4, color=color, label=method_name)
+                ax.plot(time, data_value, linestyle, linewidth=1.7, marker=marker, markevery=3, markerfacecoloralt='none', markersize=4, color=color, label=method_name)
             else:
-                ax.plot(time, data_value, linewidth=1.7, label=method_name)
+                ax.plot(time, data_value, linestyle, linewidth=1.7, color=color, label=method_name)
 
         ax.set_xlabel("Time (s)", fontsize=8)
-        ax.set_ylabel("Cifa10 Test Accuracy (%)", fontsize=8)
+        ax.set_ylabel("Classification Accuracy (%)", fontsize=8)
         ax.set_xticks(time[0:25:4])
         ax.set_xticklabels(
             (
-                "$2^{1}$",
-                # "$2^{2}$",
-                # "$2^{3}$",
-                # "$2^{4}$",
-                "$2^{5}$",
-                # "$2^{6}$",
-                # "$2^{7}$",
-                # "$2^{8}$",
-                "$2^{9}$",
-                # "$2^{10}$",
-                # "$2^{11}$",
-                # "$2^{12}$",
-                "$2^{13}$",
-                # "$2^{14}$",
-                # "$2^{15}$",
-                # "$2^{16}$",
-                "$2^{17}$",
-                # "$2^{18}$",
-                # "$2^{19}$",
-                # "$2^{20}$",
-                "$2^{21}$",
-                # "$2^{22}$",
-                # "$2^{23}$",
-                # "$2^{24}$",
-                "$2^{25}$",
-            )
+                "$\mathregular{2^{1}}$",
+                "$\mathregular{2^{5}}$",
+                "$\mathregular{2^{9}}$",
+                "$\mathregular{2^{13}}$",
+                "$\mathregular{2^{17}}$",
+                "$\mathregular{2^{21}}$",
+                "$\mathregular{2^{25}}$",
+                )
         )
-        box = ax.get_position()
-        # ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
-
-        # ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), prop={"size": 14})
-
-        # ax.legend(loc=0, prop={"size": 14})
+        # ax.legend(loc=0, prop={"size": 8})
+        # plt.tight_layout()
         if save_fig and save_dir is not None:
             fig.savefig(save_dir + file_name + ".svg", dpi=300)
-        # plt.show()
+        # os.system(f"junest mupdf {save_dir}{file_name}.pdf")
+        plt.show()
 
 ######################################################################
 #                                                                    #
@@ -152,6 +125,7 @@ def plot_graph_1year(
 #     file_name="drift-error-impact",
 #     save_dir="./Figures/",
 # )
+
 ######################################################################
 #                                                                    #
 #               Error10 and Error 11 matissa only - vs normal        #
@@ -223,30 +197,30 @@ def plot_graph_1year(
 #                                                                    #
 ######################################################################
 
-list_case = ("test-cases-1-10-00-01",
-                "test-cases-2-11-00-01",
-                "test-cases-3-01-11-10",
-                "test-cases-4-00-11-10",
-                "test-cases-5-01-11-00",
-                "test-cases-6-10-11-00",
-                "test-cases-7-00-11-01",
-                "test-cases-8-10-11-01",)
+# list_case = ("test-cases-1-10-00-01",
+#                 "test-cases-2-11-00-01",
+#                 "test-cases-3-01-11-10",
+#                 "test-cases-4-00-11-10",
+#                 "test-cases-5-01-11-00",
+#                 "test-cases-6-10-11-00",
+#                 "test-cases-7-00-11-01",
+#                 "test-cases-8-10-11-01",)
 
-data_list = []
-for case in list_case:
-    data = pd.read_csv(f"./result/{case}.csv")["Acc."].to_numpy()
-    name = case
-    case_dict = {"Method name": name, "data": data}
-    data_list.append(case_dict)
-time = np.arange(25)
+# data_list = []
+# for case in list_case:
+#     data = pd.read_csv(f"./result/{case}.csv")["Acc."].to_numpy()
+#     name = case
+#     case_dict = {"Method name": name, "data": data}
+#     data_list.append(case_dict)
+# time = np.arange(25)
 
-plot_graph_1year(
-    time,
-    data_list,
-    save_fig=True,
-    file_name="test_case2_withoutlg",
-    save_dir="./Figures/",
-)
+# plot_graph_1year(
+#     time,
+#     data_list,
+#     save_fig=True,
+#     file_name="test_case2_withoutlg",
+#     save_dir="./Figures/",
+# )
 # baseline = pd.read_csv("./result/Pattern-00-to-11.csv")
 # proposed_resnet = pd.read_csv("./result/resnet-cifar10-proposed.csv")
 # proposed_lenet = pd.read_csv("./result/lenet-cifar10-proposed.csv")
@@ -268,6 +242,25 @@ plot_graph_1year(
 #     save_dir="./Figures/",
 # )
 
+######################################################################
+#                                                                    #
+#               Plot resnet result only #
+#                                                                    #
+######################################################################
+# network = "quantized-inception"
+baseline = pd.read_csv("./result/resnet18-baseline.csv")
+
+baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "color":"black"}
+
+time = np.arange(25)
+
+plot_graph(
+    time,
+    baseline_dict,
+    save_fig=True,
+    file_name="resnet18-baseline-only",
+    save_dir="./Figures/",
+)
 ######################################################################
 #                                                                    #
 #               Plot proposed encoding                               #
