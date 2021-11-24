@@ -8,7 +8,7 @@ def helmet_en(weight, num_bits):
     elif num_bits == 16:
         dtype = np.int16
     # reshape to memristor length (128*128)
-    weight = weight.reshape(int(weight.numel() / 1), 1)
+    weight = weight.reshape(int(weight.numel() / 2), -1)
     orig_weight = weight.clone()
     weight = weight.cpu().numpy().astype(dtype)
     orig_weight = orig_weight.cpu().numpy().astype(dtype)
@@ -32,12 +32,19 @@ def helmet_en(weight, num_bits):
     inv_weight = np.invert(weight)
     rot_weight = circshift(weight, num_bits)
     ir_weight = circshift(inv_weight, num_bits)
-    num_11_orig = count_11(weight, tensor_11, num_bits)
-    num_11_inv = count_11(inv_weight, tensor_11, num_bits)
-    num_11_rot = count_11(rot_weight, tensor_11, num_bits)
-    num_11_ir  = count_11(ir_weight, tensor_11, num_bits)
-    total_11 = np.stack((num_11_orig, num_11_inv, num_11_rot, num_11_ir))
-    min_case = np.argmin(total_11, axis=0)
+
+    num_01_orig = count_01(weight, tensor_01, tensor_11, num_bits)
+    num_01_inv = count_01(inv_weight, tensor_01, tensor_11, num_bits)
+    num_01_rot = count_01(rot_weight, tensor_01, tensor_11, num_bits)
+    num_01_ir  = count_01(ir_weight, tensor_01,  tensor_11, num_bits)
+
+    num_01_orig = np.sum(num_01_orig, axis=1)
+    num_01_inv = np.sum(num_01_inv, axis=1)
+    num_01_rot = np.sum(num_01_rot, axis=1)
+    num_01_ir = np.sum(num_01_ir, axis=1)
+
+    total_01 = np.stack((num_01_orig, num_01_inv, num_01_rot, num_01_ir))
+    min_case = np.argmin(total_01, axis=0)
 
     weight[(min_case == 1).nonzero()[0], :] = inv_weight[(min_case == 1).nonzero()[0], :]
     weight[(min_case == 2).nonzero()[0], :] = rot_weight[(min_case == 2).nonzero()[0], :]
@@ -77,25 +84,25 @@ def helmet_de(weight, fc):
 
     return weight.flatten()
 
-
-def count_11(weight, tensor_11, num_bits):
+def count_01(weight, tensor_01, tensor_11, num_bits):
     index_bit = np.arange(0, num_bits, 2)
-    num_11 = 0
-    indices_11 = []
-    for tensor_11_i, index_b in zip(tensor_11, index_bit):
+    num_01 = 0
+    indices_01 = []
+    num_01 = np.zeros_like(weight)
+    for tensor_01_i, tensor_11_i, index_b in zip(tensor_01, tensor_11, index_bit):
         and_result = np.bitwise_and(tensor_11_i, weight)
-        index_11 = (and_result == tensor_11_i).nonzero()[0]
-        bit_index = np.full_like(index_11, index_b)
-        bit_index = np.transpose(np.expand_dims(bit_index, 0), (1, 0))
-        index_11 = np.transpose(np.expand_dims(index_11, 0), (1, 0))
-        index_tensor = np.concatenate((index_11, bit_index), axis=1)
-        indices_11.append(index_tensor)
-        num_11 += index_11.shape[1]
-    total_index_11 = np.concatenate(indices_11, axis=0)
-    indices = np.unique(total_index_11[:, 0], return_counts=True)
-    zeros = np.zeros(weight.size)
-    zeros[indices[0]] = indices[1]
-    return zeros
+        index_01 = (and_result == tensor_01_i).nonzero()
+        num_01[index_01[0], index_01[1]] += 1
+
+        # bit_index = np.full_like(index_01, index_b)
+        # index_tensor = np.stack((index_01, bit_index))
+        # indices_01.append(index_tensor)
+        # num_01 += index_01.size
+    # total_index_01 = np.concatenate(indices_01, axis=1)
+    # indices = np.unique(total_index_01[0, :], return_counts=True)
+    # zeros = np.zeros(weight.size)
+    # zeros[indices[0]] = indices[1]
+    return num_01
 
 def helmet_inject_error(weight_type, weight, mlc_error_rate, tlc_error_rate=False):
     num_mlc = weight_type["MLC"]

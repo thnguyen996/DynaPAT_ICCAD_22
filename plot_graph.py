@@ -48,14 +48,13 @@ def plot_graph(
         # os.system(f"junest mupdf {save_dir}{file_name}.pdf")
         plt.show()
 
-
 def plot_graph_1year(
     time, data_list: list, save_fig=False, file_name=None, save_dir=None
 ):
     with plt.style.context(["ieee", "no-latex"]):
         mpl.rcParams['font.family'] = 'NimbusRomNo9L'
 
-        fig, ax = plt.subplots(figsize=(2.2, 2.2))
+        fig, ax = plt.subplots(figsize=(2, 2))
 
         for data in data_list:
             method_name = data["Method name"]
@@ -66,7 +65,7 @@ def plot_graph_1year(
                 marker = data["marker"]
                 ax.plot(time, data_value, linestyle, linewidth=1.7, marker=marker, markevery=3, markerfacecoloralt='none', markersize=4, color=color, label=method_name)
             else:
-                ax.plot(time, data_value, linestyle, linewidth=1.7, color=color, label=method_name)
+                ax.plot(time, data_value, linestyle, linewidth=1.4, color=color, label=method_name)
 
         ax.set_xlabel("Time (s)", fontsize=8)
         ax.set_ylabel("Classification Accuracy (%)", fontsize=8)
@@ -83,11 +82,53 @@ def plot_graph_1year(
                 )
         )
         # ax.legend(loc=0, prop={"size": 8})
-        # plt.tight_layout()
+        plt.tight_layout()
         if save_fig and save_dir is not None:
-            fig.savefig(save_dir + file_name + ".svg", dpi=300)
-        # os.system(f"junest mupdf {save_dir}{file_name}.pdf")
-        plt.show()
+            fig.savefig(save_dir + file_name + ".pdf", dpi=300)
+        os.system(f"zathura {save_dir}{file_name}.pdf")
+
+def plot_graph_1year_imagenet(
+    time, data_list: list, save_fig=False, file_name=None, save_dir=None
+):
+    with plt.style.context(["ieee", "no-latex"]):
+        mpl.rcParams['font.family'] = 'NimbusRomNo9L'
+
+        fig, ax = plt.subplots(figsize=(1.8, 1.8))
+
+        for data in data_list:
+            method_name = data["Method name"]
+            data_value = data["data"]
+            linestyle = data["style"]
+            color = data["color"]
+            if "marker" in data:
+                marker = data["marker"]
+                ax.plot(time, data_value, linestyle, linewidth=1.7, marker=marker, markevery=3, markerfacecoloralt='none', markersize=4, color=color, label=method_name)
+            else:
+                ax.plot(time, data_value, linestyle, linewidth=1.4, color=color, label=method_name)
+
+        ax.set_xlabel("Time (s)", fontsize=8)
+        ax.set_ylabel("Classification Accuracy (%)", fontsize=8)
+        ax.set_xticks(time[0:13:2])
+        ax.set_xticklabels(
+            (
+                "$\mathregular{2^{1}}$",
+                "$\mathregular{2^{3}}$",
+                "$\mathregular{2^{5}}$",
+                "$\mathregular{2^{7}}$",
+                "$\mathregular{2^{9}}$",
+                "$\mathregular{2^{11}}$",
+                "$\mathregular{2^{13}}$",
+                # "$\mathregular{2^{17}}$",
+                # "$\mathregular{2^{21}}$",
+                # "$\mathregular{2^{25}}$",
+                )
+        )
+        # ax.legend(loc=0, prop={"size": 8})
+        plt.tight_layout()
+        if save_fig and save_dir is not None:
+            fig.savefig(save_dir + file_name + ".pdf", dpi=300)
+        os.system(f"zathura {save_dir}{file_name}.pdf")
+        # plt.show()
 
 ######################################################################
 #                                                                    #
@@ -248,19 +289,19 @@ def plot_graph_1year(
 #                                                                    #
 ######################################################################
 # network = "quantized-inception"
-baseline = pd.read_csv("./result/resnet18-baseline.csv")
+# baseline = pd.read_csv("./result/resnet18-baseline.csv")
 
-baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "color":"black"}
+# baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "color":"black"}
 
-time = np.arange(25)
+# time = np.arange(25)
 
-plot_graph(
-    time,
-    baseline_dict,
-    save_fig=True,
-    file_name="resnet18-baseline-only",
-    save_dir="./Figures/",
-)
+# plot_graph(
+#     time,
+#     baseline_dict,
+#     save_fig=True,
+#     file_name="resnet18-baseline-only",
+#     save_dir="./Figures/",
+# )
 ######################################################################
 #                                                                    #
 #               Plot proposed encoding                               #
@@ -289,44 +330,71 @@ plot_graph(
 # )
 ######################################################################
 #                                                                    #
-#               Plot final results imagenet#
+#               Plot final results imagenet                           #
 #                                                                    #
 ######################################################################
-# network = "resnet50-imagenet"
-# baseline = pd.read_csv(f"./results/{network}-baseline.csv")
-# proposed_method1 = pd.read_csv(f"./results/{network}-hydra-4-12.csv")
-# proposed_method2 = pd.read_csv(f"./results/{network}-hydra-6-10.csv")
-# flipcy = pd.read_csv(f"./results/{network}-flipcy.csv")
-# helmet = pd.read_csv(f"./results/{network}-helmet.csv")
+# network = "Inception_v3"
+# # baseline = pd.read_csv(f"./result/{network}-baseline.csv")
+# # proposed_method = pd.read_csv(f"./result/{network}-grayencode.csv")
 
-# baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "style":"-", "color":"#2c7bb6"}
-# flipcy_dict = {"Method name": "Flipcy", "data": flipcy["Acc."].to_numpy(), "style":":", "color":"#2c7bb6"}
-# helmet_dict = {"Method name": "Helmet", "data": helmet["Acc."].to_numpy(), "style":":", "marker":"o", "color":"#fee090"}
+# baseline = pd.read_csv(f"./imagenet_results/{network}-imagenet-baseline.csv")
+# proposed_method = pd.read_csv(f"./imagenet_results/{network}-imagenet-grayencode.csv")
+# flipcy = pd.read_csv(f"./imagenet_results/{network}-imagenet-flipcy.csv")
+# helmet = pd.read_csv(f"./imagenet_results/{network}-imagenet-helmet.csv")
 
-# proposed_method1_dict = {
-#     "Method name": "Hydra <28-4>",
-#     "data": proposed_method1["Acc."].to_numpy(),
+# baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy()[0:13], "style":"-", "color":"black"}
+# flipcy_dict = {"Method name": "Baseline", "data": flipcy["Acc."].to_numpy()[0:13], "style":"-", "color":"#bdbdbd"}
+# helmet_dict = {"Method name": "Baseline", "data": helmet["Acc."].to_numpy()[0:13], "style":":", "color":"#636363"}
+
+# proposed_method_dict = {
+#     "Method name": "Aspen",
+#     "data": proposed_method["Acc."].to_numpy()[0:13],
 #     "style":"--",
-#     "marker":"+",
-#     "color":"#fdae61"
-# }
-# proposed_method2_dict = {
-#     "Method name": "Hydra <26-6>",
-#     "data": proposed_method2["Acc."].to_numpy(),
-#     "style":"--",
-#     "color":"#d7191c"
+#     "color":"black"
 # }
 
-# data_list = (flipcy_dict, helmet_dict, baseline_dict, proposed_method1_dict, proposed_method2_dict)
-# time = np.arange(25)
+# data_list = (baseline_dict, flipcy_dict, helmet_dict, proposed_method_dict)
+# time = np.arange(13)
 
-# plot_graph_1year(
+# plot_graph_1year_imagenet(
 #     time,
 #     data_list,
 #     save_fig=True,
-#     file_name=f"{network}",
+#     file_name=f"{network}-imagenet-result-final",
 #     save_dir="./Figures/",
 # )
+######################################################################
+#                                                                    #
+#               Plot final results cifar10                           #
+#                                                                    #
+######################################################################
+network = "Inception"
+baseline = pd.read_csv(f"./result/{network}-baseline.csv")
+proposed_method = pd.read_csv(f"./result/{network}-grayencode.csv")
+flipcy = pd.read_csv(f"./result/{network}-cifar10-flipcy-size16.csv")
+helmet = pd.read_csv(f"./result/{network}-cifar10-helmet-size16.csv")
+
+baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "style":"-", "color":"black"}
+flipcy_dict = {"Method name": "Baseline", "data": flipcy["Acc."].to_numpy(), "style":"-", "color":"#bdbdbd"}
+helmet_dict = {"Method name": "Baseline", "data": helmet["Acc."].to_numpy(), "style":":", "color":"#636363"}
+
+proposed_method_dict = {
+    "Method name": "Aspen",
+    "data": proposed_method["Acc."].to_numpy(),
+    "style":"--",
+    "color":"black"
+}
+
+data_list = (baseline_dict, flipcy_dict, helmet_dict, proposed_method_dict)
+time = np.arange(25)
+
+plot_graph_1year(
+    time,
+    data_list,
+    save_fig=True,
+    file_name=f"{network}-cifar10-result-final",
+    save_dir="./Figures/",
+)
 
 ######################################################################
 #                                                                    #

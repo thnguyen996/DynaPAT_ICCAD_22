@@ -1,0 +1,2436 @@
+2021-11-21 10:34:03,172 - Log file for this run: /home/th.nguyen/drift-encode/logs/Inception_v3-imagenet-flipcy___2021.11.21-103403/Inception_v3-imagenet-flipcy___2021.11.21-103403.log
+2021-11-21 10:34:03,172 - Number of CPUs: 56
+2021-11-21 10:34:03,364 - Number of GPUs: 6
+2021-11-21 10:34:03,365 - CUDA version: 10.0.130
+2021-11-21 10:34:03,367 - CUDNN version: 7603
+2021-11-21 10:34:03,368 - Kernel: 5.4.0-90-generic
+2021-11-21 10:34:03,368 - Python: 3.6.13 |Anaconda, Inc.| (default, Jun  4 2021, 14:25:59) 
+[GCC 7.5.0]
+2021-11-21 10:34:03,369 - pip freeze: {'absl-py': '0.12.0', 'aiohttp': '3.7.4.post0', 'argon2-cffi': '21.1.0', 'astor': '0.8.1', 'astunparse': '1.6.3', 'async-generator': '1.10', 'async-timeout': '3.0.1', 'atomicwrites': '1.4.0', 'attrs': '21.2.0', 'backcall': '0.2.0', 'black': '21.9b0', 'bleach': '4.1.0', 'blessed': '1.19.0', 'blessings': '1.7', 'blinker': '1.4', 'bqplot': '0.11.5', 'brotlipy': '0.7.0', 'cachetools': '4.2.2', 'certifi': '2020.12.5', 'cffi': '1.14.6', 'chardet': '4.0.0', 'charset-normalizer': '2.0.4', 'click': '8.0.1', 'coverage': '5.5', 'cryptography': '3.4.7', 'cycler': '0.10.0', 'cython': '0.29.24', 'dataclasses': '0.8', 'decorator': '5.1.0', 'defusedxml': '0.7.1', 'distiller': '0.4.0rc0', 'entrypoints': '0.3', 'gast': '0.2.2', 'gitdb': '4.0.9', 'gitdb2': '3.0.3.post1', 'gitpython': '3.1.0', 'google-auth': '1.30.1', 'google-auth-oauthlib': '0.4.4', 'google-pasta': '0.2.0', 'gpustat': '1.0.0.dev1', 'graphviz': '0.10.1', 'grpcio': '1.38.0', 'gym': '0.12.5', 'h5py': '2.10.0', 'idna': '2.10', 'idna-ssl': '1.1.0', 'importlib-metadata': '4.8.1', 'ipykernel': '5.5.6', 'ipython': '7.16.1', 'ipython-genutils': '0.2.0', 'ipywidgets': '7.4.2', 'jedi': '0.17.2', 'jinja2': '3.0.2', 'joblib': '1.1.0', 'jsonpatch': '1.32', 'jsonpointer': '2.1', 'jsonschema': '3.2.0', 'jupyter': '1.0.0', 'jupyter-client': '7.0.6', 'jupyter-console': '6.4.0', 'jupyter-core': '4.8.1', 'jupyterlab-pygments': '0.1.2', 'keras-applications': '1.0.8', 'keras-preprocessing': '1.1.2', 'kiwisolver': '1.3.1', 'markdown': '3.3.4', 'markupsafe': '2.0.1', 'matplotlib': '3.3.4', 'mistune': '0.8.4', 'mkl-fft': '1.3.0', 'mkl-random': '1.1.1', 'mkl-service': '2.3.0', 'more-itertools': '8.10.0', 'multidict': '5.1.0', 'munch': '2.5.0', 'mypy-extensions': '0.4.3', 'nbclient': '0.5.4', 'nbconvert': '6.0.7', 'nbformat': '5.1.3', 'nest-asyncio': '1.5.1', 'notebook': '6.4.4', 'numpy': '1.18.5', 'nvidia-ml-py3': '7.352.0', 'oauthlib': '3.1.0', 'olefile': '0.46', 'opt-einsum': '3.3.0', 'packaging': '21.0', 'pandas': '1.1.5', 'pandocfilters': '1.5.0', 'parse': '1.19.0', 'parso': '0.7.1', 'pathspec': '0.9.0', 'pexpect': '4.8.0', 'pickle5': '0.0.11', 'pickleshare': '0.7.5', 'pillow': '6.2.2', 'pip': '21.2.2', 'platformdirs': '2.4.0', 'pluggy': '0.13.1', 'pretrainedmodels': '0.7.4', 'prometheus-client': '0.11.0', 'prompt-toolkit': '3.0.20', 'protobuf': '3.17.1', 'psutil': '5.8.0', 'ptyprocess': '0.7.0', 'py': '1.10.0', 'pyasn1': '0.4.8', 'pyasn1-modules': '0.2.8', 'pycparser': '2.20', 'pydot': '1.4.1', 'pyglet': '1.5.21', 'pygments': '2.10.0', 'pyhocon': '0.3.58', 'pyjwt': '2.1.0', 'pyopenssl': '20.0.1', 'pyparsing': '2.4.7', 'pyrsistent': '0.18.0', 'pysocks': '1.7.1', 'pytest': '4.6.11', 'python-dateutil': '2.8.2', 'python-jsonrpc-server': '0.4.0', 'python-language-server': '0.36.2', 'pytz': '2021.3', 'pyyaml': '6.0', 'pyzmq': '22.3.0', 'qgrid': '1.1.1', 'qtconsole': '5.1.1', 'qtpy': '1.11.2', 'ranger-fm': '1.9.3', 'regex': '2021.10.21', 'requests': '2.25.1', 'requests-oauthlib': '1.3.0', 'rsa': '4.7.2', 'scikit-learn': '0.21.2', 'scipy': '1.5.4', 'seaborn': '0.11.2', 'send2trash': '1.8.0', 'setuptools': '57.0.0', 'six': '1.16.0', 'smmap': '4.0.0', 'smmap2': '2.0.5', 'tabulate': '0.8.3', 'tensorboard': '1.15.0', 'tensorboard-data-server': '0.6.1', 'tensorboard-plugin-wit': '1.8.0', 'tensorflow': '1.15.0', 'tensorflow-estimator': '1.15.1', 'termcolor': '1.1.0', 'terminado': '0.12.1', 'testpath': '0.5.0', 'timm': '0.4.9', 'tomli': '1.2.1', 'torch': '1.3.1', 'torchfile': '0.1.0', 'torchnet': '0.0.4', 'torchsummary': '1.5.1', 'torchvision': '0.4.2', 'tornado': '6.1', 'tqdm': '4.33.0', 'traitlets': '4.3.3', 'traittypes': '0.2.1', 'typed-ast': '1.4.3', 'typing-extensions': '3.10.0.1', 'ujson': '4.1.0', 'urllib3': '1.26.4', 'visdom': '0.1.8.9', 'wcwidth': '0.2.5', 'webencodings': '0.5.1', 'websocket-client': '1.2.1', 'werkzeug': '2.0.1', 'wheel': '0.36.2', 'widgetsnbextension': '3.4.2', 'wrapt': '1.12.1', 'xlsxwriter': '3.0.1', 'yarl': '1.6.3', 'zipp': '3.5.0'}
+2021-11-21 10:34:03,461 - Git is dirty
+2021-11-21 10:34:03,462 - Active Git branch: master
+2021-11-21 10:34:03,504 - Git commit: f401db9403c1608e10258733e013b6c087e3ef34
+2021-11-21 10:34:03,505 - Command line: compress_classifier.py --arch Inception_v3 -p 10 -j 22 /home/imagenet/ --pretrained --run --qe-config-file ./conf/inception_conf.yaml --gpus 3 --name Inception_v3-imagenet-flipcy --method flipcy --mlc 8 --num_bits 8 --encode
+2021-11-21 10:34:03,506 - Distiller: 0.4.0rc0
+2021-11-21 10:34:03,509 - Random seed: 73665
+2021-11-21 10:34:06,104 - => created a pretrained inception_v3 model with the imagenet dataset
+2021-11-21 10:34:09,241 - Optimizer Type: <class 'torch.optim.sgd.SGD'>
+2021-11-21 10:34:09,242 - Optimizer Args: {'lr': 0.1, 'momentum': 0.9, 'dampening': 0, 'weight_decay': 0.0001, 'nesterov': False}
+2021-11-21 10:34:09,438 - Dataset sizes:
+	test=50000
+2021-11-21 10:34:09,439 - Reading configuration from: ./conf/inception_conf.yaml
+2021-11-21 10:34:09,444 - Found component of class PostTrainLinearQuantizer: Name: post_train_quantizer ; Section: quantizers
+2021-11-21 10:34:09,446 - Loading activation stats from: ./quant_stats/inceptionv3-imagenet.yaml
+2021-11-21 10:34:10,103 - Preparing model for quantization using PostTrainLinearQuantizer
+2021-11-21 10:34:16,642 - Applying batch-norm folding ahead of post-training quantization
+2021-11-21 10:34:16,644 - Fusing sequence ['module.Conv2d_1a_3x3.conv', 'module.Conv2d_1a_3x3.bn']
+2021-11-21 10:34:16,646 - Fusing sequence ['module.Conv2d_2a_3x3.conv', 'module.Conv2d_2a_3x3.bn']
+2021-11-21 10:34:16,646 - Fusing sequence ['module.Conv2d_2b_3x3.conv', 'module.Conv2d_2b_3x3.bn']
+2021-11-21 10:34:16,646 - Fusing sequence ['module.Conv2d_3b_1x1.conv', 'module.Conv2d_3b_1x1.bn']
+2021-11-21 10:34:16,647 - Fusing sequence ['module.Conv2d_4a_3x3.conv', 'module.Conv2d_4a_3x3.bn']
+2021-11-21 10:34:16,647 - Fusing sequence ['module.Mixed_5b.branch1x1.conv', 'module.Mixed_5b.branch1x1.bn']
+2021-11-21 10:34:16,647 - Fusing sequence ['module.Mixed_5b.branch5x5_1.conv', 'module.Mixed_5b.branch5x5_1.bn']
+2021-11-21 10:34:16,648 - Fusing sequence ['module.Mixed_5b.branch5x5_2.conv', 'module.Mixed_5b.branch5x5_2.bn']
+2021-11-21 10:34:16,648 - Fusing sequence ['module.Mixed_5b.branch3x3dbl_1.conv', 'module.Mixed_5b.branch3x3dbl_1.bn']
+2021-11-21 10:34:16,648 - Fusing sequence ['module.Mixed_5b.branch3x3dbl_2.conv', 'module.Mixed_5b.branch3x3dbl_2.bn']
+2021-11-21 10:34:16,649 - Fusing sequence ['module.Mixed_5b.branch3x3dbl_3.conv', 'module.Mixed_5b.branch3x3dbl_3.bn']
+2021-11-21 10:34:16,649 - Fusing sequence ['module.Mixed_5b.branch_pool.conv', 'module.Mixed_5b.branch_pool.bn']
+2021-11-21 10:34:16,649 - Fusing sequence ['module.Mixed_5c.branch1x1.conv', 'module.Mixed_5c.branch1x1.bn']
+2021-11-21 10:34:16,649 - Fusing sequence ['module.Mixed_5c.branch5x5_1.conv', 'module.Mixed_5c.branch5x5_1.bn']
+2021-11-21 10:34:16,650 - Fusing sequence ['module.Mixed_5c.branch5x5_2.conv', 'module.Mixed_5c.branch5x5_2.bn']
+2021-11-21 10:34:16,650 - Fusing sequence ['module.Mixed_5c.branch3x3dbl_1.conv', 'module.Mixed_5c.branch3x3dbl_1.bn']
+2021-11-21 10:34:16,650 - Fusing sequence ['module.Mixed_5c.branch3x3dbl_2.conv', 'module.Mixed_5c.branch3x3dbl_2.bn']
+2021-11-21 10:34:16,651 - Fusing sequence ['module.Mixed_5c.branch3x3dbl_3.conv', 'module.Mixed_5c.branch3x3dbl_3.bn']
+2021-11-21 10:34:16,651 - Fusing sequence ['module.Mixed_5c.branch_pool.conv', 'module.Mixed_5c.branch_pool.bn']
+2021-11-21 10:34:16,651 - Fusing sequence ['module.Mixed_5d.branch1x1.conv', 'module.Mixed_5d.branch1x1.bn']
+2021-11-21 10:34:16,652 - Fusing sequence ['module.Mixed_5d.branch5x5_1.conv', 'module.Mixed_5d.branch5x5_1.bn']
+2021-11-21 10:34:16,652 - Fusing sequence ['module.Mixed_5d.branch5x5_2.conv', 'module.Mixed_5d.branch5x5_2.bn']
+2021-11-21 10:34:16,652 - Fusing sequence ['module.Mixed_5d.branch3x3dbl_1.conv', 'module.Mixed_5d.branch3x3dbl_1.bn']
+2021-11-21 10:34:16,653 - Fusing sequence ['module.Mixed_5d.branch3x3dbl_2.conv', 'module.Mixed_5d.branch3x3dbl_2.bn']
+2021-11-21 10:34:16,653 - Fusing sequence ['module.Mixed_5d.branch3x3dbl_3.conv', 'module.Mixed_5d.branch3x3dbl_3.bn']
+2021-11-21 10:34:16,653 - Fusing sequence ['module.Mixed_5d.branch_pool.conv', 'module.Mixed_5d.branch_pool.bn']
+2021-11-21 10:34:16,654 - Fusing sequence ['module.Mixed_6a.branch3x3.conv', 'module.Mixed_6a.branch3x3.bn']
+2021-11-21 10:34:16,654 - Fusing sequence ['module.Mixed_6a.branch3x3dbl_1.conv', 'module.Mixed_6a.branch3x3dbl_1.bn']
+2021-11-21 10:34:16,654 - Fusing sequence ['module.Mixed_6a.branch3x3dbl_2.conv', 'module.Mixed_6a.branch3x3dbl_2.bn']
+2021-11-21 10:34:16,654 - Fusing sequence ['module.Mixed_6a.branch3x3dbl_3.conv', 'module.Mixed_6a.branch3x3dbl_3.bn']
+2021-11-21 10:34:16,655 - Fusing sequence ['module.Mixed_6b.branch1x1.conv', 'module.Mixed_6b.branch1x1.bn']
+2021-11-21 10:34:16,655 - Fusing sequence ['module.Mixed_6b.branch7x7_1.conv', 'module.Mixed_6b.branch7x7_1.bn']
+2021-11-21 10:34:16,656 - Fusing sequence ['module.Mixed_6b.branch7x7_2.conv', 'module.Mixed_6b.branch7x7_2.bn']
+2021-11-21 10:34:16,656 - Fusing sequence ['module.Mixed_6b.branch7x7_3.conv', 'module.Mixed_6b.branch7x7_3.bn']
+2021-11-21 10:34:16,656 - Fusing sequence ['module.Mixed_6b.branch7x7dbl_1.conv', 'module.Mixed_6b.branch7x7dbl_1.bn']
+2021-11-21 10:34:16,657 - Fusing sequence ['module.Mixed_6b.branch7x7dbl_2.conv', 'module.Mixed_6b.branch7x7dbl_2.bn']
+2021-11-21 10:34:16,657 - Fusing sequence ['module.Mixed_6b.branch7x7dbl_3.conv', 'module.Mixed_6b.branch7x7dbl_3.bn']
+2021-11-21 10:34:16,657 - Fusing sequence ['module.Mixed_6b.branch7x7dbl_4.conv', 'module.Mixed_6b.branch7x7dbl_4.bn']
+2021-11-21 10:34:16,658 - Fusing sequence ['module.Mixed_6b.branch7x7dbl_5.conv', 'module.Mixed_6b.branch7x7dbl_5.bn']
+2021-11-21 10:34:16,658 - Fusing sequence ['module.Mixed_6b.branch_pool.conv', 'module.Mixed_6b.branch_pool.bn']
+2021-11-21 10:34:16,658 - Fusing sequence ['module.Mixed_6c.branch1x1.conv', 'module.Mixed_6c.branch1x1.bn']
+2021-11-21 10:34:16,659 - Fusing sequence ['module.Mixed_6c.branch7x7_1.conv', 'module.Mixed_6c.branch7x7_1.bn']
+2021-11-21 10:34:16,659 - Fusing sequence ['module.Mixed_6c.branch7x7_2.conv', 'module.Mixed_6c.branch7x7_2.bn']
+2021-11-21 10:34:16,659 - Fusing sequence ['module.Mixed_6c.branch7x7_3.conv', 'module.Mixed_6c.branch7x7_3.bn']
+2021-11-21 10:34:16,660 - Fusing sequence ['module.Mixed_6c.branch7x7dbl_1.conv', 'module.Mixed_6c.branch7x7dbl_1.bn']
+2021-11-21 10:34:16,660 - Fusing sequence ['module.Mixed_6c.branch7x7dbl_2.conv', 'module.Mixed_6c.branch7x7dbl_2.bn']
+2021-11-21 10:34:16,660 - Fusing sequence ['module.Mixed_6c.branch7x7dbl_3.conv', 'module.Mixed_6c.branch7x7dbl_3.bn']
+2021-11-21 10:34:16,661 - Fusing sequence ['module.Mixed_6c.branch7x7dbl_4.conv', 'module.Mixed_6c.branch7x7dbl_4.bn']
+2021-11-21 10:34:16,661 - Fusing sequence ['module.Mixed_6c.branch7x7dbl_5.conv', 'module.Mixed_6c.branch7x7dbl_5.bn']
+2021-11-21 10:34:16,661 - Fusing sequence ['module.Mixed_6c.branch_pool.conv', 'module.Mixed_6c.branch_pool.bn']
+2021-11-21 10:34:16,662 - Fusing sequence ['module.Mixed_6d.branch1x1.conv', 'module.Mixed_6d.branch1x1.bn']
+2021-11-21 10:34:16,662 - Fusing sequence ['module.Mixed_6d.branch7x7_1.conv', 'module.Mixed_6d.branch7x7_1.bn']
+2021-11-21 10:34:16,662 - Fusing sequence ['module.Mixed_6d.branch7x7_2.conv', 'module.Mixed_6d.branch7x7_2.bn']
+2021-11-21 10:34:16,663 - Fusing sequence ['module.Mixed_6d.branch7x7_3.conv', 'module.Mixed_6d.branch7x7_3.bn']
+2021-11-21 10:34:16,663 - Fusing sequence ['module.Mixed_6d.branch7x7dbl_1.conv', 'module.Mixed_6d.branch7x7dbl_1.bn']
+2021-11-21 10:34:16,663 - Fusing sequence ['module.Mixed_6d.branch7x7dbl_2.conv', 'module.Mixed_6d.branch7x7dbl_2.bn']
+2021-11-21 10:34:16,664 - Fusing sequence ['module.Mixed_6d.branch7x7dbl_3.conv', 'module.Mixed_6d.branch7x7dbl_3.bn']
+2021-11-21 10:34:16,664 - Fusing sequence ['module.Mixed_6d.branch7x7dbl_4.conv', 'module.Mixed_6d.branch7x7dbl_4.bn']
+2021-11-21 10:34:16,664 - Fusing sequence ['module.Mixed_6d.branch7x7dbl_5.conv', 'module.Mixed_6d.branch7x7dbl_5.bn']
+2021-11-21 10:34:16,665 - Fusing sequence ['module.Mixed_6d.branch_pool.conv', 'module.Mixed_6d.branch_pool.bn']
+2021-11-21 10:34:16,665 - Fusing sequence ['module.Mixed_6e.branch1x1.conv', 'module.Mixed_6e.branch1x1.bn']
+2021-11-21 10:34:16,665 - Fusing sequence ['module.Mixed_6e.branch7x7_1.conv', 'module.Mixed_6e.branch7x7_1.bn']
+2021-11-21 10:34:16,665 - Fusing sequence ['module.Mixed_6e.branch7x7_2.conv', 'module.Mixed_6e.branch7x7_2.bn']
+2021-11-21 10:34:16,666 - Fusing sequence ['module.Mixed_6e.branch7x7_3.conv', 'module.Mixed_6e.branch7x7_3.bn']
+2021-11-21 10:34:16,666 - Fusing sequence ['module.Mixed_6e.branch7x7dbl_1.conv', 'module.Mixed_6e.branch7x7dbl_1.bn']
+2021-11-21 10:34:16,666 - Fusing sequence ['module.Mixed_6e.branch7x7dbl_2.conv', 'module.Mixed_6e.branch7x7dbl_2.bn']
+2021-11-21 10:34:16,667 - Fusing sequence ['module.Mixed_6e.branch7x7dbl_3.conv', 'module.Mixed_6e.branch7x7dbl_3.bn']
+2021-11-21 10:34:16,667 - Fusing sequence ['module.Mixed_6e.branch7x7dbl_4.conv', 'module.Mixed_6e.branch7x7dbl_4.bn']
+2021-11-21 10:34:16,668 - Fusing sequence ['module.Mixed_6e.branch7x7dbl_5.conv', 'module.Mixed_6e.branch7x7dbl_5.bn']
+2021-11-21 10:34:16,668 - Fusing sequence ['module.Mixed_6e.branch_pool.conv', 'module.Mixed_6e.branch_pool.bn']
+2021-11-21 10:34:16,668 - Fusing sequence ['module.Mixed_7a.branch3x3_1.conv', 'module.Mixed_7a.branch3x3_1.bn']
+2021-11-21 10:34:16,669 - Fusing sequence ['module.Mixed_7a.branch3x3_2.conv', 'module.Mixed_7a.branch3x3_2.bn']
+2021-11-21 10:34:16,669 - Fusing sequence ['module.Mixed_7a.branch7x7x3_1.conv', 'module.Mixed_7a.branch7x7x3_1.bn']
+2021-11-21 10:34:16,669 - Fusing sequence ['module.Mixed_7a.branch7x7x3_2.conv', 'module.Mixed_7a.branch7x7x3_2.bn']
+2021-11-21 10:34:16,670 - Fusing sequence ['module.Mixed_7a.branch7x7x3_3.conv', 'module.Mixed_7a.branch7x7x3_3.bn']
+2021-11-21 10:34:16,670 - Fusing sequence ['module.Mixed_7a.branch7x7x3_4.conv', 'module.Mixed_7a.branch7x7x3_4.bn']
+2021-11-21 10:34:16,670 - Fusing sequence ['module.Mixed_7b.branch1x1.conv', 'module.Mixed_7b.branch1x1.bn']
+2021-11-21 10:34:16,670 - Fusing sequence ['module.Mixed_7b.branch3x3_1.conv', 'module.Mixed_7b.branch3x3_1.bn']
+2021-11-21 10:34:16,671 - Fusing sequence ['module.Mixed_7b.branch3x3_2a.conv', 'module.Mixed_7b.branch3x3_2a.bn']
+2021-11-21 10:34:16,671 - Fusing sequence ['module.Mixed_7b.branch3x3_2b.conv', 'module.Mixed_7b.branch3x3_2b.bn']
+2021-11-21 10:34:16,672 - Fusing sequence ['module.Mixed_7b.branch3x3dbl_1.conv', 'module.Mixed_7b.branch3x3dbl_1.bn']
+2021-11-21 10:34:16,672 - Fusing sequence ['module.Mixed_7b.branch3x3dbl_2.conv', 'module.Mixed_7b.branch3x3dbl_2.bn']
+2021-11-21 10:34:16,672 - Fusing sequence ['module.Mixed_7b.branch3x3dbl_3a.conv', 'module.Mixed_7b.branch3x3dbl_3a.bn']
+2021-11-21 10:34:16,672 - Fusing sequence ['module.Mixed_7b.branch3x3dbl_3b.conv', 'module.Mixed_7b.branch3x3dbl_3b.bn']
+2021-11-21 10:34:16,673 - Fusing sequence ['module.Mixed_7b.branch_pool.conv', 'module.Mixed_7b.branch_pool.bn']
+2021-11-21 10:34:16,673 - Fusing sequence ['module.Mixed_7c.branch1x1.conv', 'module.Mixed_7c.branch1x1.bn']
+2021-11-21 10:34:16,673 - Fusing sequence ['module.Mixed_7c.branch3x3_1.conv', 'module.Mixed_7c.branch3x3_1.bn']
+2021-11-21 10:34:16,674 - Fusing sequence ['module.Mixed_7c.branch3x3_2a.conv', 'module.Mixed_7c.branch3x3_2a.bn']
+2021-11-21 10:34:16,674 - Fusing sequence ['module.Mixed_7c.branch3x3_2b.conv', 'module.Mixed_7c.branch3x3_2b.bn']
+2021-11-21 10:34:16,674 - Fusing sequence ['module.Mixed_7c.branch3x3dbl_1.conv', 'module.Mixed_7c.branch3x3dbl_1.bn']
+2021-11-21 10:34:16,675 - Fusing sequence ['module.Mixed_7c.branch3x3dbl_2.conv', 'module.Mixed_7c.branch3x3dbl_2.bn']
+2021-11-21 10:34:16,675 - Fusing sequence ['module.Mixed_7c.branch3x3dbl_3a.conv', 'module.Mixed_7c.branch3x3dbl_3a.bn']
+2021-11-21 10:34:16,675 - Fusing sequence ['module.Mixed_7c.branch3x3dbl_3b.conv', 'module.Mixed_7c.branch3x3dbl_3b.bn']
+2021-11-21 10:34:16,676 - Fusing sequence ['module.Mixed_7c.branch_pool.conv', 'module.Mixed_7c.branch_pool.bn']
+2021-11-21 10:34:18,921 - Propagating output statistics from BN modules to folded modules
+2021-11-21 10:34:18,922 -   Conv2d_1a_3x3.bn --> module.Conv2d_1a_3x3.conv
+2021-11-21 10:34:18,922 -   Conv2d_2a_3x3.bn --> module.Conv2d_2a_3x3.conv
+2021-11-21 10:34:18,922 -   Conv2d_2b_3x3.bn --> module.Conv2d_2b_3x3.conv
+2021-11-21 10:34:18,922 -   Conv2d_3b_1x1.bn --> module.Conv2d_3b_1x1.conv
+2021-11-21 10:34:18,922 -   Conv2d_4a_3x3.bn --> module.Conv2d_4a_3x3.conv
+2021-11-21 10:34:18,922 -   Mixed_5b.branch1x1.bn --> module.Mixed_5b.branch1x1.conv
+2021-11-21 10:34:18,922 -   Mixed_5b.branch5x5_1.bn --> module.Mixed_5b.branch5x5_1.conv
+2021-11-21 10:34:18,922 -   Mixed_5b.branch5x5_2.bn --> module.Mixed_5b.branch5x5_2.conv
+2021-11-21 10:34:18,922 -   Mixed_5b.branch3x3dbl_1.bn --> module.Mixed_5b.branch3x3dbl_1.conv
+2021-11-21 10:34:18,922 -   Mixed_5b.branch3x3dbl_2.bn --> module.Mixed_5b.branch3x3dbl_2.conv
+2021-11-21 10:34:18,922 -   Mixed_5b.branch3x3dbl_3.bn --> module.Mixed_5b.branch3x3dbl_3.conv
+2021-11-21 10:34:18,922 -   Mixed_5b.branch_pool.bn --> module.Mixed_5b.branch_pool.conv
+2021-11-21 10:34:18,922 -   Mixed_5c.branch1x1.bn --> module.Mixed_5c.branch1x1.conv
+2021-11-21 10:34:18,922 -   Mixed_5c.branch5x5_1.bn --> module.Mixed_5c.branch5x5_1.conv
+2021-11-21 10:34:18,922 -   Mixed_5c.branch5x5_2.bn --> module.Mixed_5c.branch5x5_2.conv
+2021-11-21 10:34:18,922 -   Mixed_5c.branch3x3dbl_1.bn --> module.Mixed_5c.branch3x3dbl_1.conv
+2021-11-21 10:34:18,922 -   Mixed_5c.branch3x3dbl_2.bn --> module.Mixed_5c.branch3x3dbl_2.conv
+2021-11-21 10:34:18,922 -   Mixed_5c.branch3x3dbl_3.bn --> module.Mixed_5c.branch3x3dbl_3.conv
+2021-11-21 10:34:18,923 -   Mixed_5c.branch_pool.bn --> module.Mixed_5c.branch_pool.conv
+2021-11-21 10:34:18,923 -   Mixed_5d.branch1x1.bn --> module.Mixed_5d.branch1x1.conv
+2021-11-21 10:34:18,923 -   Mixed_5d.branch5x5_1.bn --> module.Mixed_5d.branch5x5_1.conv
+2021-11-21 10:34:18,923 -   Mixed_5d.branch5x5_2.bn --> module.Mixed_5d.branch5x5_2.conv
+2021-11-21 10:34:18,923 -   Mixed_5d.branch3x3dbl_1.bn --> module.Mixed_5d.branch3x3dbl_1.conv
+2021-11-21 10:34:18,923 -   Mixed_5d.branch3x3dbl_2.bn --> module.Mixed_5d.branch3x3dbl_2.conv
+2021-11-21 10:34:18,923 -   Mixed_5d.branch3x3dbl_3.bn --> module.Mixed_5d.branch3x3dbl_3.conv
+2021-11-21 10:34:18,923 -   Mixed_5d.branch_pool.bn --> module.Mixed_5d.branch_pool.conv
+2021-11-21 10:34:18,923 -   Mixed_6a.branch3x3.bn --> module.Mixed_6a.branch3x3.conv
+2021-11-21 10:34:18,923 -   Mixed_6a.branch3x3dbl_1.bn --> module.Mixed_6a.branch3x3dbl_1.conv
+2021-11-21 10:34:18,923 -   Mixed_6a.branch3x3dbl_2.bn --> module.Mixed_6a.branch3x3dbl_2.conv
+2021-11-21 10:34:18,923 -   Mixed_6a.branch3x3dbl_3.bn --> module.Mixed_6a.branch3x3dbl_3.conv
+2021-11-21 10:34:18,923 -   Mixed_6b.branch1x1.bn --> module.Mixed_6b.branch1x1.conv
+2021-11-21 10:34:18,923 -   Mixed_6b.branch7x7_1.bn --> module.Mixed_6b.branch7x7_1.conv
+2021-11-21 10:34:18,923 -   Mixed_6b.branch7x7_2.bn --> module.Mixed_6b.branch7x7_2.conv
+2021-11-21 10:34:18,923 -   Mixed_6b.branch7x7_3.bn --> module.Mixed_6b.branch7x7_3.conv
+2021-11-21 10:34:18,923 -   Mixed_6b.branch7x7dbl_1.bn --> module.Mixed_6b.branch7x7dbl_1.conv
+2021-11-21 10:34:18,923 -   Mixed_6b.branch7x7dbl_2.bn --> module.Mixed_6b.branch7x7dbl_2.conv
+2021-11-21 10:34:18,923 -   Mixed_6b.branch7x7dbl_3.bn --> module.Mixed_6b.branch7x7dbl_3.conv
+2021-11-21 10:34:18,923 -   Mixed_6b.branch7x7dbl_4.bn --> module.Mixed_6b.branch7x7dbl_4.conv
+2021-11-21 10:34:18,923 -   Mixed_6b.branch7x7dbl_5.bn --> module.Mixed_6b.branch7x7dbl_5.conv
+2021-11-21 10:34:18,923 -   Mixed_6b.branch_pool.bn --> module.Mixed_6b.branch_pool.conv
+2021-11-21 10:34:18,923 -   Mixed_6c.branch1x1.bn --> module.Mixed_6c.branch1x1.conv
+2021-11-21 10:34:18,923 -   Mixed_6c.branch7x7_1.bn --> module.Mixed_6c.branch7x7_1.conv
+2021-11-21 10:34:18,924 -   Mixed_6c.branch7x7_2.bn --> module.Mixed_6c.branch7x7_2.conv
+2021-11-21 10:34:18,924 -   Mixed_6c.branch7x7_3.bn --> module.Mixed_6c.branch7x7_3.conv
+2021-11-21 10:34:18,924 -   Mixed_6c.branch7x7dbl_1.bn --> module.Mixed_6c.branch7x7dbl_1.conv
+2021-11-21 10:34:18,924 -   Mixed_6c.branch7x7dbl_2.bn --> module.Mixed_6c.branch7x7dbl_2.conv
+2021-11-21 10:34:18,924 -   Mixed_6c.branch7x7dbl_3.bn --> module.Mixed_6c.branch7x7dbl_3.conv
+2021-11-21 10:34:18,924 -   Mixed_6c.branch7x7dbl_4.bn --> module.Mixed_6c.branch7x7dbl_4.conv
+2021-11-21 10:34:18,924 -   Mixed_6c.branch7x7dbl_5.bn --> module.Mixed_6c.branch7x7dbl_5.conv
+2021-11-21 10:34:18,924 -   Mixed_6c.branch_pool.bn --> module.Mixed_6c.branch_pool.conv
+2021-11-21 10:34:18,924 -   Mixed_6d.branch1x1.bn --> module.Mixed_6d.branch1x1.conv
+2021-11-21 10:34:18,924 -   Mixed_6d.branch7x7_1.bn --> module.Mixed_6d.branch7x7_1.conv
+2021-11-21 10:34:18,924 -   Mixed_6d.branch7x7_2.bn --> module.Mixed_6d.branch7x7_2.conv
+2021-11-21 10:34:18,924 -   Mixed_6d.branch7x7_3.bn --> module.Mixed_6d.branch7x7_3.conv
+2021-11-21 10:34:18,924 -   Mixed_6d.branch7x7dbl_1.bn --> module.Mixed_6d.branch7x7dbl_1.conv
+2021-11-21 10:34:18,924 -   Mixed_6d.branch7x7dbl_2.bn --> module.Mixed_6d.branch7x7dbl_2.conv
+2021-11-21 10:34:18,924 -   Mixed_6d.branch7x7dbl_3.bn --> module.Mixed_6d.branch7x7dbl_3.conv
+2021-11-21 10:34:18,924 -   Mixed_6d.branch7x7dbl_4.bn --> module.Mixed_6d.branch7x7dbl_4.conv
+2021-11-21 10:34:18,924 -   Mixed_6d.branch7x7dbl_5.bn --> module.Mixed_6d.branch7x7dbl_5.conv
+2021-11-21 10:34:18,924 -   Mixed_6d.branch_pool.bn --> module.Mixed_6d.branch_pool.conv
+2021-11-21 10:34:18,924 -   Mixed_6e.branch1x1.bn --> module.Mixed_6e.branch1x1.conv
+2021-11-21 10:34:18,924 -   Mixed_6e.branch7x7_1.bn --> module.Mixed_6e.branch7x7_1.conv
+2021-11-21 10:34:18,924 -   Mixed_6e.branch7x7_2.bn --> module.Mixed_6e.branch7x7_2.conv
+2021-11-21 10:34:18,924 -   Mixed_6e.branch7x7_3.bn --> module.Mixed_6e.branch7x7_3.conv
+2021-11-21 10:34:18,924 -   Mixed_6e.branch7x7dbl_1.bn --> module.Mixed_6e.branch7x7dbl_1.conv
+2021-11-21 10:34:18,924 -   Mixed_6e.branch7x7dbl_2.bn --> module.Mixed_6e.branch7x7dbl_2.conv
+2021-11-21 10:34:18,924 -   Mixed_6e.branch7x7dbl_3.bn --> module.Mixed_6e.branch7x7dbl_3.conv
+2021-11-21 10:34:18,925 -   Mixed_6e.branch7x7dbl_4.bn --> module.Mixed_6e.branch7x7dbl_4.conv
+2021-11-21 10:34:18,925 -   Mixed_6e.branch7x7dbl_5.bn --> module.Mixed_6e.branch7x7dbl_5.conv
+2021-11-21 10:34:18,925 -   Mixed_6e.branch_pool.bn --> module.Mixed_6e.branch_pool.conv
+2021-11-21 10:34:18,925 -   Mixed_7a.branch3x3_1.bn --> module.Mixed_7a.branch3x3_1.conv
+2021-11-21 10:34:18,925 -   Mixed_7a.branch3x3_2.bn --> module.Mixed_7a.branch3x3_2.conv
+2021-11-21 10:34:18,925 -   Mixed_7a.branch7x7x3_1.bn --> module.Mixed_7a.branch7x7x3_1.conv
+2021-11-21 10:34:18,925 -   Mixed_7a.branch7x7x3_2.bn --> module.Mixed_7a.branch7x7x3_2.conv
+2021-11-21 10:34:18,925 -   Mixed_7a.branch7x7x3_3.bn --> module.Mixed_7a.branch7x7x3_3.conv
+2021-11-21 10:34:18,925 -   Mixed_7a.branch7x7x3_4.bn --> module.Mixed_7a.branch7x7x3_4.conv
+2021-11-21 10:34:18,925 -   Mixed_7b.branch1x1.bn --> module.Mixed_7b.branch1x1.conv
+2021-11-21 10:34:18,925 -   Mixed_7b.branch3x3_1.bn --> module.Mixed_7b.branch3x3_1.conv
+2021-11-21 10:34:18,925 -   Mixed_7b.branch3x3_2a.bn --> module.Mixed_7b.branch3x3_2a.conv
+2021-11-21 10:34:18,925 -   Mixed_7b.branch3x3_2b.bn --> module.Mixed_7b.branch3x3_2b.conv
+2021-11-21 10:34:18,925 -   Mixed_7b.branch3x3dbl_1.bn --> module.Mixed_7b.branch3x3dbl_1.conv
+2021-11-21 10:34:18,925 -   Mixed_7b.branch3x3dbl_2.bn --> module.Mixed_7b.branch3x3dbl_2.conv
+2021-11-21 10:34:18,925 -   Mixed_7b.branch3x3dbl_3a.bn --> module.Mixed_7b.branch3x3dbl_3a.conv
+2021-11-21 10:34:18,925 -   Mixed_7b.branch3x3dbl_3b.bn --> module.Mixed_7b.branch3x3dbl_3b.conv
+2021-11-21 10:34:18,925 -   Mixed_7b.branch_pool.bn --> module.Mixed_7b.branch_pool.conv
+2021-11-21 10:34:18,925 -   Mixed_7c.branch1x1.bn --> module.Mixed_7c.branch1x1.conv
+2021-11-21 10:34:18,925 -   Mixed_7c.branch3x3_1.bn --> module.Mixed_7c.branch3x3_1.conv
+2021-11-21 10:34:18,925 -   Mixed_7c.branch3x3_2a.bn --> module.Mixed_7c.branch3x3_2a.conv
+2021-11-21 10:34:18,925 -   Mixed_7c.branch3x3_2b.bn --> module.Mixed_7c.branch3x3_2b.conv
+2021-11-21 10:34:18,925 -   Mixed_7c.branch3x3dbl_1.bn --> module.Mixed_7c.branch3x3dbl_1.conv
+2021-11-21 10:34:18,925 -   Mixed_7c.branch3x3dbl_2.bn --> module.Mixed_7c.branch3x3dbl_2.conv
+2021-11-21 10:34:18,925 -   Mixed_7c.branch3x3dbl_3a.bn --> module.Mixed_7c.branch3x3dbl_3a.conv
+2021-11-21 10:34:18,926 -   Mixed_7c.branch3x3dbl_3b.bn --> module.Mixed_7c.branch3x3dbl_3b.conv
+2021-11-21 10:34:18,926 -   Mixed_7c.branch_pool.bn --> module.Mixed_7c.branch_pool.conv
+2021-11-21 10:34:18,926 - Optimizing output statistics for modules followed by ReLU/Tanh/Sigmoid
+2021-11-21 10:34:18,926 -   Module Conv2d_1a_3x3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,926 -   Module Conv2d_2a_3x3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,926 -   Module Conv2d_2b_3x3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,926 -   Module Conv2d_3b_1x1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,926 -   Module Conv2d_4a_3x3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,926 -   Module Mixed_5b.branch1x1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5b.branch5x5_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5b.branch5x5_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5b.branch3x3dbl_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5b.branch3x3dbl_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5b.branch3x3dbl_3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5b.branch_pool.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5c.branch1x1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5c.branch5x5_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5c.branch5x5_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5c.branch3x3dbl_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5c.branch3x3dbl_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5c.branch3x3dbl_3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5c.branch_pool.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5d.branch1x1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5d.branch5x5_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5d.branch5x5_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5d.branch3x3dbl_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5d.branch3x3dbl_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5d.branch3x3dbl_3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_5d.branch_pool.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_6a.branch3x3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_6a.branch3x3dbl_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,927 -   Module Mixed_6a.branch3x3dbl_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6a.branch3x3dbl_3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6b.branch1x1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6b.branch7x7_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6b.branch7x7_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6b.branch7x7_3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6b.branch7x7dbl_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6b.branch7x7dbl_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6b.branch7x7dbl_3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6b.branch7x7dbl_4.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6b.branch7x7dbl_5.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6b.branch_pool.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6c.branch1x1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6c.branch7x7_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6c.branch7x7_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6c.branch7x7_3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6c.branch7x7dbl_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6c.branch7x7dbl_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6c.branch7x7dbl_3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6c.branch7x7dbl_4.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6c.branch7x7dbl_5.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6c.branch_pool.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6d.branch1x1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,928 -   Module Mixed_6d.branch7x7_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6d.branch7x7_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6d.branch7x7_3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6d.branch7x7dbl_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6d.branch7x7dbl_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6d.branch7x7dbl_3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6d.branch7x7dbl_4.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6d.branch7x7dbl_5.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6d.branch_pool.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6e.branch1x1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6e.branch7x7_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6e.branch7x7_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6e.branch7x7_3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6e.branch7x7dbl_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6e.branch7x7dbl_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6e.branch7x7dbl_3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6e.branch7x7dbl_4.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6e.branch7x7dbl_5.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_6e.branch_pool.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_7a.branch3x3_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_7a.branch3x3_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_7a.branch7x7x3_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,929 -   Module Mixed_7a.branch7x7x3_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7a.branch7x7x3_3.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7a.branch7x7x3_4.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7b.branch1x1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7b.branch3x3_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7b.branch3x3_2a.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7b.branch3x3_2b.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7b.branch3x3dbl_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7b.branch3x3dbl_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7b.branch3x3dbl_3a.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7b.branch3x3dbl_3b.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7b.branch_pool.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7c.branch1x1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7c.branch3x3_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7c.branch3x3_2a.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7c.branch3x3_2b.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7c.branch3x3dbl_1.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7c.branch3x3dbl_2.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7c.branch3x3dbl_3a.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7c.branch3x3dbl_3b.conv followed by Relu, updating stats
+2021-11-21 10:34:18,930 -   Module Mixed_7c.branch_pool.conv followed by Relu, updating stats
+2021-11-21 10:34:19,060 - Updated stats saved to logs/Inception_v3-imagenet-flipcy___2021.11.21-103403/quant_stats_after_prepare_model.yaml
+2021-11-21 10:34:19,061 - Module module
+2021-11-21 10:34:19,061 - 	Skipping
+2021-11-21 10:34:19,061 - Module module.Conv2d_1a_3x3
+2021-11-21 10:34:19,061 - 	Skipping
+2021-11-21 10:34:19,064 - Module module.Conv2d_1a_3x3.conv
+2021-11-21 10:34:19,064 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,064 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,066 - Module module.Conv2d_2a_3x3
+2021-11-21 10:34:19,066 - 	Skipping
+2021-11-21 10:34:19,067 - Module module.Conv2d_2a_3x3.conv
+2021-11-21 10:34:19,067 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,067 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,069 - Module module.Conv2d_2b_3x3
+2021-11-21 10:34:19,069 - 	Skipping
+2021-11-21 10:34:19,070 - Module module.Conv2d_2b_3x3.conv
+2021-11-21 10:34:19,070 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,070 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,072 - Module module.Conv2d_3b_1x1
+2021-11-21 10:34:19,072 - 	Skipping
+2021-11-21 10:34:19,073 - Module module.Conv2d_3b_1x1.conv
+2021-11-21 10:34:19,073 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,073 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,075 - Module module.Conv2d_4a_3x3
+2021-11-21 10:34:19,075 - 	Skipping
+2021-11-21 10:34:19,076 - Module module.Conv2d_4a_3x3.conv
+2021-11-21 10:34:19,076 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,076 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,078 - Module module.Mixed_5b
+2021-11-21 10:34:19,078 - 	Skipping
+2021-11-21 10:34:19,078 - Module module.Mixed_5b.branch1x1
+2021-11-21 10:34:19,078 - 	Skipping
+2021-11-21 10:34:19,079 - Module module.Mixed_5b.branch1x1.conv
+2021-11-21 10:34:19,079 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,079 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,081 - Module module.Mixed_5b.branch5x5_1
+2021-11-21 10:34:19,081 - 	Skipping
+2021-11-21 10:34:19,082 - Module module.Mixed_5b.branch5x5_1.conv
+2021-11-21 10:34:19,082 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,082 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,084 - Module module.Mixed_5b.branch5x5_2
+2021-11-21 10:34:19,084 - 	Skipping
+2021-11-21 10:34:19,085 - Module module.Mixed_5b.branch5x5_2.conv
+2021-11-21 10:34:19,085 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,085 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,087 - Module module.Mixed_5b.branch3x3dbl_1
+2021-11-21 10:34:19,087 - 	Skipping
+2021-11-21 10:34:19,088 - Module module.Mixed_5b.branch3x3dbl_1.conv
+2021-11-21 10:34:19,088 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,089 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,090 - Module module.Mixed_5b.branch3x3dbl_2
+2021-11-21 10:34:19,091 - 	Skipping
+2021-11-21 10:34:19,092 - Module module.Mixed_5b.branch3x3dbl_2.conv
+2021-11-21 10:34:19,092 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,092 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,094 - Module module.Mixed_5b.branch3x3dbl_3
+2021-11-21 10:34:19,094 - 	Skipping
+2021-11-21 10:34:19,095 - Module module.Mixed_5b.branch3x3dbl_3.conv
+2021-11-21 10:34:19,095 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,095 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,097 - Module module.Mixed_5b.branch_pool
+2021-11-21 10:34:19,097 - 	Skipping
+2021-11-21 10:34:19,098 - Module module.Mixed_5b.branch_pool.conv
+2021-11-21 10:34:19,098 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,098 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,100 - Module module.Mixed_5c
+2021-11-21 10:34:19,100 - 	Skipping
+2021-11-21 10:34:19,100 - Module module.Mixed_5c.branch1x1
+2021-11-21 10:34:19,100 - 	Skipping
+2021-11-21 10:34:19,101 - Module module.Mixed_5c.branch1x1.conv
+2021-11-21 10:34:19,102 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,102 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,104 - Module module.Mixed_5c.branch5x5_1
+2021-11-21 10:34:19,104 - 	Skipping
+2021-11-21 10:34:19,105 - Module module.Mixed_5c.branch5x5_1.conv
+2021-11-21 10:34:19,105 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,105 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,107 - Module module.Mixed_5c.branch5x5_2
+2021-11-21 10:34:19,107 - 	Skipping
+2021-11-21 10:34:19,108 - Module module.Mixed_5c.branch5x5_2.conv
+2021-11-21 10:34:19,108 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,108 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,110 - Module module.Mixed_5c.branch3x3dbl_1
+2021-11-21 10:34:19,110 - 	Skipping
+2021-11-21 10:34:19,111 - Module module.Mixed_5c.branch3x3dbl_1.conv
+2021-11-21 10:34:19,111 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,111 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,113 - Module module.Mixed_5c.branch3x3dbl_2
+2021-11-21 10:34:19,113 - 	Skipping
+2021-11-21 10:34:19,114 - Module module.Mixed_5c.branch3x3dbl_2.conv
+2021-11-21 10:34:19,114 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,114 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,116 - Module module.Mixed_5c.branch3x3dbl_3
+2021-11-21 10:34:19,116 - 	Skipping
+2021-11-21 10:34:19,118 - Module module.Mixed_5c.branch3x3dbl_3.conv
+2021-11-21 10:34:19,118 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,118 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,120 - Module module.Mixed_5c.branch_pool
+2021-11-21 10:34:19,120 - 	Skipping
+2021-11-21 10:34:19,121 - Module module.Mixed_5c.branch_pool.conv
+2021-11-21 10:34:19,121 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,121 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,123 - Module module.Mixed_5d
+2021-11-21 10:34:19,123 - 	Skipping
+2021-11-21 10:34:19,123 - Module module.Mixed_5d.branch1x1
+2021-11-21 10:34:19,123 - 	Skipping
+2021-11-21 10:34:19,124 - Module module.Mixed_5d.branch1x1.conv
+2021-11-21 10:34:19,124 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,124 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,126 - Module module.Mixed_5d.branch5x5_1
+2021-11-21 10:34:19,126 - 	Skipping
+2021-11-21 10:34:19,128 - Module module.Mixed_5d.branch5x5_1.conv
+2021-11-21 10:34:19,128 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,128 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,130 - Module module.Mixed_5d.branch5x5_2
+2021-11-21 10:34:19,130 - 	Skipping
+2021-11-21 10:34:19,131 - Module module.Mixed_5d.branch5x5_2.conv
+2021-11-21 10:34:19,131 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,131 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,133 - Module module.Mixed_5d.branch3x3dbl_1
+2021-11-21 10:34:19,133 - 	Skipping
+2021-11-21 10:34:19,135 - Module module.Mixed_5d.branch3x3dbl_1.conv
+2021-11-21 10:34:19,135 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,135 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,137 - Module module.Mixed_5d.branch3x3dbl_2
+2021-11-21 10:34:19,137 - 	Skipping
+2021-11-21 10:34:19,138 - Module module.Mixed_5d.branch3x3dbl_2.conv
+2021-11-21 10:34:19,138 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,138 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,141 - Module module.Mixed_5d.branch3x3dbl_3
+2021-11-21 10:34:19,141 - 	Skipping
+2021-11-21 10:34:19,142 - Module module.Mixed_5d.branch3x3dbl_3.conv
+2021-11-21 10:34:19,142 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,142 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,144 - Module module.Mixed_5d.branch_pool
+2021-11-21 10:34:19,144 - 	Skipping
+2021-11-21 10:34:19,145 - Module module.Mixed_5d.branch_pool.conv
+2021-11-21 10:34:19,145 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,146 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,148 - Module module.Mixed_6a
+2021-11-21 10:34:19,148 - 	Skipping
+2021-11-21 10:34:19,148 - Module module.Mixed_6a.branch3x3
+2021-11-21 10:34:19,148 - 	Skipping
+2021-11-21 10:34:19,149 - Module module.Mixed_6a.branch3x3.conv
+2021-11-21 10:34:19,149 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,149 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,151 - Module module.Mixed_6a.branch3x3dbl_1
+2021-11-21 10:34:19,152 - 	Skipping
+2021-11-21 10:34:19,153 - Module module.Mixed_6a.branch3x3dbl_1.conv
+2021-11-21 10:34:19,153 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,153 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,155 - Module module.Mixed_6a.branch3x3dbl_2
+2021-11-21 10:34:19,155 - 	Skipping
+2021-11-21 10:34:19,156 - Module module.Mixed_6a.branch3x3dbl_2.conv
+2021-11-21 10:34:19,156 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,156 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,159 - Module module.Mixed_6a.branch3x3dbl_3
+2021-11-21 10:34:19,159 - 	Skipping
+2021-11-21 10:34:19,160 - Module module.Mixed_6a.branch3x3dbl_3.conv
+2021-11-21 10:34:19,160 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,160 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,162 - Module module.Mixed_6b
+2021-11-21 10:34:19,162 - 	Skipping
+2021-11-21 10:34:19,162 - Module module.Mixed_6b.branch1x1
+2021-11-21 10:34:19,163 - 	Skipping
+2021-11-21 10:34:19,164 - Module module.Mixed_6b.branch1x1.conv
+2021-11-21 10:34:19,164 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,164 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,166 - Module module.Mixed_6b.branch7x7_1
+2021-11-21 10:34:19,166 - 	Skipping
+2021-11-21 10:34:19,167 - Module module.Mixed_6b.branch7x7_1.conv
+2021-11-21 10:34:19,167 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,167 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,170 - Module module.Mixed_6b.branch7x7_2
+2021-11-21 10:34:19,170 - 	Skipping
+2021-11-21 10:34:19,171 - Module module.Mixed_6b.branch7x7_2.conv
+2021-11-21 10:34:19,171 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,171 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,173 - Module module.Mixed_6b.branch7x7_3
+2021-11-21 10:34:19,173 - 	Skipping
+2021-11-21 10:34:19,174 - Module module.Mixed_6b.branch7x7_3.conv
+2021-11-21 10:34:19,174 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,174 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,176 - Module module.Mixed_6b.branch7x7dbl_1
+2021-11-21 10:34:19,177 - 	Skipping
+2021-11-21 10:34:19,178 - Module module.Mixed_6b.branch7x7dbl_1.conv
+2021-11-21 10:34:19,178 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,178 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,180 - Module module.Mixed_6b.branch7x7dbl_2
+2021-11-21 10:34:19,180 - 	Skipping
+2021-11-21 10:34:19,181 - Module module.Mixed_6b.branch7x7dbl_2.conv
+2021-11-21 10:34:19,181 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,181 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,183 - Module module.Mixed_6b.branch7x7dbl_3
+2021-11-21 10:34:19,183 - 	Skipping
+2021-11-21 10:34:19,185 - Module module.Mixed_6b.branch7x7dbl_3.conv
+2021-11-21 10:34:19,185 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,185 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,187 - Module module.Mixed_6b.branch7x7dbl_4
+2021-11-21 10:34:19,187 - 	Skipping
+2021-11-21 10:34:19,188 - Module module.Mixed_6b.branch7x7dbl_4.conv
+2021-11-21 10:34:19,188 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,188 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,191 - Module module.Mixed_6b.branch7x7dbl_5
+2021-11-21 10:34:19,191 - 	Skipping
+2021-11-21 10:34:19,192 - Module module.Mixed_6b.branch7x7dbl_5.conv
+2021-11-21 10:34:19,192 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,192 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,194 - Module module.Mixed_6b.branch_pool
+2021-11-21 10:34:19,194 - 	Skipping
+2021-11-21 10:34:19,196 - Module module.Mixed_6b.branch_pool.conv
+2021-11-21 10:34:19,196 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,196 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,198 - Module module.Mixed_6c
+2021-11-21 10:34:19,198 - 	Skipping
+2021-11-21 10:34:19,198 - Module module.Mixed_6c.branch1x1
+2021-11-21 10:34:19,198 - 	Skipping
+2021-11-21 10:34:19,200 - Module module.Mixed_6c.branch1x1.conv
+2021-11-21 10:34:19,200 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,200 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,202 - Module module.Mixed_6c.branch7x7_1
+2021-11-21 10:34:19,202 - 	Skipping
+2021-11-21 10:34:19,206 - Module module.Mixed_6c.branch7x7_1.conv
+2021-11-21 10:34:19,206 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,206 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,208 - Module module.Mixed_6c.branch7x7_2
+2021-11-21 10:34:19,208 - 	Skipping
+2021-11-21 10:34:19,210 - Module module.Mixed_6c.branch7x7_2.conv
+2021-11-21 10:34:19,210 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,210 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,212 - Module module.Mixed_6c.branch7x7_3
+2021-11-21 10:34:19,213 - 	Skipping
+2021-11-21 10:34:19,218 - Module module.Mixed_6c.branch7x7_3.conv
+2021-11-21 10:34:19,218 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,218 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,221 - Module module.Mixed_6c.branch7x7dbl_1
+2021-11-21 10:34:19,221 - 	Skipping
+2021-11-21 10:34:19,222 - Module module.Mixed_6c.branch7x7dbl_1.conv
+2021-11-21 10:34:19,222 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,222 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,225 - Module module.Mixed_6c.branch7x7dbl_2
+2021-11-21 10:34:19,225 - 	Skipping
+2021-11-21 10:34:19,227 - Module module.Mixed_6c.branch7x7dbl_2.conv
+2021-11-21 10:34:19,227 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,227 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,230 - Module module.Mixed_6c.branch7x7dbl_3
+2021-11-21 10:34:19,230 - 	Skipping
+2021-11-21 10:34:19,233 - Module module.Mixed_6c.branch7x7dbl_3.conv
+2021-11-21 10:34:19,233 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,233 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,235 - Module module.Mixed_6c.branch7x7dbl_4
+2021-11-21 10:34:19,235 - 	Skipping
+2021-11-21 10:34:19,238 - Module module.Mixed_6c.branch7x7dbl_4.conv
+2021-11-21 10:34:19,238 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,238 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,241 - Module module.Mixed_6c.branch7x7dbl_5
+2021-11-21 10:34:19,241 - 	Skipping
+2021-11-21 10:34:19,242 - Module module.Mixed_6c.branch7x7dbl_5.conv
+2021-11-21 10:34:19,242 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,242 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,245 - Module module.Mixed_6c.branch_pool
+2021-11-21 10:34:19,245 - 	Skipping
+2021-11-21 10:34:19,250 - Module module.Mixed_6c.branch_pool.conv
+2021-11-21 10:34:19,250 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,250 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,253 - Module module.Mixed_6d
+2021-11-21 10:34:19,253 - 	Skipping
+2021-11-21 10:34:19,253 - Module module.Mixed_6d.branch1x1
+2021-11-21 10:34:19,253 - 	Skipping
+2021-11-21 10:34:19,259 - Module module.Mixed_6d.branch1x1.conv
+2021-11-21 10:34:19,259 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,259 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,262 - Module module.Mixed_6d.branch7x7_1
+2021-11-21 10:34:19,262 - 	Skipping
+2021-11-21 10:34:19,266 - Module module.Mixed_6d.branch7x7_1.conv
+2021-11-21 10:34:19,266 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,266 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,269 - Module module.Mixed_6d.branch7x7_2
+2021-11-21 10:34:19,269 - 	Skipping
+2021-11-21 10:34:19,272 - Module module.Mixed_6d.branch7x7_2.conv
+2021-11-21 10:34:19,272 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,272 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,275 - Module module.Mixed_6d.branch7x7_3
+2021-11-21 10:34:19,275 - 	Skipping
+2021-11-21 10:34:19,277 - Module module.Mixed_6d.branch7x7_3.conv
+2021-11-21 10:34:19,277 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,277 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,280 - Module module.Mixed_6d.branch7x7dbl_1
+2021-11-21 10:34:19,280 - 	Skipping
+2021-11-21 10:34:19,284 - Module module.Mixed_6d.branch7x7dbl_1.conv
+2021-11-21 10:34:19,284 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,284 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,287 - Module module.Mixed_6d.branch7x7dbl_2
+2021-11-21 10:34:19,287 - 	Skipping
+2021-11-21 10:34:19,294 - Module module.Mixed_6d.branch7x7dbl_2.conv
+2021-11-21 10:34:19,294 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,294 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,296 - Module module.Mixed_6d.branch7x7dbl_3
+2021-11-21 10:34:19,296 - 	Skipping
+2021-11-21 10:34:19,300 - Module module.Mixed_6d.branch7x7dbl_3.conv
+2021-11-21 10:34:19,300 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,300 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,303 - Module module.Mixed_6d.branch7x7dbl_4
+2021-11-21 10:34:19,303 - 	Skipping
+2021-11-21 10:34:19,307 - Module module.Mixed_6d.branch7x7dbl_4.conv
+2021-11-21 10:34:19,307 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,307 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,309 - Module module.Mixed_6d.branch7x7dbl_5
+2021-11-21 10:34:19,310 - 	Skipping
+2021-11-21 10:34:19,312 - Module module.Mixed_6d.branch7x7dbl_5.conv
+2021-11-21 10:34:19,312 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,312 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,315 - Module module.Mixed_6d.branch_pool
+2021-11-21 10:34:19,315 - 	Skipping
+2021-11-21 10:34:19,316 - Module module.Mixed_6d.branch_pool.conv
+2021-11-21 10:34:19,316 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,316 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,319 - Module module.Mixed_6e
+2021-11-21 10:34:19,319 - 	Skipping
+2021-11-21 10:34:19,319 - Module module.Mixed_6e.branch1x1
+2021-11-21 10:34:19,319 - 	Skipping
+2021-11-21 10:34:19,324 - Module module.Mixed_6e.branch1x1.conv
+2021-11-21 10:34:19,324 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,324 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,327 - Module module.Mixed_6e.branch7x7_1
+2021-11-21 10:34:19,327 - 	Skipping
+2021-11-21 10:34:19,333 - Module module.Mixed_6e.branch7x7_1.conv
+2021-11-21 10:34:19,333 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,333 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,335 - Module module.Mixed_6e.branch7x7_2
+2021-11-21 10:34:19,335 - 	Skipping
+2021-11-21 10:34:19,339 - Module module.Mixed_6e.branch7x7_2.conv
+2021-11-21 10:34:19,339 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,339 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,342 - Module module.Mixed_6e.branch7x7_3
+2021-11-21 10:34:19,342 - 	Skipping
+2021-11-21 10:34:19,345 - Module module.Mixed_6e.branch7x7_3.conv
+2021-11-21 10:34:19,346 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,346 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,348 - Module module.Mixed_6e.branch7x7dbl_1
+2021-11-21 10:34:19,348 - 	Skipping
+2021-11-21 10:34:19,350 - Module module.Mixed_6e.branch7x7dbl_1.conv
+2021-11-21 10:34:19,350 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,350 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,353 - Module module.Mixed_6e.branch7x7dbl_2
+2021-11-21 10:34:19,353 - 	Skipping
+2021-11-21 10:34:19,358 - Module module.Mixed_6e.branch7x7dbl_2.conv
+2021-11-21 10:34:19,358 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,358 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,361 - Module module.Mixed_6e.branch7x7dbl_3
+2021-11-21 10:34:19,361 - 	Skipping
+2021-11-21 10:34:19,367 - Module module.Mixed_6e.branch7x7dbl_3.conv
+2021-11-21 10:34:19,367 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,367 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,370 - Module module.Mixed_6e.branch7x7dbl_4
+2021-11-21 10:34:19,370 - 	Skipping
+2021-11-21 10:34:19,374 - Module module.Mixed_6e.branch7x7dbl_4.conv
+2021-11-21 10:34:19,374 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,374 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,376 - Module module.Mixed_6e.branch7x7dbl_5
+2021-11-21 10:34:19,376 - 	Skipping
+2021-11-21 10:34:19,381 - Module module.Mixed_6e.branch7x7dbl_5.conv
+2021-11-21 10:34:19,381 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,381 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,383 - Module module.Mixed_6e.branch_pool
+2021-11-21 10:34:19,383 - 	Skipping
+2021-11-21 10:34:19,386 - Module module.Mixed_6e.branch_pool.conv
+2021-11-21 10:34:19,386 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,386 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,389 - Module module.AuxLogits
+2021-11-21 10:34:19,389 - 	Skipping
+2021-11-21 10:34:19,389 - Module module.AuxLogits.conv0
+2021-11-21 10:34:19,389 - 	Skipping
+2021-11-21 10:34:19,390 - Module module.AuxLogits.conv0.conv
+2021-11-21 10:34:19,390 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,390 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,393 - Module module.AuxLogits.conv0.bn
+2021-11-21 10:34:19,393 - 	Replacing: torch.nn.modules.batchnorm.BatchNorm2d
+2021-11-21 10:34:19,393 - 	With:      distiller.quantization.range_linear.RangeLinearFakeQuantWrapper
+2021-11-21 10:34:19,396 - Module module.AuxLogits.conv1
+2021-11-21 10:34:19,396 - 	Skipping
+2021-11-21 10:34:19,403 - Module module.AuxLogits.conv1.conv
+2021-11-21 10:34:19,403 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,403 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,406 - Module module.AuxLogits.conv1.bn
+2021-11-21 10:34:19,406 - 	Replacing: torch.nn.modules.batchnorm.BatchNorm2d
+2021-11-21 10:34:19,406 - 	With:      distiller.quantization.range_linear.RangeLinearFakeQuantWrapper
+2021-11-21 10:34:19,415 - Module module.AuxLogits.fc
+2021-11-21 10:34:19,416 - 	Replacing: torch.nn.modules.linear.Linear
+2021-11-21 10:34:19,416 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,418 - Module module.Mixed_7a
+2021-11-21 10:34:19,418 - 	Skipping
+2021-11-21 10:34:19,418 - Module module.Mixed_7a.branch3x3_1
+2021-11-21 10:34:19,419 - 	Skipping
+2021-11-21 10:34:19,421 - Module module.Mixed_7a.branch3x3_1.conv
+2021-11-21 10:34:19,421 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,421 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,424 - Module module.Mixed_7a.branch3x3_2
+2021-11-21 10:34:19,424 - 	Skipping
+2021-11-21 10:34:19,425 - Module module.Mixed_7a.branch3x3_2.conv
+2021-11-21 10:34:19,426 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,426 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,429 - Module module.Mixed_7a.branch7x7x3_1
+2021-11-21 10:34:19,429 - 	Skipping
+2021-11-21 10:34:19,434 - Module module.Mixed_7a.branch7x7x3_1.conv
+2021-11-21 10:34:19,434 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,434 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,437 - Module module.Mixed_7a.branch7x7x3_2
+2021-11-21 10:34:19,437 - 	Skipping
+2021-11-21 10:34:19,443 - Module module.Mixed_7a.branch7x7x3_2.conv
+2021-11-21 10:34:19,443 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,443 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,446 - Module module.Mixed_7a.branch7x7x3_3
+2021-11-21 10:34:19,446 - 	Skipping
+2021-11-21 10:34:19,449 - Module module.Mixed_7a.branch7x7x3_3.conv
+2021-11-21 10:34:19,449 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,449 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,452 - Module module.Mixed_7a.branch7x7x3_4
+2021-11-21 10:34:19,452 - 	Skipping
+2021-11-21 10:34:19,455 - Module module.Mixed_7a.branch7x7x3_4.conv
+2021-11-21 10:34:19,456 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,456 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,459 - Module module.Mixed_7b
+2021-11-21 10:34:19,459 - 	Skipping
+2021-11-21 10:34:19,459 - Module module.Mixed_7b.branch1x1
+2021-11-21 10:34:19,459 - 	Skipping
+2021-11-21 10:34:19,460 - Module module.Mixed_7b.branch1x1.conv
+2021-11-21 10:34:19,461 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,461 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,464 - Module module.Mixed_7b.branch3x3_1
+2021-11-21 10:34:19,464 - 	Skipping
+2021-11-21 10:34:19,468 - Module module.Mixed_7b.branch3x3_1.conv
+2021-11-21 10:34:19,468 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,468 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,471 - Module module.Mixed_7b.branch3x3_2a
+2021-11-21 10:34:19,471 - 	Skipping
+2021-11-21 10:34:19,477 - Module module.Mixed_7b.branch3x3_2a.conv
+2021-11-21 10:34:19,477 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,477 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,480 - Module module.Mixed_7b.branch3x3_2b
+2021-11-21 10:34:19,480 - 	Skipping
+2021-11-21 10:34:19,484 - Module module.Mixed_7b.branch3x3_2b.conv
+2021-11-21 10:34:19,484 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,484 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,487 - Module module.Mixed_7b.branch3x3dbl_1
+2021-11-21 10:34:19,487 - 	Skipping
+2021-11-21 10:34:19,491 - Module module.Mixed_7b.branch3x3dbl_1.conv
+2021-11-21 10:34:19,491 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,491 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,494 - Module module.Mixed_7b.branch3x3dbl_2
+2021-11-21 10:34:19,494 - 	Skipping
+2021-11-21 10:34:19,497 - Module module.Mixed_7b.branch3x3dbl_2.conv
+2021-11-21 10:34:19,497 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,497 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,500 - Module module.Mixed_7b.branch3x3dbl_3a
+2021-11-21 10:34:19,500 - 	Skipping
+2021-11-21 10:34:19,505 - Module module.Mixed_7b.branch3x3dbl_3a.conv
+2021-11-21 10:34:19,505 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,505 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,508 - Module module.Mixed_7b.branch3x3dbl_3b
+2021-11-21 10:34:19,508 - 	Skipping
+2021-11-21 10:34:19,514 - Module module.Mixed_7b.branch3x3dbl_3b.conv
+2021-11-21 10:34:19,514 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,514 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,517 - Module module.Mixed_7b.branch_pool
+2021-11-21 10:34:19,517 - 	Skipping
+2021-11-21 10:34:19,521 - Module module.Mixed_7b.branch_pool.conv
+2021-11-21 10:34:19,521 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,521 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,524 - Module module.Mixed_7c
+2021-11-21 10:34:19,524 - 	Skipping
+2021-11-21 10:34:19,524 - Module module.Mixed_7c.branch1x1
+2021-11-21 10:34:19,524 - 	Skipping
+2021-11-21 10:34:19,527 - Module module.Mixed_7c.branch1x1.conv
+2021-11-21 10:34:19,527 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,527 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,531 - Module module.Mixed_7c.branch3x3_1
+2021-11-21 10:34:19,531 - 	Skipping
+2021-11-21 10:34:19,534 - Module module.Mixed_7c.branch3x3_1.conv
+2021-11-21 10:34:19,534 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,534 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,537 - Module module.Mixed_7c.branch3x3_2a
+2021-11-21 10:34:19,537 - 	Skipping
+2021-11-21 10:34:19,541 - Module module.Mixed_7c.branch3x3_2a.conv
+2021-11-21 10:34:19,541 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,542 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,545 - Module module.Mixed_7c.branch3x3_2b
+2021-11-21 10:34:19,545 - 	Skipping
+2021-11-21 10:34:19,551 - Module module.Mixed_7c.branch3x3_2b.conv
+2021-11-21 10:34:19,551 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,551 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,554 - Module module.Mixed_7c.branch3x3dbl_1
+2021-11-21 10:34:19,555 - 	Skipping
+2021-11-21 10:34:19,557 - Module module.Mixed_7c.branch3x3dbl_1.conv
+2021-11-21 10:34:19,558 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,558 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,561 - Module module.Mixed_7c.branch3x3dbl_2
+2021-11-21 10:34:19,561 - 	Skipping
+2021-11-21 10:34:19,564 - Module module.Mixed_7c.branch3x3dbl_2.conv
+2021-11-21 10:34:19,564 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,564 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,568 - Module module.Mixed_7c.branch3x3dbl_3a
+2021-11-21 10:34:19,568 - 	Skipping
+2021-11-21 10:34:19,571 - Module module.Mixed_7c.branch3x3dbl_3a.conv
+2021-11-21 10:34:19,571 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,571 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,574 - Module module.Mixed_7c.branch3x3dbl_3b
+2021-11-21 10:34:19,574 - 	Skipping
+2021-11-21 10:34:19,578 - Module module.Mixed_7c.branch3x3dbl_3b.conv
+2021-11-21 10:34:19,578 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,578 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,582 - Module module.Mixed_7c.branch_pool
+2021-11-21 10:34:19,582 - 	Skipping
+2021-11-21 10:34:19,588 - Module module.Mixed_7c.branch_pool.conv
+2021-11-21 10:34:19,588 - 	Replacing: torch.nn.modules.conv.Conv2d
+2021-11-21 10:34:19,588 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,595 - Module module.fc
+2021-11-21 10:34:19,595 - 	Replacing: torch.nn.modules.linear.Linear
+2021-11-21 10:34:19,595 - 	With:      distiller.quantization.range_linear.RangeLinearQuantParamLayerWrapper
+2021-11-21 10:34:19,600 - Parameter 'module.Conv2d_1a_3x3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,600 - Parameter 'module.Conv2d_1a_3x3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,600 - Parameter 'module.Conv2d_2a_3x3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,600 - Parameter 'module.Conv2d_2a_3x3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,600 - Parameter 'module.Conv2d_2b_3x3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,600 - Parameter 'module.Conv2d_2b_3x3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,600 - Parameter 'module.Conv2d_3b_1x1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,600 - Parameter 'module.Conv2d_3b_1x1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Conv2d_4a_3x3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Conv2d_4a_3x3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5b.branch1x1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5b.branch1x1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5b.branch5x5_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5b.branch5x5_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5b.branch5x5_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5b.branch5x5_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5b.branch3x3dbl_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5b.branch3x3dbl_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5b.branch3x3dbl_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5b.branch3x3dbl_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5b.branch3x3dbl_3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5b.branch3x3dbl_3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5b.branch_pool.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5b.branch_pool.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5c.branch1x1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,601 - Parameter 'module.Mixed_5c.branch1x1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5c.branch5x5_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5c.branch5x5_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5c.branch5x5_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5c.branch5x5_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5c.branch3x3dbl_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5c.branch3x3dbl_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5c.branch3x3dbl_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5c.branch3x3dbl_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5c.branch3x3dbl_3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5c.branch3x3dbl_3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5c.branch_pool.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5c.branch_pool.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5d.branch1x1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5d.branch1x1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5d.branch5x5_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5d.branch5x5_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5d.branch5x5_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5d.branch5x5_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,602 - Parameter 'module.Mixed_5d.branch3x3dbl_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_5d.branch3x3dbl_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_5d.branch3x3dbl_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_5d.branch3x3dbl_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_5d.branch3x3dbl_3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_5d.branch3x3dbl_3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_5d.branch_pool.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_5d.branch_pool.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_6a.branch3x3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_6a.branch3x3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_6a.branch3x3dbl_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_6a.branch3x3dbl_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_6a.branch3x3dbl_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_6a.branch3x3dbl_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_6a.branch3x3dbl_3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_6a.branch3x3dbl_3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_6b.branch1x1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_6b.branch1x1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,603 - Parameter 'module.Mixed_6b.branch7x7_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch7x7_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch7x7_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch7x7_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch7x7_3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch7x7_3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch7x7dbl_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch7x7dbl_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch7x7dbl_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch7x7dbl_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch7x7dbl_3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch7x7dbl_3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch7x7dbl_4.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch7x7dbl_4.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch7x7dbl_5.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch7x7dbl_5.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch_pool.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6b.branch_pool.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,604 - Parameter 'module.Mixed_6c.branch1x1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch1x1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7_3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7_3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7dbl_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7dbl_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7dbl_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7dbl_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7dbl_3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7dbl_3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7dbl_4.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7dbl_4.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7dbl_5.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch7x7dbl_5.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch_pool.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6c.branch_pool.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,605 - Parameter 'module.Mixed_6d.branch1x1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch1x1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7_3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7_3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7dbl_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7dbl_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7dbl_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7dbl_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7dbl_3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7dbl_3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7dbl_4.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7dbl_4.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7dbl_5.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch7x7dbl_5.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch_pool.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,606 - Parameter 'module.Mixed_6d.branch_pool.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch1x1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch1x1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7_3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7_3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7dbl_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7dbl_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7dbl_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7dbl_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7dbl_3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7dbl_3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7dbl_4.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7dbl_4.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7dbl_5.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch7x7dbl_5.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch_pool.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,607 - Parameter 'module.Mixed_6e.branch_pool.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,608 - Parameter 'module.AuxLogits.conv0.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,608 - Parameter 'module.AuxLogits.conv1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,608 - Parameter 'module.AuxLogits.fc.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,608 - Parameter 'module.AuxLogits.fc.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,608 - Parameter 'module.Mixed_7a.branch3x3_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,608 - Parameter 'module.Mixed_7a.branch3x3_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,608 - Parameter 'module.Mixed_7a.branch3x3_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,608 - Parameter 'module.Mixed_7a.branch3x3_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,608 - Parameter 'module.Mixed_7a.branch7x7x3_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,608 - Parameter 'module.Mixed_7a.branch7x7x3_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,608 - Parameter 'module.Mixed_7a.branch7x7x3_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,608 - Parameter 'module.Mixed_7a.branch7x7x3_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,608 - Parameter 'module.Mixed_7a.branch7x7x3_3.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,608 - Parameter 'module.Mixed_7a.branch7x7x3_3.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,608 - Parameter 'module.Mixed_7a.branch7x7x3_4.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,608 - Parameter 'module.Mixed_7a.branch7x7x3_4.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch1x1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch1x1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch3x3_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch3x3_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch3x3_2a.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch3x3_2a.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch3x3_2b.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch3x3_2b.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch3x3dbl_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch3x3dbl_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch3x3dbl_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch3x3dbl_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch3x3dbl_3a.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch3x3dbl_3a.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch3x3dbl_3b.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch3x3dbl_3b.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch_pool.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,609 - Parameter 'module.Mixed_7b.branch_pool.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch1x1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch1x1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch3x3_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch3x3_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch3x3_2a.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch3x3_2a.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch3x3_2b.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch3x3_2b.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch3x3dbl_1.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch3x3dbl_1.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch3x3dbl_2.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch3x3dbl_2.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch3x3dbl_3a.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch3x3dbl_3a.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch3x3dbl_3b.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch3x3dbl_3b.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch_pool.conv.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,610 - Parameter 'module.Mixed_7c.branch_pool.conv.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,610 - Parameter 'module.fc.wrapped_module.weight' will be quantized to 8 bits
+2021-11-21 10:34:19,610 - Parameter 'module.fc.wrapped_module.bias' will be quantized to 32 bits
+2021-11-21 10:34:19,730 - Quantized model:
+
+DataParallel(
+  (module): Inception3(
+    (Conv2d_1a_3x3): BasicConv2d(
+      (conv): RangeLinearQuantParamLayerWrapper(
+        weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+        scale_approx_mult_bits=None
+        preset_activation_stats=True
+          output_scale=25.116467, output_zero_point=0.000000
+        weights_scale=57.839279, weights_zero_point=-118.000000
+        (wrapped_module): Conv2d(3, 32, kernel_size=(3, 3), stride=(2, 2))
+      )
+      (bn): Identity()
+    )
+    (Conv2d_2a_3x3): BasicConv2d(
+      (conv): RangeLinearQuantParamLayerWrapper(
+        weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+        scale_approx_mult_bits=None
+        preset_activation_stats=True
+          output_scale=23.814812, output_zero_point=0.000000
+        weights_scale=91.453255, weights_zero_point=-76.000000
+        (wrapped_module): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+      )
+      (bn): Identity()
+    )
+    (Conv2d_2b_3x3): BasicConv2d(
+      (conv): RangeLinearQuantParamLayerWrapper(
+        weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+        scale_approx_mult_bits=None
+        preset_activation_stats=True
+          output_scale=22.681568, output_zero_point=0.000000
+        weights_scale=121.423393, weights_zero_point=-100.000000
+        (wrapped_module): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      )
+      (bn): Identity()
+    )
+    (Conv2d_3b_1x1): BasicConv2d(
+      (conv): RangeLinearQuantParamLayerWrapper(
+        weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+        scale_approx_mult_bits=None
+        preset_activation_stats=True
+          output_scale=26.841505, output_zero_point=0.000000
+        weights_scale=113.792465, weights_zero_point=-106.000000
+        (wrapped_module): Conv2d(64, 80, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (bn): Identity()
+    )
+    (Conv2d_4a_3x3): BasicConv2d(
+      (conv): RangeLinearQuantParamLayerWrapper(
+        weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+        scale_approx_mult_bits=None
+        preset_activation_stats=True
+          output_scale=26.944969, output_zero_point=0.000000
+        weights_scale=173.668213, weights_zero_point=-127.000000
+        (wrapped_module): Conv2d(80, 192, kernel_size=(3, 3), stride=(1, 1))
+      )
+      (bn): Identity()
+    )
+    (Mixed_5b): InceptionA(
+      (branch1x1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=28.497339, output_zero_point=0.000000
+          weights_scale=233.696152, weights_zero_point=-130.000000
+          (wrapped_module): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch5x5_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=35.181660, output_zero_point=0.000000
+          weights_scale=250.440506, weights_zero_point=-129.000000
+          (wrapped_module): Conv2d(192, 48, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch5x5_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=29.600254, output_zero_point=0.000000
+          weights_scale=210.722931, weights_zero_point=-114.000000
+          (wrapped_module): Conv2d(48, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=31.301685, output_zero_point=0.000000
+          weights_scale=183.401199, weights_zero_point=-89.000000
+          (wrapped_module): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=31.820778, output_zero_point=0.000000
+          weights_scale=173.440628, weights_zero_point=-121.000000
+          (wrapped_module): Conv2d(64, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_3): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=27.333513, output_zero_point=0.000000
+          weights_scale=235.430481, weights_zero_point=-79.000000
+          (wrapped_module): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch_pool): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=69.726189, output_zero_point=0.000000
+          weights_scale=115.613274, weights_zero_point=-164.000000
+          (wrapped_module): Conv2d(192, 32, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+    )
+    (Mixed_5c): InceptionA(
+      (branch1x1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=28.708134, output_zero_point=0.000000
+          weights_scale=185.854675, weights_zero_point=-116.000000
+          (wrapped_module): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch5x5_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=36.812336, output_zero_point=0.000000
+          weights_scale=221.937332, weights_zero_point=-132.000000
+          (wrapped_module): Conv2d(256, 48, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch5x5_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=37.252514, output_zero_point=0.000000
+          weights_scale=268.838531, weights_zero_point=-119.000000
+          (wrapped_module): Conv2d(48, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=37.901993, output_zero_point=0.000000
+          weights_scale=200.180267, weights_zero_point=-118.000000
+          (wrapped_module): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=35.122124, output_zero_point=0.000000
+          weights_scale=219.704071, weights_zero_point=-98.000000
+          (wrapped_module): Conv2d(64, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_3): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=20.619204, output_zero_point=0.000000
+          weights_scale=159.367966, weights_zero_point=-66.000000
+          (wrapped_module): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch_pool): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=60.787731, output_zero_point=0.000000
+          weights_scale=112.256493, weights_zero_point=-121.000000
+          (wrapped_module): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+    )
+    (Mixed_5d): InceptionA(
+      (branch1x1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=30.940670, output_zero_point=0.000000
+          weights_scale=160.903946, weights_zero_point=-173.000000
+          (wrapped_module): Conv2d(288, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch5x5_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=32.751881, output_zero_point=0.000000
+          weights_scale=221.842331, weights_zero_point=-113.000000
+          (wrapped_module): Conv2d(288, 48, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch5x5_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=35.844185, output_zero_point=0.000000
+          weights_scale=384.225189, weights_zero_point=-114.000000
+          (wrapped_module): Conv2d(48, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=29.225071, output_zero_point=0.000000
+          weights_scale=152.031830, weights_zero_point=-135.000000
+          (wrapped_module): Conv2d(288, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=31.250402, output_zero_point=0.000000
+          weights_scale=214.610001, weights_zero_point=-126.000000
+          (wrapped_module): Conv2d(64, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_3): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=38.677155, output_zero_point=0.000000
+          weights_scale=283.270233, weights_zero_point=-85.000000
+          (wrapped_module): Conv2d(96, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch_pool): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=60.311428, output_zero_point=0.000000
+          weights_scale=112.111809, weights_zero_point=-93.000000
+          (wrapped_module): Conv2d(288, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+    )
+    (Mixed_6a): InceptionB(
+      (branch3x3): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=38.405270, output_zero_point=0.000000
+          weights_scale=345.323090, weights_zero_point=-79.000000
+          (wrapped_module): Conv2d(288, 384, kernel_size=(3, 3), stride=(2, 2))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=33.441277, output_zero_point=0.000000
+          weights_scale=194.035721, weights_zero_point=-126.000000
+          (wrapped_module): Conv2d(288, 64, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=35.876575, output_zero_point=0.000000
+          weights_scale=252.662827, weights_zero_point=-105.000000
+          (wrapped_module): Conv2d(64, 96, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_3): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=31.106899, output_zero_point=0.000000
+          weights_scale=300.238403, weights_zero_point=-86.000000
+          (wrapped_module): Conv2d(96, 96, kernel_size=(3, 3), stride=(2, 2))
+        )
+        (bn): Identity()
+      )
+    )
+    (Mixed_6b): InceptionC(
+      (branch1x1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=34.518055, output_zero_point=0.000000
+          weights_scale=212.494919, weights_zero_point=-109.000000
+          (wrapped_module): Conv2d(768, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch7x7_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=35.214058, output_zero_point=0.000000
+          weights_scale=224.252426, weights_zero_point=-80.000000
+          (wrapped_module): Conv2d(768, 128, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch7x7_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=33.101196, output_zero_point=0.000000
+          weights_scale=182.452042, weights_zero_point=-80.000000
+          (wrapped_module): Conv2d(128, 128, kernel_size=(1, 7), stride=(1, 1), padding=(0, 3))
+        )
+        (bn): Identity()
+      )
+      (branch7x7_3): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=39.293385, output_zero_point=0.000000
+          weights_scale=196.628983, weights_zero_point=-100.000000
+          (wrapped_module): Conv2d(128, 192, kernel_size=(7, 1), stride=(1, 1), padding=(3, 0))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=42.428837, output_zero_point=0.000000
+          weights_scale=241.909012, weights_zero_point=-145.000000
+          (wrapped_module): Conv2d(768, 128, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=44.480652, output_zero_point=0.000000
+          weights_scale=272.477875, weights_zero_point=-83.000000
+          (wrapped_module): Conv2d(128, 128, kernel_size=(7, 1), stride=(1, 1), padding=(3, 0))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_3): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=45.641865, output_zero_point=0.000000
+          weights_scale=224.714310, weights_zero_point=-83.000000
+          (wrapped_module): Conv2d(128, 128, kernel_size=(1, 7), stride=(1, 1), padding=(0, 3))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_4): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=40.535149, output_zero_point=0.000000
+          weights_scale=229.181229, weights_zero_point=-83.000000
+          (wrapped_module): Conv2d(128, 128, kernel_size=(7, 1), stride=(1, 1), padding=(3, 0))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_5): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=39.826805, output_zero_point=0.000000
+          weights_scale=299.566376, weights_zero_point=-100.000000
+          (wrapped_module): Conv2d(128, 192, kernel_size=(1, 7), stride=(1, 1), padding=(0, 3))
+        )
+        (bn): Identity()
+      )
+      (branch_pool): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=63.736088, output_zero_point=0.000000
+          weights_scale=101.813553, weights_zero_point=-147.000000
+          (wrapped_module): Conv2d(768, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+    )
+    (Mixed_6c): InceptionC(
+      (branch1x1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=33.772423, output_zero_point=0.000000
+          weights_scale=205.792435, weights_zero_point=-115.000000
+          (wrapped_module): Conv2d(768, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch7x7_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=36.632809, output_zero_point=0.000000
+          weights_scale=146.691681, weights_zero_point=-141.000000
+          (wrapped_module): Conv2d(768, 160, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch7x7_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=38.447899, output_zero_point=0.000000
+          weights_scale=234.311081, weights_zero_point=-110.000000
+          (wrapped_module): Conv2d(160, 160, kernel_size=(1, 7), stride=(1, 1), padding=(0, 3))
+        )
+        (bn): Identity()
+      )
+      (branch7x7_3): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=44.332878, output_zero_point=0.000000
+          weights_scale=200.441696, weights_zero_point=-113.000000
+          (wrapped_module): Conv2d(160, 192, kernel_size=(7, 1), stride=(1, 1), padding=(3, 0))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=39.053520, output_zero_point=0.000000
+          weights_scale=169.996704, weights_zero_point=-105.000000
+          (wrapped_module): Conv2d(768, 160, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=36.551636, output_zero_point=0.000000
+          weights_scale=292.734314, weights_zero_point=-103.000000
+          (wrapped_module): Conv2d(160, 160, kernel_size=(7, 1), stride=(1, 1), padding=(3, 0))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_3): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=35.712090, output_zero_point=0.000000
+          weights_scale=218.001434, weights_zero_point=-100.000000
+          (wrapped_module): Conv2d(160, 160, kernel_size=(1, 7), stride=(1, 1), padding=(0, 3))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_4): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=30.522635, output_zero_point=0.000000
+          weights_scale=249.194092, weights_zero_point=-96.000000
+          (wrapped_module): Conv2d(160, 160, kernel_size=(7, 1), stride=(1, 1), padding=(3, 0))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_5): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=30.347155, output_zero_point=0.000000
+          weights_scale=242.304962, weights_zero_point=-93.000000
+          (wrapped_module): Conv2d(160, 192, kernel_size=(1, 7), stride=(1, 1), padding=(0, 3))
+        )
+        (bn): Identity()
+      )
+      (branch_pool): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=62.187904, output_zero_point=0.000000
+          weights_scale=137.780121, weights_zero_point=-122.000000
+          (wrapped_module): Conv2d(768, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+    )
+    (Mixed_6d): InceptionC(
+      (branch1x1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=35.670513, output_zero_point=0.000000
+          weights_scale=130.717911, weights_zero_point=-154.000000
+          (wrapped_module): Conv2d(768, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch7x7_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=36.600883, output_zero_point=0.000000
+          weights_scale=230.687149, weights_zero_point=-135.000000
+          (wrapped_module): Conv2d(768, 160, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch7x7_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=32.148865, output_zero_point=0.000000
+          weights_scale=156.647110, weights_zero_point=-78.000000
+          (wrapped_module): Conv2d(160, 160, kernel_size=(1, 7), stride=(1, 1), padding=(0, 3))
+        )
+        (bn): Identity()
+      )
+      (branch7x7_3): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=37.157887, output_zero_point=0.000000
+          weights_scale=228.079788, weights_zero_point=-103.000000
+          (wrapped_module): Conv2d(160, 192, kernel_size=(7, 1), stride=(1, 1), padding=(3, 0))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=35.197197, output_zero_point=0.000000
+          weights_scale=168.429398, weights_zero_point=-112.000000
+          (wrapped_module): Conv2d(768, 160, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=34.426975, output_zero_point=0.000000
+          weights_scale=171.427673, weights_zero_point=-93.000000
+          (wrapped_module): Conv2d(160, 160, kernel_size=(7, 1), stride=(1, 1), padding=(3, 0))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_3): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=40.088593, output_zero_point=0.000000
+          weights_scale=235.805008, weights_zero_point=-107.000000
+          (wrapped_module): Conv2d(160, 160, kernel_size=(1, 7), stride=(1, 1), padding=(0, 3))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_4): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=37.603867, output_zero_point=0.000000
+          weights_scale=155.897659, weights_zero_point=-149.000000
+          (wrapped_module): Conv2d(160, 160, kernel_size=(7, 1), stride=(1, 1), padding=(3, 0))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_5): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=40.205288, output_zero_point=0.000000
+          weights_scale=164.953217, weights_zero_point=-157.000000
+          (wrapped_module): Conv2d(160, 192, kernel_size=(1, 7), stride=(1, 1), padding=(0, 3))
+        )
+        (bn): Identity()
+      )
+      (branch_pool): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=65.319580, output_zero_point=0.000000
+          weights_scale=81.718330, weights_zero_point=-146.000000
+          (wrapped_module): Conv2d(768, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+    )
+    (Mixed_6e): InceptionC(
+      (branch1x1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=50.753494, output_zero_point=0.000000
+          weights_scale=134.851929, weights_zero_point=-122.000000
+          (wrapped_module): Conv2d(768, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch7x7_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=37.828094, output_zero_point=0.000000
+          weights_scale=161.791412, weights_zero_point=-95.000000
+          (wrapped_module): Conv2d(768, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch7x7_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=32.372322, output_zero_point=0.000000
+          weights_scale=169.476089, weights_zero_point=-71.000000
+          (wrapped_module): Conv2d(192, 192, kernel_size=(1, 7), stride=(1, 1), padding=(0, 3))
+        )
+        (bn): Identity()
+      )
+      (branch7x7_3): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=48.569138, output_zero_point=0.000000
+          weights_scale=391.694305, weights_zero_point=-122.000000
+          (wrapped_module): Conv2d(192, 192, kernel_size=(7, 1), stride=(1, 1), padding=(3, 0))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=37.996212, output_zero_point=0.000000
+          weights_scale=214.595215, weights_zero_point=-131.000000
+          (wrapped_module): Conv2d(768, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=37.136314, output_zero_point=0.000000
+          weights_scale=290.781158, weights_zero_point=-93.000000
+          (wrapped_module): Conv2d(192, 192, kernel_size=(7, 1), stride=(1, 1), padding=(3, 0))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_3): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=35.914577, output_zero_point=0.000000
+          weights_scale=235.433029, weights_zero_point=-101.000000
+          (wrapped_module): Conv2d(192, 192, kernel_size=(1, 7), stride=(1, 1), padding=(0, 3))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_4): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=35.680706, output_zero_point=0.000000
+          weights_scale=347.535034, weights_zero_point=-113.000000
+          (wrapped_module): Conv2d(192, 192, kernel_size=(7, 1), stride=(1, 1), padding=(3, 0))
+        )
+        (bn): Identity()
+      )
+      (branch7x7dbl_5): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=58.395302, output_zero_point=0.000000
+          weights_scale=437.720947, weights_zero_point=-104.000000
+          (wrapped_module): Conv2d(192, 192, kernel_size=(1, 7), stride=(1, 1), padding=(0, 3))
+        )
+        (bn): Identity()
+      )
+      (branch_pool): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=71.163963, output_zero_point=0.000000
+          weights_scale=141.906174, weights_zero_point=-125.000000
+          (wrapped_module): Conv2d(768, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+    )
+    (AuxLogits): InceptionAux(
+      (conv0): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=False
+          weights_scale=329.854614, weights_zero_point=-91.000000
+          (wrapped_module): Conv2d(768, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+        (bn): RangeLinearFakeQuantWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=False
+          wrapped_module_float_dtype=torch.float32.
+          (wrapped_module): BatchNorm2d(128, eps=0.001, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (conv1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=False
+          weights_scale=1550.066895, weights_zero_point=-127.000000
+          (wrapped_module): Conv2d(128, 768, kernel_size=(5, 5), stride=(1, 1), bias=False)
+        )
+        (bn): RangeLinearFakeQuantWrapper(
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=False
+          wrapped_module_float_dtype=torch.float32.
+          (wrapped_module): BatchNorm2d(768, eps=0.001, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (fc): RangeLinearQuantParamLayerWrapper(
+        weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+        scale_approx_mult_bits=None
+        preset_activation_stats=False
+        weights_scale=391.454559, weights_zero_point=-89.000000
+        base_bias_scale=1264299008.000000, base_bias_zero_point=0.000000
+        (wrapped_module): Linear(in_features=768, out_features=1000, bias=True)
+      )
+    )
+    (Mixed_7a): InceptionD(
+      (branch3x3_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=42.466160, output_zero_point=0.000000
+          weights_scale=156.875381, weights_zero_point=-115.000000
+          (wrapped_module): Conv2d(768, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=34.123844, output_zero_point=0.000000
+          weights_scale=281.107880, weights_zero_point=-77.000000
+          (wrapped_module): Conv2d(192, 320, kernel_size=(3, 3), stride=(2, 2))
+        )
+        (bn): Identity()
+      )
+      (branch7x7x3_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=36.423519, output_zero_point=0.000000
+          weights_scale=109.459068, weights_zero_point=-118.000000
+          (wrapped_module): Conv2d(768, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch7x7x3_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=37.102749, output_zero_point=0.000000
+          weights_scale=283.353882, weights_zero_point=-116.000000
+          (wrapped_module): Conv2d(192, 192, kernel_size=(1, 7), stride=(1, 1), padding=(0, 3))
+        )
+        (bn): Identity()
+      )
+      (branch7x7x3_3): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=52.738613, output_zero_point=0.000000
+          weights_scale=345.840942, weights_zero_point=-116.000000
+          (wrapped_module): Conv2d(192, 192, kernel_size=(7, 1), stride=(1, 1), padding=(3, 0))
+        )
+        (bn): Identity()
+      )
+      (branch7x7x3_4): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=46.752419, output_zero_point=0.000000
+          weights_scale=167.826477, weights_zero_point=-94.000000
+          (wrapped_module): Conv2d(192, 192, kernel_size=(3, 3), stride=(2, 2))
+        )
+        (bn): Identity()
+      )
+    )
+    (Mixed_7b): InceptionE(
+      (branch1x1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=62.377773, output_zero_point=0.000000
+          weights_scale=158.751724, weights_zero_point=-105.000000
+          (wrapped_module): Conv2d(1280, 320, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=51.599426, output_zero_point=0.000000
+          weights_scale=225.686890, weights_zero_point=-79.000000
+          (wrapped_module): Conv2d(1280, 384, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3_2a): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=57.921940, output_zero_point=0.000000
+          weights_scale=256.622345, weights_zero_point=-88.000000
+          (wrapped_module): Conv2d(384, 384, kernel_size=(1, 3), stride=(1, 1), padding=(0, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3_2b): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=54.381519, output_zero_point=0.000000
+          weights_scale=156.567505, weights_zero_point=-92.000000
+          (wrapped_module): Conv2d(384, 384, kernel_size=(3, 1), stride=(1, 1), padding=(1, 0))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=50.835201, output_zero_point=0.000000
+          weights_scale=220.083130, weights_zero_point=-94.000000
+          (wrapped_module): Conv2d(1280, 448, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=53.787712, output_zero_point=0.000000
+          weights_scale=475.481689, weights_zero_point=-100.000000
+          (wrapped_module): Conv2d(448, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_3a): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=43.791264, output_zero_point=0.000000
+          weights_scale=204.687500, weights_zero_point=-117.000000
+          (wrapped_module): Conv2d(384, 384, kernel_size=(1, 3), stride=(1, 1), padding=(0, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_3b): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=60.639427, output_zero_point=0.000000
+          weights_scale=331.727753, weights_zero_point=-102.000000
+          (wrapped_module): Conv2d(384, 384, kernel_size=(3, 1), stride=(1, 1), padding=(1, 0))
+        )
+        (bn): Identity()
+      )
+      (branch_pool): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=105.061790, output_zero_point=0.000000
+          weights_scale=129.995590, weights_zero_point=-105.000000
+          (wrapped_module): Conv2d(1280, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+    )
+    (Mixed_7c): InceptionE(
+      (branch1x1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=36.803699, output_zero_point=0.000000
+          weights_scale=69.987938, weights_zero_point=-85.000000
+          (wrapped_module): Conv2d(2048, 320, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=57.517414, output_zero_point=0.000000
+          weights_scale=131.107544, weights_zero_point=-113.000000
+          (wrapped_module): Conv2d(2048, 384, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3_2a): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=21.480377, output_zero_point=0.000000
+          weights_scale=108.998085, weights_zero_point=-43.000000
+          (wrapped_module): Conv2d(384, 384, kernel_size=(1, 3), stride=(1, 1), padding=(0, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3_2b): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=24.145729, output_zero_point=0.000000
+          weights_scale=101.049492, weights_zero_point=-47.000000
+          (wrapped_module): Conv2d(384, 384, kernel_size=(3, 1), stride=(1, 1), padding=(1, 0))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_1): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=46.318707, output_zero_point=0.000000
+          weights_scale=164.204681, weights_zero_point=-132.000000
+          (wrapped_module): Conv2d(2048, 448, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_2): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=43.267349, output_zero_point=0.000000
+          weights_scale=274.946320, weights_zero_point=-78.000000
+          (wrapped_module): Conv2d(448, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_3a): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=38.149796, output_zero_point=0.000000
+          weights_scale=159.698288, weights_zero_point=-109.000000
+          (wrapped_module): Conv2d(384, 384, kernel_size=(1, 3), stride=(1, 1), padding=(0, 1))
+        )
+        (bn): Identity()
+      )
+      (branch3x3dbl_3b): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=41.410839, output_zero_point=0.000000
+          weights_scale=183.429901, weights_zero_point=-83.000000
+          (wrapped_module): Conv2d(384, 384, kernel_size=(3, 1), stride=(1, 1), padding=(1, 0))
+        )
+        (bn): Identity()
+      )
+      (branch_pool): BasicConv2d(
+        (conv): RangeLinearQuantParamLayerWrapper(
+          weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+          accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+            inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+          scale_approx_mult_bits=None
+          preset_activation_stats=True
+            output_scale=53.418743, output_zero_point=0.000000
+          weights_scale=47.231201, weights_zero_point=-135.000000
+          (wrapped_module): Conv2d(2048, 192, kernel_size=(1, 1), stride=(1, 1))
+        )
+        (bn): Identity()
+      )
+    )
+    (fc): RangeLinearQuantParamLayerWrapper(
+      weights_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+      output_quant_settings=(num_bits=8 ; quant_mode=ASYMMETRIC_UNSIGNED ; clip_mode=AVG ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+      accum_quant_settings=(num_bits=32 ; quant_mode=SYMMETRIC ; clip_mode=NONE ; clip_n_stds=None ; clip_half_range=False ; per_channel=False)
+        inputs_quant_auto_fallback=True, forced_quant_settings_for_inputs=None
+      scale_approx_mult_bits=None
+      preset_activation_stats=True
+        output_scale=21.503002, output_zero_point=-51.000000
+      weights_scale=624.406128, weights_zero_point=-109.000000
+      (wrapped_module): Linear(in_features=2048, out_features=1000, bias=True)
+    )
+  )
+)
+
+2021-11-21 10:34:20,207 - Per-layer quantization parameters saved to logs/Inception_v3-imagenet-flipcy___2021.11.21-103403/layer_quant_params.yaml
+2021-11-21 10:34:26,980 - 
+2021-11-21 10:34:26,980 - Log file for this run: /home/th.nguyen/drift-encode/logs/Inception_v3-imagenet-flipcy___2021.11.21-103403/Inception_v3-imagenet-flipcy___2021.11.21-103403.log

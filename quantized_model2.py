@@ -119,7 +119,7 @@ def main():
     elif args.model == "LeNet":
         net = googlenet()
         net.load_state_dict(torch.load("./checkpoint/googlenet.pt"))
-    elif args.model == "inception":
+    elif args.model == "Inception":
         net = Inception3()
         net.load_state_dict(torch.load("./checkpoint/inception_v3.pt"))
 
@@ -338,17 +338,14 @@ def circshift(weight, num_bits):
 # 00, 01, 11, 10
 def flipcy(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode):
     shape = weight.shape
-    MLC = weight_conf(weight, weight_type, num_bits)
-    tensor_01, tensor_10, tensor_11 = tensors
-    tensor_11 = tensor_11.cpu().numpy()
-    tensor_01 = tensor_01.cpu().numpy()
-    tensor_10 = tensor_10.cpu().numpy()
+    MLC = weight_conf(weight, weight_type, num_bits, method="baseline")
+    tensor_00, tensor_01, tensor_10, tensor_11 = tensors
     if encode:
-        encoded_weight = flipcy_en(MLC.weight, num_bits)
+        encoded_weight = flipcy_en(MLC.weight, num_bits, tensors)
         if not os.path.isdir(f"./flipcy_en/quantized-{args.model}-{num_bits}b"):
             os.mkdir(f"./flipcy_en/quantized-{args.model}-{num_bits}b")
         torch.save(encoded_weight, f"./flipcy_en/quantized-{args.model}-{num_bits}b/{name}.pt")
-        weight_torch = encoded_weight.reshape(shape)
+        error_weight = encoded_weight.reshape(shape)
     else:
         if num_bits == 8:
             dtype = np.uint8
@@ -358,35 +355,34 @@ def flipcy(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode)
         encoded_weight = torch.load(f"./flipcy_en/quantized-{args.model}-{num_bits}b/{name}.pt")
 
         encoded_weight = encoded_weight.cpu().numpy().astype(dtype)
-        weight = weight.view(-1).cpu().numpy().astype(dtype)
-        num_11_flipcy, _ = count_orig(encoded_weight, tensor_11, tensor_11, num_bits)
-        num_error_11_flipcy = int(mlc_error_rate["error_11"] * num_11_flipcy)
         num_01_flipcy, _ = count_orig(encoded_weight, tensor_01, tensor_11, num_bits)
-        num_error_01_flipcy = int(mlc_error_rate["error_10"] * num_01_flipcy)
+        num_10_flipcy, _ = count_orig(encoded_weight, tensor_10, tensor_11, num_bits)
 
-        # num_01, _  = count_orig(weight, tensor_01, tensor_11, num_bits)
-        # num_10, _ = count_orig(weight, tensor_10, tensor_11, num_bits)
-        num_error = (num_error_11_flipcy, num_error_01_flipcy)
-        error_weight = inject_error(weight, num_error, mlc_error_rate, num_bits)
-        weight_torch = error_weight.reshape(shape)
-        # print("Number of error 11:", num_error_11_flipcy, num_11*mlc_error_rate["error_11"])
-        # print("Number of error 10:", num_error_10_flipcy, num_10*mlc_error_rate["error_10"])
-    return weight_torch
+        num_01, _ = count_orig(MLC.weight.cpu().numpy().astype(dtype), tensor_01, tensor_11, num_bits)
+        num_10, _ = count_orig(MLC.weight.cpu().numpy().astype(dtype), tensor_10, tensor_11, num_bits)
+
+        num_error_01 = mlc_error_rate["error_level3"] * num_01_flipcy
+        num_error_10 = mlc_error_rate["error_level2"] * num_10_flipcy
+        mlc_error_rate["error_level3"] = num_error_01/num_01
+        mlc_error_rate["error_level2"] = num_error_10/num_10
+
+        error_weight = MLC.inject_error(mlc_error_rate)
+        error_weight = error_weight.reshape(weight.shape)
+        # print("Number of error 11:", num_error_01, num_11*mlc_error_rate["error_11"])
+        # print("Number of error 10:", num_error_10, num_10*mlc_error_rate["error_10"])
+    return error_weight
 
 # 00, 01, 11, 10
 def helmet(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode):
     shape = weight.shape
-    MLC = weight_conf(weight, weight_type, num_bits)
-    tensor_01, tensor_10, tensor_11 = tensors
-    tensor_11 = tensor_11.cpu().numpy()
-    tensor_01 = tensor_01.cpu().numpy()
-    tensor_10 = tensor_10.cpu().numpy()
+    MLC = weight_conf(weight, weight_type, num_bits, method="baseline")
+    tensor_00, tensor_01, tensor_10, tensor_11 = tensors
     if encode:
         encoded_weight = helmet_en(MLC.weight.to("cuda"), num_bits)
         if not os.path.isdir(f"./helmet_en/quantized-{args.model}-{num_bits}b"):
             os.mkdir(f"./helmet_en/quantized-{args.model}-{num_bits}b")
         torch.save(encoded_weight, f"./helmet_en/quantized-{args.model}-{num_bits}b/{name}.pt")
-        weight_torch = encoded_weight.reshape(shape).to(weight.device)
+        error_weight = encoded_weight.reshape(shape).to(weight.device)
     else:
         if num_bits == 8:
             dtype = np.uint8
@@ -394,22 +390,22 @@ def helmet(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode)
             dtype = np.int16
         assert os.path.isdir(f"./helmet_en/quantized-{args.model}-{num_bits}b"), "You need to do encoding first"
         encoded_weight = torch.load(f"./helmet_en/quantized-{args.model}-{num_bits}b/{name}.pt")
+
         encoded_weight = encoded_weight.cpu().numpy().astype(dtype)
-        weight = weight.view(-1).cpu().numpy().astype(dtype)
-
-        num_11_helmet, _ = count_orig(encoded_weight, tensor_11, tensor_11, num_bits)
-        num_error_11_helmet = int(mlc_error_rate["error_11"] * num_11_helmet)
         num_01_helmet, _ = count_orig(encoded_weight, tensor_01, tensor_11, num_bits)
-        num_error_01_helmet = int(mlc_error_rate["error_10"] * num_01_helmet)
+        num_10_helmet, _ = count_orig(encoded_weight, tensor_10, tensor_11, num_bits)
 
-        # num_11, _  = count_orig(weight, tensor_11)
-        # num_10, _ = count_orig(weight, tensor_10, tensor_11)
-        num_error = (num_error_11_helmet, num_error_01_helmet)
-        error_weight = inject_error(weight, num_error, mlc_error_rate, num_bits)
-        weight_torch = error_weight.reshape(shape)
-        # print("Number of error 11:", num_error_11_helmet, num_11*mlc_error_rate["error_11"])
-        # print("Number of error 10:", num_error_10_helmet, num_10*mlc_error_rate["error_10"])
-    return weight_torch
+        num_01, _ = count_orig(MLC.weight.cpu().numpy().astype(dtype), tensor_01, tensor_11, num_bits)
+        num_10, _ = count_orig(MLC.weight.cpu().numpy().astype(dtype), tensor_10, tensor_11, num_bits)
+
+        num_error_01 = mlc_error_rate["error_level3"] * num_01_helmet
+        num_error_10 = mlc_error_rate["error_level2"] * num_10_helmet
+        mlc_error_rate["error_level3"] = num_error_01/num_01
+        mlc_error_rate["error_level2"] = num_error_10/num_10
+
+        error_weight = MLC.inject_error(mlc_error_rate)
+        error_weight = error_weight.reshape(weight.shape)
+    return error_weight
 
 def count_00(weight, tensor_00, tensor_11, num_bits):
     index_bit = np.arange(0, num_bits, 2)

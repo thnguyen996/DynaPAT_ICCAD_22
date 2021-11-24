@@ -74,6 +74,7 @@ import parser
 import random
 import traceback
 import warnings
+import sys
 
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -110,17 +111,14 @@ def handle_subapps(model, criterion, optimizer, compression_scheduler, pylogger,
 # 00, 01, 11, 10
     def flipcy(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode):
         shape = weight.shape
-        MLC = weight_conf(weight, weight_type, num_bits)
-        tensor_01, tensor_10, tensor_11 = tensors
-        tensor_11 = tensor_11.cpu().numpy()
-        tensor_01 = tensor_01.cpu().numpy()
-        tensor_10 = tensor_10.cpu().numpy()
+        MLC = weight_conf(weight, weight_type, num_bits, method="baseline")
+        tensor_00, tensor_01, tensor_10, tensor_11 = tensors
         if encode:
-            encoded_weight = flipcy_en(MLC.weight, num_bits)
+            encoded_weight = flipcy_en(MLC.weight, num_bits, tensors)
             if not os.path.isdir(f"./flipcy_en/quantized-{args.arch}-{num_bits}b-imagenet"):
                 os.mkdir(f"./flipcy_en/quantized-{args.arch}-{num_bits}b-imagenet")
             torch.save(encoded_weight, f"./flipcy_en/quantized-{args.arch}-{num_bits}b-imagenet/{name}.pt")
-            weight_torch = encoded_weight.reshape(shape)
+            error_weight = encoded_weight.reshape(shape)
         else:
             if num_bits == 8:
                 dtype = np.uint8
@@ -130,25 +128,25 @@ def handle_subapps(model, criterion, optimizer, compression_scheduler, pylogger,
             encoded_weight = torch.load(f"./flipcy_en/quantized-{args.arch}-{num_bits}b-imagenet/{name}.pt")
 
             encoded_weight = encoded_weight.cpu().numpy().astype(dtype)
-            weight = weight.view(-1).cpu().numpy().astype(dtype)
-            num_11_flipcy, _ = count_orig(encoded_weight, tensor_11, tensor_11, num_bits)
-            num_error_11_flipcy = int(mlc_error_rate["error_11"] * num_11_flipcy)
             num_01_flipcy, _ = count_orig(encoded_weight, tensor_01, tensor_11, num_bits)
-            num_error_01_flipcy = int(mlc_error_rate["error_10"] * num_01_flipcy)
+            num_10_flipcy, _ = count_orig(encoded_weight, tensor_10, tensor_11, num_bits)
 
-            # num_01, _  = count_orig(weight, tensor_01, tensor_11, num_bits)
-            # num_10, _ = count_orig(weight, tensor_10, tensor_11, num_bits)
-            num_error = (num_error_11_flipcy, num_error_01_flipcy)
-            error_weight = inject_error(weight, num_error, mlc_error_rate, num_bits)
-            weight_torch = error_weight.reshape(shape)
-            # print("Number of error 11:", num_error_11_flipcy, num_11*mlc_error_rate["error_11"])
-            # print("Number of error 10:", num_error_10_flipcy, num_10*mlc_error_rate["error_10"])
-        return weight_torch
+            num_01, _ = count_orig(MLC.weight.cpu().numpy().astype(dtype), tensor_01, tensor_11, num_bits)
+            num_10, _ = count_orig(MLC.weight.cpu().numpy().astype(dtype), tensor_10, tensor_11, num_bits)
+
+            num_error_01 = mlc_error_rate["error_level3"] * num_01_flipcy
+            num_error_10 = mlc_error_rate["error_level2"] * num_10_flipcy
+            mlc_error_rate["error_level3"] = num_error_01/num_01
+            mlc_error_rate["error_level2"] = num_error_10/num_10
+
+            error_weight = MLC.inject_error(mlc_error_rate)
+            error_weight = error_weight.reshape(weight.shape)
+        return error_weight
 
 # 00, 01, 11, 10
     def helmet(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode):
         shape = weight.shape
-        MLC = weight_conf(weight, weight_type, num_bits)
+        MLC = weight_conf(weight, weight_type, num_bits, method="baseline")
         tensor_01, tensor_10, tensor_11 = tensors
         tensor_11 = tensor_11.cpu().numpy()
         tensor_01 = tensor_01.cpu().numpy()
@@ -158,7 +156,7 @@ def handle_subapps(model, criterion, optimizer, compression_scheduler, pylogger,
             if not os.path.isdir(f"./helmet_en/quantized-{args.arch}-{num_bits}b-imagenet"):
                 os.mkdir(f"./helmet_en/quantized-{args.arch}-{num_bits}b-imagenet")
             torch.save(encoded_weight, f"./helmet_en/quantized-{args.arch}-{num_bits}b-imagenet/{name}.pt")
-            weight_torch = encoded_weight.reshape(shape).to(weight.device)
+            error_weight = encoded_weight.reshape(shape).to(weight.device)
         else:
             if num_bits == 8:
                 dtype = np.uint8
@@ -167,21 +165,20 @@ def handle_subapps(model, criterion, optimizer, compression_scheduler, pylogger,
             assert os.path.isdir(f"./helmet_en/quantized-{args.arch}-{num_bits}b-imagenet"), "You need to do encoding first"
             encoded_weight = torch.load(f"./helmet_en/quantized-{args.arch}-{num_bits}b-imagenet/{name}.pt")
             encoded_weight = encoded_weight.cpu().numpy().astype(dtype)
-            weight = weight.view(-1).cpu().numpy().astype(dtype)
-
-            num_11_helmet, _ = count_orig(encoded_weight, tensor_11, tensor_11, num_bits)
-            num_error_11_helmet = int(mlc_error_rate["error_11"] * num_11_helmet)
             num_01_helmet, _ = count_orig(encoded_weight, tensor_01, tensor_11, num_bits)
-            num_error_01_helmet = int(mlc_error_rate["error_10"] * num_01_helmet)
+            num_10_helmet, _ = count_orig(encoded_weight, tensor_10, tensor_11, num_bits)
 
-            # num_11, _  = count_orig(weight, tensor_11)
-            # num_10, _ = count_orig(weight, tensor_10, tensor_11)
-            num_error = (num_error_11_helmet, num_error_01_helmet)
-            error_weight = inject_error(weight, num_error, mlc_error_rate, num_bits)
-            weight_torch = error_weight.reshape(shape)
-            # print("Number of error 11:", num_error_11_helmet, num_11*mlc_error_rate["error_11"])
-            # print("Number of error 10:", num_error_10_helmet, num_10*mlc_error_rate["error_10"])
-        return weight_torch
+            num_01, _ = count_orig(MLC.weight.cpu().numpy().astype(dtype), tensor_01, tensor_11, num_bits)
+            num_10, _ = count_orig(MLC.weight.cpu().numpy().astype(dtype), tensor_10, tensor_11, num_bits)
+
+            num_error_01 = mlc_error_rate["error_level3"] * num_01_helmet
+            num_error_10 = mlc_error_rate["error_level2"] * num_10_helmet
+            mlc_error_rate["error_level3"] = num_error_01/num_01
+            mlc_error_rate["error_level2"] = num_error_10/num_10
+
+            error_weight = MLC.inject_error(mlc_error_rate)
+            error_weight = error_weight.reshape(weight.shape)
+        return error_weight
 
     do_exit = False
     if args.qe_calibration and not (args.evaluate and args.quantize_eval):
@@ -240,19 +237,23 @@ def handle_subapps(model, criterion, optimizer, compression_scheduler, pylogger,
         list_01 = [1]
         list_10 = [2]
         list_11 = [3]
+        list_00 = [0]
         for shift in range(2, args.num_bits, 2):
             next_pos = 2 ** (shift)
             list_01.append(next_pos)
-            list_10.append(next_pos)
+            list_10.append(2 * next_pos)
             list_11.append(3 * next_pos)
+            list_00.append(0)
         if args.num_bits == 16:
-            dtype=torch.int16
+            dtype=np.uint16
         elif args.num_bits == 8:
-            dtype=torch.uint8
-        tensor_01 = torch.tensor(list_01, dtype=dtype, device="cuda")
-        tensor_10 = torch.tensor(list_10, dtype=dtype, device="cuda")
-        tensor_11 = torch.tensor(list_11, dtype=dtype, device="cuda")
-        tensors = (tensor_01, tensor_10, tensor_11)
+            dtype=np.uint8
+        tensor_11 = np.array(list_11, dtype=dtype)
+        tensor_10 = np.array(list_10, dtype=dtype)
+        tensor_01 = np.array(list_01, dtype=dtype)
+        tensor_00 = np.array(list_00, dtype=dtype)
+
+        tensors = (tensor_00, tensor_01, tensor_10, tensor_11)
 
         with torch.no_grad():
             count = 0
@@ -262,14 +263,9 @@ def handle_subapps(model, criterion, optimizer, compression_scheduler, pylogger,
                 error_10 = value2[0]
                 print("Evaluating for error_rate of level 2: {}".format(error_10))
                 print("Evaluating for error_rate of level 3: {}".format(error_11))
-                if args.encode & (count > 0):
-                    print("Done Encoding...")
-                    break
                 for it in range(iteration):
                     # Reset parameters:
                     model.load_state_dict(orig_state_dict)
-                    if args.encode & (it > 0):
-                        break
                     for name, weight in tqdm(model.named_parameters(), desc="Executing method:", leave=False):
                         if ( "weight" in name ) and ( "bn" not in name ):
                             # level = "bit"
@@ -284,6 +280,9 @@ def handle_subapps(model, criterion, optimizer, compression_scheduler, pylogger,
                                 error_weight = helmet(weight, weight_type, mlc_error_rate, name, tensors, num_bits=args.num_bits, encode=args.encode)
                             weight.copy_(error_weight)
 
+                    if args.encode:
+                        print("Done Encoding...")
+                        sys.exit()
                     class_acc = classifier.test(test_loader, model, criterion, pylogger, args=args_qe)[0]
                     running_acc.append(class_acc)
                 avr_acc = sum(running_acc) / len(running_acc)

@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 
-def flipcy_en(weight, num_bits):
+def flipcy_en(weight, num_bits, tensors):
     if num_bits == 8:
         dtype = torch.uint8
         weight = weight.type(dtype).to("cuda")
@@ -9,74 +9,37 @@ def flipcy_en(weight, num_bits):
         dtype = torch.int16
         weight = weight.type(dtype).to("cuda")
     # reshape to memristor length (128*128)
-    weight = weight.reshape(int(weight.numel() / 1), 1)
-    # Counts 01, 11, 00, 10
-    list_00 = [0]
-    list_01 = [1]
-    list_10 = [2]
-    list_11 = [3]
-    for shift in range(2, num_bits, 2):
-        next_pos = 2 ** (shift)
-        list_00.append(0)
-        list_01.append(next_pos)
-        list_10.append(2 * next_pos)
-        list_11.append(3 * next_pos)
-
-    tensor_11 = torch.tensor(list_11, dtype=dtype, device=weight.device)
-    tensor_10 = torch.tensor(list_10, dtype=dtype, device=weight.device)
-    tensor_01 = torch.tensor(list_01, dtype=dtype, device=weight.device)
-    tensor_00 = torch.tensor(list_00, dtype=dtype, device=weight.device)
-    Flip = []
-    Comp = []
+    weight = weight.reshape(int(weight.numel() / 2), -1)
+    tensor_00, tensor_01, tensor_10, tensor_11 = tensors
     weight = weight.cpu().numpy()
-    num_11 = count_11(weight, tensor_11, num_bits)
+    num_11 = count(weight, tensor_11, tensor_11, num_bits)
     num_10 = count(weight, tensor_10, tensor_11, num_bits)
     num_01 = count(weight, tensor_01, tensor_11, num_bits)
     num_00 = count(weight, tensor_00, tensor_11, num_bits)
+    num_11 = np.sum(num_11, axis=1)
+    num_10 = np.sum(num_10, axis=1)
+    num_01 = np.sum(num_01, axis=1)
+    num_00 = np.sum(num_00, axis=1)
 
-    # take sum of 10 + 11, 00 + 10
-    sum0111 = num_10 + num_11
-    sum0010 = num_00 + num_10
-    con_sum_index = (sum0111 > sum0010)
-    con_index = (num_00 > num_10)
-    con_index2 = (num_11 > num_01)
+    sum1001 = num_10 + num_01
+    sum1100 = num_11 + num_00
+    con_sum_index = (sum1001 > sum1100)
+    con_index = (num_11 > num_00)
 
-    case1_index = (con_sum_index & con_index).nonzero()[0]# if 01 + 11 > 00 + 10 and 00 > 10
-    case2_index = (con_sum_index & np.invert(con_index)).nonzero()[0]# if 01 + 11 > 00 + 10 and 00 < 10
-    case3_index = (np.invert(con_sum_index) & con_index2).nonzero()[0]# if 01 + 11 < 00 + 10 and 11 > 01
+    con_index2 = (num_01 > num_10)
 
-# Case 1: Flip and comp.
-    tensor_11 = tensor_11.cpu().numpy()
-    tensor_10 = tensor_10.cpu().numpy()
-    tensor_01 = tensor_01.cpu().numpy()
-    weight_case1 = np.invert(weight[case1_index, :])
-    num_11_c1, index_11_c1 = count_orig(weight_case1, tensor_11, tensor_11, num_bits)
-    num_01_c1, index_01_c1 = count_orig(weight_case1, tensor_01, tensor_11, num_bits)
-    # 2's complements
-    # FLip 01 --> 11
-    c11 = tensor_11[(index_01_c1[:, 1] / 2).astype(np.int_)]
-    np.bitwise_or.at(weight_case1[:, 0], index_01_c1[:, 0], c11)
+    case1_index = (con_sum_index & con_index).nonzero()[0]# if 10 + 01 > 11 + 00 and 11 > 00
+    case2_index = (con_sum_index & np.invert(con_index)).nonzero()[0]# if 10 + 01 > 11 + 00 and 11 < 00
+    case3_index = (np.invert(con_sum_index) & con_index2).nonzero()[0]# if 10 + 01 < 11 + 00 and 01 > 10
 
-    # FLip 11 --> 01
-    c10 = np.invert(tensor_10[(index_11_c1[:, 1] / 2).astype(np.int_)])
-    np.bitwise_and.at(weight_case1[:, 0], index_11_c1[:, 0], c10)
-    weight[case1_index, :] = weight_case1
+# Case 1: Xor and flip
+    weight[case1_index, :] = np.invert(np.bitwise_xor(weight[case1_index, :], np.array([170], dtype=np.uint8)))
 
-# Case2: Flip only
-    weight[case2_index, :] = np.invert(weight[case2_index, :])
-# Case3: Comp. only
-    weight_case3 = weight[case3_index, :]
-    num_11_c1, index_11_c1 = count_orig(weight_case3, tensor_11, tensor_11, num_bits)
-    num_01_c1, index_01_c1 = count_orig(weight_case3, tensor_01, tensor_11, num_bits)
-    # 2's complements
-    # FLip 01 --> 11
-    c11 = tensor_11[(index_01_c1[:, 1] / 2).astype(np.int_)]
-    np.bitwise_or.at(weight_case3[:, 0], index_01_c1[:, 0], c11)
+# Case2: xor only
+    weight[case2_index, :] = np.bitwise_xor(weight[case2_index, :], np.array([170], dtype=np.uint8))
+# Case3: Flip only
+    weight[case3_index, :] = np.invert(weight[case3_index, :])
 
-    # FLip 11 --> 01
-    c10 = np.invert(tensor_10[(index_11_c1[:, 1] / 2).astype(np.int_)])
-    np.bitwise_and.at(weight_case3[:, 0], index_11_c1[:, 0], c10)
-    weight[case3_index, :] = weight_case3
     if num_bits == 16:
         weight = weight.astype(np.uint16)
     weight_torch = torch.tensor(weight.astype(np.float32), device="cuda")
@@ -104,26 +67,16 @@ def count_11(weight, tensor_11, num_bits):
     return zeros
 
 
-def count(weight, tensor_10, tensor_11, num_bits):
-    index_bit = torch.arange(0, num_bits, 2)
-    num_10 = 0
-    indices_10 = []
-    tensor_10 = tensor_10.cpu().numpy()
-    tensor_11 = tensor_11.cpu().numpy()
-    for tensor_10_i, tensor_11_i, index_b in zip(tensor_10, tensor_11, index_bit):
+def count(weight, tensor_01, tensor_11, num_bits):
+    index_bit = np.arange(0, num_bits, 2)
+    num_01 = 0
+    indices_01 = []
+    num_01 = np.zeros_like(weight)
+    for tensor_01_i, tensor_11_i, index_b in zip(tensor_01, tensor_11, index_bit):
         and_result = np.bitwise_and(tensor_11_i, weight)
-        index_10 = (and_result == tensor_10_i).nonzero()[0]
-        bit_index = np.full_like(index_10, index_b)
-        bit_index = np.transpose(np.expand_dims(bit_index, 0), (1, 0))
-        index_10 = np.transpose(np.expand_dims(index_10, 0), (1, 0))
-        index_tensor = np.concatenate((index_10, bit_index), axis=1)
-        indices_10.append(index_tensor)
-        num_10 += index_10.shape[1]
-    total_index_10 = np.concatenate(indices_10, axis=0)
-    indices = np.unique(total_index_10[:, 0], return_counts=True)
-    zeros = np.zeros(weight.size)
-    zeros[indices[0]] = indices[1]
-    return zeros
+        index_01 = (and_result == tensor_01_i).nonzero()
+        num_01[index_01[0], index_01[1]] += 1
+    return num_01
 
 
 def count_orig(weight, tensor_10, tensor_11, num_bits):
@@ -139,7 +92,7 @@ def count_orig(weight, tensor_10, tensor_11, num_bits):
         indices_10.append(index_tensor)
         num_10 += index_10.size
     total_index_10 = np.concatenate(indices_10, axis=1)
-    total_index_10 = np.transpose(np.squeeze(total_index_10), (1, 0))
+    total_index_10 = np.transpose(total_index_10, (1, 0))
     return num_10, total_index_10
 
 def inject_error(weight, num_error, mlc_error_rate, num_bits):
@@ -153,7 +106,7 @@ def inject_error(weight, num_error, mlc_error_rate, num_bits):
 
     # create tensor 11 and indices
 
-    if mlc_error_rate["error_11"] is not None:
+    if mlc_error_rate["error_level3"] is not None:
         list_11 = [3]
         list_10 = [2]
         for shift in range(2, num_bits, 2):
@@ -171,7 +124,7 @@ def inject_error(weight, num_error, mlc_error_rate, num_bits):
         # Got to move to numpy to use bitwise_.at operation: Feel free to contribute
         # count number of 11 and take index
         num_11, total_index_11 = count_orig(weight, tensor_11, tensor_11, num_bits)
-        error_rate_11 = mlc_error_rate["error_11"]
+        error_rate_11 = mlc_error_rate["error_level3"]
         # num_error_10 = int(num_10 * error_rate_10)
         error11_randn_index = np.random.permutation(num_11)[:num_error_11]
         error11_indices = total_index_11[error11_randn_index, :]
@@ -179,7 +132,7 @@ def inject_error(weight, num_error, mlc_error_rate, num_bits):
         tensor10 = tensor_10[(error11_indices[:, 1] / 2).astype(np.int_)]
         np.bitwise_or.at(weight, error11_indices[:, 0], tensor10)
 
-    if mlc_error_rate["error_10"] is not None:
+    if mlc_error_rate["error_level2"] is not None:
         # count number of 01 and take index
         list_01 = [1]
         list_11 = [3]
@@ -196,7 +149,7 @@ def inject_error(weight, num_error, mlc_error_rate, num_bits):
         # count number of 01 and take index
         num_01, total_index_01 = count_orig(orig_weight, tensor_01, tensor_11, num_bits)
 
-        error_rate_01 = mlc_error_rate["error_10"]
+        error_rate_01 = mlc_error_rate["error_level2"]
         # num_error_01 = int(num_01 * error_rate_01)
         error01_randn_index = np.random.permutation(num_01)[:num_error_01]
         error01_indices = total_index_01[error01_randn_index, :]
