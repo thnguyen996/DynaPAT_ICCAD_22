@@ -27,7 +27,6 @@ import torchvision
 import torchvision.transforms as transforms
 import traceback
 
-torch.set_printoptions(profile="full")
 msglogger = logging.getLogger()
 
 parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")
@@ -54,7 +53,6 @@ args = parser.parse_args()
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = f"{args.gpu}"
-
 
 def main():
 
@@ -278,7 +276,6 @@ def proposed_method(weight, error_pat, des_pat, mlc_error_rate, num_bits):
     error_weight = MLC.inject_error(mlc_error_rate, error_pat, des_pat)
     error_weight = error_weight.reshape(weight.shape)
     return error_weight
-
 
 def test(net, criterion, optimizer, testloader, device):
     global best_acc

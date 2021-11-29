@@ -1,16 +1,23 @@
 """Test quantized model"""
-import argparse
-import os
-import numpy as np
-
-from cifar10_models import *
 from aquantizer import *
+from cifar10_models import *
+from distiller.data_loggers.collector import collector_context
+from flipcy_quantized import flipcy_en, count_orig, inject_error
+from functools import partial
+from helmet_quantized import helmet_en
 from tabulate import tabulate
 from torch.utils.tensorboard import SummaryWriter
 from torchsummary import summary
+from tqdm import tqdm
 from utils import progress_bar
 from weight_quantized_conf import *
+import argparse
+import copy
+import distiller
+import logging
 import numpy as np
+import numpy as np
+import os
 import pandas as pd
 import pdb
 import random
@@ -22,15 +29,7 @@ import torch.optim as optim
 import torch.quantization
 import torchvision
 import torchvision.transforms as transforms
-from flipcy_quantized import flipcy_en, count_orig, inject_error
-from helmet_quantized import helmet_en
-from tqdm import tqdm
-import distiller
 import traceback
-import logging
-from functools import partial
-from distiller.data_loggers.collector import collector_context
-import copy
 
 torch.set_printoptions(profile="full")
 msglogger = logging.getLogger()
