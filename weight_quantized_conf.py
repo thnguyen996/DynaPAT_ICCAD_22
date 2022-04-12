@@ -12,7 +12,6 @@ class weight_conf(object):
         self.method = method
 
     def inject_error(self, mlc_error_rate):
-        # num_error_00, num_error_11 = num_error
         num_mlc = self.weight_type["MLC"]
         if self.num_bits == 16:
             dtype = np.uint16

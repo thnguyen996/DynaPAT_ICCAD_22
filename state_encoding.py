@@ -166,7 +166,6 @@ def main():
         total10 = []
         total01 = []
         total00 = []
-
         index = 1
 
         for (name, weight) in tqdm(net.named_parameters(), desc="Counting pattern: ", leave=False):
@@ -182,6 +181,10 @@ def main():
                 num_10 = np.unique(index_10[:, 1], return_counts=True)[1]
                 num_00 = np.unique(index_00[:, 1], return_counts=True)[1]
 
+                num_11 = np.sum(num_11)
+                num_10 = np.sum(num_10)
+                num_01 = np.sum(num_01)
+                num_00 = np.sum(num_00)
                 total = num_11 + num_01 + num_10 + num_00
                 num_11 = num_11/total*100
                 num_10 = num_10/total*100
@@ -196,41 +199,32 @@ def main():
     total01 = np.array(total01)
     total10 = np.array(total10)
     total00 = np.array(total00)
+    total = np.stack((total00, total01, total10, total11))
+    index_sort = np.argsort(total, 0)
+    import pdb; pdb.set_trace()
 
-    with plt.style.context(['ieee', 'no-latex']):
-        mpl.rcParams['font.family'] = 'NimbusRomNo9L'
-        fig, ax = plt.subplots(figsize=(6, 2))
-        labels = (np.arange(4, dtype=np.float64) + 1)*10
-        width = 0.5      # the width of the bars: can also be len(x) sequence
-        total1110 = total11 + total10
-        total111001 = total11 + total10 + total01
-
-        ax.bar(labels, total11[0, :], width, edgecolor="black", color="#d7191c", label='11', align='center')
-        ax.bar(labels, total10[0, :], width, edgecolor="black", color="#fdae61", bottom=total11[0, :],
-               label='10', align='center')
-        ax.bar(labels, total01[0, :], width, edgecolor="black", color="#abd9e9",  bottom=total1110[0, :],
-               label='01', align='center')
-        ax.bar(labels, total00[0, :], width, edgecolor="black", color="#2c7bb6",  bottom=total111001[0, :],
-               label='00', align='center')
-
-        for i in range(1, 18):
-            labels += 0.5
-            ax.bar(labels, total11[i, :], width, edgecolor="black", color="#d7191c",  align='center')
-            ax.bar(labels, total10[i, :], width, edgecolor="black", color="#fdae61", bottom=total11[i, :],
-                    align='center')
-            ax.bar(labels, total01[i, :], width, edgecolor="black", color="#abd9e9",  bottom=total1110[i, :],
-                    align='center')
-            ax.bar(labels, total00[i, :], width, edgecolor="black", color="#2c7bb6",  bottom=total111001[i, :],
-                    align='center')
-
-        # ax.legend(loc=0, prop={"size": 14})
-    ax.set_xlabel("Time (s)", fontsize=8)
-    ax.set_ylabel("Cifa10 Test Accuracy (%)", fontsize=8)
-    ax.invert_xaxis()
-    plt.tight_layout()
-    fig.savefig(f"./Figures/{args.model}_count_pattern_quantized_layers_error.pdf", dpi=300)
-    os.system(f"zathura ./Figures/{args.model}_count_pattern_quantized_layers_error.pdf")
-    # plt.show()
+    # Plot graph
+    # with plt.style.context(['ieee', 'no-latex']):
+    #     mpl.rcParams['font.family'] = 'NimbusRomNo9L'
+    #     fig, ax = plt.subplots(figsize=(6, 2))
+    #     labels = np.arange(18)
+    #     width = 0.8
+    #     total1110 = total11 + total10
+    #     total111001 = total11 + total10 + total01
+    #     for i in range(1, 18):
+    #         ax.bar(i, total11[i], width, edgecolor="black", color="#d7191c",  align='center')
+    #         ax.bar(i, total10[i], width, edgecolor="black", color="#fdae61", bottom=total11[i],
+    #                 align='center')
+    #         ax.bar(i, total01[i], width, edgecolor="black", color="#abd9e9",  bottom=total1110[i],
+    #                 align='center')
+    #         ax.bar(i, total00[i], width, edgecolor="black", color="#2c7bb6",  bottom=total111001[i],
+    #                 align='center')
+    # ax.set_xlabel("Time (s)", fontsize=8)
+    # ax.set_ylabel("Cifa10 Test Accuracy (%)", fontsize=8)
+    # ax.invert_xaxis()
+    # plt.tight_layout()
+    # fig.savefig(f"./Figures/{args.model}_count_pattern_without_bitpos.pdf", dpi=300)
+    # os.system(f"zathura ./Figures/{args.model}_count_pattern_without_bitpos.pdf")
 
 def proposed_method(weight, weight_type, mlc_error_rate, num_bits):
     MLC = weight_conf(weight, weight_type, num_bits)
