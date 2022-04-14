@@ -14,10 +14,6 @@ class weight_conf(object):
         weight = cp.asarray(self.weight)
         weight = weight.view(cp.uint32)
 
-        # For debugging:
-        # error_pat = "10"
-        # des_pat = "11"
-
         list_00 = [0]
         list_01 = [1]
         list_10 = [2]

@@ -17,10 +17,6 @@ class weight_conf(object):
             dtype = np.uint8
         weight = self.weight.astype(dtype)
 
-        # For debugging:
-        # error_pat = "11"
-        # des_pat = "10"
-
         list_00 = [0]
         list_01 = [1]
         list_10 = [2]

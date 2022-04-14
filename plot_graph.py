@@ -370,7 +370,7 @@ def plot_graph_1year_imagenet(
 ######################################################################
 network = "Inception"
 baseline = pd.read_csv(f"./result/{network}-baseline.csv")
-proposed_method = pd.read_csv(f"./result/{network}-grayencode.csv")
+proposed_method = pd.read_csv(f"./results-2022/{network}-cifar10-proposed_method-2022.csv")
 flipcy = pd.read_csv(f"./result/{network}-cifar10-flipcy-size16.csv")
 helmet = pd.read_csv(f"./result/{network}-cifar10-helmet-size16.csv")
 
@@ -392,7 +392,7 @@ plot_graph_1year(
     time,
     data_list,
     save_fig=True,
-    file_name=f"{network}-cifar10-result-final",
+    file_name=f"{network}-cifar10-result-method3",
     save_dir="./Figures/",
 )
 
