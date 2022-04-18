@@ -30,7 +30,6 @@ import torch.quantization
 import torchvision
 import torchvision.transforms as transforms
 import traceback
-
 torch.set_printoptions(profile="full")
 msglogger = logging.getLogger()
 parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")
@@ -121,6 +120,9 @@ def main():
     elif args.model == "Inception":
         net = Inception3()
         net.load_state_dict(torch.load("./checkpoint/inception_v3.pt"))
+    elif args.model == "vgg16":
+        net = vgg16_bn()
+        net.load_state_dict(torch.load("./checkpoint/vgg16_bn.pt"))
 
     net = net.to(device)
 
@@ -214,7 +216,6 @@ def main():
                         if args.method == "helmet":
                             error_weight = helmet(weight, weight_type, mlc_error_rate, name, tensors, num_bits=args.num_bits, encode=args.encode)
                         weight.copy_(error_weight)
-
                 class_acc = test(net, criterion, optimizer, testloader, device)
                 running_acc.append(class_acc)
             avr_acc = sum(running_acc) / len(running_acc)
@@ -223,7 +224,7 @@ def main():
                 writer.close()
             if save_data and not args.encode:
                 df.loc[count] = [count, avr_acc]
-                df.to_csv(f"./result/{args.name}.csv", mode='w', header=True)
+                df.to_csv(f"./results-2022/{args.name}.csv", mode='w', header=True)
             count += 1
 
 

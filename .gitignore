@@ -11,3 +11,6 @@ events.out.*
 *.pth.tar
 __pycache__/*
 __pycache__/*
+*.pdf
+*/__pycache__/*
+

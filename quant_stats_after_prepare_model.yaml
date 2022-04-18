@@ -1,1517 +1,571 @@
-conv1.conv:
+conv1:
   inputs:
     0:
       min: -2.429065704345703
       max: 2.7537312507629395
-      avg_min: -2.164569852660142
-      avg_max: 2.256696829508975
-      mean: -0.06676381079355875
+      avg_min: -2.159577843659805
+      avg_max: 2.4785022057557566
+      mean: 0.08183939361572265
       std: 0
       b: 0
       shape: (100, 3, 32, 32)
       total_numel: 1536000
   output:
     min: 0.0
-    max: 1.068968653678894
+    max: 3.4643516540527344
     avg_min: 0.0
-    avg_max: 0.48726700685477625
-    mean: 0.025221456209818523
-    std: 0
-    b: 0
-    shape: (100, 192, 32, 32)
-    total_numel: 98304000
-inception3a.branch1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 1.068968653678894
-      avg_min: 0.0
-      avg_max: 0.48726700685477625
-      mean: 0.03357821146647135
-      std: 0
-      b: 0
-      shape: (100, 192, 32, 32)
-      total_numel: 98304000
-  output:
-    min: 0.0
-    max: 0.653947114944458
-    avg_min: 0.0
-    avg_max: 0.25165883271979994
-    mean: 0.0037110868096351625
+    avg_max: 1.6895495665848
+    mean: 0.029866121768951415
     std: 0
     b: 0
     shape: (100, 64, 32, 32)
     total_numel: 32768000
-inception3a.branch2.0.conv:
+layer1.0.conv1:
   inputs:
     0:
       min: 0.0
-      max: 1.068968653678894
+      max: 3.4643516540527344
       avg_min: 0.0
-      avg_max: 0.48726700685477625
-      mean: 0.03357821146647135
+      avg_max: 1.6895495665848
+      mean: 0.08859714126586914
       std: 0
       b: 0
-      shape: (100, 192, 32, 32)
-      total_numel: 98304000
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
   output:
     min: 0.0
-    max: 0.6307958960533142
+    max: 3.16951322555542
     avg_min: 0.0
-    avg_max: 0.35369329374184055
-    mean: 0.024780184427897135
+    avg_max: 1.499518843297078
+    mean: -0.011694157838821412
     std: 0
     b: 0
-    shape: (100, 96, 32, 32)
-    total_numel: 49152000
-inception3a.branch2.1.conv:
+    shape: (100, 64, 32, 32)
+    total_numel: 32768000
+layer1.0.conv2:
   inputs:
     0:
       min: 0.0
-      max: 0.6307958960533142
+      max: 3.16951322555542
       avg_min: 0.0
-      avg_max: 0.35369329374184055
-      mean: 0.02948685582478841
+      avg_max: 1.499518843297078
+      mean: 0.08093350982666016
       std: 0
       b: 0
-      shape: (100, 96, 32, 32)
-      total_numel: 49152000
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
+  output:
+    min: -4.9707136154174805
+    max: 4.55473518371582
+    avg_min: -2.6647967797942664
+    avg_max: 2.5258578290066396
+    mean: -0.06598507976531982
+    std: 0
+    b: 0
+    shape: (100, 64, 32, 32)
+    total_numel: 32768000
+layer1.0.shortcut:
+  inputs:
+    0:
+      min: 0.0
+      max: 3.4643516540527344
+      avg_min: 0.0
+      avg_max: 1.6895495665848
+      mean: 0.08859714126586914
+      std: 0
+      b: 0
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
   output:
     min: 0.0
-    max: 0.7049633264541626
+    max: 3.4643516540527344
     avg_min: 0.0
-    avg_max: 0.44829548945445774
-    mean: 0.01830295968055725
+    avg_max: 1.6895495665848
+    mean: 0.08859714126586914
     std: 0
     b: 0
-    shape: (100, 128, 32, 32)
-    total_numel: 65536000
-inception3a.branch3.0.conv:
+    shape: (100, 64, 32, 32)
+    total_numel: 32768000
+layer1.1.conv1:
   inputs:
     0:
       min: 0.0
-      max: 1.068968653678894
+      max: 5.829944133758545
       avg_min: 0.0
-      avg_max: 0.48726700685477625
-      mean: 0.03357821146647135
+      avg_max: 3.371583108029469
+      mean: 0.1256764316558838
       std: 0
       b: 0
-      shape: (100, 192, 32, 32)
-      total_numel: 98304000
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
   output:
-    min: 4.692476795753464e-05
-    max: 0.0007737744599580765
-    avg_min: 4.74017473028375e-05
-    avg_max: 0.0007083373362005543
-    mean: 0.0001906505785882473
+    min: 0.0
+    max: 2.4938101768493652
+    avg_min: 0.0
+    avg_max: 1.5962726200953878
+    mean: -0.10590685653686524
     std: 0
     b: 0
-    shape: (100, 16, 32, 32)
-    total_numel: 8192000
-inception3a.branch3.1.conv:
+    shape: (100, 64, 32, 32)
+    total_numel: 32768000
+layer1.1.conv2:
   inputs:
     0:
-      min: 4.692476795753464e-05
-      max: 0.0007737744599580765
-      avg_min: 4.74017473028375e-05
-      avg_max: 0.0007083373362005543
-      mean: 0.0001906505785882473
+      min: 0.0
+      max: 2.4938101768493652
+      avg_min: 0.0
+      avg_max: 1.5962726200953878
+      mean: 0.03631833744049072
       std: 0
       b: 0
-      shape: (100, 16, 32, 32)
-      total_numel: 8192000
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
   output:
-    min: 6.5506478676979896e-06
-    max: 0.00017512596969027072
-    avg_min: 6.550698308473981e-06
-    avg_max: 0.00017511442304557495
-    mean: 5.134824849665165e-05
+    min: -3.6233367919921875
+    max: 3.137171983718872
+    avg_min: -2.1772635035266092
+    avg_max: 1.7523178862678856
+    mean: -0.035720930576324465
     std: 0
     b: 0
-    shape: (100, 32, 32, 32)
+    shape: (100, 64, 32, 32)
+    total_numel: 32768000
+layer1.1.shortcut:
+  inputs:
+    0:
+      min: 0.0
+      max: 5.829944133758545
+      avg_min: 0.0
+      avg_max: 3.371583108029469
+      mean: 0.1256764316558838
+      std: 0
+      b: 0
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
+  output:
+    min: 0.0
+    max: 5.829944133758545
+    avg_min: 0.0
+    avg_max: 3.371583108029469
+    mean: 0.1256764316558838
+    std: 0
+    b: 0
+    shape: (100, 64, 32, 32)
+    total_numel: 32768000
+layer2.0.conv1:
+  inputs:
+    0:
+      min: 0.0
+      max: 5.360262393951416
+      avg_min: 0.0
+      avg_max: 2.8208926123329023
+      mean: 0.1530401554107666
+      std: 0
+      b: 0
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
+  output:
+    min: 0.0
+    max: 2.25626802444458
+    avg_min: 0.0
+    avg_max: 1.359652281091525
+    mean: -0.06499389839172363
+    std: 0
+    b: 0
+    shape: (100, 128, 16, 16)
     total_numel: 16384000
-inception3a.branch4.0:
+layer2.0.conv2:
   inputs:
     0:
       min: 0.0
-      max: 1.068968653678894
+      max: 2.25626802444458
       avg_min: 0.0
-      avg_max: 0.48726700685477625
-      mean: 0.03357821146647135
+      avg_max: 1.359652281091525
+      mean: 0.0530562744140625
       std: 0
       b: 0
-      shape: (100, 192, 32, 32)
-      total_numel: 98304000
-  output:
-    min: 0.0
-    max: 1.068968653678894
-    avg_min: 0.0
-    avg_max: 0.48726700685477625
-    mean: 0.055599194844563805
-    std: 0
-    b: 0
-    shape: (100, 192, 32, 32)
-    total_numel: 98304000
-inception3a.branch4.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 1.068968653678894
-      avg_min: 0.0
-      avg_max: 0.48726700685477625
-      mean: 0.055599194844563805
-      std: 0
-      b: 0
-      shape: (100, 192, 32, 32)
-      total_numel: 98304000
-  output:
-    min: 0.0
-    max: 0.3664358854293823
-    avg_min: 0.0
-    avg_max: 0.12309815345901076
-    mean: 0.0029032605290412903
-    std: 0
-    b: 0
-    shape: (100, 32, 32, 32)
-    total_numel: 16384000
-inception3b.branch1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.7049633264541626
-      avg_min: 0.0
-      avg_max: 0.44829541534869927
-      mean: 0.014986421585083008
-      std: 0
-      b: 0
-      shape: (100, 256, 32, 32)
-      total_numel: 131072000
-  output:
-    min: 0.0
-    max: 0.3747148811817169
-    avg_min: 0.0
-    avg_max: 0.14521358666977308
-    mean: 0.0007761929929256439
-    std: 0
-    b: 0
-    shape: (100, 128, 32, 32)
-    total_numel: 65536000
-inception3b.branch2.0.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.7049633264541626
-      avg_min: 0.0
-      avg_max: 0.44829541534869927
-      mean: 0.014986421585083008
-      std: 0
-      b: 0
-      shape: (100, 256, 32, 32)
-      total_numel: 131072000
-  output:
-    min: 0.0
-    max: 0.3802374303340912
-    avg_min: 0.0
-    avg_max: 0.26070974954386056
-    mean: 0.011941078424453735
-    std: 0
-    b: 0
-    shape: (100, 128, 32, 32)
-    total_numel: 65536000
-inception3b.branch2.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.3802374303340912
-      avg_min: 0.0
-      avg_max: 0.26070974954386056
-      mean: 0.017243354082107545
-      std: 0
-      b: 0
-      shape: (100, 128, 32, 32)
-      total_numel: 65536000
-  output:
-    min: 0.0
-    max: 0.24504491686820984
-    avg_min: 0.0
-    avg_max: 0.16608332645169108
-    mean: -0.0007758317788441976
-    std: 0
-    b: 0
-    shape: (100, 192, 32, 32)
-    total_numel: 98304000
-inception3b.branch3.0.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.7049633264541626
-      avg_min: 0.0
-      avg_max: 0.44829541534869927
-      mean: 0.014986421585083008
-      std: 0
-      b: 0
-      shape: (100, 256, 32, 32)
-      total_numel: 131072000
-  output:
-    min: 0.0
-    max: 0.5623640418052673
-    avg_min: 0.0
-    avg_max: 0.3952507476212976
-    mean: 0.007930556654930115
-    std: 0
-    b: 0
-    shape: (100, 32, 32, 32)
-    total_numel: 16384000
-inception3b.branch3.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.5623640418052673
-      avg_min: 0.0
-      avg_max: 0.3952507476212976
-      mean: 0.008716327667236328
-      std: 0
-      b: 0
-      shape: (100, 32, 32, 32)
+      shape: (100, 128, 16, 16)
       total_numel: 16384000
   output:
-    min: 0.0
-    max: 0.19888357818126678
-    avg_min: 0.0
-    avg_max: 0.13622332063554676
-    mean: 0.0003342463274796804
-    std: 0
-    b: 0
-    shape: (100, 96, 32, 32)
-    total_numel: 49152000
-inception3b.branch4.0:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.7049633264541626
-      avg_min: 0.0
-      avg_max: 0.44829541534869927
-      mean: 0.014986421585083008
-      std: 0
-      b: 0
-      shape: (100, 256, 32, 32)
-      total_numel: 131072000
-  output:
-    min: 0.0
-    max: 0.7049633264541626
-    avg_min: 0.0
-    avg_max: 0.44829541534869927
-    mean: 0.03026378583908081
-    std: 0
-    b: 0
-    shape: (100, 256, 32, 32)
-    total_numel: 131072000
-inception3b.branch4.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.7049633264541626
-      avg_min: 0.0
-      avg_max: 0.44829541534869927
-      mean: 0.03026378583908081
-      std: 0
-      b: 0
-      shape: (100, 256, 32, 32)
-      total_numel: 131072000
-  output:
-    min: 0.0
-    max: 0.24106283485889435
-    avg_min: 0.0
-    avg_max: 0.1339838905973597
-    mean: 0.0059861687421798706
-    std: 0
-    b: 0
-    shape: (100, 64, 32, 32)
-    total_numel: 32768000
-maxpool3:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.3747148811817169
-      avg_min: 0.0
-      avg_max: 0.17554096369617078
-      mean: 0.006392861557006836
-      std: 0
-      b: 0
-      shape: (100, 480, 32, 32)
-      total_numel: 245760000
-  output:
-    min: 0.0
-    max: 0.3747148811817169
-    avg_min: 0.0
-    avg_max: 0.1755409681269345
-    mean: 0.016262520345052083
-    std: 0
-    b: 0
-    shape: (100, 480, 16, 16)
-    total_numel: 61440000
-inception4a.branch1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.3747148811817169
-      avg_min: 0.0
-      avg_max: 0.1755409681269345
-      mean: 0.016262520345052083
-      std: 0
-      b: 0
-      shape: (100, 480, 16, 16)
-      total_numel: 61440000
-  output:
-    min: 0.0
-    max: 0.14159326255321503
-    avg_min: 0.0
-    avg_max: 0.08871486608287237
-    mean: 0.0008200286626815796
-    std: 0
-    b: 0
-    shape: (100, 192, 16, 16)
-    total_numel: 24576000
-inception4a.branch2.0.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.3747148811817169
-      avg_min: 0.0
-      avg_max: 0.1755409681269345
-      mean: 0.016262520345052083
-      std: 0
-      b: 0
-      shape: (100, 480, 16, 16)
-      total_numel: 61440000
-  output:
-    min: 0.0
-    max: 0.3396925926208496
-    avg_min: 0.0
-    avg_max: 0.21965107922505978
-    mean: 0.014157906850179036
-    std: 0
-    b: 0
-    shape: (100, 96, 16, 16)
-    total_numel: 12288000
-inception4a.branch2.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.3396925926208496
-      avg_min: 0.0
-      avg_max: 0.21965107922505978
-      mean: 0.0186757599512736
-      std: 0
-      b: 0
-      shape: (100, 96, 16, 16)
-      total_numel: 12288000
-  output:
-    min: 0.0
-    max: 0.20042748749256134
-    avg_min: 0.0
-    avg_max: 0.12359578402890849
-    mean: 0.0047967955515934866
-    std: 0
-    b: 0
-    shape: (100, 208, 16, 16)
-    total_numel: 26624000
-inception4a.branch3.0.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.3747148811817169
-      avg_min: 0.0
-      avg_max: 0.1755409681269345
-      mean: 0.016262520345052083
-      std: 0
-      b: 0
-      shape: (100, 480, 16, 16)
-      total_numel: 61440000
-  output:
-    min: 0.0
-    max: 0.22827491164207458
-    avg_min: 0.0
-    avg_max: 0.1692270207626894
-    mean: 0.01386202597618103
-    std: 0
-    b: 0
-    shape: (100, 16, 16, 16)
-    total_numel: 2048000
-inception4a.branch3.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.22827491164207458
-      avg_min: 2.31641852224655e-11
-      avg_max: 0.1692270207626894
-      mean: 0.014141782760620118
-      std: 0
-      b: 0
-      shape: (100, 16, 16, 16)
-      total_numel: 2048000
-  output:
-    min: 0.0
-    max: 0.16109824180603027
-    avg_min: 0.0
-    avg_max: 0.12017250046184476
-    mean: 0.0016523096561431884
-    std: 0
-    b: 0
-    shape: (100, 48, 16, 16)
-    total_numel: 6144000
-inception4a.branch4.0:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.3747148811817169
-      avg_min: 0.0
-      avg_max: 0.1755409681269345
-      mean: 0.016262520345052083
-      std: 0
-      b: 0
-      shape: (100, 480, 16, 16)
-      total_numel: 61440000
-  output:
-    min: 0.0
-    max: 0.3747148811817169
-    avg_min: 0.0
-    avg_max: 0.1755409681269345
-    mean: 0.02689050089518229
-    std: 0
-    b: 0
-    shape: (100, 480, 16, 16)
-    total_numel: 61440000
-inception4a.branch4.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.3747148811817169
-      avg_min: 0.0
-      avg_max: 0.1755409681269345
-      mean: 0.02689050089518229
-      std: 0
-      b: 0
-      shape: (100, 480, 16, 16)
-      total_numel: 61440000
-  output:
-    min: 0.0
-    max: 0.17407460510730743
-    avg_min: 0.0
-    avg_max: 0.10544849958823779
-    mean: 0.0025639533698558806
-    std: 0
-    b: 0
-    shape: (100, 64, 16, 16)
-    total_numel: 8192000
-inception4b.branch1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.20042748749256134
-      avg_min: 0.0
-      avg_max: 0.1327031434382832
-      mean: 0.0060039757490158085
-      std: 0
-      b: 0
-      shape: (100, 512, 16, 16)
-      total_numel: 65536000
-  output:
-    min: 0.0
-    max: 0.06522548943758011
-    avg_min: 0.0
-    avg_max: 0.03673601749888706
-    mean: 0.00019767513275146484
-    std: 0
-    b: 0
-    shape: (100, 160, 16, 16)
-    total_numel: 20480000
-inception4b.branch2.0.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.20042748749256134
-      avg_min: 0.0
-      avg_max: 0.1327031434382832
-      mean: 0.0060039757490158085
-      std: 0
-      b: 0
-      shape: (100, 512, 16, 16)
-      total_numel: 65536000
-  output:
-    min: 0.0
-    max: 0.187921941280365
-    avg_min: 0.0
-    avg_max: 0.11822714182141346
-    mean: 0.008527510643005371
-    std: 0
-    b: 0
-    shape: (100, 112, 16, 16)
-    total_numel: 14336000
-inception4b.branch2.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.187921941280365
-      avg_min: 0.0
-      avg_max: 0.11822714182141346
-      mean: 0.010983871051243373
-      std: 0
-      b: 0
-      shape: (100, 112, 16, 16)
-      total_numel: 14336000
-  output:
-    min: 0.0
-    max: 0.1126471608877182
-    avg_min: 0.0
-    avg_max: 0.07983496187580193
-    mean: 0.003571246896471296
-    std: 0
-    b: 0
-    shape: (100, 224, 16, 16)
-    total_numel: 28672000
-inception4b.branch3.0.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.20042748749256134
-      avg_min: 0.0
-      avg_max: 0.1327031434382832
-      mean: 0.0060039757490158085
-      std: 0
-      b: 0
-      shape: (100, 512, 16, 16)
-      total_numel: 65536000
-  output:
-    min: 0.0
-    max: 0.1020020917057991
-    avg_min: 0.0
-    avg_max: 0.07090854747798449
-    mean: 0.0025434136788050335
-    std: 0
-    b: 0
-    shape: (100, 24, 16, 16)
-    total_numel: 3072000
-inception4b.branch3.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.1020020917057991
-      avg_min: 0.0
-      avg_max: 0.07090854747798449
-      mean: 0.0026523489554723103
-      std: 0
-      b: 0
-      shape: (100, 24, 16, 16)
-      total_numel: 3072000
-  output:
-    min: 0.0
-    max: 0.10567247867584229
-    avg_min: 0.0
-    avg_max: 0.07960251780527182
-    mean: 0.0008669338375329971
-    std: 0
-    b: 0
-    shape: (100, 64, 16, 16)
-    total_numel: 8192000
-inception4b.branch4.0:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.20042748749256134
-      avg_min: 0.0
-      avg_max: 0.1327031434382832
-      mean: 0.0060039757490158085
-      std: 0
-      b: 0
-      shape: (100, 512, 16, 16)
-      total_numel: 65536000
-  output:
-    min: 0.0
-    max: 0.20042748749256134
-    avg_min: 0.0
-    avg_max: 0.1327031434382832
-    mean: 0.012153939247131347
-    std: 0
-    b: 0
-    shape: (100, 512, 16, 16)
-    total_numel: 65536000
-inception4b.branch4.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.20042748749256134
-      avg_min: 0.0
-      avg_max: 0.1327031434382832
-      mean: 0.012153939247131347
-      std: 0
-      b: 0
-      shape: (100, 512, 16, 16)
-      total_numel: 65536000
-  output:
-    min: 0.0
-    max: 0.1231597438454628
-    avg_min: 0.0
-    avg_max: 0.07671141889395058
-    mean: 0.0013403536826372146
-    std: 0
-    b: 0
-    shape: (100, 64, 16, 16)
-    total_numel: 8192000
-inception4c.branch1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.1231597438454628
-      avg_min: 0.0
-      avg_max: 0.08642464645553694
-      mean: 0.004009801924228668
-      std: 0
-      b: 0
-      shape: (100, 512, 16, 16)
-      total_numel: 65536000
-  output:
-    min: 2.739525825745659e-06
-    max: 9.71948538790457e-05
-    avg_min: 2.76582272140102e-06
-    avg_max: 9.102956208561071e-05
-    mean: 1.8586958525702357e-05
+    min: -2.73664927482605
+    max: 3.6032965183258057
+    avg_min: -1.5077790444251786
+    avg_max: 1.828714468026432
+    mean: -0.04950489044189453
     std: 0
     b: 0
     shape: (100, 128, 16, 16)
     total_numel: 16384000
-inception4c.branch2.0.conv:
+layer2.0.shortcut.0:
   inputs:
     0:
       min: 0.0
-      max: 0.1231597438454628
+      max: 5.360262393951416
       avg_min: 0.0
-      avg_max: 0.08642464645553694
-      mean: 0.004009801924228668
+      avg_max: 2.8208926123329023
+      mean: 0.1530401554107666
       std: 0
       b: 0
-      shape: (100, 512, 16, 16)
-      total_numel: 65536000
+      shape: (100, 64, 32, 32)
+      total_numel: 32768000
   output:
-    min: 0.0
-    max: 0.10813009738922119
-    avg_min: 0.0
-    avg_max: 0.0689438309493539
-    mean: 0.005470829963684082
+    min: -2.2058374881744385
+    max: 4.004813194274902
+    avg_min: -1.1115638170347817
+    avg_max: 1.4688069730861648
+    mean: -0.047595734596252444
     std: 0
     b: 0
     shape: (100, 128, 16, 16)
     total_numel: 16384000
-inception4c.branch2.1.conv:
+layer2.1.conv1:
   inputs:
     0:
       min: 0.0
-      max: 0.10813009738922119
+      max: 4.584927082061768
       avg_min: 0.0
-      avg_max: 0.0689438309493539
-      mean: 0.006317297458648682
+      avg_max: 2.371088394319497
+      mean: 0.09809101867675782
       std: 0
       b: 0
       shape: (100, 128, 16, 16)
       total_numel: 16384000
   output:
     min: 0.0
-    max: 0.12941153347492218
+    max: 1.7671189308166504
     avg_min: 0.0
-    avg_max: 0.07044680548320009
-    mean: 0.0016480956077575683
-    std: 0
-    b: 0
-    shape: (100, 256, 16, 16)
-    total_numel: 32768000
-inception4c.branch3.0.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.1231597438454628
-      avg_min: 0.0
-      avg_max: 0.08642464645553694
-      mean: 0.004009801924228668
-      std: 0
-      b: 0
-      shape: (100, 512, 16, 16)
-      total_numel: 65536000
-  output:
-    min: 0.0
-    max: 0.0634143203496933
-    avg_min: 0.0
-    avg_max: 0.043575244178186485
-    mean: 0.0012544689377148946
-    std: 0
-    b: 0
-    shape: (100, 24, 16, 16)
-    total_numel: 3072000
-inception4c.branch3.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.0634143203496933
-      avg_min: 0.0
-      avg_max: 0.043575244178186485
-      mean: 0.0014906681776046752
-      std: 0
-      b: 0
-      shape: (100, 24, 16, 16)
-      total_numel: 3072000
-  output:
-    min: 0.0
-    max: 0.06234598532319069
-    avg_min: 0.0
-    avg_max: 0.03856073338575301
-    mean: 0.00038715249300003054
-    std: 0
-    b: 0
-    shape: (100, 64, 16, 16)
-    total_numel: 8192000
-inception4c.branch4.0:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.1231597438454628
-      avg_min: 0.0
-      avg_max: 0.08642464645553694
-      mean: 0.004009801924228668
-      std: 0
-      b: 0
-      shape: (100, 512, 16, 16)
-      total_numel: 65536000
-  output:
-    min: 0.0
-    max: 0.1231597438454628
-    avg_min: 0.0
-    avg_max: 0.08642464645553694
-    mean: 0.00747689950466156
-    std: 0
-    b: 0
-    shape: (100, 512, 16, 16)
-    total_numel: 65536000
-inception4c.branch4.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.1231597438454628
-      avg_min: 0.0
-      avg_max: 0.08642464645553694
-      mean: 0.00747689950466156
-      std: 0
-      b: 0
-      shape: (100, 512, 16, 16)
-      total_numel: 65536000
-  output:
-    min: 0.0
-    max: 0.1821179986000061
-    avg_min: 0.0
-    avg_max: 0.07029414906242795
-    mean: 0.0004853278696537017
-    std: 0
-    b: 0
-    shape: (100, 64, 16, 16)
-    total_numel: 8192000
-inception4d.branch1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.1821179986000061
-      avg_min: 0.0
-      avg_max: 0.07828179454208954
-      mean: 0.0021500089466571807
-      std: 0
-      b: 0
-      shape: (100, 512, 16, 16)
-      total_numel: 65536000
-  output:
-    min: 0.0
-    max: 3.0173050618031994e-05
-    avg_min: 0.0
-    avg_max: 3.0017400029857916e-05
-    mean: 1.0887074018163341e-05
-    std: 0
-    b: 0
-    shape: (100, 112, 16, 16)
-    total_numel: 14336000
-inception4d.branch2.0.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.1821179986000061
-      avg_min: 0.0
-      avg_max: 0.07828179454208954
-      mean: 0.0021500089466571807
-      std: 0
-      b: 0
-      shape: (100, 512, 16, 16)
-      total_numel: 65536000
-  output:
-    min: 0.0
-    max: 0.12200018763542175
-    avg_min: 0.0
-    avg_max: 0.06678714086301331
-    mean: 0.0034406790733337404
-    std: 0
-    b: 0
-    shape: (100, 144, 16, 16)
-    total_numel: 18432000
-inception4d.branch2.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.12200018763542175
-      avg_min: 0.0
-      avg_max: 0.06678714086301331
-      mean: 0.004001058843400743
-      std: 0
-      b: 0
-      shape: (100, 144, 16, 16)
-      total_numel: 18432000
-  output:
-    min: 0.0
-    max: 0.2198740541934967
-    avg_min: 0.0
-    avg_max: 0.07677322223883444
-    mean: -0.00047886215315924753
-    std: 0
-    b: 0
-    shape: (100, 288, 16, 16)
-    total_numel: 36864000
-inception4d.branch3.0.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.1821179986000061
-      avg_min: 0.0
-      avg_max: 0.07828179454208954
-      mean: 0.0021500089466571807
-      std: 0
-      b: 0
-      shape: (100, 512, 16, 16)
-      total_numel: 65536000
-  output:
-    min: 0.0
-    max: 0.00011467295553302392
-    avg_min: 1.9157683373800554e-07
-    avg_max: 0.00011426949845215306
-    mean: 3.380583086982369e-05
-    std: 0
-    b: 0
-    shape: (100, 32, 16, 16)
-    total_numel: 4096000
-inception4d.branch3.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.00011467295553302392
-      avg_min: 1.9174979532859222e-07
-      avg_max: 0.00011426949845215306
-      mean: 3.380583086982369e-05
-      std: 0
-      b: 0
-      shape: (100, 32, 16, 16)
-      total_numel: 4096000
-  output:
-    min: 0.0
-    max: 8.627284842077643e-05
-    avg_min: 0.0
-    avg_max: 8.626677097244641e-05
-    mean: 2.065967256203294e-05
-    std: 0
-    b: 0
-    shape: (100, 64, 16, 16)
-    total_numel: 8192000
-inception4d.branch4.0:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.1821179986000061
-      avg_min: 0.0
-      avg_max: 0.07828179454208954
-      mean: 0.0021500089466571807
-      std: 0
-      b: 0
-      shape: (100, 512, 16, 16)
-      total_numel: 65536000
-  output:
-    min: 0.0
-    max: 0.1821179986000061
-    avg_min: 0.0
-    avg_max: 0.07828179454208954
-    mean: 0.003599251091480255
-    std: 0
-    b: 0
-    shape: (100, 512, 16, 16)
-    total_numel: 65536000
-inception4d.branch4.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.1821179986000061
-      avg_min: 0.0
-      avg_max: 0.07828179454208954
-      mean: 0.003599251091480255
-      std: 0
-      b: 0
-      shape: (100, 512, 16, 16)
-      total_numel: 65536000
-  output:
-    min: 0.0
-    max: 0.21635839343070984
-    avg_min: 0.0
-    avg_max: 0.07508686709539537
-    mean: -0.001111568197607994
-    std: 0
-    b: 0
-    shape: (100, 64, 16, 16)
-    total_numel: 8192000
-inception4e.branch1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.2198740541934967
-      avg_min: 0.0
-      avg_max: 0.09126505647553748
-      mean: 0.0010309749950062144
-      std: 0
-      b: 0
-      shape: (100, 528, 16, 16)
-      total_numel: 67584000
-  output:
-    min: 0.0
-    max: 2.8294964067754336e-05
-    avg_min: 1.5322487966937194e-08
-    avg_max: 2.8129878940709814e-05
-    mean: 9.095268556848169e-06
-    std: 0
-    b: 0
-    shape: (100, 256, 16, 16)
-    total_numel: 32768000
-inception4e.branch2.0.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.2198740541934967
-      avg_min: 0.0
-      avg_max: 0.09126505647553748
-      mean: 0.0010309749950062144
-      std: 0
-      b: 0
-      shape: (100, 528, 16, 16)
-      total_numel: 67584000
-  output:
-    min: 0.0
-    max: 0.18715767562389374
-    avg_min: 0.0
-    avg_max: 0.08480169503290749
-    mean: 0.0027668484687805176
-    std: 0
-    b: 0
-    shape: (100, 160, 16, 16)
-    total_numel: 20480000
-inception4e.branch2.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.18715767562389374
-      avg_min: 0.0
-      avg_max: 0.08480169503290749
-      mean: 0.0035004591464996336
-      std: 0
-      b: 0
-      shape: (100, 160, 16, 16)
-      total_numel: 20480000
-  output:
-    min: 0.0
-    max: 0.8887298703193665
-    avg_min: 0.0
-    avg_max: 0.36764597461290965
-    mean: 0.002172438097000122
-    std: 0
-    b: 0
-    shape: (100, 320, 16, 16)
-    total_numel: 40960000
-inception4e.branch3.0.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.2198740541934967
-      avg_min: 0.0
-      avg_max: 0.09126505647553748
-      mean: 0.0010309749950062144
-      std: 0
-      b: 0
-      shape: (100, 528, 16, 16)
-      total_numel: 67584000
-  output:
-    min: 0.0
-    max: 0.00019388407235965133
-    avg_min: 0.0
-    avg_max: 0.00011836696947131514
-    mean: 2.2933826316148043e-05
-    std: 0
-    b: 0
-    shape: (100, 32, 16, 16)
-    total_numel: 4096000
-inception4e.branch3.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.00019388407235965133
-      avg_min: 0.0
-      avg_max: 0.00011836696947131514
-      mean: 2.408681018278003e-05
-      std: 0
-      b: 0
-      shape: (100, 32, 16, 16)
-      total_numel: 4096000
-  output:
-    min: 1.382957464102219e-07
-    max: 0.00028572676819749177
-    avg_min: 1.3829610907137302e-07
-    avg_max: 0.00028514180268874835
-    mean: 1.912021799944341e-05
+    avg_max: 1.0676646536371615
+    mean: -0.13535308074951172
     std: 0
     b: 0
     shape: (100, 128, 16, 16)
     total_numel: 16384000
-inception4e.branch4.0:
+layer2.1.conv2:
   inputs:
     0:
       min: 0.0
-      max: 0.2198740541934967
+      max: 1.7671189308166504
       avg_min: 0.0
-      avg_max: 0.09126505647553748
-      mean: 0.0010309749950062144
+      avg_max: 1.0676646536371615
+      mean: 0.022658610820770263
       std: 0
       b: 0
-      shape: (100, 528, 16, 16)
-      total_numel: 67584000
+      shape: (100, 128, 16, 16)
+      total_numel: 16384000
   output:
-    min: 0.0
-    max: 0.2198740541934967
-    avg_min: 0.0
-    avg_max: 0.09126505647553748
-    mean: 0.0016599972464821555
-    std: 0
-    b: 0
-    shape: (100, 528, 16, 16)
-    total_numel: 67584000
-inception4e.branch4.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.2198740541934967
-      avg_min: 0.0
-      avg_max: 0.09126505647553748
-      mean: 0.0016599972464821555
-      std: 0
-      b: 0
-      shape: (100, 528, 16, 16)
-      total_numel: 67584000
-  output:
-    min: 0.0
-    max: 0.6650131344795227
-    avg_min: 0.0
-    avg_max: 0.18799711923109722
-    mean: 0.001567175179719925
+    min: -2.319977283477783
+    max: 3.0601279735565186
+    avg_min: -1.3271304618275752
+    avg_max: 1.4560246245980075
+    mean: -0.07697464179992676
     std: 0
     b: 0
     shape: (100, 128, 16, 16)
     total_numel: 16384000
-maxpool4:
+layer2.1.shortcut:
   inputs:
     0:
       min: 0.0
-      max: 0.8887298703193665
+      max: 4.584927082061768
       avg_min: 0.0
-      avg_max: 0.369358938593982
-      mean: 0.001296030282974243
+      avg_max: 2.371088394319497
+      mean: 0.09809101867675782
       std: 0
       b: 0
-      shape: (100, 832, 16, 16)
-      total_numel: 106496000
+      shape: (100, 128, 16, 16)
+      total_numel: 16384000
   output:
     min: 0.0
-    max: 0.8887298703193665
+    max: 4.584927082061768
     avg_min: 0.0
-    avg_max: 0.3693595061887563
-    mean: 0.0019789001024686373
+    avg_max: 2.371088394319497
+    mean: 0.09809101867675782
     std: 0
     b: 0
-    shape: (100, 832, 8, 8)
-    total_numel: 26624000
-inception5a.branch1.conv:
+    shape: (100, 128, 16, 16)
+    total_numel: 16384000
+layer3.0.conv1:
   inputs:
     0:
       min: 0.0
-      max: 0.8887298703193665
+      max: 4.714683532714844
       avg_min: 0.0
-      avg_max: 0.3693595061887563
-      mean: 0.0019789001024686373
+      avg_max: 2.5590796220383627
+      mean: 0.10416460609436035
       std: 0
       b: 0
-      shape: (100, 832, 8, 8)
-      total_numel: 26624000
+      shape: (100, 128, 16, 16)
+      total_numel: 16384000
   output:
     min: 0.0
-    max: 3.212525189155713e-05
+    max: 2.4005649089813232
     avg_min: 0.0
-    avg_max: 3.182214083862477e-05
-    mean: 1.425614790059626e-05
+    avg_max: 1.2572039182357864
+    mean: -0.10766399955749512
     std: 0
     b: 0
     shape: (100, 256, 8, 8)
     total_numel: 8192000
-inception5a.branch2.0.conv:
+layer3.0.conv2:
   inputs:
     0:
       min: 0.0
-      max: 0.8887298703193665
+      max: 2.4005649089813232
       avg_min: 0.0
-      avg_max: 0.3693595061887563
-      mean: 0.0019789001024686373
+      avg_max: 1.2572039182357864
+      mean: 0.03918508005142212
       std: 0
       b: 0
-      shape: (100, 832, 8, 8)
-      total_numel: 26624000
+      shape: (100, 256, 8, 8)
+      total_numel: 8192000
   output:
-    min: 0.0
-    max: 0.24764974415302277
-    avg_min: 0.0
-    avg_max: 0.10553023296898074
-    mean: 0.001030068039894104
+    min: -1.8016877174377441
+    max: 3.4765238761901855
+    avg_min: -1.230348773340068
+    avg_max: 1.520214791341617
+    mean: -0.10663629722595215
     std: 0
     b: 0
-    shape: (100, 160, 8, 8)
-    total_numel: 5120000
-inception5a.branch2.1.conv:
+    shape: (100, 256, 8, 8)
+    total_numel: 8192000
+layer3.0.shortcut.0:
   inputs:
     0:
       min: 0.0
-      max: 0.24764974415302277
-      avg_min: 7.434393163213851e-08
-      avg_max: 0.10553023296898074
-      mean: 0.0010329625606536866
-      std: 0
-      b: 0
-      shape: (100, 160, 8, 8)
-      total_numel: 5120000
-  output:
-    min: 0.0
-    max: 0.2853734493255615
-    avg_min: 0.0
-    avg_max: 0.10016584947557143
-    mean: 0.0001345168948173523
-    std: 0
-    b: 0
-    shape: (100, 320, 8, 8)
-    total_numel: 10240000
-inception5a.branch3.0.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.8887298703193665
+      max: 4.714683532714844
       avg_min: 0.0
-      avg_max: 0.3693595061887563
-      mean: 0.0019789001024686373
+      avg_max: 2.5590796220383627
+      mean: 0.10416460609436035
       std: 0
       b: 0
-      shape: (100, 832, 8, 8)
-      total_numel: 26624000
+      shape: (100, 128, 16, 16)
+      total_numel: 16384000
   output:
-    min: 1.401763529429445e-05
-    max: 6.049403236829676e-05
-    avg_min: 1.4057021841089002e-05
-    avg_max: 6.032658824356603e-05
-    mean: 3.5325918812304735e-05
+    min: -1.2914659976959229
+    max: 2.1697752475738525
+    avg_min: -0.7320509211373779
+    avg_max: 0.7874423961161002
+    mean: -0.09843515586853027
     std: 0
     b: 0
-    shape: (100, 32, 8, 8)
-    total_numel: 1024000
-inception5a.branch3.1.conv:
+    shape: (100, 256, 8, 8)
+    total_numel: 8192000
+layer3.1.conv1:
   inputs:
     0:
-      min: 1.401763529429445e-05
-      max: 6.049403236829676e-05
-      avg_min: 1.4057021841089002e-05
-      avg_max: 6.032658824356603e-05
-      mean: 3.5325918812304735e-05
+      min: 0.0
+      max: 3.6609573364257812
+      avg_min: 0.0
+      avg_max: 1.658409208131543
+      mean: 0.04506006145477295
       std: 0
       b: 0
-      shape: (100, 32, 8, 8)
-      total_numel: 1024000
+      shape: (100, 256, 8, 8)
+      total_numel: 8192000
   output:
     min: 0.0
-    max: 2.8767452022293583e-05
+    max: 2.197976589202881
     avg_min: 0.0
-    avg_max: 2.87674437277019e-05
-    mean: 1.1196387931704522e-05
+    avg_max: 0.9838652723374638
+    mean: -0.1763774642944336
     std: 0
     b: 0
-    shape: (100, 128, 8, 8)
+    shape: (100, 256, 8, 8)
+    total_numel: 8192000
+layer3.1.conv2:
+  inputs:
+    0:
+      min: 0.0
+      max: 2.197976589202881
+      avg_min: 0.0
+      avg_max: 0.9838652723374638
+      mean: 0.015965524435043336
+      std: 0
+      b: 0
+      shape: (100, 256, 8, 8)
+      total_numel: 8192000
+  output:
+    min: -2.5365428924560547
+    max: 3.9276254177093506
+    avg_min: -1.13073495013805
+    avg_max: 1.0549777787790462
+    mean: -0.11217051315307618
+    std: 0
+    b: 0
+    shape: (100, 256, 8, 8)
+    total_numel: 8192000
+layer3.1.shortcut:
+  inputs:
+    0:
+      min: 0.0
+      max: 3.6609573364257812
+      avg_min: 0.0
+      avg_max: 1.658409208131543
+      mean: 0.04506006145477295
+      std: 0
+      b: 0
+      shape: (100, 256, 8, 8)
+      total_numel: 8192000
+  output:
+    min: 0.0
+    max: 3.6609573364257812
+    avg_min: 0.0
+    avg_max: 1.658409208131543
+    mean: 0.04506006145477295
+    std: 0
+    b: 0
+    shape: (100, 256, 8, 8)
+    total_numel: 8192000
+layer4.0.conv1:
+  inputs:
+    0:
+      min: 0.0
+      max: 4.548336029052734
+      avg_min: 0.0
+      avg_max: 1.9291952698727262
+      mean: 0.047253582954406737
+      std: 0
+      b: 0
+      shape: (100, 256, 8, 8)
+      total_numel: 8192000
+  output:
+    min: 0.0
+    max: 2.303819179534912
+    avg_min: 0.0
+    avg_max: 0.8698387002357579
+    mean: -0.07541583728790283
+    std: 0
+    b: 0
+    shape: (100, 512, 4, 4)
     total_numel: 4096000
-inception5a.branch4.0:
+layer4.0.conv2:
   inputs:
     0:
       min: 0.0
-      max: 0.8887298703193665
+      max: 2.303819179534912
       avg_min: 0.0
-      avg_max: 0.3693595061887563
-      mean: 0.0019789001024686373
+      avg_max: 0.8698387002357579
+      mean: 0.023711538791656495
       std: 0
       b: 0
-      shape: (100, 832, 8, 8)
-      total_numel: 26624000
+      shape: (100, 512, 4, 4)
+      total_numel: 4096000
   output:
-    min: 0.0
-    max: 0.8887298703193665
-    avg_min: 0.0
-    avg_max: 0.3693595061887563
-    mean: 0.003214467635521522
+    min: -1.386394739151001
+    max: 3.1809451580047607
+    avg_min: -0.8306369268556709
+    avg_max: 1.1788410752325125
+    mean: -0.07137403392791748
     std: 0
     b: 0
-    shape: (100, 832, 8, 8)
-    total_numel: 26624000
-inception5a.branch4.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.8887298703193665
-      avg_min: 0.0
-      avg_max: 0.3693595061887563
-      mean: 0.003214467635521522
-      std: 0
-      b: 0
-      shape: (100, 832, 8, 8)
-      total_numel: 26624000
-  output:
-    min: 0.0
-    max: 0.8817381858825684
-    avg_min: 0.0
-    avg_max: 0.3487692129500376
-    mean: -0.010399469375610352
-    std: 0
-    b: 0
-    shape: (100, 128, 8, 8)
+    shape: (100, 512, 4, 4)
     total_numel: 4096000
-inception5b.branch1.conv:
+layer4.0.shortcut.0:
   inputs:
     0:
       min: 0.0
-      max: 0.8817381858825684
+      max: 4.548336029052734
       avg_min: 0.0
-      avg_max: 0.34875870166942025
-      mean: 0.0013132602801689734
+      avg_max: 1.9291952698727262
+      mean: 0.047253582954406737
       std: 0
       b: 0
-      shape: (100, 832, 8, 8)
-      total_numel: 26624000
+      shape: (100, 256, 8, 8)
+      total_numel: 8192000
   output:
-    min: 4.170917236478999e-05
-    max: 0.006451412569731474
-    avg_min: 4.2319768081779425e-05
-    avg_max: 0.00318722458945477
-    mean: 0.000593875785668691
+    min: -1.0142837762832642
+    max: 1.7042713165283203
+    avg_min: -0.4323647529272757
+    avg_max: 0.49541603882873403
+    mean: -0.07366387462615967
     std: 0
     b: 0
-    shape: (100, 384, 8, 8)
-    total_numel: 12288000
-inception5b.branch2.0.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.8817381858825684
-      avg_min: 0.0
-      avg_max: 0.34875870166942025
-      mean: 0.0013132602801689734
-      std: 0
-      b: 0
-      shape: (100, 832, 8, 8)
-      total_numel: 26624000
-  output:
-    min: 0.0
-    max: 1.9983422756195068
-    avg_min: 0.0
-    avg_max: 1.2434117818786723
-    mean: 0.005528545220692953
-    std: 0
-    b: 0
-    shape: (100, 192, 8, 8)
-    total_numel: 6144000
-inception5b.branch2.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 1.9983422756195068
-      avg_min: 0.0
-      avg_max: 1.2434117818786723
-      mean: 0.011520098209381104
-      std: 0
-      b: 0
-      shape: (100, 192, 8, 8)
-      total_numel: 6144000
-  output:
-    min: 0.0
-    max: 2.0621440410614014
-    avg_min: 0.0
-    avg_max: 1.124969313108248
-    mean: 0.06852809524536133
-    std: 0
-    b: 0
-    shape: (100, 384, 8, 8)
-    total_numel: 12288000
-inception5b.branch3.0.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.8817381858825684
-      avg_min: 0.0
-      avg_max: 0.34875870166942025
-      mean: 0.0013132602801689734
-      std: 0
-      b: 0
-      shape: (100, 832, 8, 8)
-      total_numel: 26624000
-  output:
-    min: 0.0
-    max: 1.3257460594177246
-    avg_min: 0.0
-    avg_max: 0.5421822598006105
-    mean: 0.00998317797978719
-    std: 0
-    b: 0
-    shape: (100, 48, 8, 8)
-    total_numel: 1536000
-inception5b.branch3.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 1.3257460594177246
-      avg_min: 0.0
-      avg_max: 0.5421822598006105
-      mean: 0.013059254805246988
-      std: 0
-      b: 0
-      shape: (100, 48, 8, 8)
-      total_numel: 1536000
-  output:
-    min: 0.0
-    max: 1.144625186920166
-    avg_min: 0.0
-    avg_max: 0.4451688632297496
-    mean: 0.0324994797706604
-    std: 0
-    b: 0
-    shape: (100, 128, 8, 8)
+    shape: (100, 512, 4, 4)
     total_numel: 4096000
-inception5b.branch4.0:
+layer4.1.conv1:
   inputs:
     0:
       min: 0.0
-      max: 0.8817381858825684
+      max: 4.500856399536133
       avg_min: 0.0
-      avg_max: 0.34875870166942025
-      mean: 0.0013132602801689734
+      avg_max: 1.237481234190228
+      mean: 0.022501163482666016
       std: 0
       b: 0
-      shape: (100, 832, 8, 8)
-      total_numel: 26624000
+      shape: (100, 512, 4, 4)
+      total_numel: 4096000
   output:
     min: 0.0
-    max: 0.8817381858825684
+    max: 2.1468288898468018
     avg_min: 0.0
-    avg_max: 0.34875870166942025
-    mean: 0.0019251929429861215
+    avg_max: 0.7936311415141416
+    mean: -0.06457801818847657
     std: 0
     b: 0
-    shape: (100, 832, 8, 8)
-    total_numel: 26624000
-inception5b.branch4.1.conv:
-  inputs:
-    0:
-      min: 0.0
-      max: 0.8817381858825684
-      avg_min: 0.0
-      avg_max: 0.34875870166942025
-      mean: 0.0019251929429861215
-      std: 0
-      b: 0
-      shape: (100, 832, 8, 8)
-      total_numel: 26624000
-  output:
-    min: 0.0
-    max: 0.2453586608171463
-    avg_min: 0.0
-    avg_max: 0.07542867883255434
-    mean: 0.00948811948299408
-    std: 0
-    b: 0
-    shape: (100, 128, 8, 8)
+    shape: (100, 512, 4, 4)
     total_numel: 4096000
-avgpool:
+layer4.1.conv2:
   inputs:
     0:
       min: 0.0
-      max: 2.0621440410614014
+      max: 2.1468288898468018
       avg_min: 0.0
-      avg_max: 1.1249652228592135
-      mean: 0.0360286021232605
+      avg_max: 0.7936311415141416
+      mean: 0.016094473123550414
       std: 0
       b: 0
-      shape: (100, 1024, 8, 8)
-      total_numel: 32768000
+      shape: (100, 512, 4, 4)
+      total_numel: 4096000
   output:
-    min: 0.0
-    max: 1.3034906387329102
-    avg_min: 1.5364503487797272e-05
-    avg_max: 0.710963246037852
-    mean: 0.0360286021232605
+    min: -1.2986572980880737
+    max: 4.477304935455322
+    avg_min: -0.641161282908634
+    avg_max: 1.8722155270687697
+    mean: 0.05293551635742187
     std: 0
     b: 0
-    shape: (100, 1024, 1, 1)
-    total_numel: 512000
-dropout:
+    shape: (100, 512, 4, 4)
+    total_numel: 4096000
+layer4.1.shortcut:
   inputs:
     0:
       min: 0.0
-      max: 1.3034906387329102
-      avg_min: 1.5364503487797272e-05
-      avg_max: 0.710963246037852
-      mean: 0.0360286021232605
+      max: 4.500856399536133
+      avg_min: 0.0
+      avg_max: 1.237481234190228
+      mean: 0.022501163482666016
       std: 0
       b: 0
-      shape: (100, 1024)
-      total_numel: 512000
+      shape: (100, 512, 4, 4)
+      total_numel: 4096000
   output:
     min: 0.0
-    max: 1.3034906387329102
-    avg_min: 1.5364503487797272e-05
-    avg_max: 0.710963246037852
-    mean: 0.0360286021232605
+    max: 4.500856399536133
+    avg_min: 0.0
+    avg_max: 1.237481234190228
+    mean: 0.022501163482666016
     std: 0
     b: 0
-    shape: (100, 1024)
-    total_numel: 512000
-fc:
+    shape: (100, 512, 4, 4)
+    total_numel: 4096000
+linear:
   inputs:
     0:
       min: 0.0
-      max: 1.3034906387329102
-      avg_min: 1.5364503487797272e-05
-      avg_max: 0.710963246037852
-      mean: 0.0360286021232605
+      max: 3.337390422821045
+      avg_min: 1.2736306780155252e-07
+      avg_max: 1.5115849948130582
+      mean: 0.13298057174682618
       std: 0
       b: 0
-      shape: (100, 1024)
-      total_numel: 512000
+      shape: (100, 512)
+      total_numel: 256000
   output:
-    min: -1.2965443134307861
-    max: 7.831340312957764
-    avg_min: -0.9546609093386806
-    avg_max: 5.07421726379485
-    mean: -2.856588363647461e-06
+    min: -4.200717449188232
+    max: 18.022287368774414
+    avg_min: -2.5365749309745254
+    avg_max: 9.83760289467007
+    mean: -2.7638816833496094e-05
     std: 0
     b: 0
     shape: (100, 10)

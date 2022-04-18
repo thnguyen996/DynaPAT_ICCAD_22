@@ -134,6 +134,7 @@ def main():
     args.qe_stats_file = f"./quant_stats/{args.model}.yaml"
     args.qe_bits_acts = args.num_bits
     args.qe_bits_wts = args.num_bits
+    args.qe_config_file = f"./{args.model}_imagenet_post_train.yaml"
     quantizer = distiller.quantization.PostTrainLinearQuantizer.from_args(net, args)
     quantizer.prepare_model(torch.randn(100, 3, 32, 32))
     orig_state_dict = copy.deepcopy(net.state_dict())
@@ -199,7 +200,6 @@ def main():
     total10 = np.array(total10)
     total00 = np.array(total00)
     total = np.stack((total00, total01, total10, total11))
-    import pdb; pdb.set_trace()
     index_sort = np.argsort(total, 0)
     np.save(f"./state_stats/{args.model}-state-stats.npy", index_sort)
     print(f"Save state stats to ./state_stats/{args.model}-state-stats.npy")

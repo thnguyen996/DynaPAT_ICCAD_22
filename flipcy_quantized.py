@@ -21,16 +21,16 @@ def flipcy_en(weight, num_bits, tensors):
     num_01 = np.sum(num_01, axis=1)
     num_00 = np.sum(num_00, axis=1)
 
-    sum1001 = num_10 + num_01
-    sum1100 = num_11 + num_00
-    con_sum_index = (sum1001 > sum1100)
-    con_index = (num_11 > num_00)
+    sum0111 = num_01 + num_11
+    sum0010 = num_00 + num_10
+    con_sum_index = (sum0111 > sum0010)
+    con_index = (num_00 > num_10)
 
-    con_index2 = (num_01 > num_10)
+    con_index2 = (num_11 > num_01)
 
-    case1_index = (con_sum_index & con_index).nonzero()[0]# if 10 + 01 > 11 + 00 and 11 > 00
-    case2_index = (con_sum_index & np.invert(con_index)).nonzero()[0]# if 10 + 01 > 11 + 00 and 11 < 00
-    case3_index = (np.invert(con_sum_index) & con_index2).nonzero()[0]# if 10 + 01 < 11 + 00 and 01 > 10
+    case1_index = (con_sum_index & con_index).nonzero()[0]# if 01 + 11 > 00 + 10 and 00 > 10
+    case2_index = (con_sum_index & np.invert(con_index)).nonzero()[0]# if 01 + 11 > 00 + 10 and 00 < 10
+    case3_index = (np.invert(con_sum_index) & con_index2).nonzero()[0]# if 01 + 11 < 00 + 10 and 11 > 01
 
 # Case 1: Xor and flip
     weight[case1_index, :] = np.invert(np.bitwise_xor(weight[case1_index, :], np.array([170], dtype=np.uint8)))
