@@ -2,7 +2,8 @@
 from aquantizer import *
 from cifar10_models import *
 from distiller.data_loggers.collector import collector_context
-from flipcy_quantized import flipcy_en, count_orig, inject_error
+from flipcy_quantized import flipcy_en, count, inject_error
+import flipcy_quantized as flipcy_quan
 from functools import partial
 from helmet_quantized import helmet_en
 from tabulate import tabulate
@@ -10,7 +11,7 @@ from torch.utils.tensorboard import SummaryWriter
 from torchsummary import summary
 from tqdm import tqdm
 from utils import progress_bar
-from weight_quantized_conf import *
+from weight_quantized_conf import weight_conf
 import argparse
 import copy
 import distiller
@@ -30,6 +31,7 @@ import torch.quantization
 import torchvision
 import torchvision.transforms as transforms
 import traceback
+
 torch.set_printoptions(profile="full")
 msglogger = logging.getLogger()
 parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")
@@ -294,32 +296,31 @@ def proposed_method_en(weight, num_bits, tensors):
 
     # weight_torch = torch.tensor(weight.astype(np.float32), device="cuda")
 
-def flip_proposed(weight, orig_weight, tensors, num_bits):
-    shape = weight.shape
-    weight = weight.flatten()
-    orig_weight = orig_weight.flatten()
-    index_bit = np.arange(0, num_bits, 2)
-    tensor_10_inv = np.invert(tensors[1])
-    tensor_00_inv = np.invert(tensors[3])
+# def flip_proposed(weight, orig_weight, tensors, num_bits):
+#     shape = weight.shape
+#     weight = weight.flatten()
+#     orig_weight = orig_weight.flatten()
+#     index_bit = np.arange(0, num_bits, 2)
+#     tensor_10_inv = np.invert(tensors[1])
+#     tensor_00_inv = np.invert(tensors[3])
+#     # Flip 00 --> 01
+#     num_00, index_00 = count(orig_weight, tensors[0], tensors[3], index_bit, num_bits)
+#     tensor01_index = tensors[1][(index_00[:, 1] / 2).astype(np.uint8)]
+#     np.bitwise_or.at(weight, index_00[:, 0], tensor01_index)
+#     # Flip 11 --> 10
+#     num_11, index_11 = count(orig_weight, tensors[3], tensors[3], index_bit, num_bits)
+#     tensor10_index = tensor_10_inv[(index_11[:, 1] / 2).astype(np.uint8)]
+#     np.bitwise_and.at(weight, index_11[:, 0], tensor10_index)
+#     # Flip 01 --> 00
+#     num_01, index_01 = count(orig_weight, tensors[1], tensors[3], index_bit, num_bits)
+#     tensor00_index = tensor_00_inv[(index_01[:, 1] / 2).astype(np.uint8)]
+#     np.bitwise_and.at(weight, index_01[:, 0], tensor00_index)
+#     # Flip 10 --> 11
+#     num_10, index_10 = count(orig_weight, tensors[2], tensors[3], index_bit, num_bits)
+#     tensor11_index = tensors[3][(index_10[:, 1] / 2).astype(np.uint8)]
+#     np.bitwise_or.at(weight, index_10[:, 0], tensor11_index)
 
-    # Flip 00 --> 01
-    num_00, index_00 = count(orig_weight, tensors[0], tensors[3], index_bit, num_bits)
-    tensor01_index = tensors[1][(index_00[:, 1] / 2).astype(np.uint8)]
-    np.bitwise_or.at(weight, index_00[:, 0], tensor01_index)
-    # Flip 11 --> 10
-    num_11, index_11 = count(orig_weight, tensors[3], tensors[3], index_bit, num_bits)
-    tensor10_index = tensor_10_inv[(index_11[:, 1] / 2).astype(np.uint8)]
-    np.bitwise_and.at(weight, index_11[:, 0], tensor10_index)
-    # Flip 01 --> 00
-    num_01, index_01 = count(orig_weight, tensors[1], tensors[3], index_bit, num_bits)
-    tensor00_index = tensor_00_inv[(index_01[:, 1] / 2).astype(np.uint8)]
-    np.bitwise_and.at(weight, index_01[:, 0], tensor00_index)
-    # Flip 10 --> 11
-    num_10, index_10 = count(orig_weight, tensors[2], tensors[3], index_bit, num_bits)
-    tensor11_index = tensors[3][(index_10[:, 1] / 2).astype(np.uint8)]
-    np.bitwise_or.at(weight, index_10[:, 0], tensor11_index)
-
-    return weight.reshape(shape)
+    # return weight.reshape(shape)
 
 
 def circshift(weight, num_bits):
@@ -347,29 +348,38 @@ def flipcy(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode)
         torch.save(encoded_weight, f"./flipcy_en/quantized-{args.model}-{num_bits}b/{name}.pt")
         error_weight = encoded_weight.reshape(shape)
     else:
-        if num_bits == 8:
-            dtype = np.uint8
-        elif num_bits == 16:
-            dtype = np.int16
+        dtype = np.uint8
+        flipcy_error_rate = {}
         assert os.path.isdir(f"./flipcy_en/quantized-{args.model}-{num_bits}b"), "You need to do encoding first"
         encoded_weight = torch.load(f"./flipcy_en/quantized-{args.model}-{num_bits}b/{name}.pt")
 
         encoded_weight = encoded_weight.cpu().numpy().astype(dtype)
-        num_01_flipcy, _ = count_orig(encoded_weight, tensor_01, tensor_11, num_bits)
-        num_10_flipcy, _ = count_orig(encoded_weight, tensor_10, tensor_11, num_bits)
+        encoded_weight = encoded_weight.reshape(int(encoded_weight.size / 2), -1)
 
-        num_01, _ = count_orig(MLC.weight.cpu().numpy().astype(dtype), tensor_01, tensor_11, num_bits)
-        num_10, _ = count_orig(MLC.weight.cpu().numpy().astype(dtype), tensor_10, tensor_11, num_bits)
+        orig_weight = MLC.weight.cpu().numpy().astype(dtype)
+        orig_weight = orig_weight.reshape(int(encoded_weight.size / 2), -1)
+
+        num_01_flipcy = flipcy_quan.count(encoded_weight, tensor_01, tensor_11, num_bits=8)
+        num_11_flipcy = flipcy_quan.count(encoded_weight, tensor_11, tensor_11, num_bits=8)
+
+        num_01 = flipcy_quan.count(orig_weight, tensor_01, tensor_11, num_bits=8)
+        num_11 = flipcy_quan.count(orig_weight, tensor_11, tensor_11, num_bits=8)
+
+        num_01_flipcy = np.sum(np.sum(num_01_flipcy, axis=1), 0)
+        num_11_flipcy = np.sum(np.sum(num_11_flipcy, axis=1), 0)
+
+        num_01 = np.sum(np.sum(num_01, axis=1), 0)
+        num_11 = np.sum(np.sum(num_11, axis=1), 0)
 
         num_error_01 = mlc_error_rate["error_level3"] * num_01_flipcy
-        num_error_10 = mlc_error_rate["error_level2"] * num_10_flipcy
-        mlc_error_rate["error_level3"] = num_error_01/num_01
-        mlc_error_rate["error_level2"] = num_error_10/num_10
+        num_error_11 = mlc_error_rate["error_level2"] * num_11_flipcy
+        flipcy_error_rate["error_level3"] = num_error_01/num_01
+        flipcy_error_rate["error_level2"] = num_error_11/num_11
 
-        error_weight = MLC.inject_error(mlc_error_rate)
+        error_weight = MLC.inject_error(flipcy_error_rate)
         error_weight = error_weight.reshape(weight.shape)
-        # print("Number of error 11:", num_error_01, num_11*mlc_error_rate["error_11"])
-        # print("Number of error 10:", num_error_10, num_10*mlc_error_rate["error_10"])
+        # print("Number of 01:", num_01_flipcy, num_01)
+        # print("Number of 11:", num_11_flipcy, num_11)
     return error_weight
 
 # 00, 01, 11, 10

@@ -9,8 +9,6 @@ events.out.*
 ./latest_log_dir/*
 ./latest_log_file/*
 *.pth.tar
-__pycache__/*
-__pycache__/*
 *.pdf
-*/__pycache__/*
+*.pyc
 

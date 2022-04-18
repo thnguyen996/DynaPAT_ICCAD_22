@@ -33,18 +33,34 @@ def flipcy_en(weight, num_bits, tensors):
     case3_index = (np.invert(con_sum_index) & con_index2).nonzero()[0]# if 01 + 11 < 00 + 10 and 11 > 10
 
 # Case 1: Xor and flip
-    weight[case1_index, :] = np.invert(np.bitwise_xor(weight[case1_index, :], np.array([170], dtype=np.uint8)))
+    weight[case1_index, :] = bit_comp(np.invert(weight[case1_index, :]), tensor_01, tensor_10, tensor_11)
 
 # Case2: xor only
-    weight[case2_index, :] = np.bitwise_xor(weight[case2_index, :], np.array([170], dtype=np.uint8))
+    weight[case2_index, :] = np.invert(weight[case2_index, :])
 # Case3: Flip only
-    weight[case3_index, :] = np.invert(weight[case3_index, :])
+    weight[case3_index, :] = bit_comp(weight[case3_index, :], tensor_01, tensor_10, tensor_11)
 
     if num_bits == 16:
         weight = weight.astype(np.uint16)
     weight_torch = torch.tensor(weight.astype(np.float32), device="cuda")
 
     return torch.flatten(weight_torch)
+
+# 2's complements
+def bit_comp(weight, tensor_01, tensor_10, tensor_11):
+    index_01 = count_index(weight, tensor_01, tensor_11)
+    index_11 = count_index(weight, tensor_11, tensor_11)
+    # 2's complements
+    # FLip 01 --> 11
+    if index_01.shape[0] != 0:
+        c11 = tensor_11[(index_01[:, 2] / 2).astype(np.int_)]
+        np.bitwise_or.at(weight, (index_01[:, 0], index_01[:, 1]), c11)
+
+    # FLip 11 --> 01
+    if index_11.shape[0] != 0:
+        c10 = np.invert(tensor_10[(index_11[:, 2] / 2).astype(np.int_)])
+        np.bitwise_and.at(weight, (index_11[:, 0], index_11[:, 1]), c10)
+    return weight
 
 def count_11(weight, tensor_11, num_bits):
     index_bit = np.arange(0, num_bits, 2)
@@ -67,7 +83,26 @@ def count_11(weight, tensor_11, num_bits):
     return zeros
 
 
-def count(weight, tensor_01, tensor_11, num_bits):
+def count_index(weight, tensor_01, tensor_11, num_bits=8):
+    index_bit = np.arange(0, num_bits, 2)
+    num_01 = 0
+    indicies_01 = []
+    num_01 = np.zeros_like(weight)
+    for tensor_01_i, tensor_11_i, index_b in zip(tensor_01, tensor_11, index_bit):
+        and_result = np.bitwise_and(tensor_11_i, weight)
+        index_01 = (and_result == tensor_01_i).nonzero()
+        bit_index = np.full_like(index_01[0], index_b)
+        index_01 = np.stack((index_01[0], index_01[1], bit_index))
+        index_01 = np.transpose(index_01, (1, 0))
+        if index_01.shape[0] != 0:
+            indicies_01.append(index_01)
+    if len(indicies_01) != 0:
+        total_index_01 = np.concatenate(indicies_01, 0)
+        return total_index_01
+    else:
+        return np.array([])
+
+def count(weight, tensor_01, tensor_11, num_bits=8):
     index_bit = np.arange(0, num_bits, 2)
     num_01 = 0
     indices_01 = []
@@ -79,8 +114,8 @@ def count(weight, tensor_01, tensor_11, num_bits):
     return num_01
 
 
-def count_orig(weight, tensor_10, tensor_11, num_bits):
-    index_bit = np.arange(0, num_bits, 2)
+def count_orig(weight, tensor_10, tensor_11):
+    index_bit = np.arange(0, 8, 2)
     num_10 = 0
     indices_10 = []
     weight = weight.flatten()
