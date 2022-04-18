@@ -33,18 +33,18 @@ def helmet_en(weight, num_bits):
     rot_weight = circshift(weight, num_bits)
     ir_weight = circshift(inv_weight, num_bits)
 
-    num_01_orig = count_01(weight, tensor_01, tensor_11, num_bits)
-    num_01_inv = count_01(inv_weight, tensor_01, tensor_11, num_bits)
-    num_01_rot = count_01(rot_weight, tensor_01, tensor_11, num_bits)
-    num_01_ir  = count_01(ir_weight, tensor_01,  tensor_11, num_bits)
+    num_11_orig = count_11(weight, tensor_11, tensor_11, num_bits)
+    num_11_inv = count_11(inv_weight, tensor_11, tensor_11, num_bits)
+    num_11_rot = count_11(rot_weight, tensor_11, tensor_11, num_bits)
+    num_11_ir  = count_11(ir_weight, tensor_11,  tensor_11, num_bits)
 
-    num_01_orig = np.sum(num_01_orig, axis=1)
-    num_01_inv = np.sum(num_01_inv, axis=1)
-    num_01_rot = np.sum(num_01_rot, axis=1)
-    num_01_ir = np.sum(num_01_ir, axis=1)
+    num_11_orig = np.sum(num_11_orig, axis=1)
+    num_11_inv = np.sum(num_11_inv, axis=1)
+    num_11_rot = np.sum(num_11_rot, axis=1)
+    num_11_ir = np.sum(num_11_ir, axis=1)
 
-    total_01 = np.stack((num_01_orig, num_01_inv, num_01_rot, num_01_ir))
-    min_case = np.argmin(total_01, axis=0)
+    total_11 = np.stack((num_11_orig, num_11_inv, num_11_rot, num_11_ir))
+    min_case = np.argmin(total_11, axis=0)
 
     weight[(min_case == 1).nonzero()[0], :] = inv_weight[(min_case == 1).nonzero()[0], :]
     weight[(min_case == 2).nonzero()[0], :] = rot_weight[(min_case == 2).nonzero()[0], :]
@@ -84,7 +84,7 @@ def helmet_de(weight, fc):
 
     return weight.flatten()
 
-def count_01(weight, tensor_01, tensor_11, num_bits):
+def count_11(weight, tensor_01, tensor_11, num_bits):
     index_bit = np.arange(0, num_bits, 2)
     num_01 = 0
     indices_01 = []
