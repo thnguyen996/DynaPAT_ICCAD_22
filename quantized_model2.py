@@ -209,6 +209,7 @@ def main():
                     if ( "weight" in name ) and ( "bn" not in name ):
                         # level = "bit"
                         mlc_error_rate = {"error_level3" : error_11, "error_level2": error_10}
+                        # mlc_error_rate = {"error_level3" : 0.01, "error_level2": 0.32}
                         if args.method == "proposed_method":
                             error_weight = proposed_method(weight, weight_type, mlc_error_rate, args.num_bits, tensors, args.case)
                         if args.method == "baseline":
@@ -378,8 +379,7 @@ def flipcy(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode)
 
         error_weight = MLC.inject_error(flipcy_error_rate)
         error_weight = error_weight.reshape(weight.shape)
-        # print("Number of 01:", num_01_flipcy, num_01)
-        # print("Number of 11:", num_11_flipcy, num_11)
+        # print("Flipcy error rate", flipcy_error_rate["error_level3"], flipcy_error_rate["error_level3"])
     return error_weight
 
 # 00, 01, 11, 10

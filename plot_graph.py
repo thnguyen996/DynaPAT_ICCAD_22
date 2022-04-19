@@ -81,7 +81,7 @@ def plot_graph_1year(
                 "$\mathregular{2^{25}}$",
                 )
         )
-        # ax.legend(loc=0, prop={"size": 8})
+        ax.legend(loc=0, prop={"size": 8})
         plt.tight_layout()
         if save_fig and save_dir is not None:
             fig.savefig(save_dir + file_name + ".pdf", dpi=300)
@@ -368,15 +368,15 @@ def plot_graph_1year_imagenet(
 #               Plot final results cifar10                           #
 #                                                                    #
 ######################################################################
-network = "Inception"
-baseline = pd.read_csv(f"./result/{network}-baseline.csv")
+network = "resnet18"
+baseline = pd.read_csv(f"./results-2022/{network}-cifar10-baseline-2022.csv")
 proposed_method = pd.read_csv(f"./results-2022/{network}-cifar10-proposed_method-2022.csv")
-flipcy = pd.read_csv(f"./result/{network}-cifar10-flipcy-size16.csv")
-helmet = pd.read_csv(f"./result/{network}-cifar10-helmet-size16.csv")
+flipcy = pd.read_csv(f"././results-2022/{network}-cifar10-flipcy-2022.csv")
+helmet = pd.read_csv(f"./results-2022/{network}-cifar10-helmet-2022.csv")
 
 baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "style":"-", "color":"black"}
-flipcy_dict = {"Method name": "Baseline", "data": flipcy["Acc."].to_numpy(), "style":"-", "color":"#bdbdbd"}
-helmet_dict = {"Method name": "Baseline", "data": helmet["Acc."].to_numpy(), "style":":", "color":"#636363"}
+flipcy_dict = {"Method name": "Flipcy", "data": flipcy["Acc."].to_numpy(), "style":"-", "color":"#bdbdbd"}
+helmet_dict = {"Method name": "Helmet", "data": helmet["Acc."].to_numpy(), "style":":", "color":"#636363"}
 
 proposed_method_dict = {
     "Method name": "Aspen",
@@ -385,7 +385,7 @@ proposed_method_dict = {
     "color":"black"
 }
 
-data_list = (baseline_dict, flipcy_dict, helmet_dict, proposed_method_dict)
+data_list = (baseline_dict, flipcy_dict, proposed_method_dict, helmet_dict)
 time = np.arange(25)
 
 plot_graph_1year(
