@@ -1,7 +1,6 @@
 """Count the number pattern 11, 10, 01, and 00"""
 import matplotlib.pyplot as plt
 from cifar10_models import *
-from distiller.data_loggers.collector import collector_context
 from functools import partial
 from tabulate import tabulate
 from torch.utils.tensorboard import SummaryWriter
@@ -9,7 +8,6 @@ from tqdm import tqdm
 from utils import progress_bar
 import argparse
 import copy
-import distiller
 import logging
 import numpy as np
 import os
@@ -30,6 +28,7 @@ from matplotlib import rc
 import matplotlib as mpl
 from weight_quantized_conf import *
 torch.set_printoptions(profile="full")
+np.set_printoptions(suppress=True)
 
 msglogger = logging.getLogger()
 parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")
@@ -47,7 +46,6 @@ parser.add_argument(
     "--resume", "-r", action="store_true", help="resume from checkpoint"
 )
 parser.add_argument("--num_bits", default=8, type=int, help="Number of quantized bits")
-distiller.quantization.add_post_train_quant_args(parser)
 args = parser.parse_args()
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
@@ -119,31 +117,11 @@ def main():
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4)
 
-    if not os.path.isfile(f"./quant_stats/{args.model}.yaml"):
-        distiller.utils.assign_layer_fq_names(net)
-        msglogger.info("Generating quantization calibration stats based on {0} users".format(args.qe_calibration))
-        collector = distiller.data_loggers.QuantCalibrationStatsCollector(net)
-        with collector_context(collector):
-            test(net, criterion, optimizer, valloader, device="cuda")
-        yaml_path = f"./quant_stats/{args.model}.yaml"
-        collector.save(yaml_path)
-        print("Done")
-
-    # Quantize the model
-    assert os.path.isfile(f"./quant_stats/{args.model}.yaml"), "You should do activation calibration first"
-    args.qe_stats_file = f"./quant_stats/{args.model}.yaml"
-    args.qe_bits_acts = args.num_bits
-    args.qe_bits_wts = args.num_bits
-    args.qe_config_file = f"./{args.model}_imagenet_post_train.yaml"
-    quantizer = distiller.quantization.PostTrainLinearQuantizer.from_args(net, args)
-    quantizer.prepare_model(torch.randn(100, 3, 32, 32))
-    orig_state_dict = copy.deepcopy(net.state_dict())
-
 # Count number of pattern:
-    if args.num_bits == 16:
+    if args.num_bits == 8:
+        dtype = np.int8
+    else:
         dtype = np.uint16
-    elif args.num_bits == 8:
-        dtype = np.uint8
 
     with torch.no_grad():
         list_11 = [3]
@@ -168,51 +146,105 @@ def main():
         total00 = []
         index = 1
 
-        for (name, weight) in tqdm(net.named_parameters(), desc="Counting pattern: ", leave=False):
-            if ( "weight" in name ) and ( "bn" not in name ) and ("shortcut" not in name):
-                weight = weight.cpu().numpy().astype(dtype)
-                _, index_11 = count(weight, tensor_11, tensor_11, index_bit, num_bits=args.num_bits)
-                _, index_01 = count(weight, tensor_01, tensor_11, index_bit, num_bits=args.num_bits)
-                _, index_10 = count(weight, tensor_10, tensor_11, index_bit, num_bits=args.num_bits)
-                _, index_00 = count(weight, tensor_00, tensor_11, index_bit, num_bits=args.num_bits)
+        with torch.no_grad():
+            for (name, weight) in tqdm(net.named_parameters(), desc="Counting pattern: ", leave=False):
+                if ( "weight" in name ) and ( "bn" not in name ):
+                    # Fixed point quantization
+                    if args.num_bits == 8:
+                        qi, qf = (2, 6)
+                    elif args.num_bits == 10:
+                        qi, qf = (2, 8)
+                    (imin, imax) = (-np.exp2(qi-1), np.exp2(qi-1)-1)
+                    fdiv = np.exp2(-qf)
+                    quantized_weight = torch.round(torch.div(weight, fdiv))
 
-                num_11 = np.unique(index_11[:, 1], return_counts=True)[1]
-                num_01 = np.unique(index_01[:, 1], return_counts=True)[1]
-                num_10 = np.unique(index_10[:, 1], return_counts=True)[1]
-                num_00 = np.unique(index_00[:, 1], return_counts=True)[1]
+                    quantized_weight = quantized_weight.view(-1).detach().cpu().numpy()
+                    if args.num_bits == 10:
+                        quantized_weight = (quantized_weight * np.exp2(6)).astype(dtype)
+                        quantized_weight = (quantized_weight / np.exp2(6)).astype(dtype)
+                    else:
+                        quantized_weight = quantized_weight.astype(dtype)
 
-                num_11 = np.sum(num_11)
-                num_10 = np.sum(num_10)
-                num_01 = np.sum(num_01)
-                num_00 = np.sum(num_00)
-                total = num_11 + num_01 + num_10 + num_00
-                num_11 = num_11/total*100
-                num_10 = num_10/total*100
-                num_01 = num_01/total*100
-                num_00 = num_00/total*100
-                total11.append(num_11)
-                total10.append(num_10)
-                total01.append(num_01)
-                total00.append(num_00)
+                    num_00 = np.zeros_like(index_bit)
+                    num_01 = np.zeros_like(index_bit)
+                    num_10 = np.zeros_like(index_bit)
+                    num_11 = np.zeros_like(index_bit)
 
-    total11 = np.array(total11)
-    total01 = np.array(total01)
-    total10 = np.array(total10)
-    total00 = np.array(total00)
+                    _, index_11 = count(quantized_weight, tensor_11, tensor_11, index_bit, num_bits=args.num_bits)
+                    _, index_01 = count(quantized_weight, tensor_01, tensor_11, index_bit, num_bits=args.num_bits)
+                    _, index_10 = count(quantized_weight, tensor_10, tensor_11, index_bit, num_bits=args.num_bits)
+                    _, index_00 = count(quantized_weight, tensor_00, tensor_11, index_bit, num_bits=args.num_bits)
+
+                    num_11_count = np.unique(index_11[:, 1], return_counts=True)
+                    num_01_count = np.unique(index_01[:, 1], return_counts=True)
+                    num_10_count = np.unique(index_10[:, 1], return_counts=True)
+                    num_00_count = np.unique(index_00[:, 1], return_counts=True)
+
+                    num_11_count_index = (num_11_count[0]/2).astype(np.uint8)
+                    num_01_count_index = (num_01_count[0]/2).astype(np.uint8)
+                    num_10_count_index = (num_10_count[0]/2).astype(np.uint8)
+                    num_00_count_index = (num_00_count[0]/2).astype(np.uint8)
+
+                    num_11[num_11_count_index] = num_11_count[1]
+                    num_10[num_10_count_index] = num_10_count[1]
+                    num_01[num_01_count_index] = num_01_count[1]
+                    num_00[num_00_count_index] = num_00_count[1]
+
+                    total = num_11 + num_01 + num_10 + num_00
+                    num_11 = num_11/total*100
+                    num_10 = num_10/total*100
+                    num_01 = num_01/total*100
+                    num_00 = num_00/total*100
+                    total11.append(num_11)
+                    total10.append(num_10)
+                    total01.append(num_01)
+                    total00.append(num_00)
+
+    total11 = np.stack(total11)
+    total01 = np.stack(total01)
+    total10 = np.stack(total10)
+    total00 = np.stack(total00)
     total = np.stack((total00, total01, total10, total11))
+
     index_sort = np.argsort(total, 0)
-    np.save(f"./state_stats/{args.model}-state-stats.npy", index_sort)
-    print(f"Save state stats to ./state_stats/{args.model}-state-stats.npy")
+    max_pattern_map = index_sort[3]
+    state_encode = np.empty((max_pattern_map.shape[0], 4), dtype=np.uint8)
+    for layer in range(max_pattern_map.shape[0]):
+        msb1 = max_pattern_map[layer, 3]
+        if msb1 == max_pattern_map[layer, 2]:
+            msb2 = index_sort[2, layer, 2]
+        else:
+            msb2 = max_pattern_map[layer, 2]
+        if max_pattern_map[layer, 1] == msb1 or max_pattern_map[layer, 1] == msb2:
+            if index_sort[2, layer, 1] == msb1 or index_sort[2, layer, 1] == msb2:
+                if index_sort[1, layer, 1] == msb1 or index_sort[1, layer, 1] == msb2:
+                    lsb1 = index_sort[0, layer, 1]
+                else:
+                    lsb1 = index_sort[1, layer, 1]
+            else:
+                lsb1 = index_sort[2, layer, 1]
+        else:
+            lsb1 = max_pattern_map[layer, 1]
+
+        for i in range(4):
+            if i != msb1 and i != msb2 and i != lsb1:
+                lsb2 = i
+        state_encode[layer] = [msb1, msb2, lsb1, lsb2]
+
+    # # print(state_encode)
+    # # import pdb; pdb.set_trace()
+    np.save(f"./state_stats/{args.model}-state-stats-fixed-point.npy", state_encode)
+    print(f"Save state stats to ./state_stats/{args.model}-state-stats-fixed-point.npy")
 
     # Plot graph
     # with plt.style.context(['ieee', 'no-latex']):
     #     mpl.rcParams['font.family'] = 'NimbusRomNo9L'
     #     fig, ax = plt.subplots(figsize=(6, 2))
-    #     labels = np.arange(18)
+    #     labels = np.arange(56)
     #     width = 0.8
     #     total1110 = total11 + total10
     #     total111001 = total11 + total10 + total01
-    #     for i in range(1, 18):
+    #     for i in range(1, 56):
     #         ax.bar(i, total11[i], width, edgecolor="black", color="#d7191c",  align='center')
     #         ax.bar(i, total10[i], width, edgecolor="black", color="#fdae61", bottom=total11[i],
     #                 align='center')

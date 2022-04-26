@@ -369,10 +369,10 @@ def plot_graph_1year_imagenet(
 #                                                                    #
 ######################################################################
 network = "resnet18"
-baseline = pd.read_csv(f"./results-2022/{network}-cifar10-baseline-2022.csv")
-proposed_method = pd.read_csv(f"./results-2022/{network}-cifar10-proposed_method-2022.csv")
-flipcy = pd.read_csv(f"././results-2022/{network}-cifar10-flipcy-2022.csv")
-helmet = pd.read_csv(f"./results-2022/{network}-cifar10-helmet-2022.csv")
+baseline = pd.read_csv(f"./results-2022/{network}-cifar10-baseline-fixed-point.csv")
+proposed_method = pd.read_csv(f"./results-2022/{network}-cifar10-proposed_method-fixed-point.csv")
+flipcy = pd.read_csv(f"././results-2022/{network}-cifar10-flipcy-fixed-point.csv")
+helmet = pd.read_csv(f"./results-2022/{network}-cifar10-helmet-fixed-point.csv")
 
 baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "style":"-", "color":"black"}
 flipcy_dict = {"Method name": "Flipcy", "data": flipcy["Acc."].to_numpy(), "style":"-", "color":"#bdbdbd"}
@@ -392,7 +392,7 @@ plot_graph_1year(
     time,
     data_list,
     save_fig=True,
-    file_name=f"{network}-cifar10-result-method3",
+    file_name=f"{network}-cifar10-result-fixed-point",
     save_dir="./Figures/",
 )
 

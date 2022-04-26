@@ -3,7 +3,7 @@ import numpy as np
 
 def flipcy_en(weight, num_bits, tensors):
     if num_bits == 8:
-        dtype = torch.uint8
+        dtype = torch.int8
         weight = weight.type(dtype).to("cuda")
     elif num_bits == 16:
         dtype = torch.int16
@@ -135,7 +135,7 @@ def inject_error(weight, num_error, mlc_error_rate, num_bits):
     if num_bits == 16:
         dtype = np.uint16
     elif num_bits == 8:
-        dtype = np.uint8
+        dtype = np.int8
     # weight = weight.cpu().numpy().astype(dtype)
     orig_weight = np.copy(weight)
 

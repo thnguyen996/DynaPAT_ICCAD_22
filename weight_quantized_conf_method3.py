@@ -4,12 +4,10 @@ import numpy as np
 torch.set_printoptions(profile="full")
 
 def inject_error(weight, orig_weight, error_rate, error_pat, des_pat, num_bits):
-    if num_bits == 16:
+    if num_bits == 8:
+        dtype = np.int8
+    else:
         dtype = np.uint16
-    elif num_bits == 8:
-        dtype = np.uint8
-    weight = weight.astype(dtype)
-    orig_weight = orig_weight.astype(dtype)
 
     list_00 = [0]
     list_01 = [1]
@@ -26,9 +24,16 @@ def inject_error(weight, orig_weight, error_rate, error_pat, des_pat, num_bits):
     tensor_10 = np.array(list_10, dtype=dtype)
     tensor_01 = np.array(list_01, dtype=dtype)
     tensor_00 = np.array(list_00, dtype=dtype)
-    tensor_00_inv = np.invert(tensor_11)
-    tensor_01_inv = np.invert(tensor_10)
-    tensor_10_inv = np.invert(tensor_01)
+
+    if num_bits == 10:
+        tensor_00_inv = np.invert(tensor_11) - 64512
+        tensor_01_inv = np.invert(tensor_10) - 64512
+        tensor_10_inv = np.invert(tensor_01) - 64512
+    else:
+        tensor_00_inv = np.invert(tensor_11)
+        tensor_01_inv = np.invert(tensor_10)
+        tensor_10_inv = np.invert(tensor_01)
+
     index_bit = np.arange(0, num_bits, 2)
 
     if error_pat == "00":

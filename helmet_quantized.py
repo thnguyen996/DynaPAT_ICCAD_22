@@ -4,7 +4,7 @@ import numpy as np
 
 def helmet_en(weight, num_bits):
     if num_bits == 8:
-        dtype = np.uint8
+        dtype = np.int8
     elif num_bits == 16:
         dtype = np.int16
     # reshape to memristor length (128*128)

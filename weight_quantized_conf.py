@@ -4,23 +4,20 @@ import numpy as np
 torch.set_printoptions(profile="full")
 
 class weight_conf(object):
-    def __init__(self, weight, weight_type, num_bits, method):
+    def __init__(self, weight, num_bits, method):
         self.shape = weight.shape
         self.num_bits = num_bits
-        self.weight = weight.view(-1)
-        self.weight_type = weight_type
+        self.weight = weight
         self.method = method
 
     def inject_error(self, mlc_error_rate):
-        num_mlc = self.weight_type["MLC"]
-        if self.num_bits == 16:
+        if self.num_bits == 8:
+            dtype = np.int8
+        else:
             dtype = np.uint16
-        elif self.num_bits == 8:
-            dtype = np.uint8
+
         weight = self.weight
-        orig_weight = weight.clone()
-        weight = weight.cpu().numpy().astype(dtype)
-        orig_weight = orig_weight.cpu().numpy().astype(dtype)
+        orig_weight = np.copy(weight)
 
         list_11 = [3]
         list_10 = [2]
@@ -36,8 +33,12 @@ class weight_conf(object):
         tensor_10 = np.array(list_10, dtype=dtype)
         tensor_01 = np.array(list_01, dtype=dtype)
         tensor_00 = np.array(list_00, dtype=dtype)
-        tensor_00_inv = np.invert(tensor_11)
-        tensor_10_inv = np.invert(tensor_01)
+        if self.num_bits == 10:
+            tensor_00_inv = np.invert(tensor_11) - 64512
+            tensor_10_inv = np.invert(tensor_01) - 64512
+        else:
+            tensor_00_inv = np.invert(tensor_11)
+            tensor_10_inv = np.invert(tensor_01)
 
         index_bit = np.arange(0, self.num_bits, 2)
 
@@ -63,6 +64,7 @@ class weight_conf(object):
                 tensor11_index= tensor_11[(error01_indices[:, 1] / 2).astype(dtype)]
                 np.bitwise_or.at(weight, error01_indices[:, 0], tensor11_index)
 
+        # 00 , 01, 11, 10
         if self.method == 'baseline':
             if mlc_error_rate["error_level3"] is not None:
                 # Flip 11 --> 10:
@@ -77,7 +79,7 @@ class weight_conf(object):
             if mlc_error_rate["error_level2"] is not None:
 
                 # Flip 01 --> 11:
-                num_01, index_01 = count(orig_weight, tensor_01, tensor_01, index_bit, self.num_bits)
+                num_01, index_01 = count(orig_weight, tensor_01, tensor_11, index_bit, self.num_bits)
                 error_rate2 = mlc_error_rate["error_level2"]
                 num_error_01 = int(num_01 * error_rate2)
                 error01_randn_index = np.random.permutation(num_01)[:num_error_01]
@@ -85,10 +87,7 @@ class weight_conf(object):
                 tensor11_index = tensor_11[(error01_indices[:, 1] / 2).astype(dtype)]
                 np.bitwise_or.at(weight, error01_indices[:, 0], tensor11_index)
 
-        weight_float = weight.astype(np.float32)
-        weight_float = torch.from_numpy(weight_float).to(self.weight.device)
-
-        return weight_float
+        return weight
 
 def count(weight, tensor_10, tensor_11, index_bit, num_bits):
     num_10 = 0
