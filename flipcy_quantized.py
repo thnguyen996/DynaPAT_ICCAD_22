@@ -4,14 +4,12 @@ import numpy as np
 def flipcy_en(weight, num_bits, tensors):
     if num_bits == 8:
         dtype = torch.int8
-        weight = weight.type(dtype).to("cuda")
-    elif num_bits == 16:
-        dtype = torch.int16
-        weight = weight.type(dtype).to("cuda")
+    else:
+        dtype = torch.uint16
+
     # reshape to memristor length (128*128)
-    weight = weight.reshape(int(weight.numel() / 2), -1)
+    weight = weight.reshape(int(weight.size / 4), -1)
     tensor_00, tensor_01, tensor_10, tensor_11 = tensors
-    weight = weight.cpu().numpy()
     num_11 = count(weight, tensor_11, tensor_11, num_bits)
     num_10 = count(weight, tensor_10, tensor_11, num_bits)
     num_01 = count(weight, tensor_01, tensor_11, num_bits)
@@ -42,9 +40,8 @@ def flipcy_en(weight, num_bits, tensors):
 
     if num_bits == 16:
         weight = weight.astype(np.uint16)
-    weight_torch = torch.tensor(weight.astype(np.float32), device="cuda")
 
-    return torch.flatten(weight_torch)
+    return weight
 
 # 2's complements
 def bit_comp(weight, tensor_01, tensor_10, tensor_11):

@@ -194,10 +194,12 @@ def main():
                         shape = weight.shape
 
                         # Shift bit weights to 16-bit
+                        quantized_weight = quantized_weight.view(-1).detach().cpu().numpy()
                         if args.num_bits == 10:
-                            quantized_weight = quantized_weight.view(-1).detach().cpu().numpy()
                             quantized_weight = (quantized_weight * np.exp2(6)).astype(dtype)
                             quantized_weight = (quantized_weight / np.exp2(6)).astype(dtype)
+                        else:
+                            quantized_weight = quantized_weight.astype(dtype)
 
                         mlc_error_rate = {"error_level3": error_11, "error_level2": error_10}
                         # mlc_error_rate = {"error_level3" : 0.01, "error_level2": 0.32}
@@ -213,7 +215,6 @@ def main():
                         if args.method == "flipcy":
                             error_quantized_weight = flipcy(
                                 quantized_weight,
-                                weight_type,
                                 mlc_error_rate,
                                 name,
                                 tensors,
@@ -329,27 +330,30 @@ def circshift(weight, num_bits):
 
 
 # 00, 01, 11, 10
-def flipcy(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode):
+def flipcy(weight, mlc_error_rate, name, tensors, num_bits, encode):
     shape = weight.shape
-    MLC = weight_conf(weight, weight_type, num_bits, method="baseline")
+    MLC = weight_conf(weight, num_bits, method="baseline")
     tensor_00, tensor_01, tensor_10, tensor_11 = tensors
     if encode:
         encoded_weight = flipcy_en(MLC.weight, num_bits, tensors)
         if not os.path.isdir(f"./flipcy_en/quantized-{args.model}-{num_bits}b"):
             os.mkdir(f"./flipcy_en/quantized-{args.model}-{num_bits}b")
-        torch.save(encoded_weight, f"./flipcy_en/quantized-{args.model}-{num_bits}b/{name}.pt")
-        error_weight = encoded_weight.reshape(shape)
+        encoded_weight = torch.from_numpy(encoded_weight.astype(np.float32)).cuda()
+        torch.save(encoded_weight.reshape(shape), f"./flipcy_en/quantized-{args.model}-{num_bits}b/{name}.pt")
+        return weight
     else:
-        dtype = np.int8
+        if num_bits == 8:
+            dtype = np.int8
+        elif num_bits == 16:
+            dtype = np.int16
         flipcy_error_rate = {}
         assert os.path.isdir(f"./flipcy_en/quantized-{args.model}-{num_bits}b"), "You need to do encoding first"
         encoded_weight = torch.load(f"./flipcy_en/quantized-{args.model}-{num_bits}b/{name}.pt")
 
         encoded_weight = encoded_weight.cpu().numpy().astype(dtype)
-        encoded_weight = encoded_weight.reshape(int(encoded_weight.size / 2), -1)
+        encoded_weight = encoded_weight.reshape(int(encoded_weight.size / 4), -1)
 
-        orig_weight = MLC.weight.cpu().numpy().astype(dtype)
-        orig_weight = orig_weight.reshape(int(encoded_weight.size / 2), -1)
+        orig_weight = np.copy(MLC.weight.reshape(int(encoded_weight.size / 4), -1))
 
         num_01_flipcy = flipcy_quan.count(encoded_weight, tensor_01, tensor_11, num_bits=8)
         num_11_flipcy = flipcy_quan.count(encoded_weight, tensor_11, tensor_11, num_bits=8)
@@ -363,15 +367,12 @@ def flipcy(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode)
         num_01 = np.sum(np.sum(num_01, axis=1), 0)
         num_11 = np.sum(np.sum(num_11, axis=1), 0)
 
-        num_error_01 = mlc_error_rate["error_level3"] * num_01_flipcy
-        num_error_11 = mlc_error_rate["error_level2"] * num_11_flipcy
-        flipcy_error_rate["error_level3"] = num_error_01 / num_01
-        flipcy_error_rate["error_level2"] = num_error_11 / num_11
+        num_error_01 = mlc_error_rate["error_level2"] * num_01_flipcy
+        num_error_11 = mlc_error_rate["error_level3"] * num_11_flipcy
+        flipcy_error_rate["error_level3"] = num_error_11 / num_11
+        flipcy_error_rate["error_level2"] = num_error_01 / num_01
 
         error_weight = MLC.inject_error(flipcy_error_rate)
-        error_weight = error_weight.reshape(weight.shape)
-        # print(f"num 11 flipcy: {num_11_flipcy}, num 11 orig: {num_11}")
-        # print(f"num 01 flipcy: {num_01_flipcy}, num 01 orig: {num_01}")
         # print("Flipcy error rate", flipcy_error_rate["error_level3"], flipcy_error_rate["error_level3"])
     return error_weight
 
@@ -379,7 +380,7 @@ def flipcy(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode)
 # 00, 01, 11, 10
 def helmet(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode):
     shape = weight.shape
-    MLC = weight_conf(weight, weight_type, num_bits, method="baseline")
+    MLC = weight_conf(weight, num_bits, method="baseline")
     tensor_00, tensor_01, tensor_10, tensor_11 = tensors
     helmet_error_rate = {}
     if encode:
@@ -399,8 +400,7 @@ def helmet(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode)
         encoded_weight = encoded_weight.cpu().numpy().astype(dtype)
         encoded_weight = encoded_weight.reshape(int(encoded_weight.size / 2), -1)
 
-        orig_weight = MLC.weight.cpu().numpy().astype(dtype)
-        orig_weight = orig_weight.reshape(int(encoded_weight.size / 2), -1)
+        orig_weight = np.copy(MLC.weight.reshape(int(encoded_weight.size / 2), -1))
 
         num_01_helmet = flipcy_quan.count(encoded_weight, tensor_01, tensor_11, num_bits=8)
         num_11_helmet = flipcy_quan.count(encoded_weight, tensor_11, tensor_11, num_bits=8)
@@ -414,10 +414,10 @@ def helmet(weight, weight_type, mlc_error_rate, name, tensors, num_bits, encode)
         num_01 = np.sum(np.sum(num_01, axis=1), 0)
         num_11 = np.sum(np.sum(num_11, axis=1), 0)
 
-        num_error_01 = mlc_error_rate["error_level3"] * num_01_helmet
-        num_error_11 = mlc_error_rate["error_level2"] * num_11_helmet
-        helmet_error_rate["error_level3"] = num_error_01 / num_01
-        helmet_error_rate["error_level2"] = num_error_11 / num_11
+        num_error_01 = mlc_error_rate["error_level2"] * num_01_helmet
+        num_error_11 = mlc_error_rate["error_level3"] * num_11_helmet
+        helmet_error_rate["error_level2"] = num_error_01 / num_01
+        helmet_error_rate["error_level3"] = num_error_11 / num_11
 
         error_weight = MLC.inject_error(helmet_error_rate)
         error_weight = error_weight.reshape(weight.shape)
