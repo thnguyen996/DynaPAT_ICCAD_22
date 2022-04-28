@@ -3,12 +3,14 @@ import numpy as np
 
 def flipcy_en(weight, num_bits, tensors):
     if num_bits == 8:
-        dtype = torch.int8
-    else:
-        dtype = torch.uint16
+        dtype = np.int8
+        split = 4
+    elif num_bits == 10:
+        dtype = np.uint16
+        split = 4
 
     # reshape to memristor length (128*128)
-    weight = weight.reshape(int(weight.size / 4), -1)
+    weight = weight.reshape(int(weight.size / split), -1)
     tensor_00, tensor_01, tensor_10, tensor_11 = tensors
     num_11 = count(weight, tensor_11, tensor_11, num_bits)
     num_10 = count(weight, tensor_10, tensor_11, num_bits)
@@ -31,22 +33,24 @@ def flipcy_en(weight, num_bits, tensors):
     case3_index = (np.invert(con_sum_index) & con_index2).nonzero()[0]# if 01 + 11 < 00 + 10 and 11 > 10
 
 # Case 1: Xor and flip
-    weight[case1_index, :] = bit_comp(np.invert(weight[case1_index, :]), tensor_01, tensor_10, tensor_11)
+    orig_weight = np.copy(weight)
+    if num_bits == 8:
+        weight[case1_index, :] = bit_comp(np.invert(weight[case1_index, :]), tensor_01, tensor_10, tensor_11, num_bits)
+        weight[case2_index, :] = np.invert(weight[case2_index, :])
+    elif num_bits == 10:
+        weight[case1_index, :] = bit_comp(np.invert(weight[case1_index, :]) - 64512 , tensor_01, tensor_10, tensor_11, num_bits)
+        weight[case2_index, :] = np.invert(weight[case2_index, :]) - 64512
 
 # Case2: xor only
-    weight[case2_index, :] = np.invert(weight[case2_index, :])
 # Case3: Flip only
-    weight[case3_index, :] = bit_comp(weight[case3_index, :], tensor_01, tensor_10, tensor_11)
-
-    if num_bits == 16:
-        weight = weight.astype(np.uint16)
+    weight[case3_index, :] = bit_comp(weight[case3_index, :], tensor_01, tensor_10, tensor_11, num_bits)
 
     return weight
 
 # 2's complements
-def bit_comp(weight, tensor_01, tensor_10, tensor_11):
-    index_01 = count_index(weight, tensor_01, tensor_11)
-    index_11 = count_index(weight, tensor_11, tensor_11)
+def bit_comp(weight, tensor_01, tensor_10, tensor_11, num_bits):
+    index_01 = count_index(weight, tensor_01, tensor_11, num_bits)
+    index_11 = count_index(weight, tensor_11, tensor_11, num_bits)
     # 2's complements
     # FLip 01 --> 11
     if index_01.shape[0] != 0:
@@ -80,7 +84,7 @@ def count_11(weight, tensor_11, num_bits):
     return zeros
 
 
-def count_index(weight, tensor_01, tensor_11, num_bits=8):
+def count_index(weight, tensor_01, tensor_11, num_bits):
     index_bit = np.arange(0, num_bits, 2)
     num_01 = 0
     indicies_01 = []
@@ -99,7 +103,7 @@ def count_index(weight, tensor_01, tensor_11, num_bits=8):
     else:
         return np.array([])
 
-def count(weight, tensor_01, tensor_11, num_bits=8):
+def count(weight, tensor_01, tensor_11, num_bits):
     index_bit = np.arange(0, num_bits, 2)
     num_01 = 0
     indices_01 = []

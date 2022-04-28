@@ -148,7 +148,7 @@ def main():
 
         with torch.no_grad():
             for (name, weight) in tqdm(net.named_parameters(), desc="Counting pattern: ", leave=False):
-                if ( "weight" in name ) and ( "bn" not in name ):
+                if ( "weight" in name ) and ( "bn" not in name ) and ( "shortcut" not in name):
                     # Fixed point quantization
                     if args.num_bits == 8:
                         qi, qf = (2, 6)
@@ -209,55 +209,56 @@ def main():
     index_sort = np.argsort(total, 0)
     max_pattern_map = index_sort[3]
     state_encode = np.empty((max_pattern_map.shape[0], 4), dtype=np.uint8)
-    for layer in range(max_pattern_map.shape[0]):
-        msb1 = max_pattern_map[layer, 3]
-        if msb1 == max_pattern_map[layer, 2]:
-            msb2 = index_sort[2, layer, 2]
-        else:
-            msb2 = max_pattern_map[layer, 2]
-        if max_pattern_map[layer, 1] == msb1 or max_pattern_map[layer, 1] == msb2:
-            if index_sort[2, layer, 1] == msb1 or index_sort[2, layer, 1] == msb2:
-                if index_sort[1, layer, 1] == msb1 or index_sort[1, layer, 1] == msb2:
-                    lsb1 = index_sort[0, layer, 1]
-                else:
-                    lsb1 = index_sort[1, layer, 1]
-            else:
-                lsb1 = index_sort[2, layer, 1]
-        else:
-            lsb1 = max_pattern_map[layer, 1]
 
-        for i in range(4):
-            if i != msb1 and i != msb2 and i != lsb1:
-                lsb2 = i
-        state_encode[layer] = [msb1, msb2, lsb1, lsb2]
+    # for layer in range(max_pattern_map.shape[0]):
+    #     msb1 = max_pattern_map[layer, 3]
+    #     if msb1 == max_pattern_map[layer, 2]:
+    #         msb2 = index_sort[2, layer, 2]
+    #     else:
+    #         msb2 = max_pattern_map[layer, 2]
+    #     if max_pattern_map[layer, 1] == msb1 or max_pattern_map[layer, 1] == msb2:
+    #         if index_sort[2, layer, 1] == msb1 or index_sort[2, layer, 1] == msb2:
+    #             if index_sort[1, layer, 1] == msb1 or index_sort[1, layer, 1] == msb2:
+    #                 lsb1 = index_sort[0, layer, 1]
+    #             else:
+    #                 lsb1 = index_sort[1, layer, 1]
+    #         else:
+    #             lsb1 = index_sort[2, layer, 1]
+    #     else:
+    #         lsb1 = max_pattern_map[layer, 1]
 
-    # # print(state_encode)
-    # # import pdb; pdb.set_trace()
-    np.save(f"./state_stats/{args.model}-state-stats-fixed-point.npy", state_encode)
-    print(f"Save state stats to ./state_stats/{args.model}-state-stats-fixed-point.npy")
+    #     for i in range(4):
+    #         if i != msb1 and i != msb2 and i != lsb1:
+    #             lsb2 = i
+    #     state_encode[layer] = [msb1, msb2, lsb1, lsb2]
 
-    # Plot graph
-    # with plt.style.context(['ieee', 'no-latex']):
-    #     mpl.rcParams['font.family'] = 'NimbusRomNo9L'
-    #     fig, ax = plt.subplots(figsize=(6, 2))
-    #     labels = np.arange(56)
-    #     width = 0.8
-    #     total1110 = total11 + total10
-    #     total111001 = total11 + total10 + total01
-    #     for i in range(1, 56):
-    #         ax.bar(i, total11[i], width, edgecolor="black", color="#d7191c",  align='center')
-    #         ax.bar(i, total10[i], width, edgecolor="black", color="#fdae61", bottom=total11[i],
-    #                 align='center')
-    #         ax.bar(i, total01[i], width, edgecolor="black", color="#abd9e9",  bottom=total1110[i],
-    #                 align='center')
-    #         ax.bar(i, total00[i], width, edgecolor="black", color="#2c7bb6",  bottom=total111001[i],
-    #                 align='center')
-    # ax.set_xlabel("Time (s)", fontsize=8)
-    # ax.set_ylabel("Cifa10 Test Accuracy (%)", fontsize=8)
-    # ax.invert_xaxis()
-    # plt.tight_layout()
-    # fig.savefig(f"./Figures/{args.model}_count_pattern_without_bitpos.pdf", dpi=300)
-    # os.system(f"zathura ./Figures/{args.model}_count_pattern_without_bitpos.pdf")
+    # # # print(state_encode)
+    # # # import pdb; pdb.set_trace()
+    # np.save(f"./state_stats/{args.model}-state-stats-fixed-point.npy", state_encode)
+    # print(f"Save state stats to ./state_stats/{args.model}-state-stats-fixed-point.npy")
+
+    ## Plot graph
+    with plt.style.context(['ieee', 'no-latex']):
+        mpl.rcParams['font.family'] = 'NimbusRomNo9L'
+        fig, ax = plt.subplots(figsize=(6, 2))
+        labels = np.arange(18)
+        width = 0.8
+        total1110 = total11 + total10
+        total111001 = total11 + total10 + total01
+        for i in range(1, 18):
+            ax.bar(i, total11[i], width, edgecolor="black", color="#d7191c",  align='center')
+            ax.bar(i, total10[i], width, edgecolor="black", color="#fdae61", bottom=total11[i],
+                    align='center')
+            ax.bar(i, total01[i], width, edgecolor="black", color="#abd9e9",  bottom=total1110[i],
+                    align='center')
+            ax.bar(i, total00[i], width, edgecolor="black", color="#2c7bb6",  bottom=total111001[i],
+                    align='center')
+    ax.set_xlabel("Time (s)", fontsize=8)
+    ax.set_ylabel("Cifa10 Test Accuracy (%)", fontsize=8)
+    ax.invert_xaxis()
+    plt.tight_layout()
+    fig.savefig(f"./Figures/{args.model}_count_pattern_fixed_point.pdf", dpi=300)
+    os.system(f"zathura ./Figures/{args.model}_count_pattern_fixed_point.pdf")
 
 def proposed_method(weight, weight_type, mlc_error_rate, num_bits):
     MLC = weight_conf(weight, weight_type, num_bits)

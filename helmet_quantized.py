@@ -1,17 +1,14 @@
 import torch
 import numpy as np
 
-
 def helmet_en(weight, num_bits):
     if num_bits == 8:
         dtype = np.int8
-    elif num_bits == 16:
-        dtype = np.int16
+    else:
+        dtype = np.uint16
     # reshape to memristor length (128*128)
-    weight = weight.reshape(int(weight.numel() / 2), -1)
-    orig_weight = weight.clone()
-    weight = weight.cpu().numpy().astype(dtype)
-    orig_weight = orig_weight.cpu().numpy().astype(dtype)
+    weight = weight.reshape(int(weight.size / 4), -1)
+    orig_weight = np.copy(weight)
     # Counts 01, 11, 00, 10
     list_00 = [0]
     list_01 = [1]
@@ -29,7 +26,11 @@ def helmet_en(weight, num_bits):
     tensor_01 = np.array(list_01, dtype=dtype)
     tensor_00 = np.array(list_00, dtype=dtype)
 
-    inv_weight = np.invert(weight)
+    if num_bits == 8:
+        inv_weight = np.invert(weight)
+    elif num_bits == 10:
+        inv_weight = np.invert(weight) - 64512
+
     rot_weight = circshift(weight, num_bits)
     ir_weight = circshift(inv_weight, num_bits)
 
@@ -50,18 +51,14 @@ def helmet_en(weight, num_bits):
     weight[(min_case == 2).nonzero()[0], :] = rot_weight[(min_case == 2).nonzero()[0], :]
     weight[(min_case == 3).nonzero()[0], :] = ir_weight[(min_case == 3).nonzero()[0], :]
 
-    if num_bits == 16:
-        weight = weight.astype(np.uint16)
-    weight_torch = torch.tensor(weight.astype(np.float32), device="cuda")
-
-    return torch.flatten(weight_torch)
+    return weight
 
 def circshift(weight, num_bits):
-    if num_bits == 16:
-        weight_np = weight.view(np.uint16)
-        save_bit = np.left_shift(weight_np, 15)
+    if num_bits == 10:
+        weight_np = weight
+        save_bit = np.bitwise_and(np.left_shift(weight_np, 9), 512)
         rot_bit = np.right_shift(weight_np, 1)
-        rot_weight = np.bitwise_or(save_bit, rot_bit).view(np.int16)
+        rot_weight = np.bitwise_or(save_bit, rot_bit)
     elif num_bits == 8:
         weight_np = weight
         save_bit = np.left_shift(weight_np, 7)
