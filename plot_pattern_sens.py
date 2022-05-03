@@ -12,8 +12,8 @@ from matplotlib import rc
 error_pats = ["00", "01", "10", "11"]
 des_pats = ["00", "01", "10", "11"]
 
-model = "LeNet"
-base_acc = 92.859
+model = "resnet18"
+base_acc = 82.01
 heat_map = np.empty((4, 4))
 
 for pat_index, error_pat in enumerate(error_pats):
@@ -22,8 +22,10 @@ for pat_index, error_pat in enumerate(error_pats):
             heat_map[pat_index, des_index] = 0.
             continue
         else:
-            acc = pd.read_csv(f"./result/quantized-8bit-{model}-Pattern-{error_pat}-to-{error_des}.csv")
-            heat_map[pat_index, des_index] = base_acc - acc["Acc."][7]
+            acc = pd.read_csv(f"./results-2022/{model}-test-cases-fixed-point-{error_pat}-{error_des}.csv")
+            acc_print = acc["Acc."][13]
+            print(f"{error_pat} --> {error_des}: {acc_print}")
+            heat_map[pat_index, des_index] = base_acc - acc["Acc."][13]
             # for index, i in enumerate(acc["Acc."]):
             #     if i < (base_acc - 10.0):
             #         heat_map[pat_index, des_index] = index
@@ -37,16 +39,16 @@ with plt.style.context(["ieee", "no-latex"]):
     # heat_map = 24 - heat_map
     im = ax.imshow(heat_map, cmap="OrRd")
     cbar = ax.figure.colorbar(im, ax=ax)
-    cbar.ax.set_ylabel(" Accuracy loss (%) ", rotation=-90, va="bottom")
+    cbar.ax.set_ylabel(" Accuracy Loss (%) ", rotation=-90, va="bottom")
     ax.set_xticks(np.arange(len(error_pats)))
     ax.set_yticks(np.arange(len(des_pats)))
     ax.set_xticklabels(error_pats, fontsize=8)
     ax.set_yticklabels(des_pats, fontsize=8)
-    ax.set_xlabel("Drifted pattern", fontsize=8)
-    ax.set_ylabel("Original pattern", fontsize=8)
+    ax.set_xlabel("Drifted Pattern", fontsize=8)
+    ax.set_ylabel("Original Pattern", fontsize=8)
 
 plt.tight_layout()
-fig.savefig("./Figures/pattern_heatmap_LeNet.svg", dpi=300)
-# os.system("zathura ./Figures/pattern_heatmap.pdf")
+fig.savefig(f"./Figures/pattern_heatmap_{model}_fixed_point.pdf", dpi=300)
+os.system(f"zathura ./Figures/pattern_heatmap_{model}_fixed_point.pdf")
 # plt.show()
 

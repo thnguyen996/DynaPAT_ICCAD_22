@@ -42,7 +42,8 @@ parser.add_argument("--name", default="Name", type=str, help="Name of run")
 parser.add_argument("--method", default="proposed_method", type=str, help="Running method")
 parser.add_argument("--model", default="resnet18", type=str, help="Model")
 parser.add_argument("--gpu", default="0", type=str, help="GPU ids")
-parser.add_argument("--case", default="1", type=str, help="case run")
+parser.add_argument("--error_pat", default="00", type=str, help="error pattern")
+parser.add_argument("--des_pat", default="00", type=str, help="destination pattern")
 parser.add_argument("--save_data", "-s", action="store_true", help="Save the data")
 parser.add_argument("--encode", "-e", action="store_true", help="Enable encode for flipcy and helmet")
 parser.add_argument("--resume", "-r", action="store_true", help="resume from checkpoint")
@@ -196,7 +197,7 @@ def main():
                         # Shift bit weights to 16-bit
                         quantized_weight = quantized_weight.view(-1).detach().cpu().numpy()
                         if args.num_bits == 10:
-                            quantized_weight = (quantized_weight * np.exp3(6)).astype(dtype)
+                            quantized_weight = (quantized_weight * np.exp2(6)).astype(dtype)
                             quantized_weight = (quantized_weight / np.exp2(6)).astype(dtype)
                         else:
                             quantized_weight = quantized_weight.astype(dtype)
@@ -230,6 +231,10 @@ def main():
                                 num_bits=args.num_bits,
                                 encode=args.encode,
                             )
+                        if args.method == "test_case":
+                            error_quantized_weight = test_case(
+                                quantized_weight, mlc_error_rate, args.num_bits, tensors, args.error_pat, args.des_pat
+                            )
 
                         error_quantized_weight  = torch.from_numpy(error_quantized_weight.astype(np.float))
                         if args.num_bits == 10:
@@ -253,6 +258,16 @@ def main():
                 df.to_csv(f"./results-2022/{args.name}.csv", mode="w", header=True)
             count += 1
 
+def test_case(weight, mlc_error_rate, num_bits, tensors, error_pat, des_pat):
+    if num_bits == 8:
+        dtype = np.int8
+    else:
+        dtype = np.uint16
+
+    orig_weight = np.copy(weight)
+    error_weight = method3.inject_error(weight, orig_weight, mlc_error_rate["error_level3"], error_pat, des_pat, num_bits)
+
+    return error_weight
 
 def proposed_method(weight, mlc_error_rate, num_bits, tensors, state_order):
     if num_bits == 8:
