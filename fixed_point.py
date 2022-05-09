@@ -15,10 +15,8 @@ import copy
 import flipcy_quantized as flipcy_quan
 import logging
 import numpy as np
-import numpy as np
 import os
 import pandas as pd
-import pdb
 import random
 import torch
 import torch.backends.cudnn as cudnn

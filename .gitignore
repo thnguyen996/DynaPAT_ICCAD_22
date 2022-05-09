@@ -1,5 +1,5 @@
 *.pt
-./checkpoint/*
+/checkpoint/*
 ./runs/*
 ./Figures/*
 ./flipcy_en/*
@@ -11,4 +11,4 @@ events.out.*
 *.pth.tar
 *.pdf
 *.pyc
-
+/logs/*

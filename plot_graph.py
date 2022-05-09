@@ -288,19 +288,19 @@ def plot_graph_1year_imagenet(
 #               Plot resnet result only #
 #                                                                    #
 ######################################################################
-baseline = pd.read_csv("./results-2022/resnet18-cifar10-baseline-fixed-point.csv")
+# baseline = pd.read_csv("./results-2022/resnet18-cifar10-baseline-fixed-point.csv")
 
-baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "color":"black"}
+# baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "color":"black"}
 
-time = np.arange(25)
+# time = np.arange(25)
 
-plot_graph(
-    time,
-    baseline_dict,
-    save_fig=True,
-    file_name="resnet18-baseline-only",
-    save_dir="./Figures/",
-)
+# plot_graph(
+#     time,
+#     baseline_dict,
+#     save_fig=True,
+#     file_name="resnet18-baseline-only",
+#     save_dir="./Figures/",
+# )
 ######################################################################
 #                                                                    #
 #               Plot proposed encoding                               #
@@ -332,42 +332,42 @@ plot_graph(
 #               Plot final results imagenet                           #
 #                                                                    #
 ######################################################################
-# network = "Inception_v3"
-# # baseline = pd.read_csv(f"./result/{network}-baseline.csv")
-# # proposed_method = pd.read_csv(f"./result/{network}-grayencode.csv")
 
-# baseline = pd.read_csv(f"./imagenet_results/{network}-imagenet-baseline.csv")
-# proposed_method = pd.read_csv(f"./imagenet_results/{network}-imagenet-grayencode.csv")
-# flipcy = pd.read_csv(f"./imagenet_results/{network}-imagenet-flipcy.csv")
-# helmet = pd.read_csv(f"./imagenet_results/{network}-imagenet-helmet.csv")
+network = "inception_v3"
 
-# baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy()[0:13], "style":"-", "color":"black"}
-# flipcy_dict = {"Method name": "Baseline", "data": flipcy["Acc."].to_numpy()[0:13], "style":"-", "color":"#bdbdbd"}
-# helmet_dict = {"Method name": "Baseline", "data": helmet["Acc."].to_numpy()[0:13], "style":":", "color":"#636363"}
+baseline = pd.read_csv(f"./results-2022/{network}-imagenet-baseline.csv")
+proposed_method = pd.read_csv(f"./results-2022/{network}-imagenet-proposed_method.csv")
+flipcy = pd.read_csv(f"./results-2022/{network}-imagenet-flipcy.csv")
+helmet = pd.read_csv(f"./results-2022/{network}-imagenet-helmet.csv")
 
-# proposed_method_dict = {
-#     "Method name": "Aspen",
-#     "data": proposed_method["Acc."].to_numpy()[0:13],
-#     "style":"--",
-#     "color":"black"
-# }
+baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "style":"-", "color":"#0571b0"}
+flipcy_dict = {"Method name": "Flipcy", "data": flipcy["Acc."].to_numpy(), "style":"-", "color":"#fdae61"}
+helmet_dict = {"Method name": "Helmet", "data": helmet["Acc."].to_numpy(), "style":":", "color":"#abd9e9"}
 
-# data_list = (baseline_dict, flipcy_dict, helmet_dict, proposed_method_dict)
-# time = np.arange(13)
+proposed_method_dict = {
+    "Method name": "Aspen",
+    "data": proposed_method["Acc."].to_numpy(),
+    "style":"--",
+    "color":"#d7191c"
+}
 
-# plot_graph_1year_imagenet(
-#     time,
-#     data_list,
-#     save_fig=True,
-#     file_name=f"{network}-imagenet-result-final",
-#     save_dir="./Figures/",
-# )
+data_list = (baseline_dict, flipcy_dict, proposed_method_dict, helmet_dict)
+time = np.arange(25)
+
+plot_graph_1year(
+    time,
+    data_list,
+    save_fig=True,
+    file_name=f"{network}-8b-imagenet-result",
+    save_dir="./Figures/",
+)
 ######################################################################
 #                                                                    #
 #               Plot final results cifar10                           #
 #                                                                    #
 ######################################################################
-# network = "Inception"
+# network = "resnet50"
+# dataset = "imagenet"
 # baseline = pd.read_csv(f"./results-2022/{network}-cifar10-baseline-fixed-point.csv")
 # proposed_method = pd.read_csv(f"./results-2022/{network}-cifar10-proposed_method-fixed-point.csv")
 # flipcy = pd.read_csv(f"././results-2022/{network}-cifar10-flipcy-fixed-point.csv")
