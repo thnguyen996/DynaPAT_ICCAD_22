@@ -108,6 +108,14 @@ def count(weight, tensor_01, tensor_11, num_bits):
     num_01 = 0
     indices_01 = []
     num_01 = np.zeros_like(weight)
+
+    # and_result = np.bitwise_and(tensor_11[2], weight)
+    # index_01 = (and_result == tensor_01[2]).nonzero()
+    # if index_01[0].size == 0:
+    #     return num_01
+    # else:
+    #     num_01[index_01[0], index_01[1]] += 1
+    #     return num_01
     for tensor_01_i, tensor_11_i, index_b in zip(tensor_01, tensor_11, index_bit):
         and_result = np.bitwise_and(tensor_11_i, weight)
         index_01 = (and_result == tensor_01_i).nonzero()
