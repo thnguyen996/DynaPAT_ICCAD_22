@@ -52,9 +52,12 @@ def plot_graph_1year(
     time, data_list: list, save_fig=False, file_name=None, save_dir=None
 ):
     with plt.style.context(["ieee", "no-latex"]):
-        mpl.rcParams['font.family'] = 'NimbusRomNo9L'
+        mpl.rcParams['font.family'] = 'sans-serif'
+        # mpl.rcParams['font.weight'] = 'bold'
+        mpl.rcParams['font.size'] = 14
+        mpl.rcParams['axes.linewidth'] = 2.3
 
-        fig, ax = plt.subplots(figsize=(2, 2))
+        fig, ax = plt.subplots(figsize=(4, 4))
 
         for data in data_list:
             method_name = data["Method name"]
@@ -65,10 +68,10 @@ def plot_graph_1year(
                 marker = data["marker"]
                 ax.plot(time, data_value, linestyle, linewidth=1.7, marker=marker, markevery=3, markerfacecoloralt='none', markersize=4, color=color, label=method_name)
             else:
-                ax.plot(time, data_value, linestyle, linewidth=1.4, color=color, label=method_name)
+                ax.plot(time, data_value, linestyle, linewidth=3.5, color=color, label=method_name)
 
-        ax.set_xlabel("Time (s)", fontsize=8)
-        ax.set_ylabel("Bit Error (%)", fontsize=8)
+        ax.set_xlabel("Time (s)", fontsize=16)
+        ax.set_ylabel("Accuracy (%)", fontsize=16)
         ax.set_xticks(time[0:25:4])
         ax.set_xticklabels(
             (
@@ -81,11 +84,13 @@ def plot_graph_1year(
                 "$\mathregular{2^{25}}$",
                 )
         )
-        ax.legend(loc=0, prop={"size": 8})
+        # ax.legend(loc=0, prop={"size": 8})
         plt.tight_layout()
+        plt.tick_params(axis='both', width=2.3)
         if save_fig and save_dir is not None:
-            fig.savefig(save_dir + file_name + ".pdf", dpi=300)
-        os.system(f"zathura {save_dir}{file_name}.pdf")
+            fig.savefig(save_dir + file_name + ".png", dpi=300)
+        plt.show()
+        # os.system(f"zathura {save_dir}{file_name}.pdf")
 
 def plot_graph_1year_imagenet(
     time, data_list: list, save_fig=False, file_name=None, save_dir=None
@@ -333,42 +338,42 @@ def plot_graph_1year_imagenet(
 #                                                                    #
 ######################################################################
 
-# network = "inception_v3"
+network = "inception_v3"
 
-# baseline = pd.read_csv(f"./results-2022/{network}-imagenet-baseline.csv")
-# proposed_method = pd.read_csv(f"./results-2022/{network}-imagenet-proposed_method.csv")
-# flipcy = pd.read_csv(f"./results-2022/{network}-imagenet-flipcy.csv")
-# helmet = pd.read_csv(f"./results-2022/{network}-imagenet-helmet.csv")
+baseline = pd.read_csv(f"./results-2022/{network}-imagenet-baseline.csv")
+proposed_method = pd.read_csv(f"./results-2022/{network}-imagenet-proposed_method.csv")
+flipcy = pd.read_csv(f"./results-2022/{network}-imagenet-flipcy.csv")
+helmet = pd.read_csv(f"./results-2022/{network}-imagenet-helmet.csv")
 
-# baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "style":"-", "color":"#0571b0"}
-# flipcy_dict = {"Method name": "Flipcy", "data": flipcy["Acc."].to_numpy(), "style":"-", "color":"#fdae61"}
-# helmet_dict = {"Method name": "Helmet", "data": helmet["Acc."].to_numpy(), "style":":", "color":"#abd9e9"}
+baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "style":"-", "color":"#0571b0"}
+flipcy_dict = {"Method name": "Flipcy", "data": flipcy["Acc."].to_numpy(), "style":"-", "color":"#fdae61"}
+helmet_dict = {"Method name": "Helmet", "data": helmet["Acc."].to_numpy(), "style":":", "color":"black"}
 
-# proposed_method_dict = {
-#     "Method name": "Aspen",
-#     "data": proposed_method["Acc."].to_numpy(),
-#     "style":"--",
-#     "color":"#d7191c"
-# }
+proposed_method_dict = {
+    "Method name": "DynaPAT",
+    "data": proposed_method["Acc."].to_numpy(),
+    "style":"--",
+    "color":"#d7191c"
+}
 
-# data_list = (baseline_dict, flipcy_dict, proposed_method_dict, helmet_dict)
-# time = np.arange(25)
+data_list = (baseline_dict, flipcy_dict, proposed_method_dict, helmet_dict)
+time = np.arange(25)
 
-# plot_graph_1year(
-#     time,
-#     data_list,
-#     save_fig=True,
-#     file_name=f"{network}-8b-imagenet-result",
-#     save_dir="./Figures/",
-# )
+plot_graph_1year(
+    time,
+    data_list,
+    save_fig=True,
+    file_name=f"{network}-8b-imagenet-result-for-ppt",
+    save_dir="./Figures/",
+)
 
 ######################################################################
 #                                                                    #
 #               Plot final results cifar10                           #
 #                                                                    #
 ######################################################################
-# network = "resnet50"
-# dataset = "imagenet"
+# network = "Inception"
+# dataset = "cifar10"
 # baseline = pd.read_csv(f"./results-2022/{network}-cifar10-baseline-fixed-point.csv")
 # proposed_method = pd.read_csv(f"./results-2022/{network}-cifar10-proposed_method-fixed-point.csv")
 # flipcy = pd.read_csv(f"././results-2022/{network}-cifar10-flipcy-fixed-point.csv")
@@ -376,10 +381,10 @@ def plot_graph_1year_imagenet(
 
 # baseline_dict = {"Method name": "Baseline", "data": baseline["Acc."].to_numpy(), "style":"-", "color":"#0571b0"}
 # flipcy_dict = {"Method name": "Flipcy", "data": flipcy["Acc."].to_numpy(), "style":"-", "color":"#fdae61"}
-# helmet_dict = {"Method name": "Helmet", "data": helmet["Acc."].to_numpy(), "style":":", "color":"#abd9e9"}
+# helmet_dict = {"Method name": "Helmet", "data": helmet["Acc."].to_numpy(), "style":":", "color":"black"}
 
 # proposed_method_dict = {
-#     "Method name": "Aspen",
+#     "Method name": "DynaPAT",
 #     "data": proposed_method["Acc."].to_numpy(),
 #     "style":"--",
 #     "color":"#d7191c"
@@ -392,7 +397,7 @@ def plot_graph_1year_imagenet(
 #     time,
 #     data_list,
 #     save_fig=True,
-#     file_name=f"{network}-cifar10-result-fixed-point",
+#     file_name=f"{network}-cifar10-result-fixed-point-for-ppt",
 #     save_dir="./Figures/",
 # )
 
@@ -401,34 +406,34 @@ def plot_graph_1year_imagenet(
 #               Error rate of each method                            #
 #                                                                    #
 ######################################################################
-network = "resnet18"
-dataset = "cifar10"
-baseline = pd.read_csv(f"./results-2022/{network}-cifar10-baseline-error-rate.csv")
-proposed_method = pd.read_csv(f"./results-2022/{network}-cifar10-proposed_method-error-rate.csv")
-flipcy = pd.read_csv(f"././results-2022/{network}-cifar10-flipcy-error-rate.csv")
-helmet = pd.read_csv(f"./results-2022/{network}-cifar10-helmet-error-rate.csv")
+# network = "resnet18"
+# dataset = "cifar10"
+# baseline = pd.read_csv(f"./results-2022/{network}-cifar10-baseline-error-rate.csv")
+# proposed_method = pd.read_csv(f"./results-2022/{network}-cifar10-proposed_method-error-rate.csv")
+# flipcy = pd.read_csv(f"././results-2022/{network}-cifar10-flipcy-error-rate.csv")
+# helmet = pd.read_csv(f"./results-2022/{network}-cifar10-helmet-error-rate.csv")
 
-baseline_dict = {"Method name": "Baseline", "data": baseline["error_rate"].to_numpy(), "style":"-", "color":"#0571b0"}
-flipcy_dict = {"Method name": "Flipcy", "data": flipcy["error_rate"].to_numpy(), "style":"-", "color":"#fdae61"}
-helmet_dict = {"Method name": "Helmet", "data": helmet["error_rate"].to_numpy(), "style":":", "color":"#abd9e9"}
+# baseline_dict = {"Method name": "Baseline", "data": baseline["error_rate"].to_numpy(), "style":"-", "color":"#0571b0"}
+# flipcy_dict = {"Method name": "Flipcy", "data": flipcy["error_rate"].to_numpy(), "style":"-", "color":"#fdae61"}
+# helmet_dict = {"Method name": "Helmet", "data": helmet["error_rate"].to_numpy(), "style":":", "color":"#abd9e9"}
 
-proposed_method_dict = {
-    "Method name": "DynaPAT",
-    "data": proposed_method["error_rate"].to_numpy(),
-    "style":"--",
-    "color":"#d7191c"
-}
+# proposed_method_dict = {
+#     "Method name": "DynaPAT",
+#     "data": proposed_method["error_rate"].to_numpy(),
+#     "style":"--",
+#     "color":"#d7191c"
+# }
 
-data_list = (baseline_dict, flipcy_dict, helmet_dict, proposed_method_dict)
-time = np.arange(25)
+# data_list = (baseline_dict, flipcy_dict, helmet_dict, proposed_method_dict)
+# time = np.arange(25)
 
-plot_graph_1year(
-    time,
-    data_list,
-    save_fig=True,
-    file_name=f"{network}-cifar10-result-error-rate",
-    save_dir="./Figures/",
-)
+# plot_graph_1year(
+#     time,
+#     data_list,
+#     save_fig=False,
+#     file_name=f"{network}-cifar10-result-error-rate",
+#     save_dir="./Figures/",
+# )
 ######################################################################
 #                                                                    #
 #               Plot bits sensitivity                                #
