@@ -5,10 +5,11 @@
 ./flipcy_en/*
 events.out.*
 ./checkpoint/quantized_weight/*
-./logs/*
+/logs/
 ./latest_log_dir/*
 ./latest_log_file/*
 *.pth.tar
 *.pdf
 *.pyc
-/logs/*
+/result/
+/results-2022/

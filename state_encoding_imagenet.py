@@ -332,39 +332,6 @@ def validate(args):
     np.save(f"./state_stats/{args.model}-imagenet-state-stats.npy", state_encode)
     print(f"Save state stats to ./state_stats/{args.model}-imagenet-state-stats.npy")
 
-    # Plot graph without bit pos
-    # total11 = np.sum(total11, 1)
-    # total10 = np.sum(total10, 1)
-    # total01 = np.sum(total01, 1)
-    # total00 = np.sum(total00, 1)
-    # with plt.style.context(['ieee', 'no-latex']):
-    #     mpl.rcParams['font.family'] = 'NimbusRomNo9L'
-    #     fig, ax = plt.subplots(figsize=(6, 2))
-    #     # labels = np.arange(18)
-    #     width = 0.8
-    #     total1110 = total11 + total10
-    #     total111001 = total11 + total10 + total01
-    #     legend = ["11", "10", "01", "00"]
-
-    #     for i in range(0, total11.shape[0]):
-    #         ax.bar(i, total11[i], width, edgecolor="black", color="#d7191c",  align='center')
-    #         ax.bar(i, total10[i], width, edgecolor="black", color="#fdae61", bottom=total11[i],
-    #                 align='center')
-    #         ax.bar(i, total01[i], width, edgecolor="black", color="#abd9e9",  bottom=total1110[i],
-    #                 align='center')
-    #         ax.bar(i, total00[i], width, edgecolor="black", color="#2c7bb6",  bottom=total111001[i],
-    #                 align='center')
-    # ax.legend(legend, loc='upper center', bbox_to_anchor=(0.5, 1.2),
-    #         ncol=4, prop={'size':8}, frameon=False, fancybox=False)
-    # ax.set_xlabel("Layer", fontsize=8)
-    # ax.set_ylabel("Normalized #pattern (%)", fontsize=8)
-    # ax.set_xticks(np.arange(0, total11.shape[0], 5) )
-    # # ax.invert_xaxis()
-    # plt.tight_layout()
-    # fig.savefig(f"./Figures/{args.model}_imagenet_count_pattern_fixed_point.pdf", dpi=300)
-    # os.system(f"zathura ./Figures/{args.model}_imagenet_count_pattern_fixed_point.pdf")
-
-
 def linear_quantize(input, sf, bits):
     assert bits >= 1, bits
     if bits == 1:

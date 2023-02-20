@@ -1,14 +1,19 @@
-"""Count the number pattern 11, 10, 01, and 00"""
-import matplotlib.pyplot as plt
+"""Calculate state encoding of each layer"""
 from cifar10_models import *
 from functools import partial
+from matplotlib import font_manager
+from matplotlib import rc
+from matplotlib import rcParams
 from tabulate import tabulate
 from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 from utils import progress_bar
+from weight_quantized_conf import *
 import argparse
 import copy
 import logging
+import matplotlib as mpl
+import matplotlib.pyplot as plt
 import numpy as np
 import os
 import pandas as pd
@@ -22,18 +27,12 @@ import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
 import traceback
-from matplotlib import font_manager
-from matplotlib import rcParams
-from matplotlib import rc
-import matplotlib as mpl
-from weight_quantized_conf import *
 torch.set_printoptions(profile="full")
 np.set_printoptions(suppress=True)
 
 msglogger = logging.getLogger()
 parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")
 parser.add_argument("--lr", default=0.1, type=float, help="learning rate")
-parser.add_argument("--mlc", default=8, type=int, help="Number of mlc bits")
 parser.add_argument("--name", default="Name", type=str, help="Name of run")
 parser.add_argument("--method", default="proposed_method", type=str, help="Running method")
 parser.add_argument("--model", default="resnet18", type=str, help="Model")
@@ -222,114 +221,31 @@ def main():
     max_pattern_map = index_sort[3]
     state_encode = np.empty((max_pattern_map.shape[0], 4), dtype=np.uint8)
 
-    # for layer in range(max_pattern_map.shape[0]):
-    #     msb1 = max_pattern_map[layer, 3]
-    #     if msb1 == max_pattern_map[layer, 2]:
-    #         msb2 = index_sort[2, layer, 2]
-    #     else:
-    #         msb2 = max_pattern_map[layer, 2]
-    #     if max_pattern_map[layer, 1] == msb1 or max_pattern_map[layer, 1] == msb2:
-    #         if index_sort[2, layer, 1] == msb1 or index_sort[2, layer, 1] == msb2:
-    #             if index_sort[1, layer, 1] == msb1 or index_sort[1, layer, 1] == msb2:
-    #                 lsb1 = index_sort[0, layer, 1]
-    #             else:
-    #                 lsb1 = index_sort[1, layer, 1]
-    #         else:
-    #             lsb1 = index_sort[2, layer, 1]
-    #     else:
-    #         lsb1 = max_pattern_map[layer, 1]
+    for layer in range(max_pattern_map.shape[0]):
+        msb1 = max_pattern_map[layer, 3]
+        if msb1 == max_pattern_map[layer, 2]:
+            msb2 = index_sort[2, layer, 2]
+        else:
+            msb2 = max_pattern_map[layer, 2]
+        if max_pattern_map[layer, 1] == msb1 or max_pattern_map[layer, 1] == msb2:
+            if index_sort[2, layer, 1] == msb1 or index_sort[2, layer, 1] == msb2:
+                if index_sort[1, layer, 1] == msb1 or index_sort[1, layer, 1] == msb2:
+                    lsb1 = index_sort[0, layer, 1]
+                else:
+                    lsb1 = index_sort[1, layer, 1]
+            else:
+                lsb1 = index_sort[2, layer, 1]
+        else:
+            lsb1 = max_pattern_map[layer, 1]
 
-    #     for i in range(4):
-    #         if i != msb1 and i != msb2 and i != lsb1:
-    #             lsb2 = i
-    #     state_encode[layer] = [msb1, msb2, lsb1, lsb2]
+        for i in range(4):
+            if i != msb1 and i != msb2 and i != lsb1:
+                lsb2 = i
+        state_encode[layer] = [msb1, msb2, lsb1, lsb2]
 
-    # # # print(state_encode)
-    # # # import pdb; pdb.set_trace()
-    # np.save(f"./state_stats/{args.model}-state-stats-fixed-point.npy", state_encode)
-    # print(f"Save state stats to ./state_stats/{args.model}-state-stats-fixed-point.npy")
-
-    ## Plot graph without bit pos
-    total11 = np.sum(total11, 1)
-    total10 = np.sum(total10, 1)
-    total01 = np.sum(total01, 1)
-    total00 = np.sum(total00, 1)
-
-    total = total11 + total10 + total01 + total00
-    total11 = total11/total*100
-    total10 = total10/total*100
-    total01 = total01/total*100
-    total00 = total00/total*100
-
-    with plt.style.context(['ieee', 'no-latex']):
-        mpl.rcParams['font.family'] = 'NimbusRomNo9L'
-        fig, ax = plt.subplots(figsize=(6, 2))
-        # labels = np.arange(18)
-        width = 0.8
-        total1110 = total11 + total10
-        total111001 = total11 + total10 + total01
-        legend = ["11", "10", "01", "00"]
-
-        for i in range(0, total11.shape[0]):
-            ax.bar(i, total11[i], width, edgecolor="black", color="#d7191c",  align='center')
-            ax.bar(i, total10[i], width, edgecolor="black", color="#fdae61", bottom=total11[i],
-                    align='center')
-            ax.bar(i, total01[i], width, edgecolor="black", color="#abd9e9",  bottom=total1110[i],
-                    align='center')
-            ax.bar(i, total00[i], width, edgecolor="black", color="#2c7bb6",  bottom=total111001[i],
-                    align='center')
-    ax.legend(legend, loc='upper center', bbox_to_anchor=(0.5, 1.2),
-            ncol=4, prop={'size':8}, frameon=False, fancybox=False)
-    ax.set_xlabel("Layer", fontsize=8)
-    ax.set_ylabel("Normalized #pattern (%)", fontsize=8)
-    ax.set_xticks(np.arange(0, total11.shape[0], 5) )
-    # ax.invert_xaxis()
-    plt.tight_layout()
-    fig.savefig(f"./Figures/{args.model}_count_pattern_fixed_point.pdf", dpi=300)
-    os.system(f"zathura ./Figures/{args.model}_count_pattern_fixed_point.pdf")
-
-    # with plt.style.context(['ieee', 'no-latex']):
-    #     mpl.rcParams['font.family'] = 'NimbusRomNo9L'
-    #     mpl.rcParams['font.size'] = 8
-    #     fig, ax = plt.subplots(figsize=(6, 2))
-    #     labels = (np.arange(4, dtype=np.float64) + 1)*10
-    #     legend = ["11", "10", "01", "00"]
-    #     width = 0.5      # the width of the bars: can also be len(x) sequence
-    #     total1110 = total11 + total10
-    #     total111001 = total11 + total10 + total01
-
-    #     ax.bar(labels, total11[0, :], width, edgecolor="black", color="#d7191c", label='11', align='center')
-    #     ax.bar(labels, total10[0, :], width, edgecolor="black", color="#fdae61", bottom=total11[0, :],
-    #            label='10', align='center')
-    #     ax.bar(labels, total01[0, :], width, edgecolor="black", color="#abd9e9",  bottom=total1110[0, :],
-    #            label='01', align='center')
-    #     ax.bar(labels, total00[0, :], width, edgecolor="black", color="#2c7bb6",  bottom=total111001[0, :],
-    #            label='00', align='center')
-
-    #     for i in range(1, 18):
-    #         labels += 0.5
-    #         ax.bar(labels, total11[i, :], width, edgecolor="black", color="#d7191c",  align='center')
-    #         ax.bar(labels, total10[i, :], width, edgecolor="black", color="#fdae61", bottom=total11[i, :],
-    #                 align='center')
-    #         ax.bar(labels, total01[i, :], width, edgecolor="black", color="#abd9e9",  bottom=total1110[i, :],
-    #                 align='center')
-    #         ax.bar(labels, total00[i, :], width, edgecolor="black", color="#2c7bb6",  bottom=total111001[i, :],
-    #                 align='center')
-
-    # ax.legend(legend, loc='upper center', bbox_to_anchor=(0.5, 1.2),
-    #         ncol=4, prop={'size':8, 'family':"NimbusRomNo9L"}, frameon=False, fancybox=False)
-    # ax.set_xlabel("Layer", fontsize=8)
-    # ax.set_ylabel("Normalized #pattern(%)", fontsize=8)
-    # # ax.invert_xaxis()
-    # plt.tight_layout()
-    # fig.savefig(f"./Figures/{args.model}_count_pattern_fixed_point_with_bit_pos.svg", dpi=300)
-    # # os.system(f"zathura ./Figures/{args.model}_count_pattern_fixed_point_with_bit_pos.pdf")
-
-def proposed_method(weight, weight_type, mlc_error_rate, num_bits):
-    MLC = weight_conf(weight, weight_type, num_bits)
-    error_weight = MLC.inject_error(mlc_error_rate)
-    error_weight = error_weight.reshape(weight.shape)
-    return error_weight
+    print(state_encode)
+    np.save(f"./state_stats/{args.model}-state-stats-fixed-point.npy", state_encode)
+    print(f"Save state stats to ./state_stats/{args.model}-state-stats-fixed-point.npy")
 
 def count(weight, tensor_10, tensor_11, index_bit, num_bits):
     num_10 = 0
