@@ -1,2 +1,2 @@
 
-# DAC 2022 simulation
+# DynaPAT (ICCAD 2022) Implementation
