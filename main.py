@@ -1,12 +1,9 @@
 """Test quantized model"""
-from aquantizer import *
 from cifar10_models import *
 from flipcy_quantized import flipcy_en, count, inject_error
 from functools import partial
 from helmet_quantized import helmet_en
-from tabulate import tabulate
 from torch.utils.tensorboard import SummaryWriter
-from torchsummary import summary
 from tqdm import tqdm
 from utils import progress_bar
 from weight_quantized_conf import weight_conf
@@ -164,7 +161,7 @@ def main():
 
     with torch.no_grad():
         count = 0
-        for (name1, value1), (name2, value2) in zip(error_11_pd.iteritems(), error_10_pd.iteritems()):
+        for (name1, value1), (name2, value2) in zip(error_11_pd.items(), error_10_pd.items()):
             running_acc = []
             error_11 = value1[0]
             error_10 = value2[0]
@@ -234,7 +231,7 @@ def main():
                         #         quantized_weight, mlc_error_rate, args.num_bits, tensors, args.error_pat, args.des_pat
                         #     )
 
-                        error_quantized_weight  = torch.from_numpy(error_quantized_weight.astype(np.float))
+                        error_quantized_weight  = torch.from_numpy(error_quantized_weight.astype(float))
                         if args.num_bits == 10:
                             error_quantized_weight[(error_quantized_weight > 511.0).nonzero()] = (
                                 error_quantized_weight[(error_quantized_weight > 511.0).nonzero()] - 2**10

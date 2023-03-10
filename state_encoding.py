@@ -4,7 +4,6 @@ from functools import partial
 from matplotlib import font_manager
 from matplotlib import rc
 from matplotlib import rcParams
-from tabulate import tabulate
 from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 from utils import progress_bar
@@ -36,6 +35,7 @@ parser.add_argument("--lr", default=0.1, type=float, help="learning rate")
 parser.add_argument("--name", default="Name", type=str, help="Name of run")
 parser.add_argument("--method", default="proposed_method", type=str, help="Running method")
 parser.add_argument("--model", default="resnet18", type=str, help="Model")
+parser.add_argument("--gran", default="layer", type=str, help="Encoding granularity: layer, filter, channel")
 parser.add_argument("--gpu", default="0", type=str, help="GPU ids")
 parser.add_argument(
     "--save_data", "-s", action="store_true", help="Save the data")
@@ -161,6 +161,7 @@ def main():
             for (name, weight) in tqdm(net.named_parameters(), desc="Counting pattern: ", leave=False):
                 if ( "weight" in name ) and ( "bn" not in name ) and ( "shortcut" not in name):
                     # Fixed point quantization
+                    shape = weight.shape
                     if args.num_bits == 8:
                         qi, qf = (2, 6)
                     elif args.num_bits == 10:
@@ -176,40 +177,52 @@ def main():
                     else:
                         quantized_weight = quantized_weight.astype(dtype)
 
+
                     num_00 = np.zeros_like(index_bit)
                     num_01 = np.zeros_like(index_bit)
                     num_10 = np.zeros_like(index_bit)
                     num_11 = np.zeros_like(index_bit)
 
-                    _, index_11 = count(quantized_weight, tensor_11, tensor_11, index_bit, num_bits=args.num_bits)
-                    _, index_01 = count(quantized_weight, tensor_01, tensor_11, index_bit, num_bits=args.num_bits)
-                    _, index_10 = count(quantized_weight, tensor_10, tensor_11, index_bit, num_bits=args.num_bits)
-                    _, index_00 = count(quantized_weight, tensor_00, tensor_11, index_bit, num_bits=args.num_bits)
+                    if args.gran == "layer":
+                        _, index_11 = count(quantized_weight, tensor_11, tensor_11, index_bit, num_bits=args.num_bits)
+                        _, index_01 = count(quantized_weight, tensor_01, tensor_11, index_bit, num_bits=args.num_bits)
+                        _, index_10 = count(quantized_weight, tensor_10, tensor_11, index_bit, num_bits=args.num_bits)
+                        _, index_00 = count(quantized_weight, tensor_00, tensor_11, index_bit, num_bits=args.num_bits)
 
-                    num_11_count = np.unique(index_11[:, 1], return_counts=True)
-                    num_01_count = np.unique(index_01[:, 1], return_counts=True)
-                    num_10_count = np.unique(index_10[:, 1], return_counts=True)
-                    num_00_count = np.unique(index_00[:, 1], return_counts=True)
+                        num_11_count = np.unique(index_11[:, 1], return_counts=True)
+                        num_01_count = np.unique(index_01[:, 1], return_counts=True)
+                        num_10_count = np.unique(index_10[:, 1], return_counts=True)
+                        num_00_count = np.unique(index_00[:, 1], return_counts=True)
 
-                    num_11_count_index = (num_11_count[0]/2).astype(np.uint8)
-                    num_01_count_index = (num_01_count[0]/2).astype(np.uint8)
-                    num_10_count_index = (num_10_count[0]/2).astype(np.uint8)
-                    num_00_count_index = (num_00_count[0]/2).astype(np.uint8)
+                        num_11_count_index = (num_11_count[0]/2).astype(np.uint8)
+                        num_01_count_index = (num_01_count[0]/2).astype(np.uint8)
+                        num_10_count_index = (num_10_count[0]/2).astype(np.uint8)
+                        num_00_count_index = (num_00_count[0]/2).astype(np.uint8)
 
-                    num_11[num_11_count_index] = num_11_count[1]
-                    num_10[num_10_count_index] = num_10_count[1]
-                    num_01[num_01_count_index] = num_01_count[1]
-                    num_00[num_00_count_index] = num_00_count[1]
+                        num_11[num_11_count_index] = num_11_count[1]
+                        num_10[num_10_count_index] = num_10_count[1]
+                        num_01[num_01_count_index] = num_01_count[1]
+                        num_00[num_00_count_index] = num_00_count[1]
 
-                    total = num_11 + num_01 + num_10 + num_00
-                    num_11 = num_11/total*100
-                    num_10 = num_10/total*100
-                    num_01 = num_01/total*100
-                    num_00 = num_00/total*100
-                    total11.append(num_11)
-                    total10.append(num_10)
-                    total01.append(num_01)
-                    total00.append(num_00)
+                        total = num_11 + num_01 + num_10 + num_00
+                        num_11 = num_11/total*100
+                        num_10 = num_10/total*100
+                        num_01 = num_01/total*100
+                        num_00 = num_00/total*100
+                        total11.append(num_11)
+                        total10.append(num_10)
+                        total01.append(num_01)
+                        total00.append(num_00)
+                    # Count patterns for each channel 
+                    elif args.gran == "filter":
+                        quantized_weight = quantized_weight.reshape((shape[0], -1))
+                        for channel in range(quantized_weight.shape[0]):
+                            _, index_11 = count(quantized_weight[channel], tensor_11, tensor_11, index_bit, num_bits=args.num_bits)
+                            _, index_01 = count(quantized_weight[channel], tensor_01, tensor_11, index_bit, num_bits=args.num_bits)
+                            _, index_10 = count(quantized_weight[channel], tensor_10, tensor_11, index_bit, num_bits=args.num_bits)
+                            _, index_00 = count(quantized_weight[channel], tensor_00, tensor_11, index_bit, num_bits=args.num_bits)
+                            import pdb; pdb.set_trace()
+                        print("Pause")
 
     total11 = np.stack(total11)
     total01 = np.stack(total01)
