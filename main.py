@@ -226,10 +226,6 @@ def main():
                                 num_bits=args.num_bits,
                                 encode=args.encode,
                             )
-                        # if args.method == "test_case":
-                        #     error_quantized_weight = test_case(
-                        #         quantized_weight, mlc_error_rate, args.num_bits, tensors, args.error_pat, args.des_pat
-                        #     )
 
                         error_quantized_weight  = torch.from_numpy(error_quantized_weight.astype(float))
                         if args.num_bits == 10:
@@ -252,16 +248,6 @@ def main():
                 df.loc[count] = [count, avr_acc]
                 df.to_csv(f"./results-2022/{args.name}.csv", mode="w", header=True)
             count += 1
-
-def test_case(weight, mlc_error_rate, num_bits, tensors, error_pat, des_pat):
-    if num_bits == 8:
-        dtype = np.int8
-    else:
-        dtype = np.uint16
-    orig_weight = np.copy(weight)
-    error_weight = method3.inject_error(weight, orig_weight, mlc_error_rate["error_level3"], error_pat, des_pat, num_bits)
-
-    return error_weight
 
 def proposed_method(weight, mlc_error_rate, num_bits, tensors, state_order):
     if num_bits == 8:

@@ -144,6 +144,7 @@ def main():
         total01 = []
         total00 = []
         index = 1
+
         for (name, weight) in tqdm(net.named_parameters(), desc="Counting pattern: ", leave=False):
             if "linear.weight" in name:
                 # Fixed point quantization
@@ -156,6 +157,10 @@ def main():
                 quantized_weight = torch.round(torch.div(weight, fdiv))
 
                 quantized_weight = quantized_weight.view(-1).detach().cpu().numpy()
+
+        # Counting number of 11, 10, 01, 00. Numbering order: LSBs --> MSBs
+        if args.gran == "filter":
+            encoding_dict = {}
 
         with torch.no_grad():
             for (name, weight) in tqdm(net.named_parameters(), desc="Counting pattern: ", leave=False):
@@ -177,13 +182,11 @@ def main():
                     else:
                         quantized_weight = quantized_weight.astype(dtype)
 
-
-                    num_00 = np.zeros_like(index_bit)
-                    num_01 = np.zeros_like(index_bit)
-                    num_10 = np.zeros_like(index_bit)
-                    num_11 = np.zeros_like(index_bit)
-
                     if args.gran == "layer":
+                        num_00 = np.zeros_like(index_bit)
+                        num_01 = np.zeros_like(index_bit)
+                        num_10 = np.zeros_like(index_bit)
+                        num_11 = np.zeros_like(index_bit)
                         _, index_11 = count(quantized_weight, tensor_11, tensor_11, index_bit, num_bits=args.num_bits)
                         _, index_01 = count(quantized_weight, tensor_01, tensor_11, index_bit, num_bits=args.num_bits)
                         _, index_10 = count(quantized_weight, tensor_10, tensor_11, index_bit, num_bits=args.num_bits)
@@ -213,52 +216,120 @@ def main():
                         total10.append(num_10)
                         total01.append(num_01)
                         total00.append(num_00)
-                    # Count patterns for each channel 
+
+                    # Count patterns for each filter
                     elif args.gran == "filter":
                         quantized_weight = quantized_weight.reshape((shape[0], -1))
-                        for channel in range(quantized_weight.shape[0]):
-                            _, index_11 = count(quantized_weight[channel], tensor_11, tensor_11, index_bit, num_bits=args.num_bits)
-                            _, index_01 = count(quantized_weight[channel], tensor_01, tensor_11, index_bit, num_bits=args.num_bits)
-                            _, index_10 = count(quantized_weight[channel], tensor_10, tensor_11, index_bit, num_bits=args.num_bits)
-                            _, index_00 = count(quantized_weight[channel], tensor_00, tensor_11, index_bit, num_bits=args.num_bits)
-                            import pdb; pdb.set_trace()
-                        print("Pause")
+                        num_11_layer = np.empty((4, shape[0]), dtype=np.int64)
+                        num_01_layer = np.empty((4, shape[0]), dtype=np.int64)
+                        num_10_layer = np.empty((4, shape[0]), dtype=np.int64)
+                        num_00_layer = np.empty((4, shape[0]), dtype=np.int64)
 
-    total11 = np.stack(total11)
-    total01 = np.stack(total01)
-    total10 = np.stack(total10)
-    total00 = np.stack(total00)
-    total = np.stack((total00, total01, total10, total11))
+                        for filt in range(quantized_weight.shape[0]):
+                            num_00_i = np.zeros_like(index_bit)
+                            num_01_i = np.zeros_like(index_bit)
+                            num_10_i = np.zeros_like(index_bit)
+                            num_11_i = np.zeros_like(index_bit)
+                            _, index_11 = count(quantized_weight[filt], tensor_11, tensor_11, index_bit, num_bits=args.num_bits)
+                            _, index_01 = count(quantized_weight[filt], tensor_01, tensor_11, index_bit, num_bits=args.num_bits)
+                            _, index_10 = count(quantized_weight[filt], tensor_10, tensor_11, index_bit, num_bits=args.num_bits)
+                            _, index_00 = count(quantized_weight[filt], tensor_00, tensor_11, index_bit, num_bits=args.num_bits)
+                            num_11_count = np.unique(index_11[:, 1], return_counts=True)
+                            num_01_count = np.unique(index_01[:, 1], return_counts=True)
+                            num_10_count = np.unique(index_10[:, 1], return_counts=True)
+                            num_00_count = np.unique(index_00[:, 1], return_counts=True)
 
-    index_sort = np.argsort(total, 0)
-    max_pattern_map = index_sort[3]
-    state_encode = np.empty((max_pattern_map.shape[0], 4), dtype=np.uint8)
+                            num_11_count_index = (num_11_count[0]/2).astype(np.uint8)
+                            num_01_count_index = (num_01_count[0]/2).astype(np.uint8)
+                            num_10_count_index = (num_10_count[0]/2).astype(np.uint8)
+                            num_00_count_index = (num_00_count[0]/2).astype(np.uint8)
 
-    for layer in range(max_pattern_map.shape[0]):
-        msb1 = max_pattern_map[layer, 3]
-        if msb1 == max_pattern_map[layer, 2]:
-            msb2 = index_sort[2, layer, 2]
-        else:
-            msb2 = max_pattern_map[layer, 2]
-        if max_pattern_map[layer, 1] == msb1 or max_pattern_map[layer, 1] == msb2:
-            if index_sort[2, layer, 1] == msb1 or index_sort[2, layer, 1] == msb2:
-                if index_sort[1, layer, 1] == msb1 or index_sort[1, layer, 1] == msb2:
-                    lsb1 = index_sort[0, layer, 1]
-                else:
-                    lsb1 = index_sort[1, layer, 1]
+                            num_11_i[num_11_count_index] = num_11_count[1]
+                            num_10_i[num_10_count_index] = num_10_count[1]
+                            num_01_i[num_01_count_index] = num_01_count[1]
+                            num_00_i[num_00_count_index] = num_00_count[1]
+
+                            # Accumulate to the layer encoding tensor:
+                            num_11_layer[:, filt] = num_11_i
+                            num_01_layer[:, filt] = num_01_i
+                            num_10_layer[:, filt] = num_10_i
+                            num_00_layer[:, filt] = num_00_i
+
+                        # Stacking up 11, 10, 01, 00 into one big tensor along the last dimension.
+                        total_layer = np.stack((num_11_layer, num_10_layer, num_01_layer, num_00_layer), axis=-1)
+                        encoding_dict[name] = total_layer
+
+# Map state encoding to each level of MLC PCM:
+    if args.gran == "layer":
+        total11 = np.stack(total11)
+        total01 = np.stack(total01)
+        total10 = np.stack(total10)
+        total00 = np.stack(total00)
+        total = np.stack((total00, total01, total10, total11))
+
+        index_sort = np.argsort(total, 0)
+        max_pattern_map = index_sort[3]
+        state_encode = np.empty((max_pattern_map.shape[0], 4), dtype=np.uint8)
+
+        for layer in range(max_pattern_map.shape[0]):
+            msb1 = max_pattern_map[layer, 3]
+            if msb1 == max_pattern_map[layer, 2]:
+                msb2 = index_sort[2, layer, 2]
             else:
-                lsb1 = index_sort[2, layer, 1]
-        else:
-            lsb1 = max_pattern_map[layer, 1]
+                msb2 = max_pattern_map[layer, 2]
+            if max_pattern_map[layer, 1] == msb1 or max_pattern_map[layer, 1] == msb2:
+                if index_sort[2, layer, 1] == msb1 or index_sort[2, layer, 1] == msb2:
+                    if index_sort[1, layer, 1] == msb1 or index_sort[1, layer, 1] == msb2:
+                        lsb1 = index_sort[0, layer, 1]
+                    else:
+                        lsb1 = index_sort[1, layer, 1]
+                else:
+                    lsb1 = index_sort[2, layer, 1]
+            else:
+                lsb1 = max_pattern_map[layer, 1]
 
-        for i in range(4):
-            if i != msb1 and i != msb2 and i != lsb1:
-                lsb2 = i
-        state_encode[layer] = [msb1, msb2, lsb1, lsb2]
+            for i in range(4):
+                if i != msb1 and i != msb2 and i != lsb1:
+                    lsb2 = i
+            state_encode[layer] = [msb1, msb2, lsb1, lsb2]
 
-    print(state_encode)
-    np.save(f"./state_stats/{args.model}-state-stats-fixed-point.npy", state_encode)
-    print(f"Save state stats to ./state_stats/{args.model}-state-stats-fixed-point.npy")
+        print(state_encode)
+        np.save(f"./state_stats/{args.model}-state-stats-fixed-point.npy", state_encode)
+        print(f"Save state stats to ./state_stats/{args.model}-state-stats-fixed-point.npy")
+    elif args.gran == "filter":
+        # encoding_dict contains counted_value with shape : (bit position, #filter, pattern frequency)
+        # Pattern frequency (last dimension) is in the order of: 11, 10, 01, 00
+        state_encode_dict = {}
+        for (name, counted_value) in encoding_dict.items():
+            index_sort = np.argsort(counted_value, axis=-1)
+            # Max pattern sorted by index and transposed for easier manipulation
+            max_pattern_map = index_sort[:, :, 3].transpose(1, 0)
+            state_encode_layer = np.zeros_like(max_pattern_map)
+            index_sort = index_sort.transpose(2, 1, 0)
+            for filt in range(max_pattern_map.shape[0]):
+                msb1 = max_pattern_map[filt, 3]
+                if msb1 == max_pattern_map[filt, 2]:
+                    msb2 = index_sort[2, filt, 2]
+                else:
+                    msb2 = max_pattern_map[filt, 2]
+                if max_pattern_map[filt, 1] == msb1 or max_pattern_map[filt, 1] == msb2:
+                    if index_sort[2, filt, 1] == msb1 or index_sort[2, filt, 1] == msb2:
+                        if index_sort[1, filt, 1] == msb1 or index_sort[1, filt, 1] == msb2:
+                            lsb1 = index_sort[0, filt, 1]
+                        else:
+                            lsb1 = index_sort[1, filt, 1]
+                    else:
+                        lsb1 = index_sort[2, filt, 1]
+                else:
+                    lsb1 = max_pattern_map[filt, 1]
+
+                for i in range(4):
+                    if i != msb1 and i != msb2 and i != lsb1:
+                        lsb2 = i
+                state_encode_layer[filt] = [msb1, msb2, lsb1, lsb2]
+            state_encode_dict[name] = state_encode_layer
+        np.save(f"./state_stats/{args.model}-state-stats-filter.npy", state_encode_dict)
+        print(f"Saving state stats to ./state_stats/{args.model}-state-stats-filter.npy")
 
 def count(weight, tensor_10, tensor_11, index_bit, num_bits):
     num_10 = 0
