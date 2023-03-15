@@ -42,28 +42,6 @@ class weight_conf(object):
 
         index_bit = np.arange(0, self.num_bits, 2)
 
-        # if self.method == 'proposed':
-        #     if mlc_error_rate["error_level3"] is not None:
-        #         # Flip 11 --> 10:
-        #         num_11, index_11 = count(weight, tensor_11, tensor_11, index_bit, self.num_bits)
-        #         error_rate3 = mlc_error_rate["error_level3"]
-        #         num_error_11 = int(num_11 * error_rate3)
-        #         error11_randn_index = np.random.permutation(num_11)[:num_error_11]
-        #         error11_indices = index_11[error11_randn_index, :]
-        #         tensor10_inv_index = tensor_10_inv[(error11_indices[:, 1] / 2).astype(dtype)]
-        #         np.bitwise_and.at(weight, error11_indices[:, 0], tensor10_inv_index)
-
-        #     if mlc_error_rate["error_level2"] is not None:
-
-        #         # Flip 01 --> 11:
-        #         num_01, index_01 = count(orig_weight, tensor_01, tensor_11, index_bit, self.num_bits)
-        #         error_rate2 = mlc_error_rate["error_level2"]
-        #         num_error_01 = int(num_01 * error_rate2)
-        #         error01_randn_index = np.random.permutation(num_01)[:num_error_01]
-        #         error01_indices = index_01[error01_randn_index, :]
-        #         tensor11_index= tensor_11[(error01_indices[:, 1] / 2).astype(dtype)]
-        #         np.bitwise_or.at(weight, error01_indices[:, 0], tensor11_index)
-
         # 00 , 01, 11, 10
         if self.method == 'baseline':
             if mlc_error_rate["error_level3"] is not None:

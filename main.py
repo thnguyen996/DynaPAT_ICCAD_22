@@ -34,7 +34,7 @@ parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")
 parser.add_argument("--lr", default=0.1, type=float, help="learning rate")
 parser.add_argument("--mlc", default=8, type=int, help="Number of mlc bits")
 parser.add_argument("--name", default="Name", type=str, help="Name of run")
-parser.add_argument("--method", default="proposed_method", type=str, help="Running method")
+parser.add_argument("--method", default="proposed_method", type=str, help="Running method: proposed_method, baseline, Helmet, Flipcy")
 parser.add_argument("--model", default="resnet18", type=str, help="Model")
 parser.add_argument("--gpu", default="0", type=str, help="GPU ids")
 parser.add_argument("--error_pat", default="00", type=str, help="error pattern")
@@ -43,6 +43,7 @@ parser.add_argument("--save_data", "-s", action="store_true", help="Save the dat
 parser.add_argument("--encode", "-e", action="store_true", help="Enable encode for flipcy and helmet")
 parser.add_argument("--resume", "-r", action="store_true", help="resume from checkpoint")
 parser.add_argument("--num_bits", default=8, type=int, help="Number of quantized bits")
+parser.add_argument("--gran", default="layer", type=str, help="Encoding granularity: layer, filter")
 args = parser.parse_args()
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
@@ -157,7 +158,11 @@ def main():
 
     tensors = (tensor_00, tensor_01, tensor_10, tensor_11)
     if args.method == "proposed_method":
-        state_encode = np.load(f"./state_stats/{args.model}-state-stats-fixed-point.npy")
+        if args.gran == "layer":
+            state_encode = np.load(f"./state_stats/{args.model}-state-stats-fixed-point.npy")
+        elif args.gran == "filter":
+            state_encode_dict = np.load(f"./state_stats/{args.model}-state-stats-filter.npy",
+                                        allow_pickle=True)
 
     with torch.no_grad():
         count = 0
@@ -178,7 +183,7 @@ def main():
                 layer_index = 0
                 # for name, weight in tqdm(net.named_parameters(), desc="Executing method:", leave=False):
                 for name, weight in net.named_parameters():
-                    if ("weight" in name) and ("bn" not in name):
+                    if ( "weight" in name ) and ( "bn" not in name ) and ( "shortcut" not in name):
                         # Fixed point quantization
                         if args.num_bits == 8:
                             qi, qf = (2, 6)
@@ -198,15 +203,16 @@ def main():
                             quantized_weight = quantized_weight.astype(dtype)
 
                         mlc_error_rate = {"error_level3": error_11, "error_level2": error_10}
-                        # mlc_error_rate = {"error_level3" : 0.01, "error_level2": 0.32}
                         if args.method == "proposed_method":
-                            state_order = state_encode[layer_index, :]
+                            if args.gran == "layer":
+                                state_order = state_encode[layer_index, :]
+                            elif args.gran == "filter":
+                                state_order = state_encode_dict.item()[name]
                             error_quantized_weight = proposed_method(
-                                quantized_weight, mlc_error_rate, args.num_bits, tensors, state_order
-                            )
+                                quantized_weight, mlc_error_rate, args.num_bits, tensors, state_order, args)
                         if args.method == "baseline":
                             error_quantized_weight = baseline(
-                                quantized_weight, mlc_error_rate, args.num_bits, tensors
+                                quantized_weight, mlc_error_rate, args.num_bits, tensors, args, shape
                             )
                         if args.method == "flipcy":
                             error_quantized_weight = flipcy(
@@ -249,32 +255,62 @@ def main():
                 df.to_csv(f"./results-2022/{args.name}.csv", mode="w", header=True)
             count += 1
 
-def proposed_method(weight, mlc_error_rate, num_bits, tensors, state_order):
+def proposed_method(weight, mlc_error_rate, num_bits, tensors, state_order, args):
     if num_bits == 8:
         dtype = np.int8
     else:
         dtype = np.uint16
 
-    state = ("00", "01", "10", "11")
-    level2 = state[state_order[2]]
-    level3 = state[state_order[3]]
-    level4 = state[state_order[0]]
-    orig_weight = np.copy(weight)
-    error_weight = method3.inject_error(weight, orig_weight, mlc_error_rate["error_level3"], level3, level4, num_bits)
-    error_weight = method3.inject_error(error_weight, orig_weight, mlc_error_rate["error_level2"], level2, level3, num_bits)
+    if args.gran == "layer":
+        state = ("00", "01", "10", "11")
+        level2 = state[state_order[2]]
+        level3 = state[state_order[3]]
+        level4 = state[state_order[0]]
+        orig_weight = np.copy(weight)
+        error_weight = method3.inject_error(weight, orig_weight, mlc_error_rate["error_level3"], level3, level4, num_bits)
+        error_weight = method3.inject_error(error_weight, orig_weight, mlc_error_rate["error_level2"], level2, level3, num_bits)
 
-    return error_weight
+        return error_weight
+    elif args.gran == "filter":
+        state = ("11", "10", "01", "00")
+        weight = weight.reshape(state_order.shape[0], -1)
+        orig_weight = np.copy(weight)
+        for filt in range(weight.shape[0]):
+            state_order_filt = state_order[filt]
+            level2 = state[state_order_filt[2]]
+            level3 = state[state_order_filt[3]]
+            level4 = state[state_order_filt[0]]
+            weight[filt, :] = method3.inject_error(weight[filt, :], orig_weight[filt, :],
+                                                   mlc_error_rate["error_level3"], level3, level4, num_bits)
+            weight[filt, :] = method3.inject_error(weight[filt, :], orig_weight[filt, :],
+                                                   mlc_error_rate["error_level2"], level2, level3, num_bits)
+        return weight.reshape(-1)
 
 
-def baseline(weight, mlc_error_rate, num_bits, tensors):
+def baseline(weight, mlc_error_rate, num_bits, tensors, args, shape):
     if num_bits == 8:
         dtype = np.int8
     else:
         dtype = np.uint16
-    MLC = weight_conf(weight, num_bits, method="baseline")
-    error_weight = MLC.inject_error(mlc_error_rate)
-    return error_weight
 
+    # State encoding: 00, 01, 11, 10
+    if args.gran == "layer":
+        MLC = weight_conf(weight, num_bits, method="baseline")
+        error_weight = MLC.inject_error(mlc_error_rate)
+        return error_weight
+
+    elif args.gran == "filter":
+        level2 = "01"
+        level3 = "11"
+        level4 = "10"
+        weight = weight.reshape(shape[0], -1)
+        orig_weight = np.copy(weight)
+        for filt in range(shape[0]):
+            weight[filt, :] = method3.inject_error(weight[filt, :], orig_weight[filt, :],
+                                                   mlc_error_rate["error_level3"], level3, level4, num_bits)
+            weight[filt, :] = method3.inject_error(weight[filt, :], orig_weight[filt, :],
+                                                   mlc_error_rate["error_level2"], level2, level3, num_bits)
+        return weight.reshape(-1)
 
 # 00, 01, 11, 10
 def flipcy(weight, mlc_error_rate, name, tensors, num_bits, encode):

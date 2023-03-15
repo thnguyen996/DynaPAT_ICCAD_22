@@ -35,7 +35,7 @@ parser.add_argument("--lr", default=0.1, type=float, help="learning rate")
 parser.add_argument("--name", default="Name", type=str, help="Name of run")
 parser.add_argument("--method", default="proposed_method", type=str, help="Running method")
 parser.add_argument("--model", default="resnet18", type=str, help="Model")
-parser.add_argument("--gran", default="layer", type=str, help="Encoding granularity: layer, filter, channel")
+parser.add_argument("--gran", default="layer", type=str, help="Encoding granularity: layer, filter")
 parser.add_argument("--gpu", default="0", type=str, help="GPU ids")
 parser.add_argument(
     "--save_data", "-s", action="store_true", help="Save the data")
@@ -123,8 +123,7 @@ def main():
         dtype = np.uint16
 
     with torch.no_grad():
-        list_11 = [3]
-        list_10 = [2]
+        list_11 = [3] list_10 = [2]
         list_01 = [1]
         list_00 = [0]
         for shift in range(2, args.num_bits, 2):
