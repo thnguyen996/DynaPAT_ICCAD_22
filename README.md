@@ -1,6 +1,5 @@
 
 # DynaPAT (ICCAD 2022) Implementation
-# fault-injection
 This repository is the official implementation of DynaPAT paper. Details of the proposed methods are
 described in:  <em>[Thai-Hoang Nguyen](https://thaihoang.org), Muhammad Imran, Joon-Sung Yang (2022). [DynaPAT: A Dynamic Pattern-Aware Encoding Technique for Robust MLC PCM-Based Deep Neural Networks.](https://doi.org/10.1145/3508352.3549400) ICCAD'22: Proceedings of the 41st IEEE/ACM International Conference on Computer-Aided Design.</em>
 
