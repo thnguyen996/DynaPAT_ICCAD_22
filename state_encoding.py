@@ -103,7 +103,7 @@ def main():
     print("==> Building model..")
     if args.model == "resnet18":
         net = ResNet18()
-        net.load_state_dict(torch.load("./checkpoint/resnet.pt")['net'])
+        net.load_state_dict(torch.load("../th.nguyen/MLC_PCM/checkpoint/resnet.pt")['net'])
     elif args.model == "LeNet":
         net = googlenet()
         net.load_state_dict(torch.load("./checkpoint/googlenet.pt"))
@@ -123,7 +123,8 @@ def main():
         dtype = np.uint16
 
     with torch.no_grad():
-        list_11 = [3] list_10 = [2]
+        list_11 = [3] 
+        list_10 = [2]
         list_01 = [1]
         list_00 = [0]
         for shift in range(2, args.num_bits, 2):

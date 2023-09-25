@@ -30,7 +30,7 @@ torch.set_printoptions(profile="full")
 np.set_printoptions(suppress=True)
 
 msglogger = logging.getLogger()
-parser = argparse.ArgumentParser(description="PyTorch CIFAR10 Training")
+parser = argparse.ArgumentParser(description="Main code for DynaPAT")
 parser.add_argument("--lr", default=0.1, type=float, help="learning rate")
 parser.add_argument("--mlc", default=8, type=int, help="Number of mlc bits")
 parser.add_argument("--name", default="Name", type=str, help="Name of run")
@@ -74,12 +74,12 @@ def main():
     )
 
     trainset = torchvision.datasets.CIFAR10(
-        root="~/Datasets/cifar10/", train=True, download=False, transform=transform_train
+        root="~/Datasets/cifar10/", train=True, download=True, transform=transform_train
     )
     trainloader = torch.utils.data.DataLoader(trainset, batch_size=500, shuffle=True, num_workers=2)
 
     testset = torchvision.datasets.CIFAR10(
-        root="~/Datasets/cifar10/", train=False, download=False, transform=transform_test
+        root="~/Datasets/cifar10/", train=False, download=True, transform=transform_test
     )
     _, val_set = torch.utils.data.random_split(testset, [9500, 500])
 
@@ -103,7 +103,7 @@ def main():
     print("==> Building model..")
     if args.model == "resnet18":
         net = ResNet18()
-        net.load_state_dict(torch.load("./checkpoint/resnet.pt")["net"])
+        net.load_state_dict(torch.load("../th.nguyen/MLC_PCM/checkpoint/resnet.pt")["net"])
     elif args.model == "LeNet":
         net = googlenet()
         net.load_state_dict(torch.load("./checkpoint/googlenet.pt"))
@@ -330,7 +330,7 @@ def flipcy(weight, mlc_error_rate, name, tensors, num_bits, encode):
         else:
             dtype = np.uint16
         flipcy_error_rate = {}
-        assert os.path.isdir(f"./flipcy_en/quantized-{args.model}-{num_bits}b"), "You need to do encoding first"
+        assert os.path.isdir(f"./flipcy_en/quantized-{args.model}-{num_bits}b"), "You need to do encoding first, pls add --encode option"
         encoded_weight = torch.load(f"./flipcy_en/quantized-{args.model}-{num_bits}b/{name}.pt")
 
         encoded_weight = encoded_weight.cpu().numpy().astype(dtype)
@@ -385,7 +385,7 @@ def helmet(weight, mlc_error_rate, name, tensors, num_bits, encode):
             dtype = np.int8
         else:
             dtype = np.uint16
-        assert os.path.isdir(f"./helmet_en/quantized-{args.model}-{num_bits}b"), "You need to do encoding first"
+        assert os.path.isdir(f"./helmet_en/quantized-{args.model}-{num_bits}b"), "You need to do encoding first, pls add --encode option"
         encoded_weight = torch.load(f"./helmet_en/quantized-{args.model}-{num_bits}b/{name}.pt")
 
         encoded_weight = encoded_weight.cpu().numpy().astype(dtype)
